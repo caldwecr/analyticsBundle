@@ -1,0 +1,7 @@
+parameters:
+#    cympel_analytics.example.class: Cympel\Bundle\AnalyticsBundle\Example
+
+services:
+#    cympel_analytics.example:
+#        class: %cympel_analytics.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

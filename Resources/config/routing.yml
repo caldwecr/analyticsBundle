@@ -1,0 +1,3 @@
+cympel_analytics_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CympelAnalyticsBundle:Default:index }
