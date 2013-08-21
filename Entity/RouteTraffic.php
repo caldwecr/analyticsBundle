@@ -1,0 +1,99 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: caldwecr
+ * Date: 8/21/13
+ * Time: 9:04 AM
+ * Copyright Cympel Inc
+ */
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class RouteTraffic
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="routeTraffic")
+ */
+class RouteTraffic implements iType
+{
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="bigint")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     * This is the name of route that was trafficked
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @var int
+     * The unix timestamp when the route was trafficked
+     * @ORM\Column(type="bigint")
+     */
+    protected $timestamp;
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param int $timestamp
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * @return string
+     * This method must return a string with a unique representation of the object type that is implementing this interface
+     */
+    public function getType()
+    {
+        return 'CympelRouteTraffic';
+    }
+}
