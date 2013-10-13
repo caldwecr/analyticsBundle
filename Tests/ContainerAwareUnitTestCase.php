@@ -6,7 +6,17 @@ namespace Cympel\Bundle\AnalyticsBundle\Tests;
 // src/Application/AcmeBundle/Tests/ContainerAwareUnitTestCase.php
 // with Symfony 2.0 Standard Edition layout. You may need to change it
 // to fit your own file system mapping.
-require_once __DIR__ . '/../../../../../app/AppKernel.php';
+if(file_exists(__DIR__ . '/../../../../../app/AppKernel.php')) {
+    require_once __DIR__ . '/../../../../../app/AppKernel.php';
+} else if(file_exists(__DIR__ . '/../../../../app/AppKernel.php')) {
+    require_once __DIR__ . '/../../../../app/AppKernel.php';
+} else if(file_exists(__DIR__ . '/../../../../../../app/AppKernel.php')){
+    require_once __DIR__ . '/../../../../../../app/AppKernel.php';
+} else if(file_exists(__DIR__ . '/../../../../../../../app/AppKernel.php')) {
+    require_once __DIR__ . '/../../../../../../../app/AppKernel.php';
+} else {
+    throw new \Exception("Cannot find the app's AppKernel.php file in ContainerAwareUnitTestCase.");
+}
 
 class ContainerAwareUnitTestCase extends \PHPUnit_Framework_TestCase
 {
