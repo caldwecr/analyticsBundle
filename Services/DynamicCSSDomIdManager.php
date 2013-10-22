@@ -25,59 +25,135 @@ class DynamicCSSDomIdManager implements iType
     }
 
     /**
-     * @todo implement this method
+     * @return DynamicCSSDomId
      */
     public function createDynamicCSSDomId()
     {
-
+        return new DynamicCSSDomId();
     }
 
     /**
-     * @todo implement this method
-     */
-    public function persistDynamicCSSDomId()
-    {
-
-    }
-
-    /**
-     * @todo implement this method
-     */
-    public function removeDynamicCSSDomId()
-    {
-
-    }
-
-    /**
-     * @param int $id
+     * @return DynamicCSSDomId
      *
-     * @todo implement this method
+     * This method is an alias of ::createDynamicCSSDomId
      */
-    public function findOneDynamicCSSDomIdById($id)
+    public function create()
     {
-
-    }
-
-    /**
-     * @param DynamicCSS $dynamicCSS
-     * @param string $domIdValue
-     *
-     * @todo implement this method
-     */
-    public function findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
-    {
-
+        return $this->createDynamicCSSDomId();
     }
 
     /**
      * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
+     *
+     * @todo implement this guy
+     */
+    public function persistDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        return true;
+    }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return bool
+     *
+     * This method is an alias of ::persistDynamicCSSDomId
+     */
+    public function persist(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        return $this->persistDynamicCSSDomId($dynamicCSSDomId);
+    }
+
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return bool
+     *
+     * @todo implement this method
+     */
+    public function removeDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        return true;
+    }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return bool
+     *
+     * This method is an alias of ::removeDynamicCSSDomId
+     */
+    public function remove(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        return $this->removeDynamicCSSDomId($dynamicCSSDomId);
+    }
+
+    /**
+     * @param $id
+     * @return DynamicCSSDomId
+     *
+     * @todo implement this method
+     */
+    public function findOneDynamicCSSDomIdById($id)
+    {
+        return new DynamicCSSDomId();
+    }
+
+    /**
+     * @param $id
+     * @return DynamicCSSDomId
+     *
+     * This method is an alias of ::findOneByDynamicCSSDomIdById
+     */
+    public function findOneById($id)
+    {
+        return $this->findOneDynamicCSSDomIdById($id);
+    }
+
+    /**
+     * @param DynamicCSS $dynamicCSS
+     * @param $domIdValue
+     * @return DynamicCSSDomId
+     *
+     * @todo implement this method
+     */
+    public function findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
+    {
+        return new DynamicCSSDomId();
+    }
+
+    /**
+     * @param DynamicCSS $dynamicCSS
+     * @param $domIdValue
+     * @return DynamicCSSDomId
+     *
+     * This method is an alias of ::findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue
+     */
+    public function findOneByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
+    {
+        return $this->findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue($dynamicCSS, $domIdValue);
+    }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return array
      */
     public function validateDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
         $errors = $this->validator->validate($dynamicCSSDomId);
-        return count($errors) == 0;
+        return $errors;
     }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return array
+     *
+     * This method is an alias of ::validateDynamicCSSDomId
+     */
+    public function validate(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        return $this->validateDynamicCSSDomId($dynamicCSSDomId);
+    }
+
 
     /**
      * @return string
