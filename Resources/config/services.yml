@@ -12,4 +12,4 @@ services:
         arguments: ["@doctrine", "@router"]
     cympel_analytics.dynamic_css_dom_id_manager:
         class: %cympel_analytics.dynamic_css_dom_id_manager.class%
-        arguments: ["@doctrine"]
+        arguments: ["@doctrine", "@validator"]
