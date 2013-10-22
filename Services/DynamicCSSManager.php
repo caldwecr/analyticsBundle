@@ -66,6 +66,30 @@ class DynamicCSSManager implements iType
         $em->flush();
     }
 
+    /**
+     * @param DynamicCSS $dynamicCSS
+     * @return array
+     *
+     * This method is included so that the url property of the DynamicCSSDomId class can be populated even though this field is not persisted to the database
+     *  and thus accessed via the twig template at render time.
+     */
+    public function getDynamicCSSDomIds(DynamicCSS $dynamicCSS)
+    {
+        $ids = $dynamicCSS->getDynamicCSSDomIds()->toArray();
+        foreach($ids as $key => $value) {
+            $value->setUrl(
+                $this->router->generate('dynamicCSSImageFile',
+                    array(
+                        'key' => $dynamicCSS->getId(),
+                        'domIdValue' => $value->getDomIdValue(),
+                    ),
+                    URLGeneratorInterface::ABSOLUTE_PATH
+                )
+            );
+        }
+        return $ids;
+    }
+
 
     /**
      * @param $id
