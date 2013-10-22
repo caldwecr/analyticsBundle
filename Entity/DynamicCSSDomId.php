@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class DynamicCSSDomId
@@ -29,6 +30,12 @@ class DynamicCSSDomId implements iType
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "255",
+     *      minMessage = "The domIdValue must be between 1 and 255 characters in length",
+     *      maxMessage = "The domIdValue must be between 1 and 255 characters in length"
+     * )
      */
     protected $domIdValue;
 
