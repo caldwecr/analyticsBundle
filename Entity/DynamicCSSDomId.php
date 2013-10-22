@@ -40,11 +40,37 @@ class DynamicCSSDomId implements iType
     protected $dynamicCSS;
 
     /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the DynamicCSSDomId object was created
+     */
+    protected $created;
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the DynamicCSSDomId object was rendered
+     */
+    protected $rendered;
+
+    /**
      * @var string
      *
      * Note that this property is NOT persisted to the database and is included only for accessor support in twig templates
      */
     protected $url;
+
+    /**
+     * A basic constructor that initializes a few scalar properties
+     */
+    public function __construct()
+    {
+        $this->created = time();
+        $this->rendered = 0;
+        $this->domIdValue = '';
+    }
 
     /**
      * @param string $domIdValue
@@ -108,6 +134,38 @@ class DynamicCSSDomId implements iType
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * @param int $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param int $rendered
+     */
+    public function setRendered($rendered)
+    {
+        $this->rendered = $rendered;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRendered()
+    {
+        return $this->rendered;
     }
 
     /**
