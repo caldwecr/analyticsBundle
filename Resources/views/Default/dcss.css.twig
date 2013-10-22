@@ -1,1 +1,3 @@
-#foo { border: 1px solid red; }
+{% for id in ids %}
+    #{{ id.domIdValue }}:{{ pseudo }} {background-image:url('{{ id.url }}');}
+{% endfor %}
