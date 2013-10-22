@@ -28,4 +28,5 @@ class DefaultController extends Controller
     {
         return new BinaryFileResponse('bundles/cympelanalytics/assets/images/logo.jpg');
     }
+
 }
