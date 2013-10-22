@@ -1,7 +1,11 @@
 parameters:
     cympelAnalytics.routeTrafficPersister.class: Cympel\Bundle\AnalyticsBundle\Services\RouteTrafficPersister
+    cympel_analytics.dynamic_css_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSManager
 
 services:
     cympelAnalytics.routeTrafficPersister:
         class: %cympelAnalytics.routeTrafficPersister.class%
         arguments: [@doctrine]
+    cympel_analytics.dynamic_css_manager:
+        class: %cympel_analytics.dynamic_css_manager.class%
+        arguments: ["@doctrine", "@router"]
