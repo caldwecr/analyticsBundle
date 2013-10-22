@@ -16,9 +16,12 @@ class DynamicCSSDomIdManager implements iType
 {
     protected $doctrine;
 
-    public function __construct($doctrine)
+    protected $validator;
+
+    public function __construct($doctrine, $validator)
     {
         $this->doctrine = $doctrine;
+        $this->validator = $validator;
     }
 
     /**
@@ -58,10 +61,22 @@ class DynamicCSSDomIdManager implements iType
     /**
      * @param DynamicCSS $dynamicCSS
      * @param string $domIdValue
+     *
+     * @todo implement this method
      */
     public function findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
     {
 
+    }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return bool
+     */
+    public function validateDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        $errors = $this->validator->validate($dynamicCSSDomId);
+        return count($errors) == 0;
     }
 
     /**
