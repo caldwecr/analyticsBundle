@@ -1,0 +1,3 @@
+dynamicCSS:
+    pattern:  /dynamic/css/{key}
+    defaults: { _controller: CympelAnalyticsBundle:Default:dynamicCSS }
