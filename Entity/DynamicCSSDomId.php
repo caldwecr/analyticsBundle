@@ -40,6 +40,13 @@ class DynamicCSSDomId implements iType
     protected $dynamicCSS;
 
     /**
+     * @var string
+     *
+     * Note that this property is NOT persisted to the database and is included only for accessor support in twig templates
+     */
+    protected $url;
+
+    /**
      * @param string $domIdValue
      */
     public function setDomIdValue($domIdValue)
@@ -85,6 +92,22 @@ class DynamicCSSDomId implements iType
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 
     /**
