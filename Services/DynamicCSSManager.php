@@ -80,6 +80,22 @@ class DynamicCSSManager implements iType
     }
 
     /**
+     * @param $id
+     * @return mixed
+     *
+     * This method is invoked by the Default Controller to render a DynamicCSS
+     */
+    public function renderDCSSById($id)
+    {
+        $toReturn = $this->findOneTimeStylesheetById($id);
+        $toReturn->setRendered(time());
+        $em = $this->doctrine->getManager();
+        $em->persist($toReturn);
+        $em->flush();
+        return $toReturn;
+    }
+
+    /**
      * @return string
      * This method must return a string with a unique representation of the object type that is implementing this interface
      */
