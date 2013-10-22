@@ -4,3 +4,6 @@ dynamicCSS:
 dynamicCSSImageFile:
     pattern: /dynamic/css/image/file/{key}/{domIdValue}
     defaults: { _controller: CympelAnalyticsBundle:Default:dynamicCSSImageFile }
+dynamicCSSTest:
+    pattern: /dynamic/test
+    defaults: { _controller: CympelAnalyticsBundle:Test:dynamicCSSTest }
