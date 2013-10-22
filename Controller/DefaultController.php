@@ -10,4 +10,10 @@ class DefaultController extends Controller
     {
         return $this->render('CympelAnalyticsBundle:Default:index.html.twig', array('name' => $name));
     }
+
+    public function dynamicCSSAction($key)
+    {
+        //convert $key into useful variables to pass to template
+        return $this->render('CympelAnalyticsBundle:Default:dcss.css.twig');
+    }
 }
