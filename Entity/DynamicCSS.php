@@ -44,6 +44,32 @@ class DynamicCSS implements iType
     protected $dynamicCSSDomIds;
 
     /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the DynamicCSS instance was created
+     */
+    protected $created;
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the DynamicCSS instance was rendered and then sent to the client
+     */
+    protected $rendered;
+
+    /**
+     * A default constructor
+     */
+    public function __construct()
+    {
+        $this->created = time();
+        $this->rendered = 0;
+        $this->pseudo = 'hover';
+    }
+
+    /**
      * @param \Doctrine\Common\Collections\ArrayCollection $dynamicCSSDomIds
      */
     public function setDynamicCSSDomIds($dynamicCSSDomIds)
@@ -89,6 +115,38 @@ class DynamicCSS implements iType
     public function getPseudo()
     {
         return $this->pseudo;
+    }
+
+    /**
+     * @param int $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param int $rendered
+     */
+    public function setRendered($rendered)
+    {
+        $this->rendered = $rendered;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRendered()
+    {
+        return $this->rendered;
     }
 
     /**
