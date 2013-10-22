@@ -1,0 +1,26 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: caldwecr
+ * Date: 10/22/13
+ * Time: 3:19 PM
+ * Copyright Cympel Inc
+ */
+namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
+
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
+
+class DynamicCSSDomIdTestInstanceFactory
+{
+    public function createInstance()
+    {
+        $dcss = new DynamicCSS();
+        $dcdi = new DynamicCSSDomId();
+        $dcss->setDynamicCSSDomIds(array($dcdi));
+        $dcdi->setRendered(0);
+        $dcdi->setDomIdValue('validValue');
+        $dcdi->setDynamicCSS($dcss);
+        $dcdi->setCreated(time());
+    }
+}
