@@ -22,5 +22,6 @@ class DynamicCSSDomIdTestInstanceFactory
         $dcdi->setDomIdValue('validValue');
         $dcdi->setDynamicCSS($dcss);
         $dcdi->setCreated(time());
+        return $dcdi;
     }
 }
