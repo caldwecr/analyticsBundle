@@ -60,6 +60,13 @@ class DynamicCSS implements iTrackingTool
     protected $rendered;
 
     /**
+     * @var iTracker
+     * @ORM\ManyToOne(targetEntity="Tracker", inversedBy="trackingTools", cascade={"persist"})
+     * @ORM\JoinColumn(name="tracker_id", referencedColumnName="id")
+     */
+    protected $tracker;
+
+    /**
      * A default constructor
      */
     public function __construct()
@@ -156,6 +163,23 @@ class DynamicCSS implements iTrackingTool
     public function getType()
     {
         return 'DynamicCSS';
+    }
+
+    /**
+     * @param iTracker $tracker
+     * @return bool
+     */
+    public function setTracker(iTracker $tracker)
+    {
+        $this->tracker = $tracker;
+    }
+
+    /**
+     * @return iTracker
+     */
+    public function getTracker()
+    {
+        return $this->tracker;
     }
 
 }

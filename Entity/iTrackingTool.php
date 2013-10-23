@@ -10,4 +10,14 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 interface iTrackingTool extends iType
 {
+    /**
+     * @param iTracker $tracker
+     * @return bool
+     */
+    public function setTracker(iTracker $tracker);
+
+    /**
+     * @return iTracker
+     */
+    public function getTracker();
 }
