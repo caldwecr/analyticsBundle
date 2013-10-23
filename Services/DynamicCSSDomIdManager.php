@@ -45,6 +45,53 @@ class DynamicCSSDomIdManager implements iType
 
     /**
      * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return DynamicCSSDomId
+     */
+    public function renderDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        $dynamicCSSDomId->setRendered(time());
+        $em = $this->doctrine->getManager();
+        $em->persist($dynamicCSSDomId);
+        $em->flush();
+        return $dynamicCSSDomId;
+    }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
+     * @return DynamicCSSDomId
+     *
+     * This method is an alias of ::renderDynamicCSSDomId
+     */
+    public function render(DynamicCSSDomId $dynamicCSSDomId)
+    {
+        return $this->renderDynamicCSSDomId($dynamicCSSDomId);
+    }
+
+    /**
+     * @param DynamicCSS $dynamicCSS
+     * @param $domIdValue
+     * @return DynamicCSSDomId
+     */
+    public function renderDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
+    {
+        $dynamicCSSDomId = $this->findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue($dynamicCSS, $domIdValue);
+        return $this->renderDynamicCSSDomId($dynamicCSSDomId);
+    }
+
+    /**
+     * @param DynamicCSS $dynamicCSS
+     * @param $domIdValue
+     * @return DynamicCSSDomId
+     *
+     * This method is an alias of ::renderDynamicCSSDomIdByDynamicCSSAndDomIdValue
+     */
+    public function renderByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
+    {
+        return $this->renderDynamicCSSDomIdByDynamicCSSAndDomIdValue($dynamicCSS, $domIdValue);
+    }
+
+    /**
+     * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
      * @throws \Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException
      */
