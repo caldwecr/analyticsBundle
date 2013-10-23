@@ -20,16 +20,19 @@ class DynamicCSSManager implements iType
 
     protected $router;
 
+    protected $emName;
+
     /**
      * @var DynamicCSSDomIdManager
      */
     protected $dynamicCSSDomIdManager;
 
-    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager)
+    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager, $entityManagerName)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
+        $this->emName = $entityManagerName;
     }
 
     /**
@@ -50,7 +53,7 @@ class DynamicCSSManager implements iType
         }
         $dCSS->setDynamicCSSDomIds($dCSSDomIds);
         $dCSS->setPseudo($pseudo);
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->persist($dCSS);
         $em->flush();
         return $this->router->generate('dynamicCSS',
@@ -66,7 +69,7 @@ class DynamicCSSManager implements iType
      */
     public function removeOneTimeStylesheet(DynamicCSS $dynamicCSS)
     {
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->remove($dynamicCSS);
         $em->flush();
     }
@@ -103,7 +106,7 @@ class DynamicCSSManager implements iType
      */
     public function findOneTimeStylesheetById($id)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSS');
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSS', $this->emName);
         $dcss = $repository->findOneById($id);
         return $dcss;
     }
@@ -118,7 +121,7 @@ class DynamicCSSManager implements iType
     {
         $toReturn = $this->findOneTimeStylesheetById($id);
         $toReturn->setRendered(time());
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->persist($toReturn);
         $em->flush();
         return $toReturn;
