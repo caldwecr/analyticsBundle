@@ -15,6 +15,8 @@ class RouteTrafficPersister implements iType
 {
     protected $doctrine;
 
+    protected $emName;
+
     /**
      * @return string
      * This method must return a string with a unique representation of the object type that is implementing this interface
@@ -24,9 +26,10 @@ class RouteTrafficPersister implements iType
         return 'RouteTrafficPersister';
     }
 
-    public function __construct($doctrine)
+    public function __construct($doctrine, $entityManagerName)
     {
         $this->doctrine = $doctrine;
+        $this->emName = $entityManagerName;
     }
 
     /**
@@ -37,9 +40,14 @@ class RouteTrafficPersister implements iType
         $rt = new RouteTraffic();
         $rt->setName($routeName);
         $rt->setTimestamp(time());
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->persist($rt);
         $em->flush();
     }
 
+
+    public function getEntityManagerName()
+    {
+        return $this->emName;
+    }
 }
