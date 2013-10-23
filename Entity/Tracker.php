@@ -47,6 +47,22 @@ class Tracker implements iTracker
     protected $trackingTools;
 
     /**
+     * @param iTracker $rightSide
+     * @return bool
+     *
+     * This method evaluates the equality of the object against the argument
+     */
+    public function equals(iTracker $rightSide)
+    {
+        foreach($this as $key => $value) {
+            if($value !== $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * @return string
      * This method must return a string with a unique representation of the object type that is implementing this interface
      */
