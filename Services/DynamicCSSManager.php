@@ -10,11 +10,14 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class DynamicCSSManager implements iType
+class DynamicCSSManager implements iTrackingToolManager
 {
     protected $doctrine;
 
@@ -23,16 +26,22 @@ class DynamicCSSManager implements iType
     protected $emName;
 
     /**
+     * @var TrackerManager
+     */
+    protected $trackerManager;
+
+    /**
      * @var DynamicCSSDomIdManager
      */
     protected $dynamicCSSDomIdManager;
 
-    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager, $entityManagerName)
+    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager, $entityManagerName, TrackerManager $trackerManager)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
         $this->emName = $entityManagerName;
+        $this->trackerManager = $trackerManager;
     }
 
     /**
@@ -135,5 +144,110 @@ class DynamicCSSManager implements iType
     {
         return 'DynamicCSSManager';
     }
+
+    /**
+     * @param iTracker $tracker
+     * @return iTrackingTool
+     *
+     * This method creates a brand new tracking tool that is a child to the first argument
+     */
+    public function create(iTracker $tracker)
+    {
+        $dcss = new DynamicCSS();
+        $dcss->setTracker($tracker);
+        $this->trackerManager->addTrackingTool($tracker, $dcss);
+        return $dcss;
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
+     * @return bool
+     *
+     * This method should persist a tracking tool to the database
+     */
+    public function persist(iTrackingTool $tool)
+    {
+        // TODO: Implement persist() method.
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
+     * @return bool
+     *
+     * This method should remove a tracking tool from the database
+     */
+    public function remove(iTrackingTool $tool)
+    {
+        // TODO: Implement remove() method.
+    }
+
+    /**
+     * @param $id
+     * @return iTrackingTool
+     *
+     * This method should scan the database for an instance of the TrackingTool of appropriate type and id
+     */
+    public function findOneById($id)
+    {
+        // TODO: Implement findOneById() method.
+    }
+
+    /**
+     * @param $entityManagerName
+     * @return void
+     *
+     * This method must set the manager's entity manager name property
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        // TODO: Implement setEntityManagerName() method.
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the manager's entity manager name
+     */
+    public function getEntityManagerName()
+    {
+        // TODO: Implement getEntityManagerName() method.
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @param ArrayCollection $bindings
+     * @return bool
+     *
+     * This method should attach the bindings in argument 2 to the tracking tool in argument 1
+     */
+    public function bind(iTrackingTool $tool, ArrayCollection $bindings)
+    {
+        // TODO: Implement bind() method.
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @return ArrayCollection
+     *
+     * This method must return all bindings on the tracking tool
+     */
+    public function getBindings(iTrackingTool $tool)
+    {
+        // TODO: Implement getBindings() method.
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @return bool
+     *
+     * This method should cause the tool's properties to be validated
+     */
+    public function validate(iTrackingTool $tool)
+    {
+        // TODO: Implement validate() method.
+    }
+
 
 }
