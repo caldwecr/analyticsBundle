@@ -13,13 +13,13 @@ use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
 
 class DynamicCSSDomIdTestInstanceFactory
 {
-    public static function createInstance()
+    public static function createInstance($domIdValue = 'validValue')
     {
         $dcss = new DynamicCSS();
         $dcdi = new DynamicCSSDomId();
         $dcss->setDynamicCSSDomIds(array($dcdi));
         $dcdi->setRendered(0);
-        $dcdi->setDomIdValue('validValue');
+        $dcdi->setDomIdValue($domIdValue);
         $dcdi->setDynamicCSS($dcss);
         $dcdi->setCreated(time());
         return $dcdi;
