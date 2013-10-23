@@ -24,5 +24,9 @@ class CympelAnalyticsExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $container->setParameter(
+            'cympel_analytics.entity_manager',
+            $config['entity_manager']
+        );
     }
 }
