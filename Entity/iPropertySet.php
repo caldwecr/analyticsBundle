@@ -10,5 +10,16 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 interface iPropertySet extends iType
 {
+    /**
+     * @param iTrackingTool $tool
+     * @return iTrackingTool
+     */
+    public function pushTo(iTrackingTool $tool);
+
+    /**
+     * @param iTrackingTool $tool
+     * @return iPropertySet
+     */
+    public function pullFrom(iTrackingTool $tool);
 
 }
