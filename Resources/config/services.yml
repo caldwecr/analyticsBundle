@@ -11,7 +11,7 @@ services:
         arguments: [@doctrine, "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_css_manager:
         class: %cympel_analytics.dynamic_css_manager.class%
-        arguments: ["@doctrine", "@router", "@cympel_analytics.dynamic_css_dom_id_manager", "%cympel_analytics.entity_manager%", "@cympel_analytics.tracker_manager"]
+        arguments: ["@doctrine", "@router", "@cympel_analytics.dynamic_css_dom_id_manager", "%cympel_analytics.entity_manager%", "@cympel_analytics.tracker_manager", "@validator"]
     cympel_analytics.dynamic_css_dom_id_manager:
         class: %cympel_analytics.dynamic_css_dom_id_manager.class%
         arguments: ["@doctrine", "@validator", "%cympel_analytics.entity_manager%"]

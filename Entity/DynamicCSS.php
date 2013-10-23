@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -46,6 +47,7 @@ class DynamicCSS implements iTrackingTool
     /**
      * @var int
      * @ORM\Column(type="bigint")
+     * @Assert\GreaterThanOrEqual(value = 0)
      *
      * The unix timestamp when the DynamicCSS instance was created
      */
@@ -193,6 +195,16 @@ class DynamicCSS implements iTrackingTool
                 return false;
             }
         }
+        return true;
+    }
+
+    /**
+     * @return bool
+     *
+     * This method must return true if the tool has validation constraints that should be checked, otherwise false
+     */
+    public function hasValidationConstraints()
+    {
         return true;
     }
 

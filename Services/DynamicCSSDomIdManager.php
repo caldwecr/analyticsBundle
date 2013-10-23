@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
-use Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException;
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidDynamicCSSDomIdException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 class DynamicCSSDomIdManager implements iType

@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
@@ -25,6 +26,8 @@ class DynamicCSSManager implements iTrackingToolManager
 
     protected $emName;
 
+    protected $validator;
+
     /**
      * @var TrackerManager
      */
@@ -35,13 +38,14 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     protected $dynamicCSSDomIdManager;
 
-    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager, $entityManagerName, TrackerManager $trackerManager)
+    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager, $entityManagerName, TrackerManager $trackerManager, $validator)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
         $this->emName = $entityManagerName;
         $this->trackerManager = $trackerManager;
+        $this->validator = $validator;
     }
 
     /**
@@ -168,7 +172,12 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     public function persist(iTrackingTool $tool)
     {
-        // TODO: Implement persist() method.
+        if(!$this->validate($tool)) {
+            throw new InvalidTrackingToolException();
+        }
+        $em = $this->doctrine->getManager($this->emName);
+        $em->persist($tool);
+        $em->flush();
     }
 
     /**
@@ -180,7 +189,12 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     public function remove(iTrackingTool $tool)
     {
-        // TODO: Implement remove() method.
+        if(!$this->validate($tool)) {
+            throw new InvalidTrackingToolException();
+        }
+        $em = $this->doctrine->getManager($this->emName);
+        $em->remove($tool);
+        $em->flush();
     }
 
     /**
@@ -191,7 +205,7 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     public function findOneById($id)
     {
-        // TODO: Implement findOneById() method.
+        return $this->findOneTimeStylesheetById($id);
     }
 
     /**
@@ -246,7 +260,14 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     public function validate(iTrackingTool $tool)
     {
-        // TODO: Implement validate() method.
+        if(!$tool->hasValidationConstraints()) {
+            return true;
+        }
+        $errors = $this->validator->validate($tool);
+        if(count($errors) > 0) {
+            return false;
+        }
+        return true;
     }
 
 

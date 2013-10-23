@@ -26,4 +26,11 @@ interface iTrackingTool extends iType
      * @return bool
      */
     public function equals(iTrackingTool $rightSide);
+
+    /**
+     * @return bool
+     *
+     * This method must return true if the tool has validation constraints that should be checked, otherwise false
+     */
+    public function hasValidationConstraints();
 }

@@ -59,4 +59,23 @@ class DynamicJS implements iTrackingTool
         return 'DynamicJS';
     }
 
+    /**
+     * @param iTrackingTool $rightSide
+     * @return bool
+     */
+    public function equals(iTrackingTool $rightSide)
+    {
+        // TODO: Implement equals() method.
+    }
+
+    /**
+     * @return bool
+     *
+     * This method must return true if the tool has validation constraints that should be checked, otherwise false
+     */
+    public function hasValidationConstraints()
+    {
+        // TODO: Implement hasValidationConstraints() method.
+    }
+
 }

@@ -23,7 +23,6 @@ class TrackerManager implements iType
     public function addTrackingTool(iTracker $tracker, iTrackingTool $tool)
     {
         $tools = $tracker->getTrackingTools();
-        var_dump($tools);
         $tools->add($tool);
         $tracker->setTrackingTools($tools);
         return true;

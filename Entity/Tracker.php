@@ -51,6 +51,8 @@ class Tracker implements iTracker
      */
     public function __construct()
     {
+        $this->created = time();
+        $this->createdByRoute = '';
         $this->trackingTools = new ArrayCollection();
     }
 
