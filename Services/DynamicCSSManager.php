@@ -216,7 +216,7 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     public function setEntityManagerName($entityManagerName)
     {
-        // TODO: Implement setEntityManagerName() method.
+        $this->emName = $entityManagerName;
     }
 
     /**
@@ -226,7 +226,7 @@ class DynamicCSSManager implements iTrackingToolManager
      */
     public function getEntityManagerName()
     {
-        // TODO: Implement getEntityManagerName() method.
+        return $this->emName;
     }
 
     /**
