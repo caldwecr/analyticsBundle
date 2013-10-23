@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="DynamicCSS")
  */
-class DynamicCSS implements iType
+class DynamicCSS implements iTrackingTool
 {
     /**
      * @var int
