@@ -10,7 +10,9 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
+use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
@@ -231,26 +233,26 @@ class DynamicCSSManager implements iTrackingToolManager
 
     /**
      * @param iTrackingTool $tool
-     * @param ArrayCollection $bindings
-     * @return bool
-     *
-     * This method should attach the bindings in argument 2 to the tracking tool in argument 1
+     * @param iPropertySet $properties
+     * @return iTrackingTool
      */
-    public function bind(iTrackingTool $tool, ArrayCollection $bindings)
+    public function setProperties(iTrackingTool $tool, iPropertySet $properties)
     {
-        // TODO: Implement bind() method.
+        return $properties->pushTo($tool);
     }
 
     /**
      * @param iTrackingTool $tool
-     * @return ArrayCollection
+     * @return iPropertySet
      *
      * This method must return all bindings on the tracking tool
      */
-    public function getBindings(iTrackingTool $tool)
+    public function getProperties(iTrackingTool $tool)
     {
-        // TODO: Implement getBindings() method.
+        $p = new DynamicCSSPropertySet();
+        return $p->pullFrom($tool);
     }
+
 
     /**
      * @param iTrackingTool $tool

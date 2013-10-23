@@ -63,20 +63,18 @@ interface iTrackingToolManager extends iType
 
     /**
      * @param iTrackingTool $tool
-     * @param ArrayCollection $bindings
-     * @return bool
-     *
-     * This method should attach the bindings in argument 2 to the tracking tool in argument 1
+     * @param iPropertySet $properties
+     * @return iTrackingTool
      */
-    public function bind(iTrackingTool $tool, ArrayCollection $bindings);
+    public function setProperties(iTrackingTool $tool, iPropertySet $properties);
 
     /**
      * @param iTrackingTool $tool
-     * @return ArrayCollection
+     * @return iPropertySet
      *
      * This method must return all bindings on the tracking tool
      */
-    public function getBindings(iTrackingTool $tool);
+    public function getProperties(iTrackingTool $tool);
 
     /**
      * @param iTrackingTool $tool
