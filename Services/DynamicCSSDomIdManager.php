@@ -19,10 +19,13 @@ class DynamicCSSDomIdManager implements iType
 
     protected $validator;
 
-    public function __construct($doctrine, $validator)
+    protected $emName;
+
+    public function __construct($doctrine, $validator, $entityManagerName)
     {
         $this->doctrine = $doctrine;
         $this->validator = $validator;
+        $this->emName = $entityManagerName;
     }
 
     /**
@@ -50,7 +53,7 @@ class DynamicCSSDomIdManager implements iType
     public function renderDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
         $dynamicCSSDomId->setRendered(time());
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->persist($dynamicCSSDomId);
         $em->flush();
         return $dynamicCSSDomId;
@@ -100,7 +103,7 @@ class DynamicCSSDomIdManager implements iType
         if(!$this->validate($dynamicCSSDomId)) {
             throw new InvalidDynamicCSSDomIdException();
         }
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->persist($dynamicCSSDomId);
         $em->flush();
         return true;
@@ -127,7 +130,7 @@ class DynamicCSSDomIdManager implements iType
         if(!$this->validate($dynamicCSSDomId)) {
             throw new InvalidDynamicCSSDomIdException();
         }
-        $em = $this->doctrine->getManager();
+        $em = $this->doctrine->getManager($this->emName);
         $em->remove($dynamicCSSDomId);
         $em->flush();
         return true;
@@ -150,7 +153,7 @@ class DynamicCSSDomIdManager implements iType
      */
     public function findOneDynamicCSSDomIdById($id)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId');
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId', $this->emName);
         $dynamicCSSDomId = $repository->findOneById($id);
         return $dynamicCSSDomId;
     }
@@ -173,7 +176,7 @@ class DynamicCSSDomIdManager implements iType
      */
     public function findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId');
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId', $this->emName);
         $dynamicCSSDomId = $repository->findOneBy(array(
             'dynamicCSS' => $dynamicCSS,
             'domIdValue' => $domIdValue,
