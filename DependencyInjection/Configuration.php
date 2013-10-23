@@ -20,6 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('cympel_analytics');
 
+        $rootNode
+            ->children()
+                ->scalarNode('entity_manager')
+                    ->info('This optional configuration parameter allows you to specify which entity manager should be used by the bundle for ORM - this is useful in particular if the database you use for analytics tables is different than your default')
+                    ->defaultValue('')
+                ->end()
+            ->end();
+
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
