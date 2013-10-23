@@ -47,8 +47,6 @@ class DynamicCSSDomIdManager implements iType
      * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
      * @throws \Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException
-     *
-     * @todo implement a test of this method once the getOne.. is working
      */
     public function persistDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
@@ -72,15 +70,19 @@ class DynamicCSSDomIdManager implements iType
         return $this->persistDynamicCSSDomId($dynamicCSSDomId);
     }
 
-
     /**
      * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
-     *
-     * @todo implement this method
+     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException
      */
     public function removeDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
+        if(!$this->validate($dynamicCSSDomId)) {
+            throw new InvalidDynamicCSSDomIdException();
+        }
+        $em = $this->doctrine->getManager();
+        $em->remove($dynamicCSSDomId);
+        $em->flush();
         return true;
     }
 
