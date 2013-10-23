@@ -58,6 +58,7 @@ class DynamicCSSDomId implements iType
     /**
      * @var int
      * @ORM\Column(type="bigint")
+     * @Assert\GreaterThanOrEqual(value=0)
      *
      * The unix timestamp when the DynamicCSSDomId object was rendered
      */
