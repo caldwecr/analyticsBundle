@@ -182,4 +182,18 @@ class DynamicCSS implements iTrackingTool
         return $this->tracker;
     }
 
+    /**
+     * @param iTrackingTool $rightSide
+     * @return bool
+     */
+    public function equals(iTrackingTool $rightSide)
+    {
+        foreach($this as $key => $value) {
+            if($value !== $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

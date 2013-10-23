@@ -20,4 +20,10 @@ interface iTrackingTool extends iType
      * @return iTracker
      */
     public function getTracker();
+
+    /**
+     * @param iTrackingTool $rightSide
+     * @return bool
+     */
+    public function equals(iTrackingTool $rightSide);
 }
