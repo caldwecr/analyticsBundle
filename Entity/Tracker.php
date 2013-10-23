@@ -47,6 +47,14 @@ class Tracker implements iTracker
     protected $trackingTools;
 
     /**
+     * This method initializes properties
+     */
+    public function __construct()
+    {
+        $this->trackingTools = new ArrayCollection();
+    }
+
+    /**
      * @param iTracker $rightSide
      * @return bool
      *
@@ -120,11 +128,11 @@ class Tracker implements iTracker
     }
 
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $trackingTools
+     * @param ArrayCollection $tools
      */
-    public function setTrackingTools($trackingTools)
+    public function setTrackingTools(ArrayCollection $tools)
     {
-        $this->trackingTools = $trackingTools;
+        $this->trackingTools = $tools;
     }
 
     /**
