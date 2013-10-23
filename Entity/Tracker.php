@@ -1,0 +1,121 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: caldwecr
+ * Date: 10/23/13
+ * Time: 1:25 PM
+ * Copyright Cympel Inc
+ */
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Class Tracker
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="Tracker")
+ */
+class Tracker implements iTracker
+{
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     */
+    protected $created;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $createdByRoute;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="DynamicCSS", mappedBy="tracker", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="DynamicJS", mappedBy="tracker", cascade={"persist", "remove"})
+     */
+    protected $trackingTools;
+
+    /**
+     * @return string
+     * This method must return a string with a unique representation of the object type that is implementing this interface
+     */
+    public function getType()
+    {
+        return 'Tracker';
+    }
+
+    /**
+     * @param mixed $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param string $createdByRoute
+     */
+    public function setCreatedByRoute($createdByRoute)
+    {
+        $this->createdByRoute = $createdByRoute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedByRoute()
+    {
+        return $this->createdByRoute;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $trackingTools
+     */
+    public function setTrackingTools($trackingTools)
+    {
+        $this->trackingTools = $trackingTools;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getTrackingTools()
+    {
+        return $this->trackingTools;
+    }
+}
