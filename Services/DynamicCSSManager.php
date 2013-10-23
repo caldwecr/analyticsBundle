@@ -16,15 +16,20 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DynamicCSSManager implements iType
 {
-
     protected $doctrine;
 
     protected $router;
 
-    public function __construct($doctrine, $router)
+    /**
+     * @var DynamicCSSDomIdManager
+     */
+    protected $dynamicCSSDomIdManager;
+
+    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
+        $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
     }
 
     /**
@@ -39,7 +44,7 @@ class DynamicCSSManager implements iType
         $dCSS = new DynamicCSS();
         $dCSSDomIds = new ArrayCollection();
         foreach($ids as $key => $value) {
-            $dCSSDomIds[$key] = new DynamicCSSDomId();
+            $dCSSDomIds[$key] = $this->dynamicCSSDomIdManager->create();
             $dCSSDomIds[$key]->setDynamicCSS($dCSS);
             $dCSSDomIds[$key]->setDomIdValue($value);
         }
