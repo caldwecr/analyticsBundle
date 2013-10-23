@@ -170,12 +170,15 @@ class DynamicCSSDomIdManager implements iType
      * @param DynamicCSS $dynamicCSS
      * @param $domIdValue
      * @return DynamicCSSDomId
-     *
-     * @todo implement this method
      */
     public function findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
     {
-        return new DynamicCSSDomId();
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId');
+        $dynamicCSSDomId = $repository->findOneBy(array(
+            'dynamicCSS' => $dynamicCSS,
+            'domIdValue' => $domIdValue,
+        ));
+        return $dynamicCSSDomId;
     }
 
     /**
