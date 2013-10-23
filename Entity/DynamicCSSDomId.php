@@ -41,7 +41,7 @@ class DynamicCSSDomId implements iType
 
     /**
      * @var DynamicCSS
-     * @ORM\ManyToOne(targetEntity="DynamicCSS", inversedBy="dynamicCSSDomIds")
+     * @ORM\ManyToOne(targetEntity="DynamicCSS", inversedBy="dynamicCSSDomIds", cascade={"persist"})
      * @ORM\JoinColumn(name="dynamicCSS_id", referencedColumnName="id")
      */
     protected $dynamicCSS;
@@ -186,4 +186,19 @@ class DynamicCSSDomId implements iType
         return 'DynamicCSSDomId';
     }
 
+    /**
+     * @param DynamicCSSDomId $rightSide
+     * @return bool
+     *
+     * This method compares a DynamicCSSDomId object to another
+     */
+    public function equals(DynamicCSSDomId $rightSide)
+    {
+        foreach($this as $key => $value) {
+            if($value != $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
+use Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 class DynamicCSSDomIdManager implements iType
@@ -45,11 +46,18 @@ class DynamicCSSDomIdManager implements iType
     /**
      * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
+     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException
      *
-     * @todo implement this guy
+     * @todo implement a test of this method once the getOne.. is working
      */
     public function persistDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
+        if(!$this->validate($dynamicCSSDomId)) {
+            throw new InvalidDynamicCSSDomIdException();
+        }
+        $em = $this->doctrine->getManager();
+        $em->persist($dynamicCSSDomId);
+        $em->flush();
         return true;
     }
 
@@ -90,12 +98,12 @@ class DynamicCSSDomIdManager implements iType
     /**
      * @param $id
      * @return DynamicCSSDomId
-     *
-     * @todo implement this method
      */
     public function findOneDynamicCSSDomIdById($id)
     {
-        return new DynamicCSSDomId();
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId');
+        $dynamicCSSDomId = $repository->findOneById($id);
+        return $dynamicCSSDomId;
     }
 
     /**
