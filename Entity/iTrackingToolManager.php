@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 interface iTrackingToolManager extends iType
 {
     /**
@@ -58,5 +60,30 @@ interface iTrackingToolManager extends iType
      * This method must return the manager's entity manager name
      */
     public function getEntityManagerName();
+
+    /**
+     * @param iTrackingTool $tool
+     * @param ArrayCollection $bindings
+     * @return bool
+     *
+     * This method should attach the bindings in argument 2 to the tracking tool in argument 1
+     */
+    public function bind(iTrackingTool $tool, ArrayCollection $bindings);
+
+    /**
+     * @param iTrackingTool $tool
+     * @return ArrayCollection
+     *
+     * This method must return all bindings on the tracking tool
+     */
+    public function getBindings(iTrackingTool $tool);
+
+    /**
+     * @param iTrackingTool $tool
+     * @return bool
+     *
+     * This method should cause the tool's properties to be validated
+     */
+    public function validate(iTrackingTool $tool);
 
 }
