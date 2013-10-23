@@ -22,7 +22,7 @@ class RouteTrafficPersisterTest extends ContainerAwareUnitTestCase
 
         // Read the written route using Doctrine directly
         $rt = $this->get('doctrine')
-            ->getRepository('CympelAnalyticsBundle:RouteTraffic')
+            ->getRepository('CympelAnalyticsBundle:RouteTraffic', $rtp->getEntityManagerName())
             ->findOneByName($rn);
         $this->assertNotEquals(false, $rt);
         $this->assertEquals($rt->getName(), $rn);
