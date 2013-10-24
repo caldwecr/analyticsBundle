@@ -17,15 +17,48 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 abstract class TrackingToolManager implements iTrackingToolManager
 {
     /**
-     * @var TrackerManager
+     * @return TrackerManager
      */
-    protected $trackerManager;
+    abstract protected function getTrackerManager();
 
-    protected $doctrine;
+    /**
+     * @param TrackerManager $trackerManager
+     * @return void
+     */
+    abstract protected function setTrackerManager(TrackerManager $trackerManager);
 
-    protected $emName;
+    /**
+     * @return Object - the doctrine service
+     */
+    abstract protected function getDoctrine();
 
-    protected $validator;
+    /**
+     * @param $doctrine
+     * @return void
+     */
+    abstract protected function setDoctrine($doctrine);
+
+    /**
+     * @return string
+     */
+    abstract protected function getEmName();
+
+    /**
+     * @param string $emName
+     * @return void
+     */
+    abstract protected function setEmName($emName);
+
+    /**
+     * @return Object - the validator service
+     */
+    abstract protected function getValidator();
+
+    /**
+     * @param $validator
+     * @return void
+     */
+    abstract protected function setValidator($validator);
 
     /**
      * @param iTracker $tracker
@@ -38,7 +71,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
         $tt = $this->createTrackingTool($tracker);
 
         $tt->setTracker($tracker);
-        $this->trackerManager->addTrackingTool($tracker, $tt);
+        $this->getTrackerManager()->addTrackingTool($tracker, $tt);
         return $tt;
     }
 
@@ -56,7 +89,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
     public function findOneById($id)
     {
         $repositoryName = $this->getRepositoryName();
-        $repository = $this->doctrine->getRepository($repositoryName, $this->emName);
+        $repository = $this->getDoctrine()->getRepository($repositoryName, $this->getEmName());
         $tt = $repository->findOneById($id);
         return $tt;
     }
@@ -69,7 +102,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
      */
     public function setEntityManagerName($entityManagerName)
     {
-        $this->emName = $entityManagerName;
+        $this->setEmName($entityManagerName);
     }
 
     /**
@@ -79,7 +112,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
      */
     public function getEntityManagerName()
     {
-        return $this->emName;
+        return $this->getEmName();
     }
 
     /**
@@ -97,7 +130,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
         if(!$this->validate($tool)) {
             throw new InvalidTrackingToolException();
         }
-        $em = $this->doctrine->getManager($this->emName);
+        $em = $this->getDoctrine()->getManager($this->getEmName());
         $em->persist($tool);
         $em->flush();
     }
@@ -114,7 +147,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
         if(!$this->validate($tool)) {
             throw new InvalidTrackingToolException();
         }
-        $em = $this->doctrine->getManager($this->emName);
+        $em = $this->getDoctrine()->getManager($this->getEmName());
         $em->remove($tool);
         $em->flush();
     }
@@ -158,7 +191,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
         if(!$tool->hasValidationConstraints()) {
             return true;
         }
-        $errors = $this->validator->validate($tool);
+        $errors = $this->getValidator()->validate($tool);
         if(count($errors) > 0) {
             return false;
         }
