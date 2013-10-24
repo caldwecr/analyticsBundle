@@ -24,20 +24,32 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
     }
 
+
     /**
-     * @param DynamicCSS $tool
      * @param array $ids
      * @return DynamicCSSDomIdArrayCollection
      */
-    public function create(DynamicCSS $tool, $ids)
+    public function create($ids)
     {
         $d = new DynamicCSSDomIdArrayCollection();
-        foreach($ids as $key => $value) {
-            $d[$key] = $this->dynamicCSSDomIdManager->create();
-            $d[$key]->setDynamicCSS($tool);
-            $d[$key]->setDomIdValue($value);
-        }
+        $d->setTempIds($ids);
         return $d;
+    }
+
+    /**
+     * @param DynamicCSSDomIdArrayCollection $collection
+     * @param DynamicCSS $tool
+     * @return DynamicCSSDomIdArrayCollection
+     */
+    public function attachTool(DynamicCSSDomIdArrayCollection $collection, DynamicCSS $tool)
+    {
+        $ids = $collection->getTempIds();
+        foreach($ids as $key => $value) {
+            $collection[$key] = $this->dynamicCSSDomIdManager->create();
+            $collection[$key]->setDynamicCSS($tool);
+            $collection[$key]->setDomIdValue($value);
+        }
+        return $collection;
     }
 
     /**
