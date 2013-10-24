@@ -15,7 +15,8 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param $validator
      * @param $router
      * @param TrackerManager $trackerManager
-     * @param string $entityManagerName
+     * @param $entityManagerName
+     * @param iTrackingToolManagerExtensionService $extensionService
      */
-    abstract public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName);
+    abstract public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
 }
