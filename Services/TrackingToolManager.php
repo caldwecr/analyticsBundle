@@ -66,9 +66,12 @@ abstract class TrackingToolManager implements iTrackingToolManager
      *
      * This method creates a brand new tracking tool that is a child to the first argument
      */
-    public final function create(iTracker $tracker)
+    public final function create(iTracker $tracker = null)
     {
-        $tt = $this->createTrackingTool($tracker);
+        if(!$tracker) {
+            $tracker = $this->getTrackerManager()->create();
+        }
+        $tt = $this->createTrackingTool();
 
         $tt->setTracker($tracker);
         $this->getTrackerManager()->addTrackingTool($tracker, $tt);
