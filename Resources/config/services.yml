@@ -3,6 +3,7 @@ parameters:
     cympel_analytics.dynamic_css_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSManager
     cympel_analytics.dynamic_css_dom_id_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdManager
     cympel_analytics.tracker_manager.class: Cympel\Bundle\AnalyticsBundle\Services\TrackerManager
+    cympel_analytics.dynamic_js_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSManager
     cympel_analytics.entity_manager:
 
 services:
@@ -18,3 +19,6 @@ services:
     cympel_analytics.tracker_manager:
         class: %cympel_analytics.tracker_manager.class%
         arguments: [ ]
+    cympel_analytics.dynamic_js_manager:
+        class: %cympel_analytics.dynamic_js_manager.class%
+        arguemtns: ["@doctrine", "@validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
