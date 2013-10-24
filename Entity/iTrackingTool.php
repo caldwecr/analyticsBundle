@@ -33,4 +33,9 @@ interface iTrackingTool extends iType
      * This method must return true if the tool has validation constraints that should be checked, otherwise false
      */
     public function hasValidationConstraints();
+
+    /**
+     * @return mixed
+     */
+    public function getId();
 }
