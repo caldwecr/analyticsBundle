@@ -63,15 +63,35 @@ class DynamicCSSManager extends RoutedTrackingToolManager
      */
     public function generateOneTimeStylesheet($ids, $pseudo)
     {
-        $tracker = $this->trackerManager->create();
-        $dCSS = $this->create($tracker);
         $properties = new DynamicCSSPropertySet();
+        $properties->setIds($this->dynamicCSSServiceExtension->getDynamicCSSDomIdArrayCollectionManager()->create($ids));
         $properties->setPseudo($pseudo);
-        $dCSSDomIds = $this->dynamicCSSServiceExtension->getDynamicCSSDomIdArrayCollectionManager()->create($dCSS, $ids);
-        $properties->setIds($dCSSDomIds);
-        $properties->pushTo($dCSS);
-        $this->persist($dCSS);
-        return $this->generateUrl($dCSS, UrlGeneratorInterface::ABSOLUTE_PATH);
+        return $this->generate($properties, $this->getTrackerManager()->create());
+    }
+
+    /**
+     * @param iPropertySet $properties
+     * @param iTrackingTool $tool
+     * @return iPropertySet|void
+     */
+    protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool)
+    {
+        return $this->attachToolToProperties($properties, $tool);
+    }
+
+    /**
+     * @param DynamicCSSPropertySet $properties
+     * @param iTrackingTool $tool
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomIdArrayCollection
+     */
+    private function attachToolToProperties(DynamicCSSPropertySet $properties, iTrackingTool $tool)
+    {
+        /**
+         * This is necessary because the DynamicCSSDomIdArrayCollection needs to associate each DynamicCSSDomId with the tool
+         */
+        $dynamicCSSDomIdArrayCollection = $properties->getIds();
+        $this->dynamicCSSServiceExtension->getDynamicCSSDomIdArrayCollectionManager()->attachToolToDynamicCSSDomIds($dynamicCSSDomIdArrayCollection, $tool);
+        return $properties;
     }
 
     /**
