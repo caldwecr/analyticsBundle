@@ -9,18 +9,15 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class DynamicCSSManager implements iTrackingToolManager
+class DynamicCSSManager extends TrackingToolManager
 {
     protected $doctrine;
 
