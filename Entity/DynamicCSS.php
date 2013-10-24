@@ -37,10 +37,10 @@ class DynamicCSS implements iTrackingTool
     protected $pseudo;
 
     /**
-     * @var ArrayCollection
+     * @var DynamicCSSDomIdArrayCollection
      * @ORM\OneToMany(targetEntity="DynamicCSSDomId", mappedBy="dynamicCSS", cascade={"persist", "remove"})
      *
-     * An ArrayCollection of DynamicCSSDomId objects that the dynamic css should target, this is combined with the $pseudo value to create the css selectors
+     * An DynamicCSSDomIdArrayCollection that the dynamic css should target, this is combined with the $pseudo value to create the css selectors
      */
     protected $dynamicCSSDomIds;
 
@@ -79,15 +79,15 @@ class DynamicCSS implements iTrackingTool
     }
 
     /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $dynamicCSSDomIds
+     * @param DynamicCSSDomIdArrayCollection $dynamicCSSDomIds
      */
-    public function setDynamicCSSDomIds($dynamicCSSDomIds)
+    public function setDynamicCSSDomIds(DynamicCSSDomIdArrayCollection $dynamicCSSDomIds)
     {
         $this->dynamicCSSDomIds = $dynamicCSSDomIds;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return DynamicCSSDomIdArrayCollection
      */
     public function getDynamicCSSDomIds()
     {
