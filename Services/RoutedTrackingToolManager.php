@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
@@ -35,6 +37,28 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
             $type
         );
     }
+
+    /**
+     * @param iPropertySet $properties
+     * @param iTracker $tracker
+     * @return string
+     */
+    public function generate(iPropertySet $properties, iTracker $tracker = null)
+    {
+        if(!$tracker) $tracker = $this->getTrackerManager()->create();
+        $tool = $this->create($tracker);
+        $fProperties = $this->finalizeProperties($properties, $tool);
+        $this->setProperties($tool, $fProperties);
+        $this->persist($tool);
+        return $this->generateUrl($tool, UrlGeneratorInterface::ABSOLUTE_PATH);
+    }
+
+    /**
+     * @param iPropertySet $properties
+     * @param iTrackingTool $tool
+     * @return iPropertySet
+     */
+    abstract protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool);
 
     /**
      * @return string
