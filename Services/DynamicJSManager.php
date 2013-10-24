@@ -15,9 +15,12 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
 class DynamicJSManager extends TrackingToolManager
 {
+    protected $repositoryName;
+
     public function __construct(TrackerManager $trackerManager)
     {
         $this->trackerManager = $trackerManager;
+        $this->repositoryName = 'CympelAnalyticsBundle:DynamicJS';
     }
 
     /**
@@ -29,35 +32,11 @@ class DynamicJSManager extends TrackingToolManager
     }
 
     /**
-     * @param $id
-     * @return iTrackingTool
-     *
-     * This method should scan the database for an instance of the TrackingTool of appropriate type and id
-     */
-    public function findOneById($id)
-    {
-        // TODO: Implement findOneById() method.
-    }
-
-    /**
-     * @param $entityManagerName
-     * @return void
-     *
-     * This method must set the manager's entity manager name property
-     */
-    public function setEntityManagerName($entityManagerName)
-    {
-        // TODO: Implement setEntityManagerName() method.
-    }
-
-    /**
      * @return string
-     *
-     * This method must return the manager's entity manager name
      */
-    public function getEntityManagerName()
+    protected function getRepositoryName()
     {
-        // TODO: Implement getEntityManagerName() method.
+        return $this->repositoryName;
     }
 
     /**
