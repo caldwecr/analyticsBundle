@@ -110,10 +110,17 @@ class DynamicCSSManager extends TrackingToolManager
      */
     public function findOneTimeStylesheetById($id)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSS', $this->emName);
-        $dcss = $repository->findOneById($id);
-        return $dcss;
+        return $this->findOneById($id);
     }
+
+    /**
+     * @return string
+     */
+    protected function getRepositoryName()
+    {
+        return 'CympelAnalyticsBundle:DynamicCSS';
+    }
+
 
     /**
      * @param $id
@@ -146,38 +153,6 @@ class DynamicCSSManager extends TrackingToolManager
     protected function createTrackingTool()
     {
         return new DynamicCSS();
-    }
-
-    /**
-     * @param $id
-     * @return iTrackingTool
-     *
-     * This method should scan the database for an instance of the TrackingTool of appropriate type and id
-     */
-    public function findOneById($id)
-    {
-        return $this->findOneTimeStylesheetById($id);
-    }
-
-    /**
-     * @param $entityManagerName
-     * @return void
-     *
-     * This method must set the manager's entity manager name property
-     */
-    public function setEntityManagerName($entityManagerName)
-    {
-        $this->emName = $entityManagerName;
-    }
-
-    /**
-     * @return string
-     *
-     * This method must return the manager's entity manager name
-     */
-    public function getEntityManagerName()
-    {
-        return $this->emName;
     }
 
     /**
