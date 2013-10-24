@@ -11,9 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DynamicCSSManager extends RoutedTrackingToolManager
@@ -29,9 +27,9 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     protected $emName;
 
     /**
-     * @var DynamicCSSDomIdManager
+     * @var DynamicCSSServiceExtension
      */
-    protected $dynamicCSSDomIdManager;
+    protected $dynamicCSSServiceExtension;
 
     /**
      * @param $doctrine
@@ -48,12 +46,12 @@ class DynamicCSSManager extends RoutedTrackingToolManager
         $this->router = $router;
         $this->trackerManager = $trackerManager;
         $this->emName = $entityManagerName;
-        $this->setDynamicCSSDomIdManager($extensionService);
+        $this->setServiceExtension($extensionService);
     }
 
-    private function setDynamicCSSDomIdManager(DynamicCSSDomIdManager $manager)
+    private function setServiceExtension(DynamicCSSServiceExtension $extension)
     {
-        $this->dynamicCSSDomIdManager = $manager;
+        $this->dynamicCSSServiceExtension = $extension;
     }
 
     /**
@@ -65,25 +63,53 @@ class DynamicCSSManager extends RoutedTrackingToolManager
      */
     public function generateOneTimeStylesheet($ids, $pseudo)
     {
-        $dCSS = new DynamicCSS();
-        $dCSSDomIds = new ArrayCollection();
-        foreach($ids as $key => $value) {
-            $dCSSDomIds[$key] = $this->dynamicCSSDomIdManager->create();
-            $dCSSDomIds[$key]->setDynamicCSS($dCSS);
-            $dCSSDomIds[$key]->setDomIdValue($value);
-        }
-        $dCSS->setDynamicCSSDomIds($dCSSDomIds);
-        $dCSS->setPseudo($pseudo);
-        $em = $this->doctrine->getManager($this->emName);
-        $em->persist($dCSS);
-        $em->flush();
-        return $this->router->generate('dynamicCSS',
-            array(
-                'key' => $dCSS->getId(),
-            ),
-            URLGeneratorInterface::ABSOLUTE_PATH
+        $tracker = $this->trackerManager->create();
+        $dCSS = $this->create($tracker);
+        $properties = new DynamicCSSPropertySet();
+        $properties->setPseudo($pseudo);
+        $dCSSDomIds = $this->dynamicCSSServiceExtension->getDynamicCSSDomIdArrayCollectionManager()->create($dCSS, $ids);
+        $properties->setIds($dCSSDomIds);
+        $properties->pushTo($dCSS);
+        $this->persist($dCSS);
+        return $this->generateUrl($dCSS, UrlGeneratorInterface::ABSOLUTE_PATH);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRouteName()
+    {
+        return 'dynamicCSS';
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @return array
+     */
+    protected function getRoutingArray(iTrackingTool $tool)
+    {
+        return array(
+            'key' => $tool->getId(),
         );
     }
+
+    /**
+     * @return Object -- the router service
+     */
+    protected function getRouter()
+    {
+        return $this->router;
+    }
+
+    /**
+     * @param $router
+     * @return void
+     */
+    protected function setRouter($router)
+    {
+        $this->router = $router;
+    }
+
 
     /**
      * @param DynamicCSS $dynamicCSS
