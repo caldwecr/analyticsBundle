@@ -96,7 +96,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
     /**
      * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException
+     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidDynamicCSSDomIdException
      */
     public function persistDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
@@ -123,7 +123,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
     /**
      * @param DynamicCSSDomId $dynamicCSSDomId
      * @return bool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\InvalidDynamicCSSDomIdException
+     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidDynamicCSSDomIdException
      */
     public function removeDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
