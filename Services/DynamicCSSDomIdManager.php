@@ -13,7 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidDynamicCSSDomIdException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
-class DynamicCSSDomIdManager implements iType
+class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
 {
     protected $doctrine;
 
