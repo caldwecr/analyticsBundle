@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
@@ -40,35 +41,11 @@ class DynamicJSManager extends TrackingToolManager
     }
 
     /**
-     * @param iTrackingTool $tool
-     * @param iPropertySet $properties
-     * @return iTrackingTool
-     */
-    public function setProperties(iTrackingTool $tool, iPropertySet $properties)
-    {
-        // TODO: Implement setProperties() method.
-    }
-
-    /**
-     * @param iTrackingTool $tool
      * @return iPropertySet
-     *
-     * This method must return all bindings on the tracking tool
      */
-    public function getProperties(iTrackingTool $tool)
+    protected function createPropertySet()
     {
-        // TODO: Implement getProperties() method.
-    }
-
-    /**
-     * @param iTrackingTool $tool
-     * @return bool
-     *
-     * This method should cause the tool's properties to be validated
-     */
-    public function validate(iTrackingTool $tool)
-    {
-        // TODO: Implement validate() method.
+        return new DynamicJSPropertySet();
     }
 
     /**
@@ -77,7 +54,7 @@ class DynamicJSManager extends TrackingToolManager
      */
     public function getType()
     {
-        // TODO: Implement getType() method.
+        return 'DynamicJSManager';
     }
 
     public function generateOneTimeJavascript($ids, $targetEventName)

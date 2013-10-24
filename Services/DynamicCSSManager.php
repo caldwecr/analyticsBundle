@@ -121,6 +121,14 @@ class DynamicCSSManager extends TrackingToolManager
         return 'CympelAnalyticsBundle:DynamicCSS';
     }
 
+    /**
+     * @return iPropertySet
+     */
+    protected function createPropertySet()
+    {
+        return new DynamicCSSPropertySet();
+    }
+
 
     /**
      * @param $id
@@ -155,46 +163,7 @@ class DynamicCSSManager extends TrackingToolManager
         return new DynamicCSS();
     }
 
-    /**
-     * @param iTrackingTool $tool
-     * @param iPropertySet $properties
-     * @return iTrackingTool
-     */
-    public function setProperties(iTrackingTool $tool, iPropertySet $properties)
-    {
-        return $properties->pushTo($tool);
-    }
 
-    /**
-     * @param iTrackingTool $tool
-     * @return iPropertySet
-     *
-     * This method must return all bindings on the tracking tool
-     */
-    public function getProperties(iTrackingTool $tool)
-    {
-        $p = new DynamicCSSPropertySet();
-        return $p->pullFrom($tool);
-    }
-
-
-    /**
-     * @param iTrackingTool $tool
-     * @return bool
-     *
-     * This method should cause the tool's properties to be validated
-     */
-    public function validate(iTrackingTool $tool)
-    {
-        if(!$tool->hasValidationConstraints()) {
-            return true;
-        }
-        $errors = $this->validator->validate($tool);
-        if(count($errors) > 0) {
-            return false;
-        }
-        return true;
-    }
 
 
 }
