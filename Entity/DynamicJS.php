@@ -39,7 +39,7 @@ class DynamicJS implements iTrackingTool
      */
     public function setTracker(iTracker $tracker)
     {
-        // TODO: Implement setTracker() method.
+        $this->tracker = $tracker;
     }
 
     /**
@@ -47,7 +47,7 @@ class DynamicJS implements iTrackingTool
      */
     public function getTracker()
     {
-        // TODO: Implement getTracker() method.
+        return $this->tracker;
     }
 
     /**

@@ -10,33 +10,51 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidTrackingToolManagerExtensionServiceException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class DynamicCSSManager extends TrackingToolManager
+class DynamicCSSManager extends RoutedTrackingToolManager
 {
+    protected $doctrine;
 
     protected $router;
 
     protected $validator;
+
+    protected $trackerManager;
+
+    protected $emName;
 
     /**
      * @var DynamicCSSDomIdManager
      */
     protected $dynamicCSSDomIdManager;
 
-    public function __construct($doctrine, $router, DynamicCSSDomIdManager $dynamicCSSDomIdManager, $entityManagerName, TrackerManager $trackerManager, $validator)
+    /**
+     * @param $doctrine
+     * @param $validator
+     * @param $router
+     * @param TrackerManager $trackerManager
+     * @param $entityManagerName
+     * @param iTrackingToolManagerExtensionService $extensionService
+     */
+    public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
-        $this->router = $router;
-        $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
-        $this->emName = $entityManagerName;
-        $this->trackerManager = $trackerManager;
         $this->validator = $validator;
+        $this->router = $router;
+        $this->trackerManager = $trackerManager;
+        $this->emName = $entityManagerName;
+        $this->setDynamicCSSDomIdManager($extensionService);
+    }
+
+    private function setDynamicCSSDomIdManager(DynamicCSSDomIdManager $manager)
+    {
+        $this->dynamicCSSDomIdManager = $manager;
     }
 
     /**
@@ -163,7 +181,73 @@ class DynamicCSSManager extends TrackingToolManager
         return new DynamicCSS();
     }
 
+    /**
+     * @return TrackerManager
+     */
+    protected function getTrackerManager()
+    {
+        return $this->trackerManager;
+    }
 
+    /**
+     * @param TrackerManager $trackerManager
+     * @return void
+     */
+    protected function setTrackerManager(TrackerManager $trackerManager)
+    {
+        $this->trackerManager = $trackerManager;
+    }
+
+    /**
+     * @return Object - the doctrine service
+     */
+    protected function getDoctrine()
+    {
+        return $this->doctrine;
+    }
+
+    /**
+     * @param $doctrine
+     * @return void
+     */
+    protected function setDoctrine($doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEmName()
+    {
+        return $this->emName;
+    }
+
+    /**
+     * @param string $emName
+     * @return void
+     */
+    protected function setEmName($emName)
+    {
+        $this->emName = $emName;
+    }
+
+    /**
+     * @return Object - the validator service
+     */
+    protected function getValidator()
+    {
+        return $this->validator;
+    }
+
+    /**
+     * @param $validator
+     * @return void
+     */
+    protected function setValidator($validator)
+    {
+        $this->validator = $validator;
+    }
 
 
 }

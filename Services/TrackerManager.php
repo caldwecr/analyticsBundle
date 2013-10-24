@@ -11,9 +11,19 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\Tracker;
 
 class TrackerManager implements iType
 {
+
+    /**
+     * @return Tracker
+     */
+    public function create()
+    {
+        $t = new Tracker();
+        return $t;
+    }
 
     /**
      * @param iTracker $tracker
