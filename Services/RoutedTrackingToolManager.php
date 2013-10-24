@@ -57,6 +57,10 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param iPropertySet $properties
      * @param iTrackingTool $tool
      * @return iPropertySet
+     *
+     * The purpose of this method is to allow changes to the properties based on the tool's initialization
+     * that would have otherwise been impossible prior to the tool's initialization
+     * This is necessary for DynamicCSS tools so that the DomIds can be bound to the tool
      */
     abstract protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool);
 
