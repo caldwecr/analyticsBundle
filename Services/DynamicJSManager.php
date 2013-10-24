@@ -96,12 +96,6 @@ class DynamicJSManager extends RoutedTrackingToolManager
         return 'DynamicJSManager';
     }
 
-    public function generateOneTimeJavascript($ids, $targetEventName)
-    {
-        $t = $this->trackerManager->create();
-        $dj = $this->create($t);
-    }
-
     /**
      * @return TrackerManager
      */
@@ -168,6 +162,50 @@ class DynamicJSManager extends RoutedTrackingToolManager
     protected function setValidator($validator)
     {
         $this->validator = $validator;
+    }
+
+    /**
+     * @param iPropertySet $properties
+     * @param iTrackingTool $tool
+     * @return iPropertySet
+     */
+    protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool)
+    {
+        // TODO: Implement finalizeProperties() method.
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRouteName()
+    {
+        // TODO: Implement getRouteName() method.
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @return array
+     */
+    protected function getRoutingArray(iTrackingTool $tool)
+    {
+        // TODO: Implement getRoutingArray() method.
+    }
+
+    /**
+     * @return Object -- the router service
+     */
+    protected function getRouter()
+    {
+        // TODO: Implement getRouter() method.
+    }
+
+    /**
+     * @param $router
+     * @return void
+     */
+    protected function setRouter($router)
+    {
+        // TODO: Implement setRouter() method.
     }
 
 
