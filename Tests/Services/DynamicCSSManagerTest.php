@@ -16,12 +16,13 @@ use Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSManager;
 
 class DynamicCSSManagerTest extends ContainerAwareUnitTestCase
 {
+    /**
+     * @expectedException \PHPUnit_Framework_Error
+     */
     public function testConstructorManager()
     {
         // This test validates that the service extension argument of the constructor is required for the DynamicCSSManager
         $d = new DynamicCSSManager($this->get('doctrine'), $this->get('validator'), $this->get('router'), new TrackerManager(), 'foobar');
-        //var_dump('hi2u');
-        $this->assertTrue(1 == 2);
     }
 }
  
