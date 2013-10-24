@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
+use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 
 abstract class TrackingToolManager implements iTrackingToolManager
 {
@@ -23,6 +24,8 @@ abstract class TrackingToolManager implements iTrackingToolManager
     protected $doctrine;
 
     protected $emName;
+
+    protected $validator;
 
     /**
      * @param iTracker $tracker
@@ -114,5 +117,51 @@ abstract class TrackingToolManager implements iTrackingToolManager
         $em = $this->doctrine->getManager($this->emName);
         $em->remove($tool);
         $em->flush();
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @param iPropertySet $properties
+     * @return iTrackingTool
+     */
+    public function setProperties(iTrackingTool $tool, iPropertySet $properties)
+    {
+        return $properties->pushTo($tool);
+    }
+
+    /**
+     * @param iTrackingTool $tool
+     * @return iPropertySet
+     *
+     * This method must return all bindings on the tracking tool
+     */
+    public function getProperties(iTrackingTool $tool)
+    {
+        $p = $this->createPropertySet();
+        return $p->pullFrom($tool);
+    }
+
+    /**
+     * @return iPropertySet
+     */
+    abstract protected function createPropertySet();
+
+
+    /**
+     * @param iTrackingTool $tool
+     * @return bool
+     *
+     * This method should cause the tool's properties to be validated
+     */
+    public function validate(iTrackingTool $tool)
+    {
+        if(!$tool->hasValidationConstraints()) {
+            return true;
+        }
+        $errors = $this->validator->validate($tool);
+        if(count($errors) > 0) {
+            return false;
+        }
+        return true;
     }
 }
