@@ -19,18 +19,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DynamicCSSManager extends TrackingToolManager
 {
-    protected $doctrine;
 
     protected $router;
 
-    protected $emName;
-
     protected $validator;
-
-    /**
-     * @var TrackerManager
-     */
-    protected $trackerManager;
 
     /**
      * @var DynamicCSSDomIdManager
@@ -154,41 +146,6 @@ class DynamicCSSManager extends TrackingToolManager
     protected function createTrackingTool()
     {
         return new DynamicCSS();
-    }
-
-
-    /**
-     * @param iTrackingTool $tool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
-     * @return bool
-     *
-     * This method should persist a tracking tool to the database
-     */
-    public function persist(iTrackingTool $tool)
-    {
-        if(!$this->validate($tool)) {
-            throw new InvalidTrackingToolException();
-        }
-        $em = $this->doctrine->getManager($this->emName);
-        $em->persist($tool);
-        $em->flush();
-    }
-
-    /**
-     * @param iTrackingTool $tool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
-     * @return bool
-     *
-     * This method should remove a tracking tool from the database
-     */
-    public function remove(iTrackingTool $tool)
-    {
-        if(!$this->validate($tool)) {
-            throw new InvalidTrackingToolException();
-        }
-        $em = $this->doctrine->getManager($this->emName);
-        $em->remove($tool);
-        $em->flush();
     }
 
     /**
