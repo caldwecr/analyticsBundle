@@ -149,18 +149,13 @@ class DynamicCSSManager extends TrackingToolManager
     }
 
     /**
-     * @param iTracker $tracker
      * @return iTrackingTool
-     *
-     * This method creates a brand new tracking tool that is a child to the first argument
      */
-    public function create(iTracker $tracker)
+    protected function createTrackingTool()
     {
-        $dcss = new DynamicCSS();
-        $dcss->setTracker($tracker);
-        $this->trackerManager->addTrackingTool($tracker, $dcss);
-        return $dcss;
+        return new DynamicCSS();
     }
+
 
     /**
      * @param iTrackingTool $tool
