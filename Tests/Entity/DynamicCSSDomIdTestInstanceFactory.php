@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomIdArrayCollection;
 
 class DynamicCSSDomIdTestInstanceFactory
 {
@@ -17,7 +18,8 @@ class DynamicCSSDomIdTestInstanceFactory
     {
         $dcss = new DynamicCSS();
         $dcdi = new DynamicCSSDomId();
-        $dcss->setDynamicCSSDomIds(array($dcdi));
+        $ids = new DynamicCSSDomIdArrayCollection(array($dcdi));
+        $dcss->setDynamicCSSDomIds($ids);
         $dcdi->setRendered(0);
         $dcdi->setDomIdValue($domIdValue);
         $dcdi->setDynamicCSS($dcss);
