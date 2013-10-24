@@ -41,7 +41,7 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
      * @param DynamicCSS $tool
      * @return DynamicCSSDomIdArrayCollection
      */
-    public function attachTool(DynamicCSSDomIdArrayCollection $collection, DynamicCSS $tool)
+    public function attachToolToDynamicCSSDomIds(DynamicCSSDomIdArrayCollection $collection, DynamicCSS $tool)
     {
         $ids = $collection->getTempIds();
         foreach($ids as $key => $value) {
