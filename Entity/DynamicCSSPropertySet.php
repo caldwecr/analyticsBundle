@@ -8,12 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 class DynamicCSSPropertySet implements iPropertySet
 {
     /**
-     * @var ArrayCollection
+     * @var DynamicCSSDomIdArrayCollection
      *
      * An ArrayCollection of DynamicCSSDomId objects that the dynamic css should target, this is combined with the $pseudo value to create the css selectors
      */
@@ -77,15 +75,15 @@ class DynamicCSSPropertySet implements iPropertySet
     }
 
     /**
-     * @param mixed $ids
+     * @param DynamicCSSDomIdArrayCollection $ids
      */
-    public function setIds($ids)
+    public function setIds(DynamicCSSDomIdArrayCollection $ids)
     {
         $this->ids = $ids;
     }
 
     /**
-     * @return mixed
+     * @return DynamicCSSDomIdArrayCollection
      */
     public function getIds()
     {
