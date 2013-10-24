@@ -15,8 +15,6 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
 class DynamicJSManager extends TrackingToolManager
 {
-    protected $trackerManager;
-
     public function __construct(TrackerManager $trackerManager)
     {
         $this->trackerManager = $trackerManager;
@@ -28,31 +26,6 @@ class DynamicJSManager extends TrackingToolManager
     protected function createTrackingTool()
     {
         return new DynamicJS();
-    }
-
-
-    /**
-     * @param iTrackingTool $tool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
-     * @return bool
-     *
-     * This method should persist a tracking tool to the database
-     */
-    public function persist(iTrackingTool $tool)
-    {
-        // TODO: Implement persist() method.
-    }
-
-    /**
-     * @param iTrackingTool $tool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
-     * @return bool
-     *
-     * This method should remove a tracking tool from the database
-     */
-    public function remove(iTrackingTool $tool)
-    {
-        // TODO: Implement remove() method.
     }
 
     /**
