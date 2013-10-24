@@ -10,7 +10,6 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidTrackingToolManagerExtensionServiceException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
