@@ -28,4 +28,19 @@ class TestController extends Controller
             'cssUrl' => $cssUrl,
         ));
     }
+
+    public function dynamicJSTestAction()
+    {
+        $ids = array(
+            'number_one',
+            'number_two',
+            'number_three',
+        );
+        $targetEventName = 'click';
+        $djm = $this->get('cympel_analytics.dynamic_js_manager');
+        $jsUrl = $djm->generateOneTimeJavascript($ids, $targetEventName);
+        return $this->render('CympelAnalyticsBundle:Test:jsTest.html.twig', array(
+            'jsUrl' => $jsUrl,
+        ));
+    }
 }
