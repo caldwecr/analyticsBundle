@@ -12,5 +12,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class DynamicCSSDomIdArrayCollection extends ArrayCollection
 {
+    private $tempIds;
 
+    public function setTempIds($tempIds)
+    {
+        $this->tempIds = $tempIds;
+    }
+
+    public function getTempIds()
+    {
+        return $this->tempIds;
+    }
 }
