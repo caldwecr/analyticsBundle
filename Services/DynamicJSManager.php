@@ -50,9 +50,10 @@ class DynamicJSManager extends RoutedTrackingToolManager
      * @param $validator
      * @param $router
      * @param TrackerManager $trackerManager
-     * @param string $entityManagerName
+     * @param $entityManagerName
+     * @param iTrackingToolManagerExtensionService $extensionService
      */
-    public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName)
+    public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
         $this->validator = $validator;
