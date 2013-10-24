@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\Exception;
 
-class InvalidTrackingToolManagerExtensionService extends \Exception
+class InvalidTrackingToolManagerExtensionServiceException extends \Exception
 {
 
 }
