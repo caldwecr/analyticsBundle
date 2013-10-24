@@ -11,16 +11,54 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
-class DynamicJSManager extends TrackingToolManager
+class DynamicJSManager extends RoutedTrackingToolManager
 {
+    /**
+     * @var string
+     */
     protected $repositoryName;
 
-    public function __construct(TrackerManager $trackerManager)
+    /**
+     * @var Object - the doctrine service
+     */
+    protected $doctrine;
+
+    /**
+     * @var Object -- the validator service
+     */
+    protected $validator;
+
+    /**
+     * @var string
+     */
+    protected $emName;
+
+    /**
+     * @var TrackerManager
+     */
+    protected $trackerManager;
+
+    /**
+     * @var Object -- the router service
+     */
+    protected $router;
+
+    /**
+     * @param $doctrine
+     * @param $validator
+     * @param $router
+     * @param TrackerManager $trackerManager
+     * @param string $entityManagerName
+     */
+    public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName)
     {
+        $this->doctrine = $doctrine;
+        $this->validator = $validator;
+        $this->router = $router;
         $this->trackerManager = $trackerManager;
+        $this->emName = $entityManagerName;
         $this->repositoryName = 'CympelAnalyticsBundle:DynamicJS';
     }
 
@@ -62,5 +100,74 @@ class DynamicJSManager extends TrackingToolManager
         $t = $this->trackerManager->create();
         $dj = $this->create($t);
     }
+
+    /**
+     * @return TrackerManager
+     */
+    protected function getTrackerManager()
+    {
+        return $this->trackerManager;
+    }
+
+    /**
+     * @param TrackerManager $trackerManager
+     * @return void
+     */
+    protected function setTrackerManager(TrackerManager $trackerManager)
+    {
+        $this->trackerManager = $trackerManager;
+    }
+
+    /**
+     * @return Object - the doctrine service
+     */
+    protected function getDoctrine()
+    {
+        return $this->doctrine;
+    }
+
+    /**
+     * @param $doctrine
+     * @return void
+     */
+    protected function setDoctrine($doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEmName()
+    {
+        return $this->emName;
+    }
+
+    /**
+     * @param string $emName
+     * @return void
+     */
+    protected function setEmName($emName)
+    {
+        $this->emName = $emName;
+    }
+
+    /**
+     * @return Object - the validator service
+     */
+    protected function getValidator()
+    {
+        return $this->validator;
+    }
+
+    /**
+     * @param $validator
+     * @return void
+     */
+    protected function setValidator($validator)
+    {
+        $this->validator = $validator;
+    }
+
 
 }
