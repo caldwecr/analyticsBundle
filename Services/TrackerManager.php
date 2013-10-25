@@ -24,7 +24,8 @@ class TrackerManager implements iType
     public function __construct($doctrine, $entityManagerName)
     {
         $this->doctrine = $doctrine;
-        $this->repositoryName = 'Tracker';
+        $this->repositoryName = 'CympelAnalyticsBundle:Tracker';
+        $this->emName = $entityManagerName;
     }
 
     /**
@@ -73,7 +74,7 @@ class TrackerManager implements iType
 
     public function findOneById($id)
     {
-        $repository = $this->doctrine->getRepository($this->repositoryName);
+        $repository = $this->doctrine->getRepository($this->repositoryName, $this->emName);
         $tracker = $repository->findOneById($id);
         return $tracker;
     }
