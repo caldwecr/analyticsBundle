@@ -1,9 +1,12 @@
 dynamicCSS:
     pattern:  /dynamic/css/{key}
-    defaults: { _controller: CympelAnalyticsBundle:Default:dynamicCSS }
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSS }
 dynamicCSSImageFile:
     pattern: /dynamic/css/image/file/{key}/{domIdValue}
-    defaults: { _controller: CympelAnalyticsBundle:Default:dynamicCSSImageFile }
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile }
 dynamicCSSTest:
     pattern: /dynamic/test
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicCSSTest }
+dynamicJS:
+    pattern:  /dynamic/js/{key}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJs }
