@@ -15,6 +15,17 @@ use Cympel\Bundle\AnalyticsBundle\Entity\Tracker;
 
 class TrackerManager implements iType
 {
+    protected $doctrine;
+
+    protected $emName;
+
+    protected $repositoryName;
+
+    public function __construct($doctrine, $entityManagerName)
+    {
+        $this->doctrine = $doctrine;
+        $this->repositoryName = 'Tracker';
+    }
 
     /**
      * @return Tracker
@@ -44,6 +55,27 @@ class TrackerManager implements iType
     public function getType()
     {
         return 'TrackerManager';
+    }
+
+    public function remove(iTracker $tracker)
+    {
+        $em = $this->doctrine->getManager($this->emName);
+        $em->remove($tracker);
+        $em->flush();
+    }
+
+    public function persist(iTracker $tracker)
+    {
+        $em = $this->doctrine->getManager($this->emName);
+        $em->persist($tracker);
+        $em->flush();
+    }
+
+    public function findOneById($id)
+    {
+        $repository = $this->doctrine->getRepository($this->repositoryName);
+        $tracker = $repository->findOneById($id);
+        return $tracker;
     }
 
 }
