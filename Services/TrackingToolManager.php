@@ -61,6 +61,17 @@ abstract class TrackingToolManager implements iTrackingToolManager
     abstract protected function setTrackingToolValidator(iTrackingToolValidator $trackingToolValidator);
 
     /**
+     * @return iTrackingToolRemover
+     */
+    abstract protected function getTrackingToolRemover();
+
+    /**
+     * @param iTrackingToolRemover $trackingToolRemover
+     * @return void
+     */
+    abstract protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover);
+
+    /**
      * @param iTracker $tracker
      * @return iTrackingTool
      *
@@ -150,9 +161,7 @@ abstract class TrackingToolManager implements iTrackingToolManager
         if(!$this->validate($tool)) {
             throw new InvalidTrackingToolException();
         }
-        $em = $this->getDoctrine()->getManager($this->getEmName());
-        $em->remove($tool);
-        $em->flush();
+        $this->getTrackingToolRemover()->remove($tool);
     }
 
     /**
