@@ -41,8 +41,6 @@ class Tracker implements iTracker
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="DynamicCSS", mappedBy="tracker", cascade={"persist", "remove"})
-     * @ORM\OneToMany(targetEntity="DynamicJS", mappedBy="tracker", cascade={"persist", "remove"})
      */
     protected $trackingTools;
 
