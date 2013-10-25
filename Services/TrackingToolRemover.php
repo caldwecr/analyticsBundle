@@ -27,6 +27,7 @@ class TrackingToolRemover implements iTrackingToolRemover
     {
         $this->doctrine = $doctrine;
         $this->trackingToolValidator= $trackingToolValidator;
+        $this->emName = $entityManagerName;
     }
 
     /**

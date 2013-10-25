@@ -16,7 +16,7 @@ services:
         arguments: [@doctrine, "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_css_manager:
         class: %cympel_analytics.dynamic_css_manager.class%
-        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%", "@cympel_analytics.dynamic_css_service_extension"]
+        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%", "@cympel_analytics.dynamic_css_service_extension"]
     cympel_analytics.dynamic_css_dom_id_manager:
         class: %cympel_analytics.dynamic_css_dom_id_manager.class%
         arguments: ["@doctrine", "@validator", "%cympel_analytics.entity_manager%"]
@@ -25,7 +25,7 @@ services:
         arguments: ["@doctrine", "@cympel_analytics.tracking_tool_remover", "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_js_manager:
         class: %cympel_analytics.dynamic_js_manager.class%
-        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
+        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_css_service_extension:
         class: %cympel_analytics.dynamic_css_service_extension.class%
         arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager"]

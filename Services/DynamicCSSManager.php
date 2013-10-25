@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class DynamicCSSManager extends RoutedTrackingToolManager
 {
     protected $doctrine;
+    protected $trackingToolRemover;
     protected $router;
     protected $trackingToolValidator;
     protected $trackerManager;
@@ -26,17 +27,20 @@ class DynamicCSSManager extends RoutedTrackingToolManager
      */
     protected $dynamicCSSServiceExtension;
 
+
     /**
      * @param $doctrine
+     * @param iTrackingToolRemover $trackingToolRemover
      * @param iTrackingToolValidator $trackingToolValidator
      * @param $router
      * @param TrackerManager $trackerManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    public function __construct($doctrine, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+    public function __construct($doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
+        $this->trackingToolRemover = $trackingToolRemover;
         $this->trackingToolValidator = $trackingToolValidator;
         $this->router = $router;
         $this->trackerManager = $trackerManager;
@@ -274,6 +278,23 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     protected function setTrackingToolValidator(iTrackingToolValidator $trackingToolValidator)
     {
         $this->trackingToolValidator = $trackingToolValidator;
+    }
+
+    /**
+     * @return iTrackingToolRemover
+     */
+    protected function getTrackingToolRemover()
+    {
+        return $this->trackingToolRemover;
+    }
+
+    /**
+     * @param iTrackingToolRemover $trackingToolRemover
+     * @return void
+     */
+    protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover)
+    {
+        $this->trackingToolRemover = $trackingToolRemover;
     }
 
 

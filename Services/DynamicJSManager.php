@@ -26,6 +26,11 @@ class DynamicJSManager extends RoutedTrackingToolManager
     protected $doctrine;
 
     /**
+     * @var iTrackingToolRemover
+     */
+    protected $trackingToolRemover;
+
+    /**
      * @var iTrackingToolValidator
      */
     protected $trackingToolValidator;
@@ -47,13 +52,14 @@ class DynamicJSManager extends RoutedTrackingToolManager
 
     /**
      * @param $doctrine
+     * @param iTrackingToolRemover $trackingToolRemover
      * @param iTrackingToolValidator $trackingToolValidator
      * @param $router
      * @param TrackerManager $trackerManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    public function __construct($doctrine, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+    public function __construct($doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
         $this->trackingToolValidator = $trackingToolValidator;
@@ -62,6 +68,24 @@ class DynamicJSManager extends RoutedTrackingToolManager
         $this->emName = $entityManagerName;
         $this->repositoryName = 'CympelAnalyticsBundle:DynamicJS';
     }
+
+    /**
+     * @return iTrackingToolRemover
+     */
+    protected function getTrackingToolRemover()
+    {
+        return $this->trackingToolRemover;
+    }
+
+    /**
+     * @param iTrackingToolRemover $trackingToolRemover
+     * @return void
+     */
+    protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover)
+    {
+        $this->trackingToolRemover = $trackingToolRemover;
+    }
+
 
     /**
      * @return iTrackingTool
