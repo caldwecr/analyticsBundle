@@ -21,11 +21,14 @@ class TrackerManager implements iType
 
     protected $repositoryName;
 
-    public function __construct($doctrine, $entityManagerName)
+    protected $trackingToolRemover;
+
+    public function __construct($doctrine, $trackingToolRemover, $entityManagerName)
     {
         $this->doctrine = $doctrine;
         $this->repositoryName = 'CympelAnalyticsBundle:Tracker';
         $this->emName = $entityManagerName;
+        $this->trackingToolRemover = $trackingToolRemover;
     }
 
     /**
@@ -58,11 +61,21 @@ class TrackerManager implements iType
         return 'TrackerManager';
     }
 
-    public function remove(iTracker $tracker)
+    /**
+     * @param iTracker $tracker
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function unsafeRemove(iTracker $tracker)
     {
         $em = $this->doctrine->getManager($this->emName);
         $em->remove($tracker);
         $em->flush();
+    }
+
+    public function remove(iTracker $tracker)
+    {
+        $this->trackingToolRemover->removeToolsFromTracker($tracker);
+        $this->unsafeRemove($tracker);
     }
 
     public function persist(iTracker $tracker)
@@ -78,5 +91,4 @@ class TrackerManager implements iType
         $tracker = $repository->findOneById($id);
         return $tracker;
     }
-
 }

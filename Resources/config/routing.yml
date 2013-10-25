@@ -11,5 +11,5 @@ dynamicJS:
     pattern:  /dynamic/js/{key}
     defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJs }
 dynamicJSTest:
-    pattern: /dynamic/js/test
+    pattern: /dynamic/jsTest
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }

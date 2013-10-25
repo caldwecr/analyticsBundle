@@ -194,10 +194,6 @@ abstract class TrackingToolManager implements iTrackingToolManager
         if(!$tool->hasValidationConstraints()) {
             return true;
         }
-        $errors = $this->getValidator()->validate($tool);
-        if(count($errors) > 0) {
-            return false;
-        }
-        return true;
+        return $this->getTrackingToolValidator()->validate($tool);
     }
 }

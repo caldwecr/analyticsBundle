@@ -9,8 +9,8 @@
 
 namespace Cympel\Bundle\AnalyticsBundle\Controller;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class TestController extends Controller
 {
@@ -38,7 +38,14 @@ class TestController extends Controller
         );
         $targetEventName = 'click';
         $djm = $this->get('cympel_analytics.dynamic_js_manager');
-        $jsUrl = $djm->generateOneTimeJavascript($ids, $targetEventName);
+        $tm = $this->get('cympel_analytics.tracker_manager');
+        $tracker = $tm->create();
+        $djs = $djm->create($tracker);
+        $properties = new DynamicJSPropertySet();
+        $djm->setProperties($djs, $properties);
+        $djm->persist($djs);
+        $jsUrl = $djm->generateUrl($djs);
+
         return $this->render('CympelAnalyticsBundle:Test:jsTest.html.twig', array(
             'jsUrl' => $jsUrl,
         ));
