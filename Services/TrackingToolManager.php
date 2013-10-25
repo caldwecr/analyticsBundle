@@ -50,15 +50,15 @@ abstract class TrackingToolManager implements iTrackingToolManager
     abstract protected function setEmName($emName);
 
     /**
-     * @return Object - the validator service
+     * @return iTrackingToolValidator
      */
-    abstract protected function getValidator();
+    abstract protected function getTrackingToolValidator();
 
     /**
-     * @param $validator
+     * @param iTrackingToolValidator $trackingToolValidator
      * @return void
      */
-    abstract protected function setValidator($validator);
+    abstract protected function setTrackingToolValidator(iTrackingToolValidator $trackingToolValidator);
 
     /**
      * @param iTracker $tracker
