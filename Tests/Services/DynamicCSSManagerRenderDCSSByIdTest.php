@@ -26,7 +26,7 @@ class DynamicCSSManagerRenderDCSSByIdTest extends ContainerAwareUnitTestCase
         $this->assertTrue(strpos($uri, $uri_prefix) !== false);
         $id = str_replace($uri_prefix, '', $uri);
 
-        $dcm->renderDCSSById($id);
+        $dcm->renderById($id);
 
         $dcss = $dcm->findOneTimeStylesheetById($id);
         $this->assertNotEquals(0, $dcss->getRendered());
