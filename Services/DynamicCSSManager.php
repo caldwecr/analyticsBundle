@@ -124,21 +124,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
         $em->flush();
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     *
-     * This method is invoked by the Default Controller to render a DynamicCSS
-     */
-    public function renderDCSSById($id)
-    {
-        $toReturn = $this->findOneTimeStylesheetById($id);
-        $toReturn->setRendered(time());
-        $em = $this->doctrine->getManager($this->emName);
-        $em->persist($toReturn);
-        $em->flush();
-        return $toReturn;
-    }
+
 
     /**
      * @param $id
