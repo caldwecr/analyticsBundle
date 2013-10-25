@@ -13,7 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 
-class TrackingToolRemover implements iType
+class TrackingToolRemover implements iTrackingToolRemover
 {
     protected $doctrine;
 
@@ -53,6 +53,7 @@ class TrackingToolRemover implements iType
     /**
      * @param iTrackingTool $tool
      * @param bool $doFlush
+     * @return void
      * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
      */
     public function remove(iTrackingTool $tool, $doFlush = true)
