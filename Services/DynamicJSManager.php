@@ -175,7 +175,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool)
     {
-        // TODO: Implement finalizeProperties() method.
+        return $properties;
     }
 
 
@@ -184,7 +184,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected function getRouteName()
     {
-        // TODO: Implement getRouteName() method.
+        return 'dynamicJS';
     }
 
     /**
@@ -193,7 +193,9 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected function getRoutingArray(iTrackingTool $tool)
     {
-        // TODO: Implement getRoutingArray() method.
+        return array(
+            'key' => $tool->getId(),
+        );
     }
 
     /**
@@ -201,7 +203,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected function getRouter()
     {
-        // TODO: Implement getRouter() method.
+        return $this->router;
     }
 
     /**
@@ -210,7 +212,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected function setRouter($router)
     {
-        // TODO: Implement setRouter() method.
+        $this->router = $router;
     }
 
 
