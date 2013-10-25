@@ -9,8 +9,13 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
 interface iTrackingToolValidator extends iType
 {
-
+    /**
+     * @param iTrackingTool $tool
+     * @return bool
+     */
+    public function validate(iTrackingTool $tool);
 }
