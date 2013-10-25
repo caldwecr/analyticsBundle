@@ -6,6 +6,7 @@ parameters:
     cympel_analytics.dynamic_js_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSManager
     cympel_analytics.dynamic_css_service_extension.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSServiceExtension
     cympel_analytics.dynamic_css_dom_id_array_collection_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdArrayCollectionManager
+    cympel_analytics.tracking_tool_managers_service.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolManagersService
     cympel_analytics.entity_manager:
 
 services:
@@ -30,3 +31,6 @@ services:
     cympel_analytics.dynamic_css_dom_id_array_collection_manager:
         class: %cympel_analytics.dynamic_css_dom_id_array_collection_manager.class%
         arguments: ["@cympel_analytics.dynamic_css_dom_id_manager"]
+    cympel_analytics.tracking_tool_managers_service:
+        class: %cympel_analytics.tracking_tool_managers_service.class%
+        arguments: ["@cympel_analytics.dynamic_css_manager", "@cympel_analytics.dynamic_js_manager"]
