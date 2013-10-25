@@ -10,8 +10,10 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Entity\RenderableTrackingTool;
 
 abstract class RoutedTrackingToolManager extends TrackingToolManager
 {
@@ -51,6 +53,22 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
         $this->setProperties($tool, $fProperties);
         $this->persist($tool);
         return $this->generateUrl($tool, UrlGeneratorInterface::ABSOLUTE_PATH);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     *
+     * This method is invoked by the Default Controller to render a DynamicCSS
+     */
+    public function renderById($id)
+    {
+        $toReturn = RoutedTrackingTool::cast($this->findOneById($id));
+        $toReturn->setRendered(time());
+        $em = $this->getDoctrine()->getManager($this->getEntityManagerName());
+        $em->persist($toReturn);
+        $em->flush();
+        return $toReturn;
     }
 
     /**
