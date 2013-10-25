@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicCSS")
  */
-class DynamicCSS extends RenderableTrackingTool
+class DynamicCSS extends RoutedTrackingTool
 {
     /**
      * @var int
