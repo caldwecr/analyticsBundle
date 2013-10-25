@@ -10,7 +10,6 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class DynamicCSS
@@ -18,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="DynamicCSS")
  */
-class DynamicCSS implements iTrackingTool
+class DynamicCSS extends RenderableTrackingTool
 {
     /**
      * @var int
