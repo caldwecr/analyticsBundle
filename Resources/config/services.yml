@@ -23,7 +23,7 @@ services:
         arguments: [ ]
     cympel_analytics.dynamic_js_manager:
         class: %cympel_analytics.dynamic_js_manager.class%
-        arguemtns: ["@doctrine", "@validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
+        arguments: ["@doctrine", "@validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_css_service_extension:
         class: %cympel_analytics.dynamic_css_service_extension.class%
         arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager"]
