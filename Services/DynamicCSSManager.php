@@ -18,7 +18,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
 {
     protected $doctrine;
     protected $router;
-    protected $validator;
+    protected $trackingToolValidator;
     protected $trackerManager;
     protected $emName;
     /**
@@ -28,16 +28,16 @@ class DynamicCSSManager extends RoutedTrackingToolManager
 
     /**
      * @param $doctrine
-     * @param $validator
+     * @param iTrackingToolValidator $trackingToolValidator
      * @param $router
      * @param TrackerManager $trackerManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    public function __construct($doctrine, $validator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+    public function __construct($doctrine, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
-        $this->validator = $validator;
+        $this->trackingToolValidator = $trackingToolValidator;
         $this->router = $router;
         $this->trackerManager = $trackerManager;
         $this->emName = $entityManagerName;
@@ -260,20 +260,20 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     }
 
     /**
-     * @return Object - the validator service
+     * @return iTrackingToolValidator
      */
-    protected function getValidator()
+    protected function getTrackingToolValidator()
     {
-        return $this->validator;
+        return $this->trackingToolValidator;
     }
 
     /**
-     * @param $validator
+     * @param iTrackingToolValidator $trackingToolValidator
      * @return void
      */
-    protected function setValidator($validator)
+    protected function setTrackingToolValidator(iTrackingToolValidator $trackingToolValidator)
     {
-        $this->validator = $validator;
+        $this->trackingToolValidator = $trackingToolValidator;
     }
 
 
