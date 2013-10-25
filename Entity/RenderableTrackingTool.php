@@ -25,16 +25,16 @@ abstract class RenderableTrackingTool implements iTrackingTool
      * @param iTrackingTool $tool
      * @return RenderableTrackingTool
      */
-    public function cast(iTrackingTool $tool)
+    public static function cast(iTrackingTool $tool)
     {
-        return $this->typedCast($tool);
+        return self::typedCast($tool);
     }
 
     /**
      * @param RenderableTrackingTool $tool
      * @return RenderableTrackingTool
      */
-    private function typedCast(RenderableTrackingTool $tool)
+    private static function typedCast(RenderableTrackingTool $tool)
     {
         return $tool;
     }
