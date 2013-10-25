@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJS")
  */
-class DynamicJS implements iTrackingTool
+class DynamicJS extends RoutedTrackingTool
 {
     /**
      * @var int
@@ -76,6 +76,31 @@ class DynamicJS implements iTrackingTool
     public function hasValidationConstraints()
     {
         // TODO: Implement hasValidationConstraints() method.
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $rendered
+     * @return void
+     */
+    public function setRendered($rendered)
+    {
+        // TODO: Implement setRendered() method.
+    }
+
+    /**
+     * @return int
+     */
+    public function getRendered()
+    {
+        // TODO: Implement getRendered() method.
     }
 
 }
