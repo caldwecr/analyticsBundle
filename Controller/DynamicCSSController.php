@@ -17,7 +17,7 @@ class DynamicCSSController extends Controller {
     {
         //convert $key into useful variables to pass to template
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
-        $dcss = $dcm->renderDCSSById($key);
+        $dcss = $dcm->renderById($key);
         $ids = $dcm->getDynamicCSSDomIds($dcss);
         return $this->render('CympelAnalyticsBundle:Default:dcss.css.twig', array(
             'ids' => $ids,
