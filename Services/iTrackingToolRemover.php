@@ -22,7 +22,7 @@ interface iTrackingToolRemover extends iType
     /**
      * @param iTrackingTool $tool
      * @param bool $doFlush
-     * @return mixed
+     * @return void
      */
     public function remove(iTrackingTool $tool, $doFlush = true);
 }
