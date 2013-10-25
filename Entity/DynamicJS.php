@@ -65,7 +65,12 @@ class DynamicJS extends RoutedTrackingTool
      */
     public function equals(iTrackingTool $rightSide)
     {
-        // TODO: Implement equals() method.
+        foreach($this as $key => $value) {
+            if($value !== $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
