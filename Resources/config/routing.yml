@@ -10,3 +10,6 @@ dynamicCSSTest:
 dynamicJS:
     pattern:  /dynamic/js/{key}
     defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJs }
+dynamicJSTest:
+    pattern: /dynamic/js/test
+    defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }
