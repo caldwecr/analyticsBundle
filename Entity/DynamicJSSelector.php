@@ -150,4 +150,18 @@ class DynamicJSSelector implements iTrackingToolSelector
         return $this->created;
     }
 
+    /**
+     * @param DynamicJSSelector $rightSide
+     * @return bool
+     */
+    public function equals(DynamicJSSelector $rightSide)
+    {
+        foreach($this as $key => $value) {
+            if($value !== $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
