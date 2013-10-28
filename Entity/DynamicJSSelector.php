@@ -36,7 +36,7 @@ class DynamicJSSelector implements iTrackingToolSelector
 
     /**
      * @var DynamicJSSelectors
-     * @ORM\ManyToOne(targetEntity="DynamicJSSelectors", inversedBy="selectors")
+     * @ORM\ManyToOne(targetEntity="DynamicJSSelectors", inversedBy="selectors", cascade={"persist"})
      * @ORM\JoinColumn(name="selectorsId", referencedColumnName="id")
      */
     protected $parentSelectors;
