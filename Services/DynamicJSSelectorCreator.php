@@ -8,10 +8,9 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;
 
-class DynamicJSSelectorCreator implements iType
+class DynamicJSSelectorCreator implements iDynamicJSSelectorCreator
 {
 
     public function create()
