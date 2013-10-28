@@ -8,6 +8,8 @@ parameters:
     cympel_analytics.dynamic_css_dom_id_array_collection_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdArrayCollectionManager
     cympel_analytics.tracking_tool_remover.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolRemover
     cympel_analytics.tracking_tool_validator.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolValidator
+    cympel_analytics.dynamic_js_selector_creator.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorCreator
+    cympel_analytics.dynamic_js_selector_persister.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorPersister
     cympel_analytics.entity_manager:
 
 services:
@@ -38,3 +40,9 @@ services:
     cympel_analytics.tracking_tool_validator:
         class: %cympel_analytics.tracking_tool_validator.class%
         arguments: ["@validator"]
+    cympel_analytics.dynamic_js_selector_creator:
+        class: %cympel_analytics.dynamic_js_selector_creator.class%
+        arguments: [ ]
+    cympel_analytics.dynamic_js_selector_persister:
+        class: %cympel_analytics.dynamic_js_selector_persister.class%
+        arguments: ["@doctrine", "%cympel_analytics.entity_manager%"]
