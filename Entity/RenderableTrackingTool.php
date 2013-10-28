@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-abstract class RenderableTrackingTool implements iTrackingTool
+abstract class RenderableTrackingTool extends CympelType implements iTrackingTool
 {
     /**
      * @param int $rendered
