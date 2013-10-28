@@ -39,7 +39,7 @@ class DynamicJSSelectorsFinder implements iDynamicJSSelectorsFinder
      */
     public function findOneById($id)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicJSSelectors');
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicJSSelectors', $this->emName);
         $d = $repository->findOneById($id);
         return $d;
     }
