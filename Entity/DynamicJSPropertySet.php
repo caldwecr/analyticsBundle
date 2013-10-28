@@ -8,8 +8,30 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class DynamicJSPropertySet implements iPropertySet
 {
+    /**
+     * @var Tracker
+     */
+    protected $tracker;
+
+    /**
+     * @var int
+     */
+    protected $rendered;
+
+    /**
+     * @var DynamicJSSelectors
+     */
+    protected $dynamicJSelectors;
+
+    /**
+     * @var ArrayCollection of strings
+     */
+    protected $events;
+
     /**
      * @param iTrackingTool $tool
      * @return iTrackingTool

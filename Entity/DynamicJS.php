@@ -43,7 +43,6 @@ class DynamicJS extends RoutedTrackingTool
      */
     protected $rendered;
 
-
     /**
      * @var DynamicJSSelectors
      * @ORM\OneToOne(targetEntity="DynamicJSSelectors", inversedBy="dynamicJ")
