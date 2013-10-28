@@ -41,9 +41,25 @@ class DynamicJSSelector implements iTrackingToolSelector
      */
     protected $parentSelectors;
 
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the selector was created
+     */
+    protected $created;
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the selector was called (this means that a client triggered the event that is associated with the selector)
+     */
+    protected $called;
 
     /**
      * @return string
+     *
      * This method must return a string with a unique representation of the object type that is implementing this interface
      */
     public function getType()
@@ -101,4 +117,37 @@ class DynamicJSSelector implements iTrackingToolSelector
     {
         $this->parentSelectors = $selectors;
     }
+
+    /**
+     * @param int $called
+     */
+    public function setCalled($called)
+    {
+        $this->called = $called;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCalled()
+    {
+        return $this->called;
+    }
+
+    /**
+     * @param int $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
 }
