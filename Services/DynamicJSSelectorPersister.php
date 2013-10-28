@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorPersister;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;
 
 class DynamicJSSelectorPersister implements iDynamicJSSelectorPersister

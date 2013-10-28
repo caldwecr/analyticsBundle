@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorFinder;
 
 class DynamicJSSelectorFinder implements iDynamicJSSelectorFinder
 {
