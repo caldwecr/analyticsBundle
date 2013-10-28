@@ -6,7 +6,7 @@
  * Time: 1:02 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Services;
+namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;

@@ -3,18 +3,19 @@
  * Created by PhpStorm.
  * User: caldwecr
  * Date: 10/28/13
- * Time: 12:58 PM
+ * Time: 1:01 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Services;
+namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;
 
-interface iDynamicJSSelectorCreator extends iType
+interface iDynamicJSSelectorFinder extends iType
 {
     /**
+     * @param $id
      * @return DynamicJSSelector
      */
-    public function create();
+    public function findOneById($id);
 }
