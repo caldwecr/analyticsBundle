@@ -12,6 +12,7 @@ parameters:
     cympel_analytics.dynamic_js_selector_persister.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorPersister
     cympel_analytics.dynamic_js_selector_finder.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorFinder
     cympel_analytics.dynamic_js_selector_remover.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorRemover
+    cympel_analytics.dynamic_js_selector_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager
     cympel_analytics.entity_manager:
 
 services:
@@ -54,3 +55,6 @@ services:
     cympel_analytics.dynamic_js_selector_remover:
         class: %cympel_analytics.dynamic_js_selector_remover.class%
         arguments: ["@doctrine", "%cympel_analytics.entity_manager%"]
+    cympel_analytics.dynamic_js_selector_manager:
+        class: %cympel_analytics.dynamic_js_selector_manager.class%
+        arguments: ["@cympel_analytics.dynamic_js_selector_creator", "@cympel_analytics.dynamic_js_selector_finder", "@cympel_analytics.dynamic_js_selector_persister", "@cympel_analytics.dynamic_js_selector_remover"]
