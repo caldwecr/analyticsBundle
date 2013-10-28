@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;
 
-class DynamicJSSelectorPersister implements iType
+class DynamicJSSelectorPersister implements iDynamicJSSelectorPersister
 {
     /**
      * @var Object - the doctrine service
