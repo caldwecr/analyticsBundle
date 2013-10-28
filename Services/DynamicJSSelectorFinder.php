@@ -39,7 +39,7 @@ class DynamicJSSelectorFinder implements iType
      */
     public function findOneById($id)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalytics:DynamicJSSelector', $this->emName);
+        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicJSSelector', $this->emName);
         $selector = $repository->findOneById($id);
         return $selector;
     }
