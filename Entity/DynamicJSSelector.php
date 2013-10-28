@@ -64,7 +64,7 @@ class DynamicJSSelector implements iTrackingToolSelector
      */
     public function getType()
     {
-        return 'Selector';
+        return 'DynamicJSSelector';
     }
 
     /**
