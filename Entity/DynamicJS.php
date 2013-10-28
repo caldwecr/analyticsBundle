@@ -9,6 +9,8 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class DynamicJS
@@ -32,6 +34,28 @@ class DynamicJS extends RoutedTrackingTool
      * @ORM\JoinColumn(name="tracker_id", referencedColumnName="id")
      */
     protected $tracker;
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     *
+     * The unix timestamp when the DynamicJS instance was rendered and then sent to the client
+     */
+    protected $rendered;
+
+
+    /**
+     * @var DynamicJSSelectors
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectors", inversedBy="dynamicJ")
+     */
+    protected $dynamicJSelectors;
+
+    protected $events;
+
+    public function __construct()
+    {
+        $this->rendered = 0;
+    }
 
     /**
      * @param iTracker $tracker
@@ -80,7 +104,7 @@ class DynamicJS extends RoutedTrackingTool
      */
     public function hasValidationConstraints()
     {
-        // TODO: Implement hasValidationConstraints() method.
+        return false;
     }
 
     /**
@@ -97,7 +121,7 @@ class DynamicJS extends RoutedTrackingTool
      */
     public function setRendered($rendered)
     {
-        // TODO: Implement setRendered() method.
+        $this->rendered = $rendered;
     }
 
     /**
@@ -105,7 +129,7 @@ class DynamicJS extends RoutedTrackingTool
      */
     public function getRendered()
     {
-        // TODO: Implement getRendered() method.
+        return $this->rendered;
     }
 
 }
