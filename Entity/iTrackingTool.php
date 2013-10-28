@@ -25,7 +25,7 @@ interface iTrackingTool extends iType
      * @param iTrackingTool $rightSide
      * @return bool
      */
-    public function equals(iTrackingTool $rightSide);
+    public function typedEquals(iTrackingTool $rightSide);
 
     /**
      * @return bool
