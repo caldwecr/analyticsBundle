@@ -13,6 +13,10 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 class ConcreteCympelType extends CympelType
 {
+    protected $p1;
+
+    protected $p2;
+
     /**
      * @param iType $rightSide
      * @return bool
@@ -31,6 +35,38 @@ class ConcreteCympelType extends CympelType
     public function getType()
     {
         return 'ConcreteCympelType';
+    }
+
+    /**
+     * @param mixed $p1
+     */
+    public function setP1($p1)
+    {
+        $this->p1 = $p1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getP1()
+    {
+        return $this->p1;
+    }
+
+    /**
+     * @param mixed $p2
+     */
+    public function setP2($p2)
+    {
+        $this->p2 = $p2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getP2()
+    {
+        return $this->p2;
     }
 
 
