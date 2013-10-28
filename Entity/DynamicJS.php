@@ -10,7 +10,6 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class DynamicJS
@@ -49,6 +48,9 @@ class DynamicJS extends RoutedTrackingTool
      */
     protected $dynamicJSelectors;
 
+    /**
+     * @var DynamicJSDomEvents
+     */
     protected $events;
 
     public function __construct()
@@ -83,12 +85,22 @@ class DynamicJS extends RoutedTrackingTool
     }
 
     /**
-     * @param iTrackingTool $rightSide
+     * @param iType $rightSide
      * @return bool
      */
-    public function equals(iTrackingTool $rightSide)
+    protected function typedEquals(iType $rightSide)
     {
-        foreach($this as $key => $value) {
+        return $this->internalEquals($rightSide);
+    }
+
+    /**
+     * @param DynamicJS $rightSide
+     * @return bool
+     */
+    private function internalEquals(DynamicJS $rightSide)
+    {
+        foreach($this as $key => $value)
+        {
             if($value !== $rightSide->$key) {
                 return false;
             }
@@ -129,6 +141,38 @@ class DynamicJS extends RoutedTrackingTool
     public function getRendered()
     {
         return $this->rendered;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors $dynamicJSelectors
+     */
+    public function setDynamicJSelectors($dynamicJSelectors)
+    {
+        $this->dynamicJSelectors = $dynamicJSelectors;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors
+     */
+    public function getDynamicJSelectors()
+    {
+        return $this->dynamicJSelectors;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents $events
+     */
+    public function setEvents($events)
+    {
+        $this->events = $events;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 
 }
