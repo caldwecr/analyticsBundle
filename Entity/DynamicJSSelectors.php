@@ -46,6 +46,11 @@ class DynamicJSSelectors implements iType
      */
     protected $selectors;
 
+    public function __construct()
+    {
+        $this->created = time();
+    }
+
     /**
      * @return string
      * This method must return a string with a unique representation of the object type that is implementing this interface
@@ -117,6 +122,20 @@ class DynamicJSSelectors implements iType
     public function getSelectors()
     {
         return $this->selectors;
+    }
+
+    /**
+     * @param DynamicJSSelectors $rightSide
+     * @return bool
+     */
+    public function equals(DynamicJSSelectors $rightSide)
+    {
+        foreach($this as $key => $value) {
+            if($value !== $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
