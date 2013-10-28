@@ -34,6 +34,8 @@ abstract class CympelType implements iType
     /**
      * @param iType $rightSide
      * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
     abstract protected function typedEquals(iType $rightSide);
 }
