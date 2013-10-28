@@ -23,11 +23,7 @@ abstract class CympelType implements iType
      */
     public function equals(iType $rightSide)
     {
-        $leftSideType = $this->getType();
-        $rightSideType = $rightSide->getType();
-        if($leftSideType !== $rightSideType) {
-            throw new TypeMismatchException("types do not match: leftside = {$leftSideType}, rightside = {$rightSideType}");
-        }
+        self::confirmSameType($this, $rightSide);
         return $this->typedEquals($rightSide);
     }
 
@@ -38,4 +34,34 @@ abstract class CympelType implements iType
      * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
     abstract protected function typedEquals(iType $rightSide);
+
+    /**
+     * @param iType $leftSide
+     * @param iType $rightSide
+     * @return bool
+     */
+    protected final static function areEqual(iType $leftSide, iType $rightSide)
+    {
+        self::confirmSameType($leftSide, $rightSide);
+        foreach($leftSide as $key => $value) {
+            if($value !== $rightSide->$key) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param iType $leftSide
+     * @param iType $rightSide
+     * @throws Exception\TypeMismatchException
+     */
+    protected final static function confirmSameType(iType $leftSide, iType $rightSide)
+    {
+        $leftSideType = $leftSide->getType();
+        $rightSideType = $rightSide->getType();
+        if($leftSideType !== $rightSideType) {
+            throw new TypeMismatchException("types do not match: leftside = {$leftSideType}, rightside = {$rightSideType}");
+        }
+    }
 }
