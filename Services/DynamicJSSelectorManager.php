@@ -8,13 +8,17 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorPersister;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorRemover;
 
 /**
  * Class DynamicJSSelectorManager
  * @package Cympel\Bundle\AnalyticsBundle\Services
  */
-class DynamicJSSelectorManager implements iType
+class DynamicJSSelectorManager implements iDynamicJSSelectorManager
 {
     /**
      * @var iDynamicJSSelectorCreator
@@ -36,6 +40,12 @@ class DynamicJSSelectorManager implements iType
      */
     protected $remover;
 
+    /**
+     * @param iDynamicJSSelectorCreator $creator
+     * @param iDynamicJSSelectorFinder $finder
+     * @param iDynamicJSSelectorPersister $persister
+     * @param iDynamicJSSelectorRemover $remover
+     */
     public function __construct(iDynamicJSSelectorCreator $creator, iDynamicJSSelectorFinder $finder, iDynamicJSSelectorPersister $persister, iDynamicJSSelectorRemover $remover)
     {
         $this->creator = $creator;
@@ -54,7 +64,7 @@ class DynamicJSSelectorManager implements iType
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Services\iDynamicJSSelectorCreator
+     * @return iDynamicJSSelectorCreator
      */
     public function getCreator()
     {
@@ -62,7 +72,7 @@ class DynamicJSSelectorManager implements iType
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Services\iDynamicJSSelectorFinder
+     * @return iDynamicJSSelectorFinder
      */
     public function getFinder()
     {
@@ -70,7 +80,7 @@ class DynamicJSSelectorManager implements iType
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Services\iDynamicJSSelectorPersister
+     * @return iDynamicJSSelectorPersister
      */
     public function getPersister()
     {
@@ -78,7 +88,7 @@ class DynamicJSSelectorManager implements iType
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Services\iDynamicJSSelectorRemover
+     * @return iDynamicJSSelectorRemover
      */
     public function getRemover()
     {
