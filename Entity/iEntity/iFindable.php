@@ -18,4 +18,9 @@ interface iFindable extends iType
      * This method must return the fully qualified repository name
      */
     public function getRepositoryName();
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName();
 }
