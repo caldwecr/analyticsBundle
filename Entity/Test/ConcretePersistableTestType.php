@@ -32,7 +32,7 @@ class ConcretePersistableTestType extends CympelType implements iPersistable
     protected $id;
 
     /**
-     * @var int
+     * @var string
      * @ORM\Column(type="string", length=10)
      */
     protected $value;
