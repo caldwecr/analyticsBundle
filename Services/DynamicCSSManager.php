@@ -141,13 +141,14 @@ class DynamicCSSManager extends RoutedTrackingToolManager
 
 
     /**
+     * @param string $classAlias
      * @param $id
      * @return DynamicCSS
      *
      */
-    public function findOneTimeStylesheetById($id)
+    public function findOneTimeStylesheetById($classAlias, $id)
     {
-        return $this->findOneById($id);
+        return $this->findOneByIdAndClassAlias($id, $classAlias);
     }
 
     /**
