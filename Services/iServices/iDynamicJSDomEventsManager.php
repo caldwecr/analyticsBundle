@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 
 interface iDynamicJSDomEventsManager extends iType
 {
@@ -31,4 +32,10 @@ interface iDynamicJSDomEventsManager extends iType
      * @return iRemover
      */
     public function getRemover();
+
+    /**
+     * @param array $eventsArray
+     * @return iDynamicJSDomEvents
+     */
+    public function createFromArray($eventsArray);
 }
