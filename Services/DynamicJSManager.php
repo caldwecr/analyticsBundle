@@ -8,13 +8,13 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class DynamicJSManager extends RoutedTrackingToolManager
 {
@@ -54,15 +54,12 @@ class DynamicJSManager extends RoutedTrackingToolManager
     protected $router;
 
     /**
-     * @param $doctrine
-     * @param iTrackingToolRemover $trackingToolRemover
-     * @param iTrackingToolValidator $trackingToolValidator
-     * @param $router
-     * @param TrackerManager $trackerManager
-     * @param $entityManagerName
-     * @param iTrackingToolManagerExtensionService $extensionService
+     * @var iCreator
      */
-    public function __construct($doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+    protected $creator;
+
+
+    public function __construct(iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
         $this->trackingToolValidator = $trackingToolValidator;
@@ -70,6 +67,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
         $this->trackerManager = $trackerManager;
         $this->emName = $entityManagerName;
         $this->repositoryName = 'CympelAnalyticsBundle:DynamicJS';
+        $this->creator = $creator;
     }
 
     /**
@@ -87,15 +85,6 @@ class DynamicJSManager extends RoutedTrackingToolManager
     protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover)
     {
         $this->trackingToolRemover = $trackingToolRemover;
-    }
-
-
-    /**
-     * @return iTrackingTool
-     */
-    protected function createTrackingTool()
-    {
-        return new DynamicJS();
     }
 
     /**
@@ -241,6 +230,14 @@ class DynamicJSManager extends RoutedTrackingToolManager
     protected function setRouter($router)
     {
         $this->router = $router;
+    }
+
+    /**
+     * @return iCreator
+     */
+    protected function getCreator()
+    {
+        return $this->creator;
     }
 
 
