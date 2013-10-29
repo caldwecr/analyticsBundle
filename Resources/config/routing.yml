@@ -9,7 +9,10 @@ dynamicCSSTest:
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicCSSTest }
 dynamicJS:
     pattern:  /dynamic/js/{key}
-    defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJs }
+    defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJS }
+dynamicJSCallback:
+    pattern: /dynamic/js/callback/{key}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJSCallback }
 dynamicJSTest:
     pattern: /dynamic/jsTest
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }
