@@ -9,9 +9,10 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Services\CympelService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsPersister;
 
-class DynamicJSSelectorsPersister implements iDynamicJSSelectorsPersister
+class DynamicJSSelectorsPersister extends CympelService implements iDynamicJSSelectorsPersister
 {
     /**
      * @var Object - the doctrine service
