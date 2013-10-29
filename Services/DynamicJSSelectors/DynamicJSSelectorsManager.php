@@ -9,41 +9,41 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors;
 
 use Cympel\Bundle\AnalyticsBundle\Services\CympelService;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsCreator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsManager;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsPersister;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsRemover;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 
 class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelectorsManager
 {
     /**
-     * @var iDynamicJSSelectorsCreator
+     * @var iCreator
      */
     protected $creator;
 
     /**
-     * @var iDynamicJSSelectorsFinder
+     * @var iFinder
      */
     protected $finder;
 
     /**
-     * @var iDynamicJSSelectorsPersister
+     * @var iPersister
      */
     protected $persister;
 
     /**
-     * @var iDynamicJSSelectorsRemover
+     * @var iRemover
      */
     protected $remover;
 
     /**
-     * @param iDynamicJSSelectorsCreator $creator
-     * @param iDynamicJSSelectorsFinder $finder
-     * @param iDynamicJSSelectorsPersister $persister
-     * @param iDynamicJSSelectorsRemover $remover
+     * @param iCreator $creator
+     * @param iFinder $finder
+     * @param iPersister $persister
+     * @param iRemover $remover
      */
-    public function __construct(iDynamicJSSelectorsCreator $creator, iDynamicJSSelectorsFinder $finder, iDynamicJSSelectorsPersister $persister, iDynamicJSSelectorsRemover $remover)
+    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover)
     {
         $this->creator = $creator;
         $this->finder = $finder;
@@ -52,7 +52,7 @@ class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelec
     }
 
     /**
-     * @return iDynamicJSSelectorsCreator
+     * @return iCreator
      */
     public function getCreator()
     {
@@ -60,7 +60,7 @@ class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelec
     }
 
     /**
-     * @return iDynamicJSSelectorsFinder
+     * @return iFinder
      */
     public function getFinder()
     {
@@ -68,7 +68,7 @@ class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelec
     }
 
     /**
-     * @return iDynamicJSSelectorsPersister
+     * @return iPersister
      */
     public function getPersister()
     {
@@ -76,7 +76,7 @@ class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelec
     }
 
     /**
-     * @return iDynamicJSSelectorsRemover
+     * @return iRemover
      */
     public function getRemover()
     {
