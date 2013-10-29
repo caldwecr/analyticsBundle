@@ -14,7 +14,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 
-abstract class TrackingToolManager implements iTrackingToolManager
+abstract class TrackingToolManager extends CympelService implements iTrackingToolManager
 {
     /**
      * @return TrackerManager
