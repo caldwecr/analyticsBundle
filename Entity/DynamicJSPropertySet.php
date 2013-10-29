@@ -94,4 +94,68 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
         self::areEqual($this, $rightSide);
     }
 
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors $dynamicJSelectors
+     */
+    public function setDynamicJSelectors($dynamicJSelectors)
+    {
+        $this->dynamicJSelectors = $dynamicJSelectors;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors
+     */
+    public function getDynamicJSelectors()
+    {
+        return $this->dynamicJSelectors;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents $events
+     */
+    public function setEvents($events)
+    {
+        $this->events = $events;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param int $rendered
+     */
+    public function setRendered($rendered)
+    {
+        $this->rendered = $rendered;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRendered()
+    {
+        return $this->rendered;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\Tracker $tracker
+     */
+    public function setTracker($tracker)
+    {
+        $this->tracker = $tracker;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\Tracker
+     */
+    public function getTracker()
+    {
+        return $this->tracker;
+    }
+
 }
