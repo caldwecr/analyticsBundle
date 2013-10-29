@@ -17,10 +17,12 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 
 abstract class RoutedTrackingToolManager extends TrackingToolManager
 {
     /**
+     * @param iFinder $finder
      * @param iCreator $creator
      * @param $doctrine
      * @param iTrackingToolRemover $trackingToolRemover
@@ -30,7 +32,7 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    abstract public function __construct(iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
+    abstract public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
 
     /**
      * @param iTrackingTool $tool
