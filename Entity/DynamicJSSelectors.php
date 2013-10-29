@@ -8,10 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -21,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelectors")
  */
-class DynamicJSSelectors extends CympelType implements iCreatable, iPersistable, iFindable, iRemovable
+class DynamicJSSelectors extends CympelType implements iDynamicJSSelectors
 {
     /**
      * @var int
@@ -39,7 +36,7 @@ class DynamicJSSelectors extends CympelType implements iCreatable, iPersistable,
 
     /**
      * @var DynamicJS
-     * @ORM\OneToOne(targetEntity="DynamicJS", inversedBy="dynamicJSelectors", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="DynamicJS", inversedBy="dynamicJSelectors", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="dynamicJsId", referencedColumnName="id")
      */
     protected $dynamicJ;
@@ -185,5 +182,9 @@ class DynamicJSSelectors extends CympelType implements iCreatable, iPersistable,
         return $this->entityManagerName;
     }
 
+    public function toArray()
+    {
+        return $this->selectors->toArray();
+    }
 
 }
