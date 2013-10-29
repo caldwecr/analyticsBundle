@@ -6,16 +6,14 @@
  * Time: 7:59 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity\Test;
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class ConcretePersistableTestType
- * @package Cympel\Bundle\AnalyticsBundle\Entity\Test
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="ConcretePersistableTestType")
  */
