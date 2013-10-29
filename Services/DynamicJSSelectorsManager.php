@@ -88,7 +88,7 @@ class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelec
      */
     public function getType()
     {
-        // TODO: Implement getType() method.
+        return 'DynamicJSSelectorsManager';
     }
 
 }
