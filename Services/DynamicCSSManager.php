@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
@@ -30,23 +31,20 @@ class DynamicCSSManager extends RoutedTrackingToolManager
      * @var iCreator
      */
     protected $creator;
+
+    /**
+     * @var iFinder
+     */
+    protected $finder;
+
     /**
      * @var DynamicCSSServiceExtension
      */
     protected $dynamicCSSServiceExtension;
 
 
-    /**
-     * @param iCreator $creator
-     * @param $doctrine
-     * @param iTrackingToolRemover $trackingToolRemover
-     * @param iTrackingToolValidator $trackingToolValidator
-     * @param $router
-     * @param TrackerManager $trackerManager
-     * @param $entityManagerName
-     * @param iTrackingToolManagerExtensionService $extensionService
-     */
-    public function __construct(iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+
+    public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
         $this->trackingToolRemover = $trackingToolRemover;
@@ -56,6 +54,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
         $this->emName = $entityManagerName;
         $this->setServiceExtension($extensionService);
         $this->creator = $creator;
+        $this->finder = $finder;
     }
 
     private function setServiceExtension(DynamicCSSServiceExtension $extension)
@@ -305,6 +304,14 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     protected function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * @return iFinder
+     */
+    protected function getFinder()
+    {
+        return $this->finder;
     }
 
 
