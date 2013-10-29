@@ -6,9 +6,7 @@
  * Time: 1:10 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
-
-namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
+namespace Cympel\Bundle\AnalyticsBundle\Tests\Services\DynamicJS;
 
 use Cympel\Bundle\AnalyticsBundle\Tests\ContainerAwareUnitTestCase;
 use Cympel\Bundle\AnalyticsBundle\Tests\Entity\DynamicJSSelectorsTestInstanceFactory;
