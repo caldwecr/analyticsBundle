@@ -15,11 +15,13 @@ interface iCreatableRegistrar extends iType
     /**
      * @param string $class
      * @param string $alias
+     * @param string $repositoryName
+     * @param string $entityManagerName
      * @return void
      *
      * This method registers an association between an alias and a class
      */
-    public function register($class, $alias);
+    public function register($class, $alias, $repositoryName, $entityManagerName);
 
     /**
      * @param string $alias
