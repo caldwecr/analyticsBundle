@@ -18,6 +18,7 @@ parameters:
     cympel_analytics.dynamic_js_selectors.persister.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors\DynamicJSSelectorsPersister
     cympel_analytics.dynamic_js_selectors.remover.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors\DynamicJSSelectorsRemover
     cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors\DynamicJSSelectorsManager
+    cympel_analytics.dynamic_js_dom_event.creator.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSDomEventCreator
     cympel_analytics.entity_manager:
 
 services:
@@ -78,3 +79,6 @@ services:
     cympel_analytics.dynamic_js_selectors.manager:
         class: %cympel_analytics.dynamic_js_selectors.manager.class%
         arguments: ["@cympel_analytics.dynamic_js_selectors.creator", "@cympel_analytics.dynamic_js_selectors.finder", "@cympel_analytics.dynamic_js_selectors.persister", "@cympel_analytics.dynamic_js_selectors.remover"]
+    cympel_analytics.dynamic_js_dom_event.creator:
+        class: %cympel_analytics.dynamic_js_dom_event.creator.class%
+        arguments: [ ]
