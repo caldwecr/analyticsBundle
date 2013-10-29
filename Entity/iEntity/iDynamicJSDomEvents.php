@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
-interface iDynamicJSDomEvents extends iType
+interface iDynamicJSDomEvents extends iType, iPersistable, iFindable, iCreatable, iRemovable
 {
 
 }
