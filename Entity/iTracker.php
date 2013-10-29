@@ -13,14 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface iTracker extends iType
 {
     /**
-     * @param iTracker $rightSide
-     * @return bool
-     *
-     * This method evaluates the equality of the object against the argument
-     */
-    public function equals(iTracker $rightSide);
-
-    /**
      * @return ArrayCollection
      */
     public function getTrackingTools();
