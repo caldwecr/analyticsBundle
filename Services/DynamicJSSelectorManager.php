@@ -18,7 +18,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorRemover;
  * Class DynamicJSSelectorManager
  * @package Cympel\Bundle\AnalyticsBundle\Services
  */
-class DynamicJSSelectorManager implements iDynamicJSSelectorManager
+class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelectorManager
 {
     /**
      * @var iDynamicJSSelectorCreator
