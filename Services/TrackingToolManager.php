@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
@@ -16,6 +17,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 
 abstract class TrackingToolManager extends CympelService implements iTrackingToolManager
 {
@@ -108,17 +110,18 @@ abstract class TrackingToolManager extends CympelService implements iTrackingToo
 
     /**
      * @param $id
-     * @return iTrackingTool
-     *
-     * This method should scan the database for an instance of the TrackingTool of appropriate type and id
+     * @param $classAlias
+     * @return iFindable
      */
-    public function findOneById($id)
+    public function findOneByIdAndClassAlias($id, $classAlias)
     {
-        $repositoryName = $this->getRepositoryName();
-        $repository = $this->getDoctrine()->getRepository($repositoryName, $this->getEmName());
-        $tt = $repository->findOneById($id);
-        return $tt;
+        return $this->getFinder()->findOneByIdAndClassAlias($id, $classAlias);
     }
+
+    /**
+     * @return iFinder
+     */
+    abstract protected function getFinder();
 
     /**
      * @param $entityManagerName
