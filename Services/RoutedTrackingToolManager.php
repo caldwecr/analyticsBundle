@@ -48,14 +48,15 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
     }
 
     /**
+     * @param string $classAlias
      * @param iPropertySet $properties
      * @param iTracker $tracker
      * @return string
      */
-    public function generate(iPropertySet $properties, iTracker $tracker = null)
+    public function generate($classAlias, iPropertySet $properties, iTracker $tracker = null)
     {
         if(!$tracker) $tracker = $this->getTrackerManager()->create();
-        $tool = $this->create($tracker);
+        $tool = $this->create($classAlias, $tracker);
         $fProperties = $this->finalizeProperties($properties, $tool);
         $this->setProperties($tool, $fProperties);
         $this->persist($tool);
