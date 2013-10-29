@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,9 +19,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ConcretePersistableTestType")
  */
-class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable
+class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable, iFindable
 {
     protected $entityManagerName;
+
+    protected $repositoryName;
 
     /**
      * @var int
@@ -104,4 +107,22 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
         return $this->value;
     }
 
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
 }
