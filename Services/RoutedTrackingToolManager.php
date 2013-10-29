@@ -13,7 +13,9 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-use Cympel\Bundle\AnalyticsBundle\Entity\RenderableTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
 
 abstract class RoutedTrackingToolManager extends TrackingToolManager
 {
