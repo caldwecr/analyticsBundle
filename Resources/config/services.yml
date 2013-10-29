@@ -22,6 +22,8 @@ parameters:
     ### Creatables
     cympel_analytics.creatables.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
     cympel_analytics.creatables.concrete_persistable_test_type.alias: ConcretePersistableTestType
+    cympel_analytics.creatables.concrete_persistable_test_type.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.concrete_persistable_test_type.repository_name: CympelAnalyticsBundle:ConcretePersistableTestType
     ### Generics
     cympel_anayltics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
@@ -101,10 +103,10 @@ services:
     cympel_analytics.generics.creatable_registrar:
         class: %cympel_analytics.generics.creatable_registrar.class%
         calls:
-            - [register, ["%cympel_analytics.creatables.concrete_persistable_test_type.class%", "%cympel_analytics.creatables.concrete_persistable_test_type.alias%"]]
+            - [register, ["%cympel_analytics.creatables.concrete_persistable_test_type.class%", "%cympel_analytics.creatables.concrete_persistable_test_type.alias%", "%cympel_analytics.creatables.concrete_persistable_test_type.entity_manager_name%", "%cympel_analytics.creatables.concrete_persistable_test_type.repository_name%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
     cympel_analytics.generics.finder:
         class: %cympel_analytics.generics.finder.class%
-        arguments: ["@doctrine", "@cympel_analytics.generics.creatable_registrar"]
+        arguments: ["@doctrine", "@cympel_analytics.generics.creatable_registrar", "@cympel_analytics.generics.creator"]
