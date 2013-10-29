@@ -24,7 +24,7 @@ class CympelFinderFindTest extends ContainerAwareUnitTestCase
 
         $em = $this->get('doctrine')->getManager($cp->getEntityManagerName());
         $em->persist($cp);
-
+        $em->flush();
         $id = $cp->getId();
 
         $cp2 = $finder->findOneByIdAndClassAlias($id, 'ConcretePersistableTestType');
