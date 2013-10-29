@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 
 class DynamicJSPropertySet extends CympelType implements iPropertySet
@@ -113,9 +114,9 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents $events
+     * @param iDynamicJSDomEvents $events
      */
-    public function setEvents($events)
+    public function setEvents(iDynamicJSDomEvents $events)
     {
         $this->events = $events;
     }
