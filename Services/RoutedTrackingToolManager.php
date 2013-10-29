@@ -64,14 +64,15 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
     }
 
     /**
+     * @param string $classAlias
      * @param $id
      * @return mixed
      *
      * This method is invoked by the Default Controller to render a DynamicCSS
      */
-    public function renderById($id)
+    public function renderById($classAlias, $id)
     {
-        $toReturn = RoutedTrackingTool::cast($this->findOneById($id));
+        $toReturn = RoutedTrackingTool::cast($this->findOneByIdAndClassAlias($id, $classAlias));
         $toReturn->setRendered(time());
         $em = $this->getDoctrine()->getManager($this->getEntityManagerName());
         $em->persist($toReturn);
