@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class DynamicJSPropertySet implements iPropertySet
+class DynamicJSPropertySet extends CympelType implements iPropertySet
 {
     /**
      * @var Tracker
@@ -57,6 +57,17 @@ class DynamicJSPropertySet implements iPropertySet
     public function getType()
     {
         return 'DynamicJSPropertySet';
+    }
+
+    /**
+     * @param iType $rightSide
+     * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
+     */
+    protected function typedEquals(iType $rightSide)
+    {
+        self::areEqual($this, $rightSide);
     }
 
 }
