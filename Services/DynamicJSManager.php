@@ -310,7 +310,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
         return $dynamicJS->getDynamicJSelectors()->toArray();
     }
 
-    public function getDynamicJSDomEvents(DynamicJS $dynamicJS)
+    public function getDynamicJDomEvents(DynamicJS $dynamicJS)
     {
         return $dynamicJS->getEvents()->toArray();
     }
