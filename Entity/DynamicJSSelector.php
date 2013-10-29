@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelector")
  */
-class DynamicJSSelector implements iTrackingToolSelector
+class DynamicJSSelector extends CympelType implements iTrackingToolSelector
 {
     /**
      * @var int
@@ -151,17 +151,15 @@ class DynamicJSSelector implements iTrackingToolSelector
     }
 
     /**
-     * @param DynamicJSSelector $rightSide
+     * @param iType $rightSide
      * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
-    public function equals(DynamicJSSelector $rightSide)
+    protected function typedEquals(iType $rightSide)
     {
-        foreach($this as $key => $value) {
-            if($value !== $rightSide->$key) {
-                return false;
-            }
-        }
-        return true;
+        return self::areEqual($this, $rightSide);
     }
+
 
 }
