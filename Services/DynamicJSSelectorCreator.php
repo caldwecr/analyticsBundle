@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorCreator;
 
-class DynamicJSSelectorCreator implements iDynamicJSSelectorCreator
+class DynamicJSSelectorCreator extends CympelService implements iDynamicJSSelectorCreator
 {
 
     public function create()
