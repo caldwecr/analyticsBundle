@@ -21,6 +21,7 @@ parameters:
     cympel_analytics.dynamic_js_dom_event.creator.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSDomEventCreator
     ### Generics
     cympel_anayltics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
+    cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
     cympel_analytics.entity_manager:
 
 services:
@@ -87,4 +88,7 @@ services:
     ### Generics
     cympel_anayltics.generics.persister:
         class: %cympel_anayltics.generics.persister.class%
+        arguments: ["@doctrine"]
+    cympel_analytics.generics.remover:
+        class: %cympel_analytics.generics.remover.class%
         arguments: ["@doctrine"]
