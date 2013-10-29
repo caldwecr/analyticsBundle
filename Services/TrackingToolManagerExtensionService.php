@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
+
 abstract class TrackingToolManagerExtensionService extends CympelService implements iTrackingToolManagerExtensionService
 {
 
