@@ -8,13 +8,14 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors;
 
+use Cympel\Bundle\AnalyticsBundle\Services\CympelService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsRemover;
 
-class DynamicJSSelectorsManager implements iDynamicJSSelectorsManager
+class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelectorsManager
 {
     /**
      * @var iDynamicJSSelectorsCreator
