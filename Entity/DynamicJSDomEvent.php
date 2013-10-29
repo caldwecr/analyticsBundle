@@ -51,6 +51,11 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
      */
     private $entityManagerName;
 
+    public function __construct()
+    {
+        $this->eventName = '';
+    }
+
     /**
      * @return string
      * This method must return a string with a unique representation of the object type that is implementing this interface
@@ -95,7 +100,7 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
     /**
      * @param $parentDynamicJDomEvents
      */
-    public function setParentDynamicJSDomEvents($parentDynamicJDomEvents)
+    public function setParentDynamicJDomEvents($parentDynamicJDomEvents)
     {
         $this->parentDynamicJDomEvents = $parentDynamicJDomEvents;
     }
@@ -103,7 +108,7 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
     /**
      * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents
      */
-    public function getParentDynamicJSDomEvents()
+    public function getParentDynamicJDomEvents()
     {
         return $this->parentDynamicJDomEvents;
     }
