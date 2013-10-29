@@ -8,11 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
