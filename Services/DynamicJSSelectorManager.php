@@ -8,11 +8,11 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorManager;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorCreator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorFinder;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorPersister;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorRemover;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 
 /**
  * Class DynamicJSSelectorManager
@@ -21,32 +21,27 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorRemover;
 class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelectorManager
 {
     /**
-     * @var iDynamicJSSelectorCreator
+     * @var iCreator
      */
     protected $creator;
 
     /**
-     * @var iDynamicJSSelectorFinder
+     * @var iFinder
      */
     protected $finder;
 
     /**
-     * @var iDynamicJSSelectorPersister
+     * @var iPersister
      */
     protected $persister;
 
     /**
-     * @var iDynamicJSSelectorRemover
+     * @var iRemover
      */
     protected $remover;
 
-    /**
-     * @param iDynamicJSSelectorCreator $creator
-     * @param iDynamicJSSelectorFinder $finder
-     * @param iDynamicJSSelectorPersister $persister
-     * @param iDynamicJSSelectorRemover $remover
-     */
-    public function __construct(iDynamicJSSelectorCreator $creator, iDynamicJSSelectorFinder $finder, iDynamicJSSelectorPersister $persister, iDynamicJSSelectorRemover $remover)
+
+    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover)
     {
         $this->creator = $creator;
         $this->finder = $finder;
@@ -64,7 +59,7 @@ class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelect
     }
 
     /**
-     * @return iDynamicJSSelectorCreator
+     * @return iCreator
      */
     public function getCreator()
     {
@@ -72,7 +67,7 @@ class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelect
     }
 
     /**
-     * @return iDynamicJSSelectorFinder
+     * @return iFinder
      */
     public function getFinder()
     {
@@ -80,7 +75,7 @@ class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelect
     }
 
     /**
-     * @return iDynamicJSSelectorPersister
+     * @return iPersister
      */
     public function getPersister()
     {
@@ -88,7 +83,7 @@ class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelect
     }
 
     /**
-     * @return iDynamicJSSelectorRemover
+     * @return iRemover
      */
     public function getRemover()
     {

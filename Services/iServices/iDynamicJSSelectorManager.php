@@ -13,22 +13,22 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 interface iDynamicJSSelectorManager extends iType
 {
     /**
-     * @return iDynamicJSSelectorCreator
+     * @return iCreator
      */
     public function getCreator();
 
     /**
-     * @return iDynamicJSSelectorFinder
+     * @return iFinder
      */
     public function getFinder();
 
     /**
-     * @return iDynamicJSSelectorPersister
+     * @return iPersister
      */
     public function getPersister();
 
     /**
-     * @return iDynamicJSSelectorRemover
+     * @return iRemover
      */
     public function getRemover();
 }
