@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelectors")
  */
-class DynamicJSSelectors implements iType
+class DynamicJSSelectors extends CympelType
 {
     /**
      * @var int
@@ -125,17 +125,15 @@ class DynamicJSSelectors implements iType
     }
 
     /**
-     * @param DynamicJSSelectors $rightSide
+     * @param iType $rightSide
      * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
-    public function equals(DynamicJSSelectors $rightSide)
+    protected function typedEquals(iType $rightSide)
     {
-        foreach($this as $key => $value) {
-            if($value !== $rightSide->$key) {
-                return false;
-            }
-        }
-        return true;
+        return self::areEqual($this, $rightSide);
     }
+
 
 }
