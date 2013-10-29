@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-class DynamicCSSPropertySet implements iPropertySet
+class DynamicCSSPropertySet extends PropertySet
 {
     /**
      * @var DynamicCSSDomIdArrayCollection
@@ -105,4 +105,16 @@ class DynamicCSSPropertySet implements iPropertySet
     {
         return $this->pseudo;
     }
+
+    /**
+     * @param iType $rightSide
+     * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
+     */
+    protected function typedEquals(iType $rightSide)
+    {
+        return self::areEqual($this, $rightSide);
+    }
+
 }
