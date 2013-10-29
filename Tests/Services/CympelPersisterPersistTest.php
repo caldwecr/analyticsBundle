@@ -15,7 +15,7 @@ class CympelPersisterPersistTest extends ContainerAwareUnitTestCase
 {
     public function testPersist()
     {
-        $persister = $this->get('cympel_anayltics.generics.persister');
+        $persister = $this->get('cympel_analytics.generics.persister');
         $cp = new ConcretePersistableTestType();
         $cp->setEntityManagerName('cympelanalytics');
         $cp->setValue("foobarz");
