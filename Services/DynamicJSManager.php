@@ -8,14 +8,19 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 
 class DynamicJSManager extends RoutedTrackingToolManager
 {
@@ -64,7 +69,23 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected $finder;
 
+    /**
+     * @var DynamicJSServiceExtension
+     */
+    protected $trackingToolExtensionService;
 
+
+    /**
+     * @param iFinder $finder
+     * @param iCreator $creator
+     * @param $doctrine
+     * @param iTrackingToolRemover $trackingToolRemover
+     * @param iTrackingToolValidator $trackingToolValidator
+     * @param $router
+     * @param TrackerManager $trackerManager
+     * @param $entityManagerName
+     * @param iTrackingToolManagerExtensionService $extensionService
+     */
     public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
@@ -75,6 +96,16 @@ class DynamicJSManager extends RoutedTrackingToolManager
         $this->repositoryName = 'CympelAnalyticsBundle:DynamicJS';
         $this->creator = $creator;
         $this->finder = $finder;
+        $this->setExtensionService($extensionService);
+    }
+
+    /**
+     * @param DynamicJSServiceExtension $extensionService
+     * @return void
+     */
+    private function setExtensionService(DynamicJSServiceExtension $extensionService)
+    {
+        $this->trackingToolExtensionService = $extensionService;
     }
 
     /**
@@ -187,6 +218,25 @@ class DynamicJSManager extends RoutedTrackingToolManager
         $this->trackingToolValidator = $trackingToolValidator;
     }
 
+    /**
+     * @param $classAlias
+     * @param $selectors
+     * @param $events
+     * @param iTracker $tracker
+     * @return string
+     */
+    public function generateOneTimeJavascript($classAlias, $selectors, $events, iTracker $tracker=null)
+    {
+        if(!$tracker) $tracker = $this->trackerManager->create();
+        $properties = new DynamicJSPropertySet();
+        // @todo implement and test the createFromArray method
+        $properties->setEvents($this->trackingToolExtensionService->getDynamicJDomEventsManager()->createFromArray($events));
+        // @todo create tests for this createFromArray method
+        $properties->setDynamicJSelectors($this->trackingToolExtensionService->getDynamicJSelectorsManager()->createFromArray($selectors));
+        $properties->setRendered(0);
+        $properties->setTracker($tracker);
+        return $this->generate($classAlias, $properties, $tracker);
+    }
 
     /**
      * @param iPropertySet $properties
@@ -255,5 +305,13 @@ class DynamicJSManager extends RoutedTrackingToolManager
         return $this->finder;
     }
 
+    public function getDynamicJSelectors(DynamicJS $dynamicJS)
+    {
+        return $dynamicJS->getDynamicJSelectors()->toArray();
+    }
 
+    public function getDynamicJSDomEvents(DynamicJS $dynamicJS)
+    {
+        return $dynamicJS->getEvents()->toArray();
+    }
 }
