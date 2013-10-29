@@ -11,7 +11,7 @@ dynamicJS:
     pattern:  /dynamic/js/{key}
     defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJS }
 dynamicJSCallback:
-    pattern: /dynamic/js/callback/{key}
+    pattern: /dynamic/js/callback/{key}/{selectorEventKey}
     defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJSCallback }
 dynamicJSTest:
     pattern: /dynamic/jsTest
