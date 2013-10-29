@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+
 class DynamicJSPropertySet extends CympelType implements iPropertySet
 {
     /**
@@ -95,9 +97,9 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors $dynamicJSelectors
+     * @param iDynamicJSSelectors $dynamicJSelectors
      */
-    public function setDynamicJSelectors($dynamicJSelectors)
+    public function setDynamicJSelectors(iDynamicJSSelectors $dynamicJSelectors)
     {
         $this->dynamicJSelectors = $dynamicJSelectors;
     }
