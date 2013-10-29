@@ -14,8 +14,24 @@ use Cympel\Bundle\AnalyticsBundle\Services\Exception\ServiceTypesNotComparableEx
 
 abstract class CympelService extends CympelType
 {
+    /**
+     * @param iType $rightSide
+     * @return bool|void
+     * @throws Exception\ServiceTypesNotComparableException
+     */
     public function equals(iType $rightSide)
     {
         throw new ServiceTypesNotComparableException('Descendants of the CympelService abstract class do not inherently have the ability to assess equality');
     }
+
+    /**
+     * @param iType $rightSide
+     * @return bool|void
+     * @throws Exception\ServiceTypesNotComparableException
+     */
+    protected function typedEquals(iType $rightSide)
+    {
+        throw new ServiceTypesNotComparableException('Descendants of the CympelService abstract class do not inherently have the ability to assess equality');
+    }
+
 }
