@@ -8,8 +8,6 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 class DynamicJSPropertySet extends CympelType implements iPropertySet
 {
     /**
@@ -28,7 +26,7 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
     protected $dynamicJSelectors;
 
     /**
-     * @var ArrayCollection of strings
+     * @var DynamicJSDomEvents
      */
     protected $events;
 
@@ -38,7 +36,20 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
      */
     public function pushTo(iTrackingTool $tool)
     {
-        // TODO: Implement pushTo() method.
+        return $this->pushToDynamicJS($tool);
+    }
+
+    /**
+     * @param DynamicJS $tool
+     * @return DynamicJS
+     */
+    private function pushToDynamicJS(DynamicJS $tool)
+    {
+        $tool->setTracker($this->tracker);
+        $tool->setRendered($this->rendered);
+        $tool->setDynamicJSelectors($this->dynamicJSelectors);
+        $tool->setEvents($this->events);
+        return $tool;
     }
 
     /**
@@ -47,7 +58,20 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
      */
     public function pullFrom(iTrackingTool $tool)
     {
-        // TODO: Implement pullFrom() method.
+        return $this->pullFromDynamicJS($tool);
+    }
+
+    /**
+     * @param DynamicJS $tool
+     * @return DynamicJSPropertySet $this
+     */
+    private function pullFromDynamicJS(DynamicJS $tool)
+    {
+        $this->tracker = $tool->getTracker();
+        $this->rendered = $tool->getRendered();
+        $this->dynamicJSelectors = $tool->getDynamicJSelectors();
+        $this->events = $tool->getEvents();
+        return $this;
     }
 
     /**
