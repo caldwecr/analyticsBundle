@@ -8,6 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelector")
  */
-class DynamicJSSelector extends CympelType implements iTrackingToolSelector
+class DynamicJSSelector extends CympelType implements iTrackingToolSelector, iCreatable, iPersistable, iRemovable, iFindable
 {
     /**
      * @var int
@@ -56,6 +60,16 @@ class DynamicJSSelector extends CympelType implements iTrackingToolSelector
      * The unix timestamp when the selector was called (this means that a client triggered the event that is associated with the selector)
      */
     protected $called;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
+    /**
+     * @var string
+     */
+    protected $repositoryName;
 
     /**
      * @return string
@@ -161,5 +175,39 @@ class DynamicJSSelector extends CympelType implements iTrackingToolSelector
         return self::areEqual($this, $rightSide);
     }
 
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
 
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
+    }
 }
