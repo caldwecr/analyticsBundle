@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="routeTraffic")
  */
-class RouteTraffic implements iType
+class RouteTraffic extends CympelType
 {
     /**
      * @var int
@@ -95,5 +95,16 @@ class RouteTraffic implements iType
     public function getType()
     {
         return 'CympelRouteTraffic';
+    }
+
+    /**
+     * @param iType $rightSide
+     * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
+     */
+    protected function typedEquals(iType $rightSide)
+    {
+        return self::areEqual($this, $rightSide);
     }
 }
