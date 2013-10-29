@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
@@ -19,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ConcretePersistableTestType")
  */
-class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable, iFindable
+class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable, iFindable, iCreatable
 {
     protected $entityManagerName;
 
