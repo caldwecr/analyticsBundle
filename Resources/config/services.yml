@@ -83,7 +83,7 @@ services:
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.dynamic_js_selector_manager"]
     cympel_analytics.dynamic_js.extension_service:
         class: %cympel_analytics.dynamic_js.extension_service.class%
-        arguments: ["@cympel_analytics.dynamic_js_selectors.manager", "@cympel_analytics.dynamic_js_selector_manager"]
+        arguments: ["@cympel_analytics.dynamic_js_selectors.manager", "@cympel_analytics.dynamic_js_dom_events.manager"]
     cympel_analytics.dynamic_js_dom_events.manager:
         class: %cympel_analytics.dynamic_js_dom_events.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover"]
