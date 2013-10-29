@@ -18,7 +18,7 @@ class DynamicCSSManagerCreatePersistRemoveTest extends ContainerAwareUnitTestCas
         $t = new Tracker();
 
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
-        $dcss = $dcm->create($t);
+        $dcss = $dcm->create('DynamicCSS', $t);
 
         // Verify that the id is initially blank and is then set by the persist operation
         $this->assertNull($dcss->getId());
@@ -27,12 +27,12 @@ class DynamicCSSManagerCreatePersistRemoveTest extends ContainerAwareUnitTestCas
         $this->assertNotNull($id);
 
         // Look up the same DynamicCSS object by the id and verify the two are the same
-        $dcss2 = $dcm->findOneById($id);
+        $dcss2 = $dcm->findOneByIdAndClassAlias($id, 'DynamicCSS');
         $this->assertTrue($dcss2->equals($dcss));
 
         // Remove the object and verify that it can't be recovered by findOneById
         $dcm->remove($dcss);
-        $dcss3 = $dcm->findOneById($id);
+        $dcss3 = $dcm->findOneByIdAndClassAlias($id, 'DynamicCSS');
         $this->assertNull($dcss3);
 
     }
