@@ -31,20 +31,16 @@ class TestController extends Controller
 
     public function dynamicJSTestAction()
     {
-        $ids = array(
-            'number_one',
-            'number_two',
-            'number_three',
+        $selectors = array(
+            '#number_one',
+            '.number_two',
+            'div',
         );
-        $targetEventName = 'click';
+        $targetEvents = array(
+            'click',
+        );
         $djm = $this->get('cympel_analytics.dynamic_js_manager');
-        $tm = $this->get('cympel_analytics.tracker_manager');
-        $tracker = $tm->create();
-        $djs = $djm->create($tracker);
-        $properties = new DynamicJSPropertySet();
-        $djm->setProperties($djs, $properties);
-        $djm->persist($djs);
-        $jsUrl = $djm->generateUrl($djs);
+        $jsUrl = $djm->generateOneTimeJavascript('DynamicJS', $selectors, $targetEvents);
 
         return $this->render('CympelAnalyticsBundle:Test:jsTest.html.twig', array(
             'jsUrl' => $jsUrl,

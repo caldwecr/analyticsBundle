@@ -19,13 +19,18 @@ class DynamicJSController extends Controller
     {
         //return a url of a dynamic JS file
         $djm = $this->get('cympel_analytics.dynamic_js_manager');
-        //$dcss = $dcm->renderDCSSById($key);
-        $djc = $djm->renderById($key);
+
+        $dj = $djm->renderById('DynamicJS', $key);
+
         //$ids = $dcm->getDynamicCSSDomIds($dcss);
-        $ids = null;
-        return $this->render('CympelAnalyticsBundle:Default:dcss.css.twig', array(
-            'ids' => $ids,
-            'pseudo' => $dcss->getPseudo(),
+
+        $selectors = $djm->getDynamicJSelectors($dj);
+
+        $events = $djm->getDynamicJDomEvents($dj);
+
+        return $this->render('CympelAnalyticsBundle:DynamicJS:djs.js.twig', array(
+            'selectors' => $selectors,
+            'events' => $events,
         ));
     }
 

@@ -48,7 +48,7 @@ class DynamicJS extends RoutedTrackingTool implements iCreatable, iPersistable, 
 
     /**
      * @var DynamicJSSelectors
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectors", inversedBy="dynamicJ")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectors", mappedBy="dynamicJ", cascade={"persist", "remove"})
      */
     protected $dynamicJSelectors;
 

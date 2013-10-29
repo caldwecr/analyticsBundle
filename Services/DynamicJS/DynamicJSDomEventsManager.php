@@ -16,6 +16,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class DynamicJSDomEventsManager extends CympelService implements iDynamicJSDomEventsManager
 {
@@ -108,11 +109,13 @@ class DynamicJSDomEventsManager extends CympelService implements iDynamicJSDomEv
     public function createFromArray($eventsArray)
     {
         $events = $this->creator->create('DynamicJSDomEvents');
+        $eventsCollection = new ArrayCollection();
         foreach($eventsArray as $key => $value) {
-            $events[$key] = $this->dynamicJDomEventManager->getCreator()->create('DynamicJSDomEvent');
-            $events[$key]->setEventName($value);
-            $events[$key]->setParentDynamicJDomEvents($events);
+            $eventsCollection[$key] = $this->dynamicJDomEventManager->getCreator()->create('DynamicJSDomEvent');
+            $eventsCollection[$key]->setEventName($value);
+            $eventsCollection[$key]->setParentDynamicJDomEvents($events);
         }
+        $events->setEvents($eventsCollection);
         return $events;
     }
 }

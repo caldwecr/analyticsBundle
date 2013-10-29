@@ -1,0 +1,7 @@
+{% for event in events %}
+    $('
+    {% for selector in selectors %}
+        {{ selector.selection|raw }},
+    {% endfor %}
+    ').{{ event.eventName }}(function () { console.log({{ event.eventName }}) });
+{% endfor %}

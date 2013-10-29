@@ -16,6 +16,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelectorsManager
 {
@@ -67,13 +68,15 @@ class DynamicJSSelectorsManager extends CympelService implements iDynamicJSSelec
     public function createFromArray($selectorArray)
     {
         $selectors = $this->creator->create('DynamicJSSelectors');
+        $selectorsCollection = new ArrayCollection();
         foreach($selectorArray as $key => $value) {
-            $selectors[$key] = $this->selectorManager->getCreator()->create('DynamicJSSelector');
-            $selectors[$key]->setSelection($value);
-            $selectors[$key]->setParentSelectors($selectors);
-            $selectors[$key]->setCreated(time());
-            $selectors[$key]->setCalled(0);
+            $selectorsCollection[$key] = $this->selectorManager->getCreator()->create('DynamicJSSelector');
+            $selectorsCollection[$key]->setSelection($value);
+            $selectorsCollection[$key]->setParentSelectors($selectors);
+            $selectorsCollection[$key]->setCreated(time());
+            $selectorsCollection[$key]->setCalled(0);
         }
+        $selectors->setSelectors($selectorsCollection);
         return $selectors;
     }
 
