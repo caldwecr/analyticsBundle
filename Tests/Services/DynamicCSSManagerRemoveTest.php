@@ -20,19 +20,19 @@ class DynamicCSSManagerRemoveTest extends ContainerAwareUnitTestCase
             'buz'
         );
         $pseudo = 'clicked';
-        $uri = $dcm->generateOneTimeStylesheet($ids, $pseudo);
+        $uri = $dcm->generateOneTimeStylesheet('DynamicCSS', $ids, $pseudo);
 
         $uri_prefix = '/analytics/dynamic/css/';
         $this->assertTrue(strpos($uri, $uri_prefix) !== false);
         $id = str_replace($uri_prefix, '', $uri);
 
-        $dcss = $dcm->findOneTimeStylesheetById($id);
+        $dcss = $dcm->findOneTimeStylesheetById('DynamicCSS', $id);
 
         $this->assertEquals('DynamicCSS', $dcss->getType());
 
         $dcm->removeOneTimeStylesheet($dcss);
 
-        $dcss2 = $dcm->findOneTimeStylesheetById($id);
+        $dcss2 = $dcm->findOneTimeStylesheetById('DynamicCSS', $id);
 
         $this->assertNull($dcss2);
 
