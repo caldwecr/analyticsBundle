@@ -15,6 +15,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 abstract class TrackingToolManager extends CympelService implements iTrackingToolManager
 {
@@ -74,27 +75,36 @@ abstract class TrackingToolManager extends CympelService implements iTrackingToo
     abstract protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover);
 
     /**
+     * @param string $classAlias
      * @param iTracker $tracker
      * @return iTrackingTool
-     *
-     * This method creates a brand new tracking tool that is a child to the first argument
      */
-    public final function create(iTracker $tracker = null)
+    public final function create($classAlias, iTracker $tracker = null)
     {
         if(!$tracker) {
             $tracker = $this->getTrackerManager()->create();
         }
-        $tt = $this->createTrackingTool();
+        $tt = $this->getCreator()->create($classAlias);
 
-        $tt->setTracker($tracker);
-        $this->getTrackerManager()->addTrackingTool($tracker, $tt);
-        return $tt;
+        return $this->attachTracker($tracker, $tt);
     }
 
     /**
+     * @param iTracker $tracker
+     * @param iTrackingTool $tool
      * @return iTrackingTool
      */
-    abstract protected function createTrackingTool();
+    protected final function attachTracker(iTracker $tracker, iTrackingTool $tool)
+    {
+        $tool->setTracker($tracker);
+        $this->getTrackerManager()->addTrackingTool($tracker, $tool);
+        return $tool;
+    }
+
+    /**
+     * @return iCreator
+     */
+    abstract protected function getCreator();
 
     /**
      * @param $id
