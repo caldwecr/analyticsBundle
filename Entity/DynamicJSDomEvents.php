@@ -41,6 +41,16 @@ class DynamicJSDomEvents extends CympelType implements iDynamicJSDomEvents
      */
     protected $events;
 
+    /**
+     * @var string
+     */
+    protected $repositoryName;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -117,5 +127,41 @@ class DynamicJSDomEvents extends CympelType implements iDynamicJSDomEvents
     public function toArray()
     {
         return $this->events->toArray();
+    }
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
+
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
     }
 }
