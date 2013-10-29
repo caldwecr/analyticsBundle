@@ -93,6 +93,7 @@ services:
             - [register, ["%cympel_analytics.creatables.dynamic_js_selectors.class%", "%cympel_analytics.creatables.dynamic_js_selectors.alias%", "%cympel_analytics.creatables.dynamic_js_selectors.repository_name%", "%cympel_analytics.creatables.dynamic_js_selectors.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js_selector.class%", "%cympel_analytics.creatables.dynamic_js_selector.alias%", "%cympel_analytics.creatables.dynamic_js_selector.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js.class%", "%cympel_analytics.creatables.dynamic_js.alias%", "%cympel_analytics.creatables.dynamic_js.repository_name%", "%cympel_analytics.creatables.dynamic_js.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_css.class%", "%cympel_analytics.creatables.dynamic_css.alias%", "%cympel_analytics.creatables.dynamic_css.repository_name%", "%cympel_analytics.creatables.dynamic_css.entity_manager_name%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
