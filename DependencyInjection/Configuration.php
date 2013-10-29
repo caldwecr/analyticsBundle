@@ -26,6 +26,10 @@ class Configuration implements ConfigurationInterface
                     ->info('This optional configuration parameter allows you to specify which entity manager should be used by the bundle for ORM - this is useful in particular if the database you use for analytics tables is different than your default')
                     ->defaultValue('')
                 ->end()
+                ->scalarNode('test_entity_manager')
+                    ->info('This optional parameter allows you to specify a unique entity manager for use in running the tests in this bundle')
+                    ->defaultValue('')
+                ->end()
             ->end();
 
         // Here you should define the parameters that are allowed to
