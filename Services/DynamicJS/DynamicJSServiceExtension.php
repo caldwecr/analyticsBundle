@@ -8,29 +8,30 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJS;
 
-use Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsManager;
 use Cympel\Bundle\AnalyticsBundle\Services\TrackingToolManagerExtensionService;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventsManager;
 
 class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
 {
     /**
-     * @var DynamicJSSelectorsManager
+     * @var iDynamicJSSelectorsManager
      */
-    protected $dynamicJsSelectorsManager;
+    protected $dynamicJSelectorsManager;
 
     /**
-     * @var DynamicJSSelectorManager
+     * @var iDynamicJSDomEventsManager
      */
-    protected $dynamicJsSelectorManager;
+    protected $dynamicJDomEventsManager;
 
     /**
-     * @param DynamicJSSelectorsManager $dynamicJsSelectorsManager
-     * @param DynamicJSSelectorManager $dynamicJsSelectorManager
+     * @param iDynamicJSSelectorsManager $dynamicJSelectorsManager
+     * @param iDynamicJSDomEventsManager $dynamicJDomEventsManager
      */
-    public function __construct(DynamicJSSelectorsManager $dynamicJsSelectorsManager, DynamicJSSelectorManager $dynamicJsSelectorManager)
+    public function __construct(iDynamicJSSelectorsManager $dynamicJSelectorsManager, iDynamicJSDomEventsManager $dynamicJDomEventsManager)
     {
-        $this->dynamicJsSelectorsManager = $dynamicJsSelectorsManager;
-        $this->dynamicJsSelectorManager = $dynamicJsSelectorManager;
+        $this->dynamicJSelectorsManager = $dynamicJSelectorsManager;
+        $this->dynamicJDomEventsManager = $dynamicJDomEventsManager;
     }
 
     /**
@@ -43,17 +44,20 @@ class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
     }
 
     /**
-     * @return DynamicJSSelectorsManager
+     * @return \Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventsManager
      */
-    public function getDynamicJSSelectorsManager() {
-        return $this->dynamicJsSelectorsManager;
+    public function getDynamicJDomEventsManager()
+    {
+        return $this->dynamicJDomEventsManager;
     }
 
     /**
-     * @return DynamicJSSelectorManager
+     * @return \Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsManager
      */
-    public function getDynamicJSSelectorManager()
+    public function getDynamicJSelectorsManager()
     {
-        return $this->dynamicJsSelectorManager;
+        return $this->dynamicJSelectorsManager;
     }
+
+
 }
