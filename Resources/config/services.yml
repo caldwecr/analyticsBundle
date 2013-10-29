@@ -9,7 +9,7 @@ parameters:
     cympel_analytics.tracking_tool_remover.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolRemover
     cympel_analytics.tracking_tool_validator.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolValidator
     cympel_analytics.dynamic_js_selector_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager
-    cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors\DynamicJSSelectorsManager
+    cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorsManager
 
     ### Creatables
     cympel_analytics.creatables.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
