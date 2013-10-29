@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ConcretePersistableTestType")
  */
-class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovablee
+class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable
 {
     protected $entityManagerName;
 
