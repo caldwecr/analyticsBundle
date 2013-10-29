@@ -22,12 +22,6 @@ interface iTrackingTool extends iType
     public function getTracker();
 
     /**
-     * @param iTrackingTool $rightSide
-     * @return bool
-     */
-    public function typedEquals(iTrackingTool $rightSide);
-
-    /**
      * @return bool
      *
      * This method must return true if the tool has validation constraints that should be checked, otherwise false
