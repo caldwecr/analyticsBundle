@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSDomEvent")
  */
-class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
+class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent, iPersistable
 {
     /**
      * @var int
@@ -40,6 +41,16 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
      * @ORM\JoinColumn(name="parentDynamicJSDomEventsId", referencedColumnName="id")
      */
     protected $parentDynamicJSDomEvents;
+
+    /**
+     * @var string
+     */
+    private $repositoryName;
+
+    /**
+     * @var string
+     */
+    private $entityManagerName;
 
     /**
      * @return string
@@ -108,4 +119,31 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
     {
         return self::areEqual($this, $rightSide);
     }
+
+    /**
+     * @return string
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
+    }
+
+    /**
+     * @param string $repositoryName
+     * @param string $entityManagerName
+     */
+    public function __construct($repositoryName, $entityManagerName)
+    {
+        $this->repositoryName = $repositoryName;
+        $this->entityManagerName = $entityManagerName;
+    }
+
 }
