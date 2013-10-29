@@ -51,7 +51,9 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
         $tool->setTracker($this->tracker);
         $tool->setRendered($this->rendered);
         $tool->setDynamicJSelectors($this->dynamicJSelectors);
+        $this->dynamicJSelectors->setDynamicJ($tool);
         $tool->setEvents($this->events);
+        $this->events->setDynamicJ($tool);
         return $tool;
     }
 
