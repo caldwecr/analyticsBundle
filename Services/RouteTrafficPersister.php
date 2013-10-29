@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\RouteTraffic;
 
-class RouteTrafficPersister implements iType
+class RouteTrafficPersister extends CympelService implements iType
 {
     protected $doctrine;
 
