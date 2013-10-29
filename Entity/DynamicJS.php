@@ -50,6 +50,7 @@ class DynamicJS extends RoutedTrackingTool
 
     /**
      * @var DynamicJSDomEvents
+     * @ORM\OneToOne(targetEntity="DynamicJSDomEvents", mappedBy="dynamicJ", cascade={"persist", "remove"})
      */
     protected $events;
 
