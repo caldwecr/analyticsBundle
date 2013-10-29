@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="Tracker")
  */
-class Tracker implements iTracker
+class Tracker extends CympelType implements iTracker
 {
     /**
      * @var int
@@ -55,20 +55,16 @@ class Tracker implements iTracker
     }
 
     /**
-     * @param iTracker $rightSide
+     * @param iType $rightSide
      * @return bool
      *
-     * This method evaluates the equality of the object against the argument
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
-    public function equals(iTracker $rightSide)
+    protected function typedEquals(iType $rightSide)
     {
-        foreach($this as $key => $value) {
-            if($value !== $rightSide->$key) {
-                return false;
-            }
-        }
-        return true;
+        return self::areEqual($this,$rightSide);
     }
+
 
     /**
      * @return string
