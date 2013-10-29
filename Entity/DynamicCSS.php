@@ -8,6 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicCSS")
  */
-class DynamicCSS extends RoutedTrackingTool
+class DynamicCSS extends RoutedTrackingTool implements iCreatable, iPersistable, iRemovable, iFindable
 {
     /**
      * @var int
@@ -66,6 +70,16 @@ class DynamicCSS extends RoutedTrackingTool
      * @ORM\JoinColumn(name="tracker_id", referencedColumnName="id")
      */
     protected $tracker;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
+    /**
+     * @var string
+     */
+    protected $repositoryName;
 
     /**
      * A default constructor
@@ -203,6 +217,42 @@ class DynamicCSS extends RoutedTrackingTool
     public function hasValidationConstraints()
     {
         return true;
+    }
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
+
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
     }
 
 }
