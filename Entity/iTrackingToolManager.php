@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 
 interface iTrackingToolManager extends iType
 {
@@ -39,13 +39,13 @@ interface iTrackingToolManager extends iType
      */
     public function remove(iTrackingTool $tool);
 
+
     /**
      * @param $id
-     * @return iTrackingTool
-     *
-     * This method should scan the database for an instance of the TrackingTool of appropriate type and id
+     * @param $classAlias
+     * @return iFindable
      */
-    public function findOneById($id);
+    public function findOneByIdAndClassAlias($id, $classAlias);
 
     /**
      * @param $entityManagerName
