@@ -9,9 +9,10 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Services\CympelService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsCreator;
 
-class DynamicJSSelectorsCreator implements iDynamicJSSelectorsCreator
+class DynamicJSSelectorsCreator extends CympelService implements iDynamicJSSelectorsCreator
 {
     /**
      * @return DynamicJSSelectors
