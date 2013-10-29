@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class DynamicCSSManager extends RoutedTrackingToolManager
 {
@@ -26,12 +27,17 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     protected $trackerManager;
     protected $emName;
     /**
+     * @var iCreator
+     */
+    protected $creator;
+    /**
      * @var DynamicCSSServiceExtension
      */
     protected $dynamicCSSServiceExtension;
 
 
     /**
+     * @param iCreator $creator
      * @param $doctrine
      * @param iTrackingToolRemover $trackingToolRemover
      * @param iTrackingToolValidator $trackingToolValidator
@@ -40,7 +46,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    public function __construct($doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+    public function __construct(iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
         $this->trackingToolRemover = $trackingToolRemover;
@@ -49,6 +55,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
         $this->trackerManager = $trackerManager;
         $this->emName = $entityManagerName;
         $this->setServiceExtension($extensionService);
+        $this->creator = $creator;
     }
 
     private function setServiceExtension(DynamicCSSServiceExtension $extension)
@@ -149,14 +156,6 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     protected function createPropertySet()
     {
         return new DynamicCSSPropertySet();
-    }
-
-    /**
-     * @return iTrackingTool
-     */
-    protected function createTrackingTool()
-    {
-        return new DynamicCSS();
     }
 
     /**
@@ -298,6 +297,14 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover)
     {
         $this->trackingToolRemover = $trackingToolRemover;
+    }
+
+    /**
+     * @return iCreator
+     */
+    protected function getCreator()
+    {
+        return $this->creator;
     }
 
 
