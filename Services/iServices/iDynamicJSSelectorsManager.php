@@ -9,6 +9,8 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+
 
 interface iDynamicJSSelectorsManager extends iType
 {
@@ -31,4 +33,10 @@ interface iDynamicJSSelectorsManager extends iType
      * @return iRemover
      */
     public function getRemover();
+
+    /**
+     * @param array $selectorArray
+     * @return iDynamicJSSelectors
+     */
+    public function createFromArray($selectorArray);
 }
