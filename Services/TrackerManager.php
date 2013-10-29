@@ -13,7 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\Tracker;
 
-class TrackerManager implements iType
+class TrackerManager extends CympelService implements iType
 {
     protected $doctrine;
 
