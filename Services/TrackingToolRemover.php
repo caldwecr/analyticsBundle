@@ -13,7 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 
-class TrackingToolRemover implements iTrackingToolRemover
+class TrackingToolRemover extends CympelService implements iTrackingToolRemover
 {
     protected $doctrine;
 
