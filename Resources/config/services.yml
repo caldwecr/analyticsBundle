@@ -19,9 +19,14 @@ parameters:
     cympel_analytics.dynamic_js_selectors.remover.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors\DynamicJSSelectorsRemover
     cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectors\DynamicJSSelectorsManager
     cympel_analytics.dynamic_js_dom_event.creator.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSDomEventCreator
+    ### Creatables
+    cympel_analytics.creatables.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
+    cympel_analytics.creatables.concrete_persistable_test_type.alias: ConcretePersistableTestType
     ### Generics
     cympel_anayltics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
+    cympel_analytics.generics.creatable_registrar.class: Cympel\Bundle\AnalyticsBundle\Services\CreatableRegistrar
+    cympel_analytics.generics.creator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelCreator
     cympel_analytics.entity_manager:
 
 services:
@@ -92,3 +97,10 @@ services:
     cympel_analytics.generics.remover:
         class: %cympel_analytics.generics.remover.class%
         arguments: ["@doctrine"]
+    cympel_analytics.generics.creatable_registrar:
+        class: %cympel_analytics.generics.creatable_registrar.class%
+        calls:
+            - [register, ["%cympel_analytics.creatables.concrete_persistable_test_type.class%", "%cympel_analytics.creatables.concrete_persistable_test_type.alias%"]]
+    cympel_analytics.generics.creator:
+        class: %cympel_analytics.generics.creator.class%
+        arguments: ["@cympel_analytics.generics.creatable_registrar"]

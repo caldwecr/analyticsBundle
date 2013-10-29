@@ -14,7 +14,8 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
 interface iCreator extends iType
 {
     /**
+     * @param string $classAlias
      * @return iCreatable
      */
-    public function create();
+    public function create($classAlias);
 }
