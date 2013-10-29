@@ -24,7 +24,7 @@ class DynamicJSSelectorManagerCreatePersistFindRemoveTest extends ContainerAware
         $remover = $manager->getRemover();
 
         $djss = DynamicJSSelectorsTestInstanceFactory::generate();
-        $dynamicJSSelector = $creator->create();
+        $dynamicJSSelector = $creator->create('DynamicJSSelector');
         $dynamicJSSelector->setSelection("#foobar");
         $dynamicJSSelector->setParentSelectors($djss);
         $dynamicJSSelector->setCreated(time());
@@ -34,14 +34,14 @@ class DynamicJSSelectorManagerCreatePersistFindRemoveTest extends ContainerAware
 
         $id = $dynamicJSSelector->getId();
 
-        $dynamicJSSelector2 = $finder->findOneById($id);
+        $dynamicJSSelector2 = $finder->findOneByIdAndClassAlias($id, 'DynamicJSSelector');
 
         $this->assertTrue($dynamicJSSelector->equals($dynamicJSSelector2));
         $this->assertTrue($dynamicJSSelector2->equals($dynamicJSSelector));
 
         $remover->remove($dynamicJSSelector);
 
-        $dynamicJSSelector3 = $finder->findOneById($id);
+        $dynamicJSSelector3 = $finder->findOneByIdAndClassAlias($id, 'DynamicJSSelector');
         $this->assertNull($dynamicJSSelector3);
     }
 }
