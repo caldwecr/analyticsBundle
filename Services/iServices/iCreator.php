@@ -9,11 +9,12 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
 
 interface iCreator extends iType
 {
     /**
-     * @return iType
+     * @return iCreatable
      */
     public function create();
 }
