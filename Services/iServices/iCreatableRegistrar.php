@@ -13,11 +13,19 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 interface iCreatableRegistrar extends iType
 {
     /**
-     * @param $class
-     * @param $alias
+     * @param string $class
+     * @param string $alias
      * @return void
      *
      * This method registers an association between an alias and a class
      */
     public function register($class, $alias);
+
+    /**
+     * @param string $alias
+     * @return string
+     *
+     * This method returns the class associated with the alias
+     */
+    public function getClass($alias);
 }
