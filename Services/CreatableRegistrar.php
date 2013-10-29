@@ -16,23 +16,37 @@ class CreatableRegistrar extends CympelService implements iCreatableRegistrar
     /**
      * @var ArrayCollection
      */
-    protected $map;
+    protected $classMap;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $repositoryNameMap;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $entityManagerNameMap;
 
     public function __construct()
     {
-        $this->map = new ArrayCollection();
+        $this->classMap = new ArrayCollection();
     }
 
     /**
-     * @param $class
-     * @param $alias
+     * @param string $class
+     * @param string $alias
+     * @param string $repositoryName
+     * @param string $entityManagerName
      * @return void
      *
      * This method registers an association between an alias and a class
      */
-    public function register($class, $alias)
+    public function register($class, $alias, $repositoryName, $entityManagerName)
     {
-        $this->map[$alias] = $class;
+        $this->classMap[$alias] = $class;
+        $this->repositoryNameMap[$alias] = $repositoryName;
+        $this->entityManagerNameMap[$alias] = $entityManagerName;
     }
 
     /**
@@ -43,9 +57,26 @@ class CreatableRegistrar extends CympelService implements iCreatableRegistrar
      */
     public function getClass($alias)
     {
-        return $this->map[$alias];
+        return $this->classMap[$alias];
     }
 
+    /**
+     * @param string $alias
+     * @return string
+     */
+    public function getRepositoryName($alias)
+    {
+        return $this->repositoryNameMap[$alias];
+    }
+
+    /**
+     * @param string $alias
+     * @return string
+     */
+    public function getEntityManagerName($alias)
+    {
+        return $this->entityManagerNameMap[$alias];
+    }
 
     /**
      * @return string
