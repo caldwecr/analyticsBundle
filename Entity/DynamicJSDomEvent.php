@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,7 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSDomEvent")
  */
-class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent, iPersistable, iCreatable
+class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
 {
     /**
      * @var int
@@ -95,11 +96,11 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent, iPersi
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents $parentDynamicJSDomEvents
+     * @param $parentDynamicJDomEvents
      */
-    public function setParentDynamicJSDomEvents($parentDynamicJSDomEvents)
+    public function setParentDynamicJSDomEvents($parentDynamicJDomEvents)
     {
-        $this->parentDynamicJSDomEvents = $parentDynamicJSDomEvents;
+        $this->parentDynamicJDomEvents = $parentDynamicJDomEvents;
     }
 
     /**
@@ -107,7 +108,7 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent, iPersi
      */
     public function getParentDynamicJSDomEvents()
     {
-        return $this->parentDynamicJSDomEvents;
+        return $this->parentDynamicJDomEvents;
     }
 
     /**
