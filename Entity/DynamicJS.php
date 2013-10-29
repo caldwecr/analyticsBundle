@@ -8,6 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJS")
  */
-class DynamicJS extends RoutedTrackingTool
+class DynamicJS extends RoutedTrackingTool implements iCreatable, iPersistable, iFindable, iRemovable
 {
     /**
      * @var int
@@ -53,6 +57,16 @@ class DynamicJS extends RoutedTrackingTool
      * @ORM\OneToOne(targetEntity="DynamicJSDomEvents", mappedBy="dynamicJ", cascade={"persist", "remove"})
      */
     protected $events;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
+    /**
+     * @var string
+     */
+    protected $repositoryName;
 
     public function __construct()
     {
@@ -174,6 +188,42 @@ class DynamicJS extends RoutedTrackingTool
     public function getEvents()
     {
         return $this->events;
+    }
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
+
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
     }
 
 }

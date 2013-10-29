@@ -27,6 +27,11 @@ parameters:
     cympel_analytics.creatables.dynamic_js_selector.entity_manager_name: %cympel_analytics.entity_manager%
     cympel_analytics.creatables.dynamic_js_selector.repository_name: CympelAnalyticsBundle:DynamicJSSelector
 
+    cympel_analytics.creatables.dynamic_js.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS
+    cympel_analytics.creatables.dynamic_js.alias: DynamicJS
+    cympel_analytics.creatables.dynamic_js.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.dynamic_js.repository_name: CympelAnalyticsBundle:DynamicJS
+
     ### Generics
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
@@ -82,6 +87,7 @@ services:
             - [register, ["%cympel_analytics.creatables.concrete_persistable_test_type.class%", "%cympel_analytics.creatables.concrete_persistable_test_type.alias%", "%cympel_analytics.creatables.concrete_persistable_test_type.repository_name%", "%cympel_analytics.creatables.concrete_persistable_test_type.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js_selectors.class%", "%cympel_analytics.creatables.dynamic_js_selectors.alias%", "%cympel_analytics.creatables.dynamic_js_selectors.repository_name%", "%cympel_analytics.creatables.dynamic_js_selectors.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js_selector.class%", "%cympel_analytics.creatables.dynamic_js_selector.alias%", "%cympel_analytics.creatables.dynamic_js_selector.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_js.class%", "%cympel_analytics.creatables.dynamic_js.alias%", "%cympel_analytics.creatables.dynamic_js.repository_name%", "%cympel_analytics.creatables.dynamic_js.entity_manager_name%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
