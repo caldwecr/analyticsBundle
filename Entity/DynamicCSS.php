@@ -184,18 +184,16 @@ class DynamicCSS extends RoutedTrackingTool
     }
 
     /**
-     * @param iTrackingTool $rightSide
+     * @param iType $rightSide
      * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
-    public function equals(iTrackingTool $rightSide)
+    protected function typedEquals(iType $rightSide)
     {
-        foreach($this as $key => $value) {
-            if($value !== $rightSide->$key) {
-                return false;
-            }
-        }
-        return true;
+        return self::areEqual($this, $rightSide);
     }
+
 
     /**
      * @return bool
