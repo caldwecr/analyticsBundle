@@ -11,6 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreatableRegistrar;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class CympelFinder extends CympelService implements iFinder
 {
@@ -20,18 +21,25 @@ class CympelFinder extends CympelService implements iFinder
     protected $doctrine;
 
     /**
-     * @var CreatableRegistrar
+     * @var iCreatableRegistrar
      */
     protected $registrar;
 
     /**
-     * @param Object $doctrine
-     * @param iCreatableRegistrar $registrar
+     * @var iCreator
      */
-    public function __construct($doctrine, iCreatableRegistrar $registrar)
+    protected $creator;
+
+    /**
+     * @param $doctrine
+     * @param iCreatableRegistrar $registrar
+     * @param iCreator $creator
+     */
+    public function __construct($doctrine, iCreatableRegistrar $registrar, iCreator $creator)
     {
         $this->doctrine = $doctrine;
         $this->registrar = $registrar;
+        $this->creator = $creator;
     }
 
     /**
@@ -41,8 +49,7 @@ class CympelFinder extends CympelService implements iFinder
      */
     public function findOneByIdAndClassAlias($id, $classAlias)
     {
-        $findableType = $this->registrar->getClass($classAlias);
-        $findable = new $findableType;
+        $findable = $this->creator->create($classAlias);
         $repository = $this->doctrine->getRepository($findable->getRepositoryName(), $findable->getEntityManagerName());
         $found = $repository->findOneById($id);
         return $found;
