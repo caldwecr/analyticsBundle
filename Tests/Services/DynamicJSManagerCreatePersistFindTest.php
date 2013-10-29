@@ -15,9 +15,9 @@ class DynamicJSManagerCreatePersistFindTest extends ContainerAwareUnitTestCase
     public function testCreatePersistFind()
     {
         $djm = $this->get('cympel_analytics.dynamic_js_manager');
-        $dj = $djm->create();
+        $dj = $djm->create('DynamicJS');
         $djm->persist($dj);
-        $dj2 = $djm->findOneById($dj->getId());
+        $dj2 = $djm->findOneByIdAndClassAlias($dj->getId(), 'DynamicJS');
         $this->assertTrue($dj->equals($dj2));
         $this->assertTrue($dj2->equals($dj));
     }
