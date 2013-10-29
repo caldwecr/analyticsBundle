@@ -23,7 +23,7 @@ class TrackerManagerRemoveKeyConstraintViolationTest extends ContainerAwareUnitT
         $dynamicCSSManager = $this->get('cympel_analytics.dynamic_css_manager');
 
         $tracker = $trackerManager->create();
-        $dynamicCSS = $dynamicCSSManager->create($tracker);
+        $dynamicCSS = $dynamicCSSManager->create('DynamicCSS', $tracker);
         $dynamicCSSManager->persist($dynamicCSS);
 
         $trackerManager->unsafeRemove($tracker);
