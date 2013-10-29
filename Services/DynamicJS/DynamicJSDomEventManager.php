@@ -15,7 +15,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 
-class DynamicJSDomEventManger extends CympelService implements iDynamicJSDomEventManager
+class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEventManager
 {
     /**
      * @var iCreator
