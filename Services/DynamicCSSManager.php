@@ -63,18 +63,19 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     }
 
     /**
+     * @param string $classAlias
      * @param array $ids - an array of DOM id's that the stylesheet should include trackers for
      * @param string $pseudo - which pseudo class the stylesheet should bind its tracking to
      * @return string
      *
      * The method returns a URI to the created stylesheet
      */
-    public function generateOneTimeStylesheet($ids, $pseudo)
+    public function generateOneTimeStylesheet($classAlias, $ids, $pseudo)
     {
         $properties = new DynamicCSSPropertySet();
         $properties->setIds($this->dynamicCSSServiceExtension->getDynamicCSSDomIdArrayCollectionManager()->create($ids));
         $properties->setPseudo($pseudo);
-        return $this->generate($properties, $this->getTrackerManager()->create());
+        return $this->generate($classAlias, $properties, $this->getTrackerManager()->create());
     }
 
     /**
