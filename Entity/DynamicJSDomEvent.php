@@ -41,7 +41,7 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent, iPersi
      * @ORM\ManyToOne(targetEntity="DynamicJSDomEvents", inversedBy="events", cascade={"persist"})
      * @ORM\JoinColumn(name="parentDynamicJSDomEventsId", referencedColumnName="id")
      */
-    protected $parentDynamicJSDomEvents;
+    protected $parentDynamicJDomEvents;
 
     /**
      * @var string

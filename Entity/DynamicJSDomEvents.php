@@ -37,7 +37,7 @@ class DynamicJSDomEvents extends CympelType implements iDynamicJSDomEvents
 
     /**
      * @var ArrayCollection of DynamicJSDomEvent objects
-     * @ORM\OneToMany(targetEntity="DynamicJSDomEvent", mappedBy="parentDynamicJSDomEvents", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="DynamicJSDomEvent", mappedBy="parentDynamicJDomEvents", cascade={"persist", "remove"})
      */
     protected $events;
 
@@ -112,5 +112,10 @@ class DynamicJSDomEvents extends CympelType implements iDynamicJSDomEvents
     public function getId()
     {
         return $this->id;
+    }
+
+    public function toArray()
+    {
+        return $this->events->toArray();
     }
 }
