@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicCSSDomId")
  */
-class DynamicCSSDomId implements iType
+class DynamicCSSDomId extends CympelType
 {
     /**
      * @var int
@@ -187,18 +187,15 @@ class DynamicCSSDomId implements iType
     }
 
     /**
-     * @param DynamicCSSDomId $rightSide
+     * @param iType $rightSide
      * @return bool
      *
-     * This method compares a DynamicCSSDomId object to another
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
      */
-    public function equals(DynamicCSSDomId $rightSide)
+    protected function typedEquals(iType $rightSide)
     {
-        foreach($this as $key => $value) {
-            if($value != $rightSide->$key) {
-                return false;
-            }
-        }
-        return true;
+        return self::areEqual($this, $rightSide);
     }
+
+
 }
