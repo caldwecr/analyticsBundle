@@ -25,20 +25,13 @@ class CympelFinder extends CympelService implements iFinder
     protected $registrar;
 
     /**
-     * @var string
-     */
-    protected $entityManagerName;
-
-    /**
      * @param Object $doctrine
      * @param iCreatableRegistrar $registrar
-     * @param string $entityManagerName
      */
-    public function __construct($doctrine, iCreatableRegistrar $registrar, $entityManagerName)
+    public function __construct($doctrine, iCreatableRegistrar $registrar)
     {
         $this->doctrine = $doctrine;
         $this->registrar = $registrar;
-        $this->entityManagerName = $entityManagerName;
     }
 
     /**
