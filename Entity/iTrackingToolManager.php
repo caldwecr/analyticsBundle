@@ -13,12 +13,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface iTrackingToolManager extends iType
 {
     /**
+     * @param string $classAlias
      * @param iTracker $tracker
      * @return iTrackingTool
      *
-     * This method creates a brand new tracking tool that is a child to the first argument
+     * This method creates a new tracking tool that is the descendant of the first argument
      */
-    public function create(iTracker $tracker);
+    public function create($classAlias, iTracker $tracker = null);
 
     /**
      * @param iTrackingTool $tool
