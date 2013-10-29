@@ -8,6 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -17,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelectors")
  */
-class DynamicJSSelectors extends CympelType
+class DynamicJSSelectors extends CympelType implements iCreatable, iPersistable, iFindable, iRemovable
 {
     /**
      * @var int
@@ -45,6 +49,16 @@ class DynamicJSSelectors extends CympelType
      * @ORM\OneToMany(targetEntity="DynamicJSSelector", mappedBy="parentSelectors", cascade={"persist", "remove"})
      */
     protected $selectors;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
+    /**
+     * @var string
+     */
+    protected $repositoryName;
 
     public function __construct()
     {
@@ -133,6 +147,42 @@ class DynamicJSSelectors extends CympelType
     protected function typedEquals(iType $rightSide)
     {
         return self::areEqual($this, $rightSide);
+    }
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
+
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
     }
 
 
