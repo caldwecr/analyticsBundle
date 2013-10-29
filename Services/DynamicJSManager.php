@@ -15,6 +15,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 
 class DynamicJSManager extends RoutedTrackingToolManager
 {
@@ -58,8 +59,13 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     protected $creator;
 
+    /**
+     * @var iFinder
+     */
+    protected $finder;
 
-    public function __construct(iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
+
+    public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null)
     {
         $this->doctrine = $doctrine;
         $this->trackingToolValidator = $trackingToolValidator;
@@ -68,6 +74,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
         $this->emName = $entityManagerName;
         $this->repositoryName = 'CympelAnalyticsBundle:DynamicJS';
         $this->creator = $creator;
+        $this->finder = $finder;
     }
 
     /**
@@ -238,6 +245,14 @@ class DynamicJSManager extends RoutedTrackingToolManager
     protected function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * @return iFinder
+     */
+    protected function getFinder()
+    {
+        return $this->finder;
     }
 
 
