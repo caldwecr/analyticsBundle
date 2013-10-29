@@ -12,9 +12,6 @@ parameters:
     cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorsManager
     cympel_analytics.dynamic_js.extension_service.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension
     cympel_analytics.dynamic_js_dom_events.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventsManager
-
-
-
     cympel_analytics.dynamic_js_dom_event.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventManager
 
     ### Creatables
@@ -47,6 +44,11 @@ parameters:
     cympel_analytics.creatables.dynamic_js_dom_event.alias: DynamicJSDomEvent
     cympel_analytics.creatables.dynamic_js_dom_event.entity_manager_name: %cympel_analytics.entity_manager%
     cympel_analytics.creatables.dynamic_js_dom_event.repository_name: CympelAnalyticsBundle:DynamicJSDomEvent
+
+    cympel_analytics.creatables.dynamic_js_dom_events.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents
+    cympel_analytics.creatables.dynamic_js_dom_events.alias: DynamicJSDomEvents
+    cympel_analytics.creatables.dynamic_js_dom_events.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.dynamic_js_dom_events.repository_name: CympelAnalyticsBundle:DynamicJSDomEvents
 
     ### Generics
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
@@ -115,6 +117,7 @@ services:
             - [register, ["%cympel_analytics.creatables.dynamic_js.class%", "%cympel_analytics.creatables.dynamic_js.alias%", "%cympel_analytics.creatables.dynamic_js.repository_name%", "%cympel_analytics.creatables.dynamic_js.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_css.class%", "%cympel_analytics.creatables.dynamic_css.alias%", "%cympel_analytics.creatables.dynamic_css.repository_name%", "%cympel_analytics.creatables.dynamic_css.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js_dom_event.class%", "%cympel_analytics.creatables.dynamic_js_dom_event.alias%", "%cympel_analytics.creatables.dynamic_js_dom_event.repository_name%", "%cympel_analytics.creatables.dynamic_js_dom_event.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_js_dom_events.class%", "%cympel_analytics.creatables.dynamic_js_dom_events.alias%", "%cympel_analytics.creatables.dynamic_js_dom_events.repository_name%", "%cympel_analytics.creatables.dynamic_js_dom_events.entity_manager_name%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
