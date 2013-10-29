@@ -33,7 +33,7 @@ class TestController extends Controller
     {
         $selectors = array(
             '#number_one',
-            '.number_two',
+            '.firstClass',
             'div',
         );
         $targetEvents = array(
@@ -45,5 +45,6 @@ class TestController extends Controller
         return $this->render('CympelAnalyticsBundle:Test:jsTest.html.twig', array(
             'jsUrl' => $jsUrl,
         ));
+
     }
 }
