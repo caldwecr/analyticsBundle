@@ -11,6 +11,12 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 interface iCreatable
 {
     /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName);
+
+    /**
      * @param string $entityManagerName
      * @return void
      */
