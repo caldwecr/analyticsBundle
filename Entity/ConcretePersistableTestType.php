@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ConcretePersistableTestType")
  */
-class ConcretePersistableTestType extends CympelType implements iPersistable
+class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovablee
 {
     protected $entityManagerName;
 
