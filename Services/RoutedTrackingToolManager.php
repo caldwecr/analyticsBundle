@@ -11,6 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
@@ -20,6 +21,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensi
 abstract class RoutedTrackingToolManager extends TrackingToolManager
 {
     /**
+     * @param iCreator $creator
      * @param $doctrine
      * @param iTrackingToolRemover $trackingToolRemover
      * @param iTrackingToolValidator $trackingToolValidator
@@ -28,7 +30,7 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    abstract public function __construct($doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
+    abstract public function __construct(iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
 
     /**
      * @param iTrackingTool $tool
