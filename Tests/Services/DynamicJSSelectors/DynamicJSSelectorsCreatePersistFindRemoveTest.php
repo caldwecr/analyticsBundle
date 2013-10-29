@@ -20,20 +20,20 @@ class DynamicJSSelectorsCreatePersistFindRemoveTest extends ContainerAwareUnitTe
         $persister = $manager->getPersister();
         $remover = $manager->getRemover();
 
-        $d = $creator->create();
+        $d = $creator->create('DynamicJSSelectors');
 
         $this->assertEquals('DynamicJSSelectors', $d->getType());
 
         $persister->persist($d);
 
         $id = $d->getId();
-        $d2 = $finder->findOneById($id);
+        $d2 = $finder->findOneByIdAndClassAlias($id, 'DynamicJSSelectors');
 
         $this->assertTrue($d->equals($d2));
 
         $remover->remove($d2);
 
-        $d3 = $finder->findOneById($id);
+        $d3 = $finder->findOneByIdAndClassAlias($id, 'DynamicJSSelectors');
 
         $this->assertNull($d3);
     }
