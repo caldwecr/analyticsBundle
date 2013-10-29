@@ -10,6 +10,7 @@ parameters:
     cympel_analytics.tracking_tool_validator.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolValidator
     cympel_analytics.dynamic_js_selector_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager
     cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorsManager
+    cympel_analytics.dynamic_js.extension_service.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension
 
     ### Creatables
     cympel_analytics.creatables.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
@@ -60,7 +61,7 @@ services:
         arguments: ["@doctrine", "@cympel_analytics.tracking_tool_remover", "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_js_manager:
         class: %cympel_analytics.dynamic_js_manager.class%
-        arguments: ["@cympel_analytics.generics.finder", "@cympel_analytics.generics.creator", "@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
+        arguments: ["@cympel_analytics.generics.finder", "@cympel_analytics.generics.creator", "@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%", "@cympel_analytics.dynamic_js.extension_service"]
     cympel_analytics.dynamic_css_service_extension:
         class: %cympel_analytics.dynamic_css_service_extension.class%
         arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager"]
@@ -79,6 +80,9 @@ services:
     cympel_analytics.dynamic_js_selectors.manager:
         class: %cympel_analytics.dynamic_js_selectors.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover"]
+    cympel_analytics.dynamic_js.extension_service:
+        class: %cympel_analytics.dynamic_js.extension_service.class%
+        arguments: ["@cympel_analytics.dynamic_js_selectors.manager", "@cympel_analytics.dynamic_js_selector_manager"]
    ### Generics
     cympel_analytics.generics.persister:
         class: %cympel_analytics.generics.persister.class%
