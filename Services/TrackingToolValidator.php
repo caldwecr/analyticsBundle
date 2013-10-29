@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
-class TrackingToolValidator implements iTrackingToolValidator
+class TrackingToolValidator extends CympelService implements iTrackingToolValidator
 {
     protected $validator;
 
