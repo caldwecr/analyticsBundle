@@ -13,10 +13,5 @@ interface iPersistable
     /**
      * @return string
      */
-    public function getRepositoryName();
-
-    /**
-     * @return string
-     */
     public function getEntityManagerName();
 }
