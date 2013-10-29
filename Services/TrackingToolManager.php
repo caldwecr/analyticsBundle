@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
