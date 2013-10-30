@@ -8,10 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors;
-use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
