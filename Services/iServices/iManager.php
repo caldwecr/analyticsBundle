@@ -12,7 +12,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
  * Interface iManager
  * @package Cympel\Bundle\AnalyticsBundle\Services\iServices
  */
-interface iManager extends iCreate, iFind, iPersist, iRemove
+interface iManager extends iCreate, iFind, iPersist, iRemove, iExtend
 {
     /**
      * @param iCreator $creator
