@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-interface iDynamicJSSelectorDomEventClientData extends iFindable, iPersistable, iRemovable, iCreatable
+interface iDynamicJSSelectorDomEventClientDataSet extends iFindable, iPersistable, iRemovable, iCreatable
 {
 
 }
