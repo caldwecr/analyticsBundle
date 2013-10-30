@@ -50,8 +50,12 @@ class CympelFinder extends CympelService implements iFinder
     public function findOneByIdAndClassAlias($id, $classAlias)
     {
         $findable = $this->creator->create($classAlias);
-        $repository = $this->doctrine->getRepository($findable->getRepositoryName(), $findable->getEntityManagerName());
+        $repositoryName = $findable->getRepositoryName();
+        $entityManagerName = $findable->getEntityManagerName();
+        $repository = $this->doctrine->getRepository($repositoryName, $entityManagerName);
         $found = $repository->findOneById($id);
+        $found->setRepositoryName($repositoryName);
+        $found->setEntityManagerName($entityManagerName);
         return $found;
     }
 
