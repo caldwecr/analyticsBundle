@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSets;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Tests\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class DynamicJSSelectorDomEventClientDataSets
