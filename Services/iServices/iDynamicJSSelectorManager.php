@@ -8,27 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-
-interface iDynamicJSSelectorManager extends iType
+interface iDynamicJSSelectorManager extends iCreate, iFind, iPersist, iRemove
 {
-    /**
-     * @return iCreator
-     */
-    public function getCreator();
 
-    /**
-     * @return iFinder
-     */
-    public function getFinder();
-
-    /**
-     * @return iPersister
-     */
-    public function getPersister();
-
-    /**
-     * @return iRemover
-     */
-    public function getRemover();
 }
