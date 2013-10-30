@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS\DynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors;
 
 class DynamicJSSelectorsTestInstanceFactory
 {

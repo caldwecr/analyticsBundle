@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Tracker;
 use Doctrine\Common\Collections\ArrayCollection;
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS\DynamicJS;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 
 class DynamicJSTestInstanceFactory
 {
