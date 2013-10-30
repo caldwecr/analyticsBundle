@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-interface iCreatable
+interface iCreatable extends iFindable
 {
     /**
      * @param string $repositoryName
