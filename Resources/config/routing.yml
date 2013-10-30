@@ -10,8 +10,11 @@ dynamicCSSTest:
 dynamicJS:
     pattern:  /dynamic/js/{key}
     defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJS }
+dynamicJSCallbackShortUrl:
+    pattern: /djsc/{key}/s/{selectorKey}/e/{eventKey}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJS }
 dynamicJSCallback:
-    pattern: /dynamic/js/callback/{key}/{selectorEventKey}
+    pattern: /dynamic/js/callback/{key}/selector/{selectorKey}/event/{eventKey}
     defaults: { _controller: CympelAnalyticsBundle:DynamicJS:dynamicJSCallback }
 dynamicJSTest:
     pattern: /dynamic/jsTest
