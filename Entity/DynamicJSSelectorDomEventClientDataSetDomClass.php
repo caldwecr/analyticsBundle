@@ -106,4 +106,51 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
         return 'DynamicJSSelectorDomEventClientDataSetDomClass';
     }
 
+    /**
+     * @param string $className
+     */
+    public function setClassName($className)
+    {
+        $this->className = $className;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $parentClasses
+     */
+    public function setParentClasses($parentClasses)
+    {
+        $this->parentClasses = $parentClasses;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentClasses()
+    {
+        return $this->parentClasses;
+    }
 }
