@@ -54,8 +54,10 @@ class CympelFinder extends CympelService implements iFinder
         $entityManagerName = $findable->getEntityManagerName();
         $repository = $this->doctrine->getRepository($repositoryName, $entityManagerName);
         $found = $repository->findOneById($id);
-        $found->setRepositoryName($repositoryName);
-        $found->setEntityManagerName($entityManagerName);
+        if($found) {
+            $found->setRepositoryName($repositoryName);
+            $found->setEntityManagerName($entityManagerName);
+        }
         return $found;
     }
 
