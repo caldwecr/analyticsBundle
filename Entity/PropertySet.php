@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
+
 abstract class PropertySet extends CympelType implements iPropertySet
 {
 
