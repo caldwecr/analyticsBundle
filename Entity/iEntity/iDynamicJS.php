@@ -10,5 +10,8 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 interface iDynamicJS extends iCreatable, iPersistable, iFindable, iRemovable
 {
-
+    /**
+     * @return iDynamicJSDomEvents
+     */
+    public function getEvents();
 }
