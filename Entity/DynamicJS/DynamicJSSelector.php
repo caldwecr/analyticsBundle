@@ -6,11 +6,14 @@
  * Time: 10:10 AM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
 
 /**
  * Class DynamicJSSelector
@@ -121,10 +124,10 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
     }
 
     /**
-     * @param DynamicJSSelectors $selectors
+     * @param iDynamicJSSelectors $selectors
      * @return void
      */
-    public function setParentSelectors(DynamicJSSelectors $selectors)
+    public function setParentSelectors(iDynamicJSSelectors $selectors)
     {
         $this->parentSelectors = $selectors;
     }
