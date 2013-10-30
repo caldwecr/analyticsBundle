@@ -9,9 +9,9 @@
 
 namespace Cympel\Bundle\AnalyticsBundle\Controller;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class DynamicJSController extends Controller
@@ -52,15 +52,37 @@ class DynamicJSController extends Controller
         return $response;
     }
 
-    public function dynamicJSCallbackAction($key, $selectorKey, $eventKey)
+    public function dynamicJSCallbackAction(Request $request, $key, $selectorKey, $eventKey)
     {
         //generate a selectorevent entity and persist it
+        //@todo create a test of the selectordomeventmanager persist, find, remove functionality
+        $selectorDomEventManager = $this->get('cympel_analytics.dynamic_js_selector_dom_event.manager');
+        $selectorManager = $this->get('cympel_analytics.dynamic_js_selector_manager');
+        $domEventManager = $this->get('cympel_analytics.dynamic_js_dom_event.manager');
+        $selectorDomEvent = $selectorDomEventManager->getCreator()->create('DynamicJSSelectorDomEvent');
+        $selector = $selectorManager->getFinder()->findOneByIdAndClassAlias($selectorKey, 'DynamicJSSelector');
+        $domEvent = $domEventManager->findOneByEventKeyAndSelector($eventKey, $selector, 'DynamicJSDomEvent');
+
+        $selectorDomEvent->setSelector($selector);
+        $selectorDomEvent->setDomEvent($domEvent);
+        $selectorDomEventManager->getPersister()->persist($selectorDomEvent);
+
 
         //make sure the rendered property of the DynamicJS is set
-
+        $dynamicJ = $selector->getParentSelectors()->getDynamicJ();
+        $dynamicJRendered = $dynamicJ->getRendered();
+        if(!$dynamicJRendered) {
+            $dynamicJ->setRendered(time());
+        }
+        // defer persisting $dynamicJ ... persisting DynamicJSSelector will cascade
         //make sure the called property of the DynamicJSSelector is set
-
+        $selectorCalled = $selector->getCalled();
+        if(!$selectorCalled) {
+            $selector->setCalled(time());
+            $selectorManager->getPersister()->persist($selector);
+        }
         //return a response
-        return new Response();
+        $response = new Response("Success");
+        return $response;
     }
 }
