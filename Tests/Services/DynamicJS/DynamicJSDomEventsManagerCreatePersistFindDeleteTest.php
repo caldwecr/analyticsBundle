@@ -8,8 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Services\DynamicJS;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS\DynamicJS;
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS\DynamicJSDomEvent;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Tests\ContainerAwareUnitTestCase;
 use Doctrine\Common\Collections\ArrayCollection;
 
