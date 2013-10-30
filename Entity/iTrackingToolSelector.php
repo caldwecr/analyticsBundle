@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 /**
  * Interface iTrackingToolSelector
  * @package Cympel\Bundle\AnalyticsBundle\Entity
@@ -15,13 +16,13 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 interface iTrackingToolSelector extends iSelector
 {
     /**
-     * @return DynamicJSSelectors
+     * @return iDynamicJSSelectors
      */
     public function getParentSelectors();
 
     /**
-     * @param DynamicJSSelectors $selectors
+     * @param iDynamicJSSelectors $selectors
      * @return void
      */
-    public function setParentSelectors(DynamicJSSelectors $selectors);
+    public function setParentSelectors(iDynamicJSSelectors $selectors);
 }
