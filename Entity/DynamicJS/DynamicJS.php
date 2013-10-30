@@ -6,12 +6,15 @@
  * Time: 2:29 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJS;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -21,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJS")
  */
-class DynamicJS extends RoutedTrackingTool implements iCreatable, iPersistable, iFindable, iRemovable
+class DynamicJS extends RoutedTrackingTool implements iDynamicJS
 {
     /**
      * @var int
@@ -158,16 +161,17 @@ class DynamicJS extends RoutedTrackingTool implements iCreatable, iPersistable, 
         return $this->rendered;
     }
 
+
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors $dynamicJSelectors
+     * @param iDynamicJSSelectors $dynamicJSelectors
      */
-    public function setDynamicJSelectors($dynamicJSelectors)
+    public function setDynamicJSelectors(iDynamicJSSelectors $dynamicJSelectors)
     {
         $this->dynamicJSelectors = $dynamicJSelectors;
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors
+     * @return DynamicJSSelectors
      */
     public function getDynamicJSelectors()
     {
@@ -175,15 +179,15 @@ class DynamicJS extends RoutedTrackingTool implements iCreatable, iPersistable, 
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents $events
+     * @param iDynamicJSDomEvents $events
      */
-    public function setEvents($events)
+    public function setEvents(iDynamicJSDomEvents $events)
     {
         $this->events = $events;
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents
+     * @return DynamicJSDomEvents
      */
     public function getEvents()
     {
