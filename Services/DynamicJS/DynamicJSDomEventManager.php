@@ -57,9 +57,10 @@ class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEve
     /**
      * @param $eventKey
      * @param iDynamicJSSelector $selector
+     * @param $classAlias
      * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent
      */
-    public function findOneByEventKeyAndSelector($eventKey, iDynamicJSSelector $selector)
+    public function findOneByEventKeyAndSelector($eventKey, iDynamicJSSelector $selector, $classAlias)
     {
         // Find the dynamicJS for the selector
         $dynamicJSSelectors = $selector->getParentSelectors();
@@ -67,7 +68,7 @@ class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEve
         // Find the events for the dynamicJS
         $domEvents = $dynamicJ->getEvents();
         // Find the event from the events that matches the key - could more than one match?
-        $domEvent = $this->finder->findOneEventByEventsAndEventName($domEvents, $eventKey);
+        $domEvent = $this->finder->findOneEventByEventsAndEventName($domEvents, $eventKey, $classAlias);
         return $domEvent;
     }
 
