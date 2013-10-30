@@ -15,7 +15,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
 
 /**
  * Class DynamicJSSelectorDomEvent
- * @package Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelectorDomEvent")
  */
