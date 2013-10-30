@@ -53,6 +53,11 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
 
     /**
      * @var iDynamicJSDomEvent
+     * @ORM\ManyToOne(targetEntity="DynamicJSDomEvent")
+     * @ORM\JoinTable(name="event_selectordomevent",
+     *      joinColumns={@ORM\JoinColumn(name="selectordomevent_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="domEvent_id", referencedColumnName="id", unique=true)}
+     * )
      */
     protected $domEvent;
 
@@ -110,6 +115,54 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     public function getType()
     {
         return 'DynamicJSSelectorDomEvent';
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent $domEvent
+     */
+    public function setDomEvent($domEvent)
+    {
+        $this->domEvent = $domEvent;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent
+     */
+    public function getDomEvent()
+    {
+        return $this->domEvent;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector $selector
+     */
+    public function setSelector($selector)
+    {
+        $this->selector = $selector;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector
+     */
+    public function getSelector()
+    {
+        return $this->selector;
     }
 
 }
