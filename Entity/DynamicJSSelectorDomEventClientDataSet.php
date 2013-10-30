@@ -51,7 +51,7 @@ class DynamicJSSelectorDomEventClientDataSet extends CympelType implements iDyna
 
     /**
      * @var DynamicJSSelectorDomEventClientDataSetDomClasses
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSetClasses", mappedBy="dataSet")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClasses", mappedBy="dataSet")
      */
     protected $clientClasses;
 
