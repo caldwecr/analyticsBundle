@@ -37,6 +37,14 @@ class DynamicJSSelectorManagerCreatePersistFindRemoveTest extends ContainerAware
         $this->assertTrue($dynamicJSSelector->equals($dynamicJSSelector2));
         $this->assertTrue($dynamicJSSelector2->equals($dynamicJSSelector));
 
+        // Now modify 2 and persist it
+        $dynamicJSSelector2->setSelection("#foobaz");
+
+        $persister->persist($dynamicJSSelector2);
+
+
+
+
         $remover->remove($dynamicJSSelector);
 
         $dynamicJSSelector3 = $finder->findOneByIdAndClassAlias($id, 'DynamicJSSelector');
