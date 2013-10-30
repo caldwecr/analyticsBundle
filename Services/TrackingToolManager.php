@@ -13,7 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
-use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
