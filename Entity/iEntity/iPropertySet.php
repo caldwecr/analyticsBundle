@@ -6,7 +6,10 @@
  * Time: 4:31 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
+
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 
 interface iPropertySet extends iType
 {
