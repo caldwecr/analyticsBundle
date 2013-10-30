@@ -1,7 +1,1 @@
-{% for event in events %}
-    $('
-    {% for selector in selectors %}
-        {{ selector.selection|raw }},
-    {% endfor %}
-    ').{{ event.eventName }}(function () { console.log({{ event.eventName }}) });
-{% endfor %}
+$(function(){var c={s:function(o, eT, sI){var cU='{{ callbackUrl|raw }}',cT=o.currentTarget;var p={X:o.clientX,Y:o.clientY,cls:cT.classList,id:cT.id,oHTML:cT.outerHTML,eT:eT};$.ajax({url:cU.replace('eKS', eT).replace('sKS', sI),type:'POST',dataType:'json',data:JSON.stringify(p)});}};{% for event in events %}{% for selector in selectors %}$('{{ selector.selection|raw }}').{{ event.eventName }}(function(o){c.s(o,o.type,'{{ selector.id}}');});{% endfor %}{% endfor %}});
