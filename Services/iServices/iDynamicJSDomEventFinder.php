@@ -20,7 +20,8 @@ interface iDynamicJSDomEventFinder extends iFinder
     /**
      * @param iDynamicJSDomEvents $domEvents
      * @param $eventName
+     * @param $classAlias
      * @return iDynamicJSDomEvent
      */
-    public function findOneEventByEventsAndEventName(iDynamicJSDomEvents $domEvents, $eventName);
+    public function findOneEventByEventsAndEventName(iDynamicJSDomEvents $domEvents, $eventName, $classAlias);
 }
