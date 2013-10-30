@@ -6,10 +6,12 @@
  * Time: 2:49 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
+use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
