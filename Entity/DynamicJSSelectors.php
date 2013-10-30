@@ -6,13 +6,11 @@
  * Time: 9:59 AM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
 
 /**
  * Class DynamicJSSelectors

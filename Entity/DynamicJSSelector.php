@@ -6,14 +6,12 @@
  * Time: 10:10 AM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
 
 /**
  * Class DynamicJSSelector

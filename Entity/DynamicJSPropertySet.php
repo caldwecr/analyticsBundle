@@ -6,15 +6,11 @@
  * Time: 12:26 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 
 class DynamicJSPropertySet extends CympelType implements iPropertySet
 {

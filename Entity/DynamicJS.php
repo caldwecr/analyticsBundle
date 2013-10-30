@@ -6,15 +6,12 @@
  * Time: 2:29 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
-use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
