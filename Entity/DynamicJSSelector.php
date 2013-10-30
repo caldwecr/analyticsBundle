@@ -8,10 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -21,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelector")
  */
-class DynamicJSSelector extends CympelType implements iTrackingToolSelector, iCreatable, iPersistable, iRemovable, iFindable
+class DynamicJSSelector extends CympelType implements iDynamicJSSelector
 {
     /**
      * @var int
