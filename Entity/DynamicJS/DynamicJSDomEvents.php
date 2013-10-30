@@ -6,9 +6,12 @@
  * Time: 2:55 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
+use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -77,15 +80,15 @@ class DynamicJSDomEvents extends CympelType implements iDynamicJSDomEvents
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS $dynamicJ
+     * @param iDynamicJS $dynamicJ
      */
-    public function setDynamicJ($dynamicJ)
+    public function setDynamicJ(iDynamicJS $dynamicJ)
     {
         $this->dynamicJ = $dynamicJ;
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS
+     * @return DynamicJS
      */
     public function getDynamicJ()
     {
