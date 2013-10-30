@@ -8,8 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJS;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Services\CympelService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
@@ -23,7 +25,7 @@ class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEve
     protected $creator;
 
     /**
-     * @var iFinder
+     * @var \Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventFinder
      */
     protected $finder;
 
@@ -37,18 +39,36 @@ class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEve
      */
     protected $remover;
 
+
     /**
      * @param iCreator $creator
-     * @param iFinder $finder
+     * @param iDynamicJSDomEventFinder $finder
      * @param iPersister $persister
      * @param iRemover $remover
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover)
+    public function __construct(iCreator $creator, iDynamicJSDomEventFinder $finder, iPersister $persister, iRemover $remover)
     {
         $this->creator = $creator;
         $this->finder = $finder;
         $this->persister = $persister;
         $this->remover = $remover;
+    }
+
+    /**
+     * @param $eventKey
+     * @param iDynamicJSSelector $selector
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent
+     */
+    public function findOneByEventKeyAndSelector($eventKey, iDynamicJSSelector $selector)
+    {
+        // Find the dynamicJS for the selector
+        $dynamicJSSelectors = $selector->getParentSelectors();
+        $dynamicJ = $dynamicJSSelectors->getDynamicJ();
+        // Find the events for the dynamicJS
+        $domEvents = $dynamicJ->getEvents();
+        // Find the event from the events that matches the key - could more than one match?
+        $domEvent = $this->finder->findOneEventByEventsAndEventName($domEvents, $eventKey);
+        return $domEvent;
     }
 
     /**
