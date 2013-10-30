@@ -8,9 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-
-interface iPersist extends iType
+interface iPersist extends iService
 {
     /**
      * @return iPersister

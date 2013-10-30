@@ -8,9 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-
-interface iCreate extends iType
+interface iCreate extends iService
 {
     /**
      * @return iCreator

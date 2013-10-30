@@ -8,9 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-
-interface iFind extends iType
+interface iFind extends iService
 {
     /**
      * @return iFinder

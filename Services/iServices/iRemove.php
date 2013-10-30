@@ -8,9 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
-
-interface iRemove extends iType
+interface iRemove extends iService
 {
     /**
      * @return iRemover
