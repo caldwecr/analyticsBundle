@@ -31,6 +31,13 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
      */
     protected $entityManagerName;
 
+
+    /**
+     * @var DynamicJSSelectorDomEventClientDataSets
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSets", mappedBy="selectorDomEvent")
+     */
+    protected $clientDataSets;
+
     /**
      * @var int
      * @ORM\Id
@@ -163,6 +170,22 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     public function getSelector()
     {
         return $this->selector;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets $clientDataSets
+     */
+    public function setClientDataSets($clientDataSets)
+    {
+        $this->clientDataSets = $clientDataSets;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets
+     */
+    public function getClientDataSets()
+    {
+        return $this->clientDataSets;
     }
 
 }
