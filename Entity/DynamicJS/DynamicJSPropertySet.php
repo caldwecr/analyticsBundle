@@ -6,15 +6,20 @@
  * Time: 12:26 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iPropertySet;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 
 class DynamicJSPropertySet extends CympelType implements iPropertySet
 {
     /**
-     * @var Tracker
+     * @var iTracker
      */
     protected $tracker;
 
@@ -108,7 +113,7 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors
+     * @return DynamicJSSelectors
      */
     public function getDynamicJSelectors()
     {
@@ -124,7 +129,7 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
     }
 
     /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents
+     * @return DynamicJSDomEvents
      */
     public function getEvents()
     {
