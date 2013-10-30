@@ -57,6 +57,26 @@ parameters:
     cympel_analytics.creatables.dynamic_js_selector_dom_event.entity_manager_name: %cympel_analytics.entity_manager%
     cympel_analytics.creatables.dynamic_js_selector_dom_event.repository_name: CympelAnalyticsBundle:DynamicJSSelectorDomEvent
 
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventDataSet
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.alias: DynamicJSSelectorDomEventDataSet
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.repository_name: CympelAnalyticsBundle:DynamicJSSelectorDomEventDataSet
+
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventDataSets
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.alias: DynamicJSSelectorDomEventDataSets
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.repository_name: CympelAnalyticsBundle:DynamicJSSelectorDomEventDataSets
+
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventDataSetDomClass
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.alias: DynamicJSSelectorDomEventDataSetDomClass
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.repository_name: CympelAnalyticsBundle:DynamicJSSelectorDomEventDataSetDomClass
+
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventDataSetDomClasses
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.alias: DynamicJSSelectorDomEventDataSetDomClasses
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.entity_manager_name: %cympel_analytics.entity_manager%
+    cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.repository_name: CympelAnalyticsBundle:DynamicJSSelectorDomEventDataSetDomClasses
+
     ### Generics
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
@@ -132,6 +152,10 @@ services:
             - [register, ["%cympel_analytics.creatables.dynamic_js_dom_event.class%", "%cympel_analytics.creatables.dynamic_js_dom_event.alias%", "%cympel_analytics.creatables.dynamic_js_dom_event.repository_name%", "%cympel_analytics.creatables.dynamic_js_dom_event.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js_dom_events.class%", "%cympel_analytics.creatables.dynamic_js_dom_events.alias%", "%cympel_analytics.creatables.dynamic_js_dom_events.repository_name%", "%cympel_analytics.creatables.dynamic_js_dom_events.entity_manager_name%"]]
             - [register, ["%cympel_analytics.creatables.dynamic_js_selector_dom_event.class%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event.alias%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.class%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.alias%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.class%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.alias%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_sets.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.class%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.alias%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_class.entity_manager_name%"]]
+            - [register, ["%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.class%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.alias%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.repository_name%", "%cympel_analytics.creatables.dynamic_js_selector_dom_event_client_data_set_dom_classes.entity_manager_name%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
