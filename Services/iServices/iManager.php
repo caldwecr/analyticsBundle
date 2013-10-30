@@ -8,7 +8,18 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
+/**
+ * Interface iManager
+ * @package Cympel\Bundle\AnalyticsBundle\Services\iServices
+ */
 interface iManager extends iCreate, iFind, iPersist, iRemove
 {
-
+    /**
+     * @param iCreator $creator
+     * @param iFinder $finder
+     * @param iPersister $persister
+     * @param iRemover $remover
+     * @param iExtender $extender
+     */
+    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iExtender $extender);
 }
