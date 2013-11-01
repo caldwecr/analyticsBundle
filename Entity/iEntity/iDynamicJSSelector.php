@@ -12,5 +12,15 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolSelector;
 
 interface iDynamicJSSelector extends iTrackingToolSelector, iCreatable, iPersistable, iRemovable, iFindable, iValidatable
 {
+    /**
+     * @param int $created
+     * @return void
+     */
+    public function setCreated($created);
 
+    /**
+     * @param int $called
+     * @return void
+     */
+    public function setCalled($called);
 }
