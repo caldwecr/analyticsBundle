@@ -22,17 +22,17 @@ class DynamicCSSManagerCreatePersistRemoveTest extends ContainerAwareUnitTestCas
 
         // Verify that the id is initially blank and is then set by the persist operation
         $this->assertNull($dcss->getId());
-        $dcm->persist($dcss);
+        $dcm->getPersister()->persist($dcss);
         $id = $dcss->getId();
         $this->assertNotNull($id);
 
         // Look up the same DynamicCSS object by the id and verify the two are the same
-        $dcss2 = $dcm->findOneByIdAndClassAlias($id, 'DynamicCSS');
+        $dcss2 = $dcm->getFinder()->findOneByIdAndClassAlias($id, 'DynamicCSS');
         $this->assertTrue($dcss2->equals($dcss));
 
         // Remove the object and verify that it can't be recovered by findOneById
-        $dcm->remove($dcss);
-        $dcss3 = $dcm->findOneByIdAndClassAlias($id, 'DynamicCSS');
+        $dcm->getRemover()->remove($dcss);
+        $dcss3 = $dcm->getFinder()->findOneByIdAndClassAlias($id, 'DynamicCSS');
         $this->assertNull($dcss3);
 
     }
