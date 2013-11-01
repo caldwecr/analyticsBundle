@@ -30,7 +30,7 @@ class DynamicCSSManagerRemoveTest extends ContainerAwareUnitTestCase
 
         $this->assertEquals('DynamicCSS', $dcss->getType());
 
-        $dcm->removeOneTimeStylesheet($dcss);
+        $dcm->getRemover()->remove($dcss);
 
         $dcss2 = $dcm->findOneTimeStylesheetById('DynamicCSS', $id);
 
