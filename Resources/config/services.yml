@@ -13,7 +13,6 @@ parameters:
     cympel_analytics.dynamic_js.extension_service.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension
     cympel_analytics.dynamic_js_dom_events.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventsManager
     cympel_analytics.dynamic_js_dom_event.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventManager
-    cympel_analytics.dynamic_js_selector_dom_event.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventManager
     cympel_analytics.dynamic_js_dom_event.finder.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventFinder
 
     ### Creatables
@@ -133,9 +132,6 @@ services:
     cympel_analytics.dynamic_js_dom_event.manager:
         class: %cympel_analytics.dynamic_js_dom_event.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.dynamic_js_dom_event.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
-    cympel_analytics.dynamic_js_selector_dom_event.manager:
-        class: %cympel_analytics.dynamic_js_selector_dom_event.manager.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover"]
    ### Generics
     cympel_analytics.generics.persister:
         class: %cympel_analytics.generics.persister.class%
