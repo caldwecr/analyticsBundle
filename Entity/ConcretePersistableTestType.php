@@ -12,7 +12,9 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ConcretePersistableTestType
@@ -20,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ConcretePersistableTestType")
  */
-class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable, iFindable, iCreatable
+class ConcretePersistableTestType extends CympelType implements iPersistable, iRemovable, iFindable, iCreatable, iValidatable
 {
     protected $entityManagerName;
 
@@ -37,6 +39,10 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
     /**
      * @var string
      * @ORM\Column(type="string", length=10)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "10"
+     * )
      */
     protected $value;
 
@@ -49,6 +55,14 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
     protected function typedEquals(iType $rightSide)
     {
         return self::areEqual($this, $rightSide);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return true;
     }
 
     /**
@@ -93,7 +107,7 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
     }
 
     /**
-     * @param int $value
+     * @param string $value
      */
     public function setValue($value)
     {
@@ -101,7 +115,7 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getValue()
     {
