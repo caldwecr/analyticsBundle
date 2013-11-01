@@ -52,7 +52,7 @@ class CympelValidator extends CympelService implements iValidator
     public function isValid(iValidatable $validatable)
     {
         $errors = $this->validate($validatable);
-        if(count(errors) === 0) {
+        if(count($errors) === 0) {
             return true;
         }
         return false;
