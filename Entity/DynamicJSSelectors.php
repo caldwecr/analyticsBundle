@@ -187,4 +187,12 @@ class DynamicJSSelectors extends CympelType implements iDynamicJSSelectors
         return $this->selectors->toArray();
     }
 
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return false;
+    }
+
 }

@@ -135,7 +135,7 @@ services:
    ### Generics
     cympel_analytics.generics.persister:
         class: %cympel_analytics.generics.persister.class%
-        arguments: ["@doctrine"]
+        arguments: ["@doctrine", "@cympel_analytics.generics.validator"]
     cympel_analytics.generics.remover:
         class: %cympel_analytics.generics.remover.class%
         arguments: ["@doctrine"]

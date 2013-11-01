@@ -156,4 +156,12 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
         return $this->selectorDomEvent;
     }
 
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return false;
+    }
+
 }

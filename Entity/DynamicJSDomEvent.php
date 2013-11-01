@@ -157,4 +157,12 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
     {
         $this->entityManagerName = $entityManagerName;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return false;
+    }
 }
