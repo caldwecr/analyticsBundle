@@ -29,7 +29,7 @@ class DynamicCSSController extends Controller {
     {
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
         $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
-        $dynamicCSS = $dcm->findOneTimeStylesheetById($key);
+        $dynamicCSS = $dcm->findOneTimeStylesheetById('DynamicCSS', $key);
         $dcdim->renderByDynamicCSSAndDomIdValue($dynamicCSS, $domIdValue);
         return new BinaryFileResponse('bundles/cympelanalytics/assets/images/logo.jpg');
     }
