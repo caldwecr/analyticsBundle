@@ -9,6 +9,8 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSet;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSetDomClasses;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSets;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,13 +53,13 @@ class DynamicJSSelectorDomEventClientDataSet extends CympelType implements iDyna
 
     /**
      * @var DynamicJSSelectorDomEventClientDataSetDomClasses
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClasses", mappedBy="dataSet")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClasses", mappedBy="dataSet", cascade={"persist", "remove"})
      */
     protected $clientClasses;
 
     /**
      * @var DynamicJSSelectorDomEventClientDataSets
-     * @ORM\ManyToOne(targetEntity="DynamicJSSelectorDomEventClientDataSets", inversedBy="dataSets")
+     * @ORM\ManyToOne(targetEntity="DynamicJSSelectorDomEventClientDataSets", inversedBy="dataSets", cascade={"persist"})
      * @ORM\JoinColumn(name="parentDataSet_id", referencedColumnName="id")
      */
     protected $parentDataSets;
@@ -79,6 +81,15 @@ class DynamicJSSelectorDomEventClientDataSet extends CympelType implements iDyna
      * @ORM\Column(type="text")
      */
     protected $clientOuterHTML;
+
+    public function __construct()
+    {
+        $this->clientDomElementId = '';
+        $this->clientEventType = '';
+        $this->clientOuterHTML = '';
+        $this->clientX = 0;
+        $this->clientY = 0;
+    }
 
     /**
      * @param iType $rightSide
@@ -137,9 +148,9 @@ class DynamicJSSelectorDomEventClientDataSet extends CympelType implements iDyna
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClasses $clientClasses
+     * @param iDynamicJSSelectorDomEventClientDataSetDomClasses $clientClasses
      */
-    public function setClientClasses($clientClasses)
+    public function setClientClasses(iDynamicJSSelectorDomEventClientDataSetDomClasses $clientClasses)
     {
         $this->clientClasses = $clientClasses;
     }
@@ -249,9 +260,9 @@ class DynamicJSSelectorDomEventClientDataSet extends CympelType implements iDyna
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets $parentDataSets
+     * @param iDynamicJSSelectorDomEventClientDataSets $parentDataSets
      */
-    public function setParentDataSets($parentDataSets)
+    public function setParentDataSets(iDynamicJSSelectorDomEventClientDataSets $parentDataSets)
     {
         $this->parentDataSets = $parentDataSets;
     }
