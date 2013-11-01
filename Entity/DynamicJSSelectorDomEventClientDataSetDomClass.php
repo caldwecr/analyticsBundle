@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSetDomClass;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSetDomClasses;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +50,11 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
      * @ORM\Column(type="string", length=100)
      */
     protected $className;
+
+    public function __construct()
+    {
+        $this->className = '';
+    }
 
     /**
      * @param iType $rightSide
@@ -139,15 +145,15 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
     }
 
     /**
-     * @param mixed $parentClasses
+     * @param iDynamicJSSelectorDomEventClientDataSetDomClasses $parentClasses
      */
-    public function setParentClasses($parentClasses)
+    public function setParentClasses(iDynamicJSSelectorDomEventClientDataSetDomClasses $parentClasses)
     {
         $this->parentClasses = $parentClasses;
     }
 
     /**
-     * @return mixed
+     * @return DynamicJSSelectorDomEventClientDataSetDomClasses
      */
     public function getParentClasses()
     {
