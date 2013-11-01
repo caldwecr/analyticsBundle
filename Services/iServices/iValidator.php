@@ -21,4 +21,10 @@ interface iValidator extends iService
      * @return array of errors
      */
     public function validate(iValidatable $validatable);
+
+    /**
+     * @param iValidatable $validatable
+     * @return bool
+     */
+    public function isValid(iValidatable $validatable);
 }
