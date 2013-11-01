@@ -100,7 +100,7 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
     /**
      * @param $parentDynamicJDomEvents
      */
-    public function setParentDynamicJDomEvents($parentDynamicJDomEvents)
+    public function setParentDynamicJDomEvents(iDynamicJSDomEvents $parentDynamicJDomEvents)
     {
         $this->parentDynamicJDomEvents = $parentDynamicJDomEvents;
     }
