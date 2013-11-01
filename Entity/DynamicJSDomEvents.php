@@ -96,7 +96,7 @@ class DynamicJSDomEvents extends CympelType implements iDynamicJSDomEvents
     /**
      * @param \Doctrine\Common\Collections\ArrayCollection $events
      */
-    public function setEvents($events)
+    public function setEvents(ArrayCollection $events)
     {
         $this->events = $events;
     }
