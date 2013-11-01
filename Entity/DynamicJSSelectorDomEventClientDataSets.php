@@ -47,7 +47,7 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="DynamicJSSelectorDomEventClientDataSet", mappedBy="parentDataSets")
+     * @ORM\OneToMany(targetEntity="DynamicJSSelectorDomEventClientDataSet", mappedBy="parentDataSets", cascade={"persist", "remove"})
      */
     protected $dataSets;
 
