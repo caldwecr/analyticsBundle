@@ -33,17 +33,6 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
     abstract protected function setTrackerManager(TrackerManager $trackerManager);
 
     /**
-     * @return Object - the doctrine service
-     */
-    abstract protected function getDoctrine();
-
-    /**
-     * @param $doctrine
-     * @return void
-     */
-    abstract protected function setDoctrine($doctrine);
-
-    /**
      * @return string
      */
     abstract protected function getEmName();
@@ -146,12 +135,10 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
      */
     public function persist(iTrackingTool $tool)
     {
-        if(!$this->validate($tool)) {
+        if(!$this->getValidator()->isValid($tool)) {
             throw new InvalidTrackingToolException();
         }
-        $em = $this->getDoctrine()->getManager($this->getEmName());
-        $em->persist($tool);
-        $em->flush();
+        $this->getPersister()->persist($tool);
     }
 
     /**
@@ -163,10 +150,10 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
      */
     public function remove(iTrackingTool $tool)
     {
-        if(!$this->validate($tool)) {
+        if(!$this->getValidator()->isValid($tool)) {
             throw new InvalidTrackingToolException();
         }
-        $this->getTrackingToolRemover()->remove($tool);
+        $this->getRemover()->remove($tool);
     }
 
     /**
@@ -195,19 +182,4 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
      * @return iPropertySet
      */
     abstract protected function createPropertySet();
-
-
-    /**
-     * @param iTrackingTool $tool
-     * @return bool
-     *
-     * This method should cause the tool's properties to be validated
-     */
-    public function validate(iTrackingTool $tool)
-    {
-        if(!$tool->hasValidationConstraints()) {
-            return true;
-        }
-        return $this->getTrackingToolValidator()->validate($tool);
-    }
 }
