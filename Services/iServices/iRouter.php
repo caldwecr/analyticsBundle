@@ -12,5 +12,5 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 interface iRouter extends iType
 {
-    //Currently nothing implements this interface, it is included for completeness and to reserve the interface name for future use
+
 }
