@@ -19,7 +19,8 @@ interface iManager extends iCreate, iFind, iPersist, iRemove, iExtend, iValidate
      * @param iFinder $finder
      * @param iPersister $persister
      * @param iRemover $remover
+     * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iExtender $extender);
+    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender);
 }
