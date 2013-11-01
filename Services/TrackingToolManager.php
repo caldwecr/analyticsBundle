@@ -19,10 +19,6 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensi
 abstract class TrackingToolManager extends CympelManager implements iTrackingToolManager
 {
     /**
-     * @var iTrackerManager
-     */
-    protected $trackerManager;
-    /**
      * @return TrackerManager
      */
     public function getTrackerManager()
