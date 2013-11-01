@@ -18,8 +18,9 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRouter;
 
-abstract class RoutedTrackingToolManager extends TrackingToolManager
+abstract class RoutedTrackingToolManager extends TrackingToolManager implements iRouter
 {
     /**
      * @param iFinder $finder

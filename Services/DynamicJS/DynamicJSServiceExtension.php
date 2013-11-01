@@ -14,6 +14,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\TrackingToolManagerExtensionService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventsManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRouter;
 
 class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
 {
@@ -38,7 +39,7 @@ class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
     protected $trackingToolValidator;
 
     /**
-     * @var Object - the router service
+     * @var iRouter
      */
     protected $router;
 
@@ -61,7 +62,7 @@ class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
      * @param iTrackerManager $trackerManager
      * @param $entityManagerName
      */
-    public function __construct(iDynamicJSSelectorsManager $dynamicJSelectorsManager, iDynamicJSDomEventsManager $dynamicJDomEventsManager, $doctrine, iTrackingToolValidator $trackingToolValidator, $router, iTrackerManager $trackerManager, $entityManagerName)
+    public function __construct(iDynamicJSSelectorsManager $dynamicJSelectorsManager, iDynamicJSDomEventsManager $dynamicJDomEventsManager, $doctrine, iTrackingToolValidator $trackingToolValidator, iRouter $router, iTrackerManager $trackerManager, $entityManagerName)
     {
         $this->dynamicJSelectorsManager = $dynamicJSelectorsManager;
         $this->dynamicJDomEventsManager = $dynamicJDomEventsManager;
@@ -114,7 +115,7 @@ class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
     }
 
     /**
-     * @return Object
+     * @return iRouter
      */
     public function getRouter()
     {
