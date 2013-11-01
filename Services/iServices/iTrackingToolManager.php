@@ -14,7 +14,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
-interface iTrackingToolManager extends iType
+interface iTrackingToolManager extends iType, iValidate, iPersist, iFind, iRemove, iCreate
 {
     /**
      * @param string $classAlias
