@@ -44,7 +44,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
         $ids = $dynamicCSS->getDynamicCSSDomIds()->toArray();
         foreach ($ids as $key => $value) {
             $value->setUrl(
-                $this->router->generate('dynamicCSSImageFile',
+                $this->getRouter()->generate('dynamicCSSImageFile',
                     array(
                         'key' => $dynamicCSS->getId(),
                         'domIdValue' => $value->getDomIdValue(),
