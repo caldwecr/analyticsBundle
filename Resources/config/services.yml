@@ -132,7 +132,7 @@ services:
         arguments: ["@doctrine", "@cympel_analytics.generics.creatable_registrar", "@cympel_analytics.generics.creator"]
     cympel_analytics.dynamic_js_dom_event.manager:
         class: %cympel_analytics.dynamic_js_dom_event.manager.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.dynamic_js_dom_event.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover"]
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.dynamic_js_dom_event.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
     cympel_analytics.dynamic_js_selector_dom_event.manager:
         class: %cympel_analytics.dynamic_js_selector_dom_event.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover"]

@@ -9,49 +9,49 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJS;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
-use Cympel\Bundle\AnalyticsBundle\Services\CympelService;
+use Cympel\Bundle\AnalyticsBundle\Services\CympelManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 
-class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEventManager
+class DynamicJSDomEventManager extends CympelManager implements iDynamicJSDomEventManager
 {
     /**
-     * @var iCreator
-     */
-    protected $creator;
-
-    /**
-     * @var \Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventFinder
+     * @var iDynamicJSDomEventFinder
+     *
+     * Overrides Manager's Finder's base type
      */
     protected $finder;
 
     /**
-     * @var iPersister
-     */
-    protected $persister;
-
-    /**
-     * @var iRemover
-     */
-    protected $remover;
-
-
-    /**
      * @param iCreator $creator
-     * @param iDynamicJSDomEventFinder $finder
+     * @param iFinder $finder
      * @param iPersister $persister
      * @param iRemover $remover
+     * @param iValidator $validator
+     * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iDynamicJSDomEventFinder $finder, iPersister $persister, iRemover $remover)
+    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         $this->creator = $creator;
-        $this->finder = $finder;
+        $this->construtorHelperChecksTypedFinder($finder);
         $this->persister = $persister;
         $this->remover = $remover;
+        $this->validator = $validator;
+        $this->extender = $extender;
+    }
+
+    /**
+     * @param iDynamicJSDomEventFinder $finder
+     */
+    private function construtorHelperChecksTypedFinder(iDynamicJSDomEventFinder $finder)
+    {
+        $this->finder = $finder;
     }
 
     /**
@@ -70,38 +70,6 @@ class DynamicJSDomEventManager extends CympelService implements iDynamicJSDomEve
         // Find the event from the events that matches the key - could more than one match?
         $domEvent = $this->finder->findOneEventByEventsAndEventName($domEvents, $eventKey, $classAlias);
         return $domEvent;
-    }
-
-    /**
-     * @return iCreator
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * @return iFinder
-     */
-    public function getFinder()
-    {
-        return $this->finder;
-    }
-
-    /**
-     * @return iPersister
-     */
-    public function getPersister()
-    {
-        return $this->persister;
-    }
-
-    /**
-     * @return iRemover
-     */
-    public function getRemover()
-    {
-        return $this->remover;
     }
 
     /**
