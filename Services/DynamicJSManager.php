@@ -42,7 +42,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
      */
     public function generateOneTimeJavascript($classAlias, $selectors, $events, iTracker $tracker=null)
     {
-        if(!$tracker) $tracker = $this->trackerManager->create();
+        if(!$tracker) $tracker = $this->getTrackerManager()->create();
         $properties = new DynamicJSPropertySet();
         // @todo implement and test the createFromArray method
         $properties->setEvents($this->extender->getDynamicJDomEventsManager()->createFromArray($events));
