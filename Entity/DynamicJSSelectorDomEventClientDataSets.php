@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSets;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,7 +41,7 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
 
     /**
      * @var DynamicJSSelectorDomEvent
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEvent", inversedBy="clientDataSets")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEvent", inversedBy="clientDataSets", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="selectordomevent_id", referencedColumnName="id")
      */
     protected $selectorDomEvent;
@@ -110,7 +111,7 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
     /**
      * @param \Doctrine\Common\Collections\ArrayCollection $dataSets
      */
-    public function setDataSets($dataSets)
+    public function setDataSets(ArrayCollection $dataSets)
     {
         $this->dataSets = $dataSets;
     }
@@ -140,9 +141,9 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEvent $selectorDomEvent
+     * @param iDynamicJSSelectorDomEvent $selectorDomEvent
      */
-    public function setSelectorDomEvent($selectorDomEvent)
+    public function setSelectorDomEvent(iDynamicJSSelectorDomEvent $selectorDomEvent)
     {
         $this->selectorDomEvent = $selectorDomEvent;
     }
