@@ -10,5 +10,8 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 interface iRoutedTrackingToolManagerExtender extends iTrackingToolManagerExtensionService
 {
-
+    /**
+     * @return iRouter
+     */
+    public function getRouter();
 }

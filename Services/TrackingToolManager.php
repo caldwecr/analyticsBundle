@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
@@ -39,7 +40,21 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
         return $extender->getTrackerManager();
     }
 
+    /**
+     * @param iExtender $extension
+     *
+     * This is accomplishing type checking of the extension service
+     */
+    public final function processExtension(iExtender $extension)
+    {
+        $this->internalProcessExtension($extension);
+    }
 
+    /**
+     * @param iTrackingToolManagerExtensionService $extension
+     * @return void
+     */
+    abstract protected function internalProcessExtension(iTrackingToolManagerExtensionService $extension);
 
     /**
      * @param iTracker $tracker

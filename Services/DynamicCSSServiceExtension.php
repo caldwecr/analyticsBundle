@@ -8,11 +8,12 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRoutedTrackingToolManagerExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackerManager;
 
-class DynamicCSSServiceExtension extends TrackingToolManagerExtensionService
+class DynamicCSSServiceExtension extends TrackingToolManagerExtensionService implements iRoutedTrackingToolManagerExtender
 {
     /**
      * @var DynamicCSSDomIdManager

@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRoutedTrackingToolManagerExtender;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
@@ -26,6 +27,23 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @var iRouter
      */
     protected $router;
+
+    /**
+     * @param iTrackingToolManagerExtensionService $extension
+     * @return void
+     */
+    protected function internalProcessExtension(iTrackingToolManagerExtensionService $extension)
+    {
+        $this->typedProcessExtension($extension);
+    }
+
+    /**
+     * @param iRoutedTrackingToolManagerExtender $extender
+     */
+    private function typedProcessExtension(iRoutedTrackingToolManagerExtender $extender)
+    {
+        // all i do is verfiy type of the extension
+    }
 
     /**
      * @param iTrackingTool $tool
@@ -93,11 +111,21 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      */
     abstract protected function getRoutingArray(iTrackingTool $tool);
 
+
     /**
-     * @return Object -- the router service
+     * @return iRouter
      */
     public function getRouter()
     {
-        return $this->router;
+        return self::typedGetRouter($this->extender);
+    }
+
+    /**
+     * @param iRoutedTrackingToolManagerExtender $extender
+     * @return iRouter
+     */
+    private static function typedGetRouter(iRoutedTrackingToolManagerExtender $extender)
+    {
+        return $extender->getRouter();
     }
 }

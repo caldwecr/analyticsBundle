@@ -8,8 +8,6 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidExtensionServiceException;
-
 /**
  * Interface iManager
  * @package Cympel\Bundle\AnalyticsBundle\Services\iServices
@@ -26,10 +24,10 @@ interface iManager extends iCreate, iFind, iPersist, iRemove, iExtend, iValidate
      */
     public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null);
 
+
     /**
-     * @param iTrackingToolManagerExtensionService $extension
-     * @throws InvalidExtensionServiceException
+     * @param iExtender $extension
      * @return void
      */
-    public function processExtension(iTrackingToolManagerExtensionService $extension);
+    public function processExtension(iExtender $extension);
 }
