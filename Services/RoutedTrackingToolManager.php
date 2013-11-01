@@ -32,7 +32,7 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param $entityManagerName
      * @param iTrackingToolManagerExtensionService $extensionService
      */
-    abstract public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
+    //abstract public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
 
     /**
      * @param iTrackingTool $tool

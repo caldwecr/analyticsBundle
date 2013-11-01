@@ -19,7 +19,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 
-abstract class TrackingToolManager extends CympelService implements iTrackingToolManager
+abstract class TrackingToolManager extends CympelManager implements iTrackingToolManager
 {
     /**
      * @return TrackerManager
@@ -104,11 +104,6 @@ abstract class TrackingToolManager extends CympelService implements iTrackingToo
     }
 
     /**
-     * @return iCreator
-     */
-    abstract protected function getCreator();
-
-    /**
      * @param $id
      * @param $classAlias
      * @return iFindable
@@ -117,11 +112,6 @@ abstract class TrackingToolManager extends CympelService implements iTrackingToo
     {
         return $this->getFinder()->findOneByIdAndClassAlias($id, $classAlias);
     }
-
-    /**
-     * @return iFinder
-     */
-    abstract protected function getFinder();
 
     /**
      * @param $entityManagerName
