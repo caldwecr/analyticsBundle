@@ -22,6 +22,11 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 abstract class RoutedTrackingToolManager extends TrackingToolManager
 {
     /**
+     * @var iRouter
+     */
+    protected $router;
+
+    /**
      * @param iFinder $finder
      * @param iCreator $creator
      * @param $doctrine
