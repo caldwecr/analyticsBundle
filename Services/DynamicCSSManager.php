@@ -12,16 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
 
 class DynamicCSSManager extends RoutedTrackingToolManager
 {
@@ -36,7 +27,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     public function generateOneTimeStylesheet($classAlias, $ids, $pseudo)
     {
         $properties = new DynamicCSSPropertySet();
-        $properties->setIds($this->extender->getDynamicCSSDomIdArrayCollectionManager()->create($ids));
+        $properties->setIds($this->getExtender()->getDynamicCSSDomIdArrayCollectionManager()->create($ids));
         $properties->setPseudo($pseudo);
         return $this->generate($classAlias, $properties, $this->getTrackerManager()->create());
     }
@@ -119,7 +110,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager
          * This is necessary because the DynamicCSSDomIdArrayCollection needs to associate each DynamicCSSDomId with the tool
          */
         $dynamicCSSDomIdArrayCollection = $properties->getIds();
-        $this->extender->getDynamicCSSDomIdArrayCollectionManager()->attachToolToDynamicCSSDomIds($dynamicCSSDomIdArrayCollection, $tool);
+        $this->getExtender()->getDynamicCSSDomIdArrayCollectionManager()->attachToolToDynamicCSSDomIds($dynamicCSSDomIdArrayCollection, $tool);
         return $properties;
     }
 
