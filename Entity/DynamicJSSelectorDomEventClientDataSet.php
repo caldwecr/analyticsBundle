@@ -136,4 +136,131 @@ class DynamicJSSelectorDomEventClientDataSet extends CympelType implements iDyna
         return 'DynamicJSSelectorDomEventClientDataSet';
     }
 
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClasses $clientClasses
+     */
+    public function setClientClasses($clientClasses)
+    {
+        $this->clientClasses = $clientClasses;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClasses
+     */
+    public function getClientClasses()
+    {
+        return $this->clientClasses;
+    }
+
+    /**
+     * @param string $clientDomElementId
+     */
+    public function setClientDomElementId($clientDomElementId)
+    {
+        $this->clientDomElementId = $clientDomElementId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClientDomElementId()
+    {
+        return $this->clientDomElementId;
+    }
+
+    /**
+     * @param string $clientEventType
+     */
+    public function setClientEventType($clientEventType)
+    {
+        $this->clientEventType = $clientEventType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClientEventType()
+    {
+        return $this->clientEventType;
+    }
+
+    /**
+     * @param string $clientOuterHTML
+     */
+    public function setClientOuterHTML($clientOuterHTML)
+    {
+        $this->clientOuterHTML = $clientOuterHTML;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClientOuterHTML()
+    {
+        return $this->clientOuterHTML;
+    }
+
+    /**
+     * @param int $clientX
+     */
+    public function setClientX($clientX)
+    {
+        $this->clientX = $clientX;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientX()
+    {
+        return $this->clientX;
+    }
+
+    /**
+     * @param int $clientY
+     */
+    public function setClientY($clientY)
+    {
+        $this->clientY = $clientY;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientY()
+    {
+        return $this->clientY;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets $parentDataSets
+     */
+    public function setParentDataSets($parentDataSets)
+    {
+        $this->parentDataSets = $parentDataSets;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets
+     */
+    public function getParentDataSets()
+    {
+        return $this->parentDataSets;
+    }
 }
