@@ -20,12 +20,12 @@ class DynamicCSSManagerValidateTest extends ContainerAwareUnitTestCase
         $dcss = $dcm->create('DynamicCSS', $t);
         $dcss->setCreated(-10);
 
-        $this->assertFalse($dcm->validate($dcss));
+        $this->assertFalse($dcm->getValidator()->isValid($dcss));
 
         $dcss->setCreated(0);
-        $this->assertTrue($dcm->validate($dcss));
+        $this->assertTrue($dcm->getValidator()->isValid($dcss));
 
         $dcss->setCreated(51);
-        $this->assertTrue($dcm->validate($dcss));
+        $this->assertTrue($dcm->getValidator()->isValid($dcss));
     }
 }
