@@ -123,7 +123,7 @@ services:
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
     cympel_analytics.dynamic_js.extension_service:
         class: %cympel_analytics.dynamic_js.extension_service.class%
-        arguments: ["@cympel_analytics.dynamic_js_selectors.manager", "@cympel_analytics.dynamic_js_dom_events.manager", "@doctrine", "@cympel_analytics.tracking_tool_validator", "@cympel_analytics.generics.router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
+        arguments: ["@cympel_analytics.dynamic_js_selectors.manager", "@cympel_analytics.dynamic_js_dom_events.manager", "@cympel_analytics.generics.router", "@cympel_analytics.tracker_manager"]
     cympel_analytics.dynamic_js_dom_events.manager:
         class: %cympel_analytics.dynamic_js_dom_events.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
