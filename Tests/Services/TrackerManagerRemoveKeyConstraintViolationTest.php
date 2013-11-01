@@ -24,7 +24,7 @@ class TrackerManagerRemoveKeyConstraintViolationTest extends ContainerAwareUnitT
 
         $tracker = $trackerManager->create();
         $dynamicCSS = $dynamicCSSManager->create('DynamicCSS', $tracker);
-        $dynamicCSSManager->persist($dynamicCSS);
+        $dynamicCSSManager->getPersister()->persist($dynamicCSS);
 
         $trackerManager->unsafeRemove($tracker);
 
