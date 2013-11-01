@@ -244,23 +244,6 @@ class DynamicCSSManager extends RoutedTrackingToolManager
     }
 
     /**
-     * @return Object -- the router service
-     */
-    protected function getRouter()
-    {
-        return $this->router;
-    }
-
-    /**
-     * @param $router
-     * @return void
-     */
-    protected function setRouter($router)
-    {
-        $this->router = $router;
-    }
-
-    /**
      * @param iTrackingTool $tool
      * @return array
      */

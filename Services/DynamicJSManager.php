@@ -237,22 +237,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
         );
     }
 
-    /**
-     * @return Object -- the router service
-     */
-    protected function getRouter()
-    {
-        return $this->router;
-    }
 
-    /**
-     * @param $router
-     * @return void
-     */
-    protected function setRouter($router)
-    {
-        $this->router = $router;
-    }
 
     /**
      * @return iCreator

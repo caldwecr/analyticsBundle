@@ -18,6 +18,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRouter;
 
 abstract class RoutedTrackingToolManager extends TrackingToolManager
 {
@@ -25,19 +26,6 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @var iRouter
      */
     protected $router;
-
-    /**
-     * @param iFinder $finder
-     * @param iCreator $creator
-     * @param $doctrine
-     * @param iTrackingToolRemover $trackingToolRemover
-     * @param iTrackingToolValidator $trackingToolValidator
-     * @param $router
-     * @param TrackerManager $trackerManager
-     * @param $entityManagerName
-     * @param iTrackingToolManagerExtensionService $extensionService
-     */
-    //abstract public function __construct(iFinder $finder, iCreator $creator, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, TrackerManager $trackerManager, $entityManagerName, iTrackingToolManagerExtensionService $extensionService = null);
 
     /**
      * @param iTrackingTool $tool
@@ -108,11 +96,8 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
     /**
      * @return Object -- the router service
      */
-    abstract protected function getRouter();
-
-    /**
-     * @param $router
-     * @return void
-     */
-    abstract protected function setRouter($router);
+    public function getRouter()
+    {
+        return $this->router;
+    }
 }
