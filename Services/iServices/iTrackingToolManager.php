@@ -37,4 +37,9 @@ interface iTrackingToolManager extends iType, iValidate, iPersist, iFind, iRemov
      * @return iTrackingTool
      */
     public function createTrackingTool($classAlias, iTracker $tracker);
+
+    /**
+     * @return iTrackerManager
+     */
+    public function getTrackerManager();
 }
