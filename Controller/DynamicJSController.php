@@ -56,7 +56,7 @@ class DynamicJSController extends Controller
     {
         //generate a selectorevent entity and persist it
         //@todo create a test of the selectordomeventmanager persist, find, remove functionality
-        $selectorDomEventManager = $this->get('cympel_analytics.dynamic_js_selector_dom_event.manager');
+        $selectorDomEventManager = $this->get('cympel_analytics.generics.manager');
         $selectorManager = $this->get('cympel_analytics.dynamic_js_selector_manager');
         $domEventManager = $this->get('cympel_analytics.dynamic_js_dom_event.manager');
         $selectorDomEvent = $selectorDomEventManager->getCreator()->create('DynamicJSSelectorDomEvent');
