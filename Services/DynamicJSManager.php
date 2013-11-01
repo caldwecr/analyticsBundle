@@ -34,23 +34,6 @@ class DynamicJSManager extends RoutedTrackingToolManager
     }
 
     /**
-     * @return TrackerManager
-     */
-    protected function getTrackerManager()
-    {
-        return $this->trackerManager;
-    }
-
-    /**
-     * @param TrackerManager $trackerManager
-     * @return void
-     */
-    protected function setTrackerManager(TrackerManager $trackerManager)
-    {
-        $this->trackerManager = $trackerManager;
-    }
-
-    /**
      * @param $classAlias
      * @param $selectors
      * @param $events

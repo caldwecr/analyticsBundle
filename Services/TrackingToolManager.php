@@ -8,29 +8,37 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManager;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackerManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
 
 abstract class TrackingToolManager extends CympelManager implements iTrackingToolManager
 {
     /**
+     * @var iTrackerManager
+     */
+    protected $trackerManager;
+    /**
      * @return TrackerManager
      */
-    abstract protected function getTrackerManager();
+    protected function getTrackerManager()
+    {
+        $e = $this->getExtender();
+        return self::getTrackerManagerCheckingExtenderType($e);
+    }
 
     /**
-     * @param TrackerManager $trackerManager
-     * @return void
+     * @param iTrackingToolManagerExtensionService $extender
+     * @return iTrackerManager
      */
-    abstract protected function setTrackerManager(TrackerManager $trackerManager);
+    protected static final function getTrackerManagerCheckingExtenderType(iTrackingToolManagerExtensionService $extender)
+    {
+        return $extender->getTrackerManager();
+    }
+
 
 
     /**
