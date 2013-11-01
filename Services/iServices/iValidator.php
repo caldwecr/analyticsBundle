@@ -8,10 +8,9 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
 
-interface iValidator extends iType
+interface iValidator extends iService
 {
     public function validate(iValidatable $validatable);
 }
