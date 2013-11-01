@@ -10,8 +10,5 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 interface iTrackingToolManagerExtensionService extends iExtender
 {
-    /**
-     * @return iTrackerManager
-     */
-    public function getTrackerManager();
+
 }
