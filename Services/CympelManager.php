@@ -56,7 +56,7 @@ class CympelManager extends CympelService implements iManager
      * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender)
+    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         $this->creator = $creator;
         $this->finder = $finder;
