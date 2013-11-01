@@ -8,7 +8,9 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-interface iTrackingTool extends iType
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+
+interface iTrackingTool extends iType, iPersistable
 {
     /**
      * @param iTracker $tracker
