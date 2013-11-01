@@ -10,11 +10,13 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidPersistableException;
 
 interface iPersister extends iType
 {
     /**
      * @param iPersistable $persistable
+     * @throws InvalidPersistableException
      * @return void
      */
     public function persist(iPersistable $persistable);

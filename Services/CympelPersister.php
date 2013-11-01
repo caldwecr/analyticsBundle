@@ -10,6 +10,8 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidPersistableException;
 
 class CympelPersister extends CympelService implements iPersister
 {
@@ -18,17 +20,27 @@ class CympelPersister extends CympelService implements iPersister
      */
     protected $doctrine;
 
-    public function __construct($doctrine)
+    /**
+     * @var iValidator
+     */
+    protected $validator;
+
+    public function __construct($doctrine, iValidator $validator)
     {
         $this->doctrine = $doctrine;
+        $this->validator = $validator;
     }
 
     /**
      * @param iPersistable $persistable
+     * @throws Exception\InvalidPersistableException
      * @return void
      */
     public function persist(iPersistable $persistable)
     {
+        if(!$this->validator->isValid($persistable)) {
+            throw new InvalidPersistableException();
+        }
         $emName = $persistable->getEntityManagerName();
         $em = $this->doctrine->getManager($emName);
         $em->persist($persistable);
