@@ -10,7 +10,15 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
 
+/**
+ * Interface iValidator
+ * @package Cympel\Bundle\AnalyticsBundle\Services\iServices
+ */
 interface iValidator extends iService
 {
+    /**
+     * @param iValidatable $validatable
+     * @return array of errors
+     */
     public function validate(iValidatable $validatable);
 }
