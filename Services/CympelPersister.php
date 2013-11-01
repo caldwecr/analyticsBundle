@@ -39,7 +39,8 @@ class CympelPersister extends CympelService implements iPersister
     public function persist(iPersistable $persistable)
     {
         if(!$this->validator->isValid($persistable)) {
-            throw new InvalidPersistableException();
+            $errors = $this->validator->validate($persistable);
+            throw new InvalidPersistableException($errors[0]);
         }
         $emName = $persistable->getEntityManagerName();
         $em = $this->doctrine->getManager($emName);
