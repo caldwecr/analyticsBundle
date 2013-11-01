@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelector")
  */
-class DynamicJSSelector extends CympelType implements iDynamicJSSelector, iValidatable
+class DynamicJSSelector extends CympelType implements iDynamicJSSelector
 {
     /**
      * @var int
