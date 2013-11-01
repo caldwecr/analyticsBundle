@@ -15,7 +15,7 @@ class DynamicJSManagerCreateTest extends ContainerAwareUnitTestCase
     public function testCreate()
     {
         $djm = $this->get('cympel_analytics.dynamic_js_manager');
-        $dj = $djm->create('DynamicJS');
+        $dj = $djm->getCreator()->create('DynamicJS');
         $this->assertEquals('DynamicJS', $dj->getType());
     }
 }

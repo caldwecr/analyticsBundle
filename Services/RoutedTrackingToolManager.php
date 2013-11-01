@@ -56,10 +56,10 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
     public function generate($classAlias, iPropertySet $properties, iTracker $tracker = null)
     {
         if(!$tracker) $tracker = $this->getTrackerManager()->create();
-        $tool = $this->create($classAlias, $tracker);
+        $tool = $this->createTrackingTool($classAlias, $tracker);
         $fProperties = $this->finalizeProperties($properties, $tool);
         $this->setProperties($tool, $fProperties);
-        $this->persist($tool);
+        $this->getPersister()->persist($tool);
         return $this->generateUrl($tool, UrlGeneratorInterface::ABSOLUTE_PATH);
     }
 
@@ -72,11 +72,9 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      */
     public function renderById($classAlias, $id)
     {
-        $toReturn = RoutedTrackingTool::cast($this->findOneByIdAndClassAlias($id, $classAlias));
+        $toReturn = RoutedTrackingTool::cast($this->getFinder()->findOneByIdAndClassAlias($id, $classAlias));
         $toReturn->setRendered(time());
-        $em = $this->getDoctrine()->getManager($this->getEntityManagerName());
-        $em->persist($toReturn);
-        $em->flush();
+        $this->getPersister()->persist($toReturn);
         return $toReturn;
     }
 

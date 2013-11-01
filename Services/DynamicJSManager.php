@@ -71,7 +71,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
     public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         parent::__construct($creator, $finder, $persister, $remover, $validator, $extender);
-        $this->doctrine = $this->extender->getDoctrine();
+        //$this->doctrine = $this->extender->getDoctrine();
         $this->trackingToolValidator = $this->extender->getTrackingToolValidator();
         $this->router = $this->extender->getRouter();
         $this->trackerManager = $this->extender->getTrackerManager();
@@ -147,22 +147,7 @@ class DynamicJSManager extends RoutedTrackingToolManager
         $this->trackerManager = $trackerManager;
     }
 
-    /**
-     * @return Object - the doctrine service
-     */
-    protected function getDoctrine()
-    {
-        return $this->doctrine;
-    }
 
-    /**
-     * @param $doctrine
-     * @return void
-     */
-    protected function setDoctrine($doctrine)
-    {
-        $this->doctrine = $doctrine;
-    }
 
     /**
      * @return string

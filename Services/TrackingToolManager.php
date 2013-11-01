@@ -32,53 +32,6 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
      */
     abstract protected function setTrackerManager(TrackerManager $trackerManager);
 
-    /**
-     * @return string
-     */
-    abstract protected function getEmName();
-
-    /**
-     * @param string $emName
-     * @return void
-     */
-    abstract protected function setEmName($emName);
-
-    /**
-     * @return iTrackingToolValidator
-     */
-    abstract protected function getTrackingToolValidator();
-
-    /**
-     * @param iTrackingToolValidator $trackingToolValidator
-     * @return void
-     */
-    abstract protected function setTrackingToolValidator(iTrackingToolValidator $trackingToolValidator);
-
-    /**
-     * @return iTrackingToolRemover
-     */
-    abstract protected function getTrackingToolRemover();
-
-    /**
-     * @param iTrackingToolRemover $trackingToolRemover
-     * @return void
-     */
-    abstract protected function setTrackingToolRemover(iTrackingToolRemover $trackingToolRemover);
-
-    /**
-     * @param string $classAlias
-     * @param iTracker $tracker
-     * @return iTrackingTool
-     */
-    public final function create($classAlias, iTracker $tracker = null)
-    {
-        if(!$tracker) {
-            $tracker = $this->getTrackerManager()->create();
-        }
-        $tt = $this->getCreator()->create($classAlias);
-
-        return $this->attachTracker($tracker, $tt);
-    }
 
     /**
      * @param iTracker $tracker
@@ -90,70 +43,6 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
         $tool->setTracker($tracker);
         $this->getTrackerManager()->addTrackingTool($tracker, $tool);
         return $tool;
-    }
-
-    /**
-     * @param $id
-     * @param $classAlias
-     * @return iFindable
-     */
-    public function findOneByIdAndClassAlias($id, $classAlias)
-    {
-        return $this->getFinder()->findOneByIdAndClassAlias($id, $classAlias);
-    }
-
-    /**
-     * @param $entityManagerName
-     * @return void
-     *
-     * This method must set the manager's entity manager name property
-     */
-    public function setEntityManagerName($entityManagerName)
-    {
-        $this->setEmName($entityManagerName);
-    }
-
-    /**
-     * @return string
-     *
-     * This method must return the manager's entity manager name
-     */
-    public function getEntityManagerName()
-    {
-        return $this->getEmName();
-    }
-
-    /**
-     * @return string
-     */
-    abstract protected function getRepositoryName();
-
-    /**
-     * @param iTrackingTool $tool
-     * @return bool|void
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
-     */
-    public function persist(iTrackingTool $tool)
-    {
-        if(!$this->getValidator()->isValid($tool)) {
-            throw new InvalidTrackingToolException();
-        }
-        $this->getPersister()->persist($tool);
-    }
-
-    /**
-     * @param iTrackingTool $tool
-     * @throws \Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException
-     * @return bool
-     *
-     * This method should remove a tracking tool from the database
-     */
-    public function remove(iTrackingTool $tool)
-    {
-        if(!$this->getValidator()->isValid($tool)) {
-            throw new InvalidTrackingToolException();
-        }
-        $this->getRemover()->remove($tool);
     }
 
     /**
@@ -182,4 +71,18 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
      * @return iPropertySet
      */
     abstract protected function createPropertySet();
+
+    /**
+     * @param string $classAlias
+     * @param iTracker $tracker
+     * @return iTrackingTool
+     */
+    public function createTrackingTool($classAlias, iTracker $tracker)
+    {
+        if(!$tracker) {
+            $tracker = $this->getTrackerManager()->create();
+        }
+        $tt = $this->getCreator()->create($classAlias);
+        return $this->attachTracker($tracker, $tt);
+    }
 }
