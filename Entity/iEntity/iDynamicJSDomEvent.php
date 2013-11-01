@@ -10,5 +10,15 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 interface iDynamicJSDomEvent extends iDomEvent, iPersistable, iCreatable, iRemovable, iFindable
 {
+    /**
+     * @param string $eventName
+     * @return void
+     */
+    public function setEventName($eventName);
 
+    /**
+     * @param iDynamicJSDomEvents $parentDynamicJDomEvents
+     * @return void
+     */
+    public function setParentDynamicJDomEvents(iDynamicJSDomEvents $parentDynamicJDomEvents);
 }
