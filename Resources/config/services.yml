@@ -83,6 +83,7 @@ parameters:
     cympel_analytics.generics.creatable_registrar.class: Cympel\Bundle\AnalyticsBundle\Services\CreatableRegistrar
     cympel_analytics.generics.creator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelCreator
     cympel_analytics.generics.finder.class: Cympel\Bundle\AnalyticsBundle\Services\CympelFinder
+    cympel_analytics.generics.validator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelValidator
     cympel_analytics.generics.manager.class: Cympel\Bundle\AnalyticsBundle\Services\CympelManager
     cympel_analytics.entity_manager:
 
@@ -163,6 +164,9 @@ services:
     cympel_analytics.generics.finder:
         class: %cympel_analytics.generics.finder.class%
         arguments: ["@doctrine", "@cympel_analytics.generics.creatable_registrar", "@cympel_analytics.generics.creator"]
+    cympel_analytics.generics.validator:
+        class: %cympel_analytics.generics.validator.class%
+        arguments: ["@validator"]
     cympel_analytics.generics.manager:
         class: %cympel_analytics.generics.manager.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@?"]
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
