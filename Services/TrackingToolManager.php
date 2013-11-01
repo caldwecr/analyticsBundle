@@ -24,7 +24,7 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
     /**
      * @return TrackerManager
      */
-    protected function getTrackerManager()
+    public function getTrackerManager()
     {
         $e = $this->getExtender();
         return self::getTrackerManagerCheckingExtenderType($e);
