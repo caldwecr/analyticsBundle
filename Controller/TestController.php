@@ -23,7 +23,7 @@ class TestController extends Controller
         );
         $pseudo = 'hover';
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
-        $cssUrl = $dcm->generateOneTimeStylesheet($ids, $pseudo);
+        $cssUrl = $dcm->generateOneTimeStylesheet('DynamicCSS', $ids, $pseudo);
         return $this->render('CympelAnalyticsBundle:Test:test.html.twig', array(
             'cssUrl' => $cssUrl,
         ));
