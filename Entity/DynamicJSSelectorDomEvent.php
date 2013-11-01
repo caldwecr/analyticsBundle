@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSets;
 use Doctrine\ORM\Mapping as ORM;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
@@ -34,7 +35,7 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
 
     /**
      * @var DynamicJSSelectorDomEventClientDataSets
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSets", mappedBy="selectorDomEvent")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSets", mappedBy="selectorDomEvent", cascade={"persist", "remove"})
      */
     protected $clientDataSets;
 
@@ -127,7 +128,7 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     /**
      * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent $domEvent
      */
-    public function setDomEvent($domEvent)
+    public function setDomEvent(iDynamicJSDomEvent $domEvent)
     {
         $this->domEvent = $domEvent;
     }
@@ -159,7 +160,7 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     /**
      * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector $selector
      */
-    public function setSelector($selector)
+    public function setSelector(iDynamicJSSelector $selector)
     {
         $this->selector = $selector;
     }
@@ -173,9 +174,9 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets $clientDataSets
+     * @param iDynamicJSSelectorDomEventClientDataSets $clientDataSets
      */
-    public function setClientDataSets($clientDataSets)
+    public function setClientDataSets(iDynamicJSSelectorDomEventClientDataSets $clientDataSets)
     {
         $this->clientDataSets = $clientDataSets;
     }
