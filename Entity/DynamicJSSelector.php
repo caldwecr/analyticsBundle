@@ -32,7 +32,7 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-     * @Assert\Range(min=2, max=255)
+     * @Assert\Length(min=2, max=255)
      */
     protected $selection;
 
