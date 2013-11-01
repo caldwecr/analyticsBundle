@@ -9,12 +9,13 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\DynamicJS;
 
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorsManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRoutedTrackingToolManagerExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackerManager;
 use Cympel\Bundle\AnalyticsBundle\Services\TrackingToolManagerExtensionService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventsManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRouter;
 
-class DynamicJSServiceExtension extends TrackingToolManagerExtensionService
+class DynamicJSServiceExtension extends TrackingToolManagerExtensionService implements iRoutedTrackingToolManagerExtender
 {
     /**
      * @var iDynamicJSSelectorsManager
