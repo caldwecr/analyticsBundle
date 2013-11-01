@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSetDomClasses;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -40,13 +41,13 @@ class DynamicJSSelectorDomEventClientDataSetDomClasses extends CympelType implem
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClass", mappedBy="parentClasses")
+     * @ORM\OneToMany(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClass", mappedBy="parentClasses", cascade={"persist", "remove"})
      */
     protected $classes;
 
     /**
      * @var DynamicJSSelectorDomEventClientDataSet
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSet", inversedBy="clientClasses")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSet", inversedBy="clientClasses", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="clientdatasset_id", referencedColumnName="id")
      */
     protected $dataSet;
@@ -108,15 +109,15 @@ class DynamicJSSelectorDomEventClientDataSetDomClasses extends CympelType implem
     }
 
     /**
-     * @param mixed $classes
+     * @param ArrayCollection $classes
      */
-    public function setClasses($classes)
+    public function setClasses(ArrayCollection $classes)
     {
         $this->classes = $classes;
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getClasses()
     {
@@ -124,9 +125,9 @@ class DynamicJSSelectorDomEventClientDataSetDomClasses extends CympelType implem
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSet $dataSet
+     * @param iDynamicJSSelectorDomEventClientDataSet $dataSet
      */
-    public function setDataSet($dataSet)
+    public function setDataSet(iDynamicJSSelectorDomEventClientDataSet $dataSet)
     {
         $this->dataSet = $dataSet;
     }
