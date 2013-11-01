@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -19,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicJSSelector")
  */
-class DynamicJSSelector extends CympelType implements iDynamicJSSelector
+class DynamicJSSelector extends CympelType implements iDynamicJSSelector, iValidatable
 {
     /**
      * @var int
@@ -208,4 +209,13 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
     {
         return $this->entityManagerName;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return true;
+    }
+
 }
