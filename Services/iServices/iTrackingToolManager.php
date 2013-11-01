@@ -80,13 +80,4 @@ interface iTrackingToolManager extends iType
      * This method must return all bindings on the tracking tool
      */
     public function getProperties(iTrackingTool $tool);
-
-    /**
-     * @param iTrackingTool $tool
-     * @return bool
-     *
-     * This method should cause the tool's properties to be validated
-     */
-    public function validate(iTrackingTool $tool);
-
 }
