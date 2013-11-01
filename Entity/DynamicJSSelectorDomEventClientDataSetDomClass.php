@@ -40,7 +40,7 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
 
     /**
      * @var DynamicJSSelectorDomEventClientDataSetDomClasses
-     * @ORM\ManyToOne(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClasses", inversedBy="classes")
+     * @ORM\ManyToOne(targetEntity="DynamicJSSelectorDomEventClientDataSetDomClasses", inversedBy="classes", cascade={"persist"})
      * @ORM\JoinColumn(name="classes_id", referencedColumnName="id")
      */
     protected $parentClasses;
