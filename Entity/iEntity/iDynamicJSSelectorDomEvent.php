@@ -14,4 +14,10 @@ interface iDynamicJSSelectorDomEvent extends iFindable, iPersistable, iRemovable
      * @return iDynamicJSSelectorDomEventClientDataSets
      */
     public function getClientDataSets();
+
+    /**
+     * @param iDynamicJSSelectorDomEventClientDataSets $clientDataSets
+     * @return void
+     */
+    public function setClientDataSets(iDynamicJSSelectorDomEventClientDataSets $clientDataSets);
 }
