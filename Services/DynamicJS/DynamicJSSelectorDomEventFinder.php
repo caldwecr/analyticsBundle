@@ -13,6 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Services\CympelFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorDomEventFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\UnpersistedFindByException;
 
 class DynamicJSSelectorDomEventFinder extends CympelFinder implements iDynamicJSSelectorDomEventFinder
 {
@@ -22,9 +23,13 @@ class DynamicJSSelectorDomEventFinder extends CympelFinder implements iDynamicJS
      * @param iDynamicJSDomEvent $domEvent
      * @param string $classAlias
      * @return iDynamicJSSelectorDomEvent
+     * @throws \Cympel\Bundle\AnalyticsBundle\Services\Exception\UnpersistedFindByException
      */
     public function findOneBySelectorAndDomEvent(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent, $classAlias)
     {
+        if(!($selector->getId() && $domEvent->getId())) {
+            throw new UnpersistedFindByException();
+        }
         $findable = $this->creator->create($classAlias);
         $repositoryName = $findable->getRepositoryName();
         $entityManagerName = $findable->getEntityManagerName();
