@@ -39,6 +39,8 @@ class DynamicJSSelectorDomEventDataSetsCympelManagerCPFRTest extends ContainerAw
         $selectorDomEvent->setEntityManagerName($emName);
         $selectorDomEvent->setClientDataSets($dataSets);
 
+        $dataSets->setSelectorDomEvent($selectorDomEvent);
+
         ///Child
         $dataSet1 = DynamicJSSelectorDomEventClientDataSetTestInstanceFactory::generate();
         $dataSet2 = DynamicJSSelectorDomEventClientDataSetTestInstanceFactory::generate();
