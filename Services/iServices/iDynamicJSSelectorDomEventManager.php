@@ -8,7 +8,18 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-interface iDynamicJSSelectorDomEventManager extends iCreate, iPersist, iFind, iRemove
-{
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEvent;
 
+interface iDynamicJSSelectorDomEventManager extends iCreate, iPersist, iFind, iRemove, iValidate
+{
+    /**
+     * @param iDynamicJSSelector $selector
+     * @param iDynamicJSDomEvent $domEvent
+     * @param $key
+     * @param $json
+     * @return iDynamicJSSelectorDomEvent
+     */
+    public function captureClientDataSet(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent, $key, $json);
 }
