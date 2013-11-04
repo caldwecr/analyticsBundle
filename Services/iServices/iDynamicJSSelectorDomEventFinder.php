@@ -19,5 +19,5 @@ interface iDynamicJSSelectorDomEventFinder extends iFinder
      * @param iDynamicJSDomEvent $domEvent
      * @return iDynamicJSSelectorDomEvent
      */
-    public function findOneBySelectorDomEventAndKey(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent);
+    public function findOneBySelectorAndDomEvent(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent);
 }
