@@ -19,6 +19,7 @@ interface iDynamicJSSelectorDomEventFinder extends iFinder
      * @param iDynamicJSDomEvent $domEvent
      * @param string $classAlias
      * @return iDynamicJSSelectorDomEvent
+     * @throws \Cympel\Bundle\AnalyticsBundle\Services\Exception\UnpersistedFindByException
      */
     public function findOneBySelectorAndDomEvent(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent, $classAlias);
 }
