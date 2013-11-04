@@ -47,7 +47,7 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
     /**
      * @var int
      * @ORM\Column(type="bigint")
-     *
+     * @Assert\NotNull()
      * The unix timestamp when the selector was created
      */
     protected $created;
@@ -55,7 +55,7 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
     /**
      * @var int
      * @ORM\Column(type="bigint")
-     *
+     * @Assert\NotNull()
      * The unix timestamp when the selector was called (this means that a client triggered the event that is associated with the selector)
      */
     protected $called;
@@ -69,6 +69,12 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
      * @var string
      */
     protected $repositoryName;
+
+    public function __construct()
+    {
+        $this->created = time();
+        $this->called = 0;
+    }
 
     /**
      * @return string
