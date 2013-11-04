@@ -7,8 +7,18 @@
  * Copyright Cympel Inc
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 interface iDynamicJSSelectorDomEventClientDataSets extends iFindable, iPersistable, iRemovable, iCreatable, iValidatable
 {
+    /**
+     * @param ArrayCollection $dataSets
+     * @return void
+     */
+    public function setDataSets(ArrayCollection $dataSets);
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getDataSets();
 }
