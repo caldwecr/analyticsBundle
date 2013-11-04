@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvent;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class DynamicJSSelectorDomEvent
@@ -36,6 +37,8 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     /**
      * @var DynamicJSSelectorDomEventClientDataSets
      * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEventClientDataSets", mappedBy="selectorDomEvent", cascade={"persist", "remove"})
+     *
+     * @Assert\NotNull()
      */
     protected $clientDataSets;
 
@@ -54,6 +57,7 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
      *      joinColumns={@ORM\JoinColumn(name="selectordomevent_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="selector_id", referencedColumnName="id", unique=true)}
      * )
+     * @Assert\NotNull()
      *
      * Note that the odd ORM approach here is how doctrine's documentation recommends implementing a one-to-many mono-directional association
      */
@@ -66,6 +70,7 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
      *      joinColumns={@ORM\JoinColumn(name="selectordomevent_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="domEvent_id", referencedColumnName="id", unique=true)}
      * )
+     * Assert\NotNull()
      */
     protected $domEvent;
 
@@ -194,7 +199,7 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
      */
     public function hasValidationConstraints()
     {
-        return false;
+        return true;
     }
 
 }
