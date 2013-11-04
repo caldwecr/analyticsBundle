@@ -41,8 +41,8 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
 
     /**
      * @var DynamicJSSelectorDomEvent
-     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEvent", inversedBy="clientDataSets", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="selectordomevent_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="DynamicJSSelectorDomEvent", inversedBy="clientDataSets")
+     * @ORM\JoinColumn(name="selectordomevent_id", referencedColumnName="id", nullable=false)
      */
     protected $selectorDomEvent;
 

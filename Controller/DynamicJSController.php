@@ -20,17 +20,13 @@ class DynamicJSController extends Controller
     {
         //return a url of a dynamic JS file
         $djm = $this->get('cympel_analytics.dynamic_js_manager');
-
         $dj = $djm->renderById('DynamicJS', $key);
-
-        //$ids = $dcm->getDynamicCSSDomIds($dcss);
-
         $selectors = $djm->getDynamicJSelectors($dj);
 
         $events = $djm->getDynamicJDomEvents($dj);
         $selectorList = '';
         $isFirst = true;
-        foreach($selectors as $key => $value) {
+        foreach($selectors as $k => $value) {
             if(!$isFirst) {
                 $selectorList .= ', ';
             } else {
@@ -38,12 +34,13 @@ class DynamicJSController extends Controller
             }
             $selectorList .= $value->getSelection();
         }
+
         $callbackUrl = $this->generateUrl('dynamicJSCallbackShortUrl', array(
             'key' => $key,
             'selectorKey' => 'sKS', // This literal 'sKS' and 'eKS' below are matched by the javascript on the client for routing
             'eventKey' => 'eKS',
         ));
-        $response =  $this->render('CympelAnalyticsBundle:DynamicJS:djs.js.twig', array(
+        $response =  $this->render('CympelAnalyticsBundle:DynamicJS:djsFull.js.twig', array(
             'selectors' => $selectors,
             'events' => $events,
             'callbackUrl' => $callbackUrl,
@@ -59,13 +56,16 @@ class DynamicJSController extends Controller
         $selectorDomEventManager = $this->get('cympel_analytics.generics.manager');
         $selectorManager = $this->get('cympel_analytics.dynamic_js_selector_manager');
         $domEventManager = $this->get('cympel_analytics.dynamic_js_dom_event.manager');
-        $selectorDomEvent = $selectorDomEventManager->getCreator()->create('DynamicJSSelectorDomEvent');
+        //$selectorDomEvent = $selectorDomEventManager->getCreator()->create('DynamicJSSelectorDomEvent');
         $selector = $selectorManager->getFinder()->findOneByIdAndClassAlias($selectorKey, 'DynamicJSSelector');
         $domEvent = $domEventManager->findOneByEventKeyAndSelector($eventKey, $selector, 'DynamicJSDomEvent');
 
-        $selectorDomEvent->setSelector($selector);
-        $selectorDomEvent->setDomEvent($domEvent);
-        $selectorDomEventManager->getPersister()->persist($selectorDomEvent);
+        //$selectorDomEvent->setSelector($selector);
+        //$selectorDomEvent->setDomEvent($domEvent);
+        $json = $request->get('q');
+        // @todo implement captureClientDataSet method and test(s)
+        $selectorDomEventManager->captureClientDataSet($selector, $domEvent, $json);
+        //$selectorDomEventManager->getPersister()->persist($selectorDomEvent);
 
 
         //make sure the rendered property of the DynamicJS is set
