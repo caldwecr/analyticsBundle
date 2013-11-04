@@ -21,4 +21,12 @@ interface iDynamicJSSelectorDomEventManager extends iCreate, iPersist, iFind, iR
      * @return iDynamicJSSelectorDomEvent
      */
     public function captureClientDataSet(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent, $json);
+
+    /**
+     * @param iDynamicJSSelector $selector
+     * @param iDynamicJSDomEvent $domEvent
+     * @param $classAlias
+     * @return iDynamicJSSelectorDomEvent
+     */
+    public function findOrCreateDynamicJSSelectorDomEvent(iDynamicJSSelector $selector, iDynamicJSDomEvent $domEvent, $classAlias);
 }
