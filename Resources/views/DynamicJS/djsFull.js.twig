@@ -2,8 +2,8 @@ $(function () {
     var cObj = {
         s: function (o, eventType, selectorId) {
             var callbackUrl = '{{ callbackUrl|raw }}';
-            callbackUrl = callbackUrl.replace('eventKeyStub', eventType);
-            callbackUrl = callbackUrl.replace('selectorKeyStub', selectorId);
+            callbackUrl = callbackUrl.replace('eKS', eventType);
+            callbackUrl = callbackUrl.replace('sKS', selectorId);
             var p = {
                 clientX: o.clientX,
                 clientY: o.clientY,
@@ -16,7 +16,9 @@ $(function () {
                 url: callbackUrl,
                 type: 'POST',
                 dataType: 'json',
-                data: JSON.stringify(p)
+                data: {
+                    q: JSON.stringify(p)
+                }
             });
         }
     };
