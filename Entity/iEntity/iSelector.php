@@ -6,7 +6,8 @@
  * Time: 10:14 AM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 /**
  * Interface iSelector

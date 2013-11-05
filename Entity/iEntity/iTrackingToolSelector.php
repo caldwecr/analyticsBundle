@@ -6,9 +6,8 @@
  * Time: 10:17 AM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 /**
  * Interface iTrackingToolSelector
  * @package Cympel\Bundle\AnalyticsBundle\Entity

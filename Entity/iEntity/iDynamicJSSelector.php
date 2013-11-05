@@ -8,8 +8,6 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingToolSelector;
-
 interface iDynamicJSSelector extends iTrackingToolSelector, iCreatable, iPersistable, iRemovable, iFindable, iValidatable
 {
     /**
