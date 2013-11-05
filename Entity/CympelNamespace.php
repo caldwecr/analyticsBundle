@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="CympelNamespace")
  */
-class CympelNamespace extends CympelType implements iNamespace
+class CympelNamespace implements iNamespace
 {
     /**
      * @var int
@@ -221,6 +222,30 @@ class CympelNamespace extends CympelType implements iNamespace
     public final function getNameCRC32()
     {
         return $this->nameCRC32;
+    }
+
+    /**
+     * @param iType $rightSide
+     * @throws TypeMismatchException
+     * @return bool
+     *
+     * This method should first compare an objects type to the arguments type, if they do not match to method should return throw a TypeMismatchException
+     * containing the string "types do not match: leftside = ..., rightside = ..."
+     * Otherwise return true if they are equals otherwise false
+     */
+    public function equals(iType $rightSide)
+    {
+        return self::cympelNamespaceEquals($this, $rightSide);
+    }
+
+    /**
+     * @param iNamespace $leftSide
+     * @param iNamespace $rightSide
+     * @return bool
+     */
+    private static function cympelNamespaceEquals(iNamespace $leftSide, iNamespace $rightSide)
+    {
+        return $leftSide->getName() === $rightSide->getName();
     }
 
 }
