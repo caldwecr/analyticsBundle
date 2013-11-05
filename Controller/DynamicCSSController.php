@@ -19,10 +19,12 @@ class DynamicCSSController extends Controller {
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
         $dcss = $dcm->renderById('DynamicCSS', $key);
         $ids = $dcm->getDynamicCSSDomIds($dcss);
-        return $this->render('CympelAnalyticsBundle:Default:dcss.css.twig', array(
+        $response = $this->render('CympelAnalyticsBundle:Default:dcss.css.twig', array(
             'ids' => $ids,
             'pseudo' => $dcss->getPseudo(),
         ));
+        $response->headers->set('Content-Type', 'text/css');
+        return $response;
     }
 
     public function dynamicCSSImageFileAction($key, $domIdValue)
