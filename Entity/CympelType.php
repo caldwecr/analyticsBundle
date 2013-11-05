@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CympelType
  * @package Cympel\Bundle\AnalyticsBundle\Entity
  */
-abstract class CympelType implements iType
+abstract class CympelType implements iType, iNamespaceable
 {
     /**
      * @var string
