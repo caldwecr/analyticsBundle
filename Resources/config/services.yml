@@ -112,6 +112,11 @@ parameters:
     ca.crtb.djs.cds.dom_classes.emn: %cympel_analytics.entity_manager%
     ca.crtb.djs.cds.dom_classes.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClasses
 
+    ca.crtb.cn.class: Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespace
+    ca.crtb.cn.alias: CympelNamespace
+    ca.crtb.cn.emn: %cympel_analytics.entity_manager%
+    ca.crtb.cn.rn: CympelAnalyticsBundle:CympelNamespace
+
     ### Generics
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
@@ -200,6 +205,7 @@ services:
             - [register, ["%ca.crtb.djs.cds.sets.class%", "%ca.crtb.djs.cds.sets.alias%", "%ca.crtb.djs.cds.sets.rn%", "%ca.crtb.djs.cds.sets.emn%"]]
             - [register, ["%ca.crtb.djs.cds.dom_class.class%", "%ca.crtb.djs.cds.dom_class.alias%", "%ca.crtb.djs.cds.dom_class.rn%", "%ca.crtb.djs.cds.dom_class.emn%"]]
             - [register, ["%ca.crtb.djs.cds.dom_classes.class%", "%ca.crtb.djs.cds.dom_classes.alias%", "%ca.crtb.djs.cds.dom_classes.rn%", "%ca.crtb.djs.cds.dom_classes.emn%"]]
+            - [register, ["%ca.crtb.cn.class%", "%ca.crtb.cn.alias%", "%ca.crtb.cn.rn%", "%ca.crtb.cn.emn%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
