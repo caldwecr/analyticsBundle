@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
@@ -20,49 +21,32 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class CympelType implements iType, iNamespaceable
 {
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
+     * @var iNamespace
+     * @ORM\ManyToOne(targetEntity="CympelNamespace")
+     * @ORM\JoinTable(name="cympelNamespace_cympeltype",
+     *      joinColumns={@ORM\JoinColumn(name="cympeltype_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="cympelnamespace_id", referencedColumnName="id", unique=true)}
+     * )
      */
-    protected $cympelNamespace = '';
+    protected $cympelNamespace;
 
     /**
-     * @var int
-     * @ORM\Column(type="bigint")
+     * @param iNamespace $cympelNamespace
+     * @return void
      */
-    protected $cympelNamespaceCRC32 = 0;
-
-    /**
-     * @param string $cympelNamespace
-     */
-    public final function setCympelNamespace($cympelNamespace)
+    public final function setCympelNamespace(iNamespace $cympelNamespace)
     {
         $this->cympelNamespace = $cympelNamespace;
-        $this->cympelNamespaceCRC32 = crc32($this->cympelNamespace);
     }
 
     /**
-     * @return string
+     * @return iNamespace
      */
     public final function getCympelNamespace()
     {
         return $this->cympelNamespace;
     }
 
-    /**
-     * @return int
-     */
-    public final function getCympelNamespaceCRC32()
-    {
-        return $this->cympelNamespaceCRC32;
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public final function setCympelNamespaceCRC32()
-    {
-        throw new \Exception("You may not set the cympel namespace crc32 property manually, it is automatically set when the cympel namespace changes");
-    }
 
     /**
      * @param iType $rightSide
