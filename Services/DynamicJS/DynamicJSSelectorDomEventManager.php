@@ -78,14 +78,14 @@ class DynamicJSSelectorDomEventManager extends CympelManager implements iDynamic
         $decoded = json_decode($json);
         $x = $decoded->clientX;
         $y = $decoded->clientY;
-        $classes = null; //@todo handle parsing classes
+        $classes = $this->getCreator()->createClassesFromJSONAndDataSet($json, $dataSet, 'DynamicJSSelectorDomEventClientDataSetDomClass', 'DynamicJSSelectorDomEventClientDataSetDomClasses');
         $domElementId = $decoded->id;
         $clientEventType = $decoded->eventType;
         $clientOuterHTML = $decoded->outerHTML;
 
         $dataSet->setClientX($x);
         $dataSet->setClientY($y);
-        //$dataSet->setClientClasses($classes);
+        $dataSet->setClientClasses($classes);
         $dataSet->setParentDataSets($clientDataSets);
         $dataSet->setClientDomElementId($domElementId);
         $dataSet->setClientEventType($clientEventType);
