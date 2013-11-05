@@ -40,7 +40,7 @@ class DynamicJSController extends Controller
             'selectorKey' => 'sKS', // This literal 'sKS' and 'eKS' below are matched by the javascript on the client for routing
             'eventKey' => 'eKS',
         ));
-        $response =  $this->render('CympelAnalyticsBundle:DynamicJS:djsFull.js.twig', array(
+        $response =  $this->render('CympelAnalyticsBundle:DynamicJS:djs.js.twig', array(
             'selectors' => $selectors,
             'events' => $events,
             'callbackUrl' => $callbackUrl,

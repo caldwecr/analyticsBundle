@@ -1,1 +1,32 @@
-$(function(){var c={s:function(o, eT, sI){var cU='{{ callbackUrl|raw }}',cT=o.currentTarget;var p={X:o.clientX,Y:o.clientY,cls:cT.classList,id:cT.id,oHTML:cT.outerHTML,eT:eT};$.ajax({url:cU.replace('eKS', eT).replace('sKS', sI),type:'POST',dataType:'json',data:JSON.stringify(p)});}};{% for event in events %}{% for selector in selectors %}$('{{ selector.selection|raw }}').{{ event.eventName }}(function(o){c.s(o,o.type,'{{ selector.id}}');});{% endfor %}{% endfor %}});
+$(function () {
+    var cObj = {
+        s: function (o, eventType, selectorId) {
+            var callbackUrl = '{{ callbackUrl|raw }}';
+            callbackUrl = callbackUrl.replace('eKS', eventType);
+            callbackUrl = callbackUrl.replace('sKS', selectorId);
+            var p = {
+                clientX: o.clientX,
+                clientY: o.clientY,
+                classList: o.currentTarget.classList,
+                id: o.currentTarget.id,
+                outerHTML: o.currentTarget.outerHTML,
+                eventType: o.type
+            };
+            $.ajax({
+                url: callbackUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    q: JSON.stringify(p)
+                }
+            });
+        }
+    };
+{% for event in events %}
+    {% for selector in selectors %}
+        $('{{ selector.selection|raw }}').{{ event.eventName }}(function (o) {
+            cObj.s(o, o.type, '{{ selector.id}}');
+        });
+    {% endfor %}
+{% endfor %}
+});
