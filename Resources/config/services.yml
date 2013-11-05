@@ -92,25 +92,25 @@ parameters:
     ca.crtb.djs.sde.emn: %cympel_analytics.entity_manager%
     ca.crtb.djs.sde.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEvent
 
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSet
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set.alias: DynamicJSSelectorDomEventClientDataSet
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set.emn: %cympel_analytics.entity_manager%
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSet
+    ca.crtb.djs.cds.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSet
+    ca.crtb.djs.cds.alias: DynamicJSSelectorDomEventClientDataSet
+    ca.crtb.djs.cds.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSet
 
-    ca.crtb.dynamic_js_selector_dom_event_client_data_sets.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets
-    ca.crtb.dynamic_js_selector_dom_event_client_data_sets.alias: DynamicJSSelectorDomEventClientDataSets
-    ca.crtb.dynamic_js_selector_dom_event_client_data_sets.emn: %cympel_analytics.entity_manager%
-    ca.crtb.dynamic_js_selector_dom_event_client_data_sets.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSets
+    ca.crtb.djs.cds.sets.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets
+    ca.crtb.djs.cds.sets.alias: DynamicJSSelectorDomEventClientDataSets
+    ca.crtb.djs.cds.sets.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.sets.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSets
 
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClass
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.alias: DynamicJSSelectorDomEventClientDataSetDomClass
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.emn: %cympel_analytics.entity_manager%
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClass
+    ca.crtb.djs.cds.dom_class.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClass
+    ca.crtb.djs.cds.dom_class.alias: DynamicJSSelectorDomEventClientDataSetDomClass
+    ca.crtb.djs.cds.dom_class.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.dom_class.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClass
 
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClasses
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.alias: DynamicJSSelectorDomEventClientDataSetDomClasses
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.emn: %cympel_analytics.entity_manager%
-    ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClasses
+    ca.crtb.djs.cds.dom_classes.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClasses
+    ca.crtb.djs.cds.dom_classes.alias: DynamicJSSelectorDomEventClientDataSetDomClasses
+    ca.crtb.djs.cds.dom_classes.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.dom_classes.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClasses
 
     ### Generics
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
@@ -196,10 +196,10 @@ services:
             - [register, ["%ca.crtb.djs.dom_event.class%", "%ca.crtb.djs.dom_event.alias%", "%ca.crtb.djs.dom_event.rn%", "%ca.crtb.djs.dom_event.emn%"]]
             - [register, ["%ca.crtb.djs.dom_events.class%", "%ca.crtb.djs.dom_events.alias%", "%ca.crtb.djs.dom_events.rn%", "%ca.crtb.djs.dom_events.emn%"]]
             - [register, ["%ca.crtb.djs.sde.class%", "%ca.crtb.djs.sde.alias%", "%ca.crtb.djs.sde.rn%", "%ca.crtb.djs.sde.emn%"]]
-            - [register, ["%ca.crtb.dynamic_js_selector_dom_event_client_data_set.class%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set.alias%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set.rn%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set.emn%"]]
-            - [register, ["%ca.crtb.dynamic_js_selector_dom_event_client_data_sets.class%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_sets.alias%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_sets.rn%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_sets.emn%"]]
-            - [register, ["%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.class%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.alias%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.rn%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_class.emn%"]]
-            - [register, ["%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.class%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.alias%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.rn%", "%ca.crtb.dynamic_js_selector_dom_event_client_data_set_dom_classes.emn%"]]
+            - [register, ["%ca.crtb.djs.cds.class%", "%ca.crtb.djs.cds.alias%", "%ca.crtb.djs.cds.rn%", "%ca.crtb.djs.cds.emn%"]]
+            - [register, ["%ca.crtb.djs.cds.sets.class%", "%ca.crtb.djs.cds.sets.alias%", "%ca.crtb.djs.cds.sets.rn%", "%ca.crtb.djs.cds.sets.emn%"]]
+            - [register, ["%ca.crtb.djs.cds.dom_class.class%", "%ca.crtb.djs.cds.dom_class.alias%", "%ca.crtb.djs.cds.dom_class.rn%", "%ca.crtb.djs.cds.dom_class.emn%"]]
+            - [register, ["%ca.crtb.djs.cds.dom_classes.class%", "%ca.crtb.djs.cds.dom_classes.alias%", "%ca.crtb.djs.cds.dom_classes.rn%", "%ca.crtb.djs.cds.dom_classes.emn%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
