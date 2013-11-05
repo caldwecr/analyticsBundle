@@ -1,22 +1,55 @@
 parameters:
-    cympelAnalytics.routeTrafficPersister.class: Cympel\Bundle\AnalyticsBundle\Services\RouteTrafficPersister
-    cympel_analytics.dynamic_css_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSManager
-    cympel_analytics.dynamic_css_dom_id_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdManager
-    cympel_analytics.tracker_manager.class: Cympel\Bundle\AnalyticsBundle\Services\TrackerManager
-    cympel_analytics.dynamic_js_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSManager
-    cympel_analytics.dynamic_css_service_extension.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSServiceExtension
-    cympel_analytics.dynamic_css_dom_id_array_collection_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdArrayCollectionManager
-    cympel_analytics.tracking_tool_remover.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolRemover
-    cympel_analytics.tracking_tool_validator.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolValidator
-    cympel_analytics.dynamic_js_selector_manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager
-    cympel_analytics.dynamic_js_selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorsManager
-    cympel_analytics.dynamic_js.extension_service.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension
-    cympel_analytics.dynamic_js_dom_events.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventsManager
-    cympel_analytics.dynamic_js_dom_event.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventManager
-    cympel_analytics.dynamic_js_dom_event.finder.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventFinder
-    cympel_analytics.dynamic_js_selector_dom_event.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventManager
-    cympel_analytics.dynamic_js_selector_dom_event.finder.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventFinder
-    cympel_analytics.cds.dom_classes.creator.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventClientDataSetDomClassesCreator
+    #Deprecated
+    cympelAnalytics.routeTrafficPersister.class: %ca.rtp.class%
+    cympel_analytics.dynamic_css_manager.class: %ca.dcss.manager.class%
+    cympel_analytics.dynamic_css_dom_id_manager.class: %ca.dcss.dom_id.manager.class%
+    cympel_analytics.tracker_manager.class: %ca.tracker.manager.class%
+    cympel_analytics.dynamic_js_manager.class: %ca.djs.manager.class%
+    cympel_analytics.dynamic_css_service_extension.class: %ca.dcss.extender.class%
+    cympel_analytics.dynamic_css_dom_id_array_collection_manager.class: %ca.dcss.dom_id.ac.manager.class%
+    cympel_analytics.tracking_tool_remover.class: %ca.tracker.tt.remover.class%
+    cympel_analytics.tracking_tool_validator.class: %ca.tracker.tt.validator.class%
+    cympel_analytics.dynamic_js_selector_manager.class: %ca.djs.selector.manager.class%
+    cympel_analytics.dynamic_js_selectors.manager.class: %ca.djs.selectors.manager.class%
+    cympel_analytics.dynamic_js.extension_service.class: %ca.djs.extender.class%
+    cympel_analytics.dynamic_js_dom_events.manager.class: %ca.djs.dom_events.manager.class%
+    cympel_analytics.dynamic_js_dom_event.manager.class: %ca.djs.dom_event.manager.class%
+    cympel_analytics.dynamic_js_dom_event.finder.class: %ca.djs.dom_event.finder.class%
+    cympel_analytics.dynamic_js_selector_dom_event.manager.class: %ca.djs.de.manager.class%
+    cympel_analytics.dynamic_js_selector_dom_event.finder.class: %ca.djs.de.finder.class%
+    cympel_analytics.cds.dom_classes.creator.class: %ca.djs.cds.dom_classes.creator.class%
+
+    #Current
+    # ** --- The 'ca' namespace contains ALL CympelAnalyticsBundle services
+    ## Route Traffic Persister services
+    ## ** ** -- The 'rtp' namespace contains ALL RouteTrafficPersister services
+    ca.rtp.class: Cympel\Bundle\AnalyticsBundle\Services\RouteTrafficPersister
+    ## Dynamic CSS services
+    ## ** ** -- The 'dcss' namespace contains ALL DynamicCSS services
+    ca.dcss.dom_id.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdManager
+    ca.dcss.dom_id.ac.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSDomIdArrayCollectionManager
+    ca.dcss.extender.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSServiceExtension
+    ca.dcss.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicCSSManager
+    ## Dynamic JS services
+    ## ** ** -- The 'djs' namespace contains ALL DynamicJS services
+    ## ** ** ** -- The 'cds' namespace contains all ClientDataSet services
+    ca.djs.cds.dom_classes.creator.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventClientDataSetDomClassesCreator
+    ca.djs.extender.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSServiceExtension
+    ca.djs.dom_event.finder.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventFinder
+    ca.djs.dom_event.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventManager
+    ca.djs.dom_events.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSDomEventsManager
+    ca.djs.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSManager
+    ca.djs.selector.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager
+    ca.djs.selectors.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorsManager
+    ## ** ** -- The 'de' namespace contains all of the DomEvent services
+    ca.djs.de.finder.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventFinder
+    ca.djs.de.manager.class: Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventManager
+    ## Dynamic Tracker services
+    ## ** ** -- The 'tracker' namespace contains all Tracker services
+    ca.tracker.manager.class: Cympel\Bundle\AnalyticsBundle\Services\TrackerManager
+    ## ** ** ** -- The 'tt' namespace contains all TrackingTool services
+    ca.tracker.tt.remover.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolRemover
+    ca.tracker.tt.validator.class: Cympel\Bundle\AnalyticsBundle\Services\TrackingToolValidator
 
     ### Creatables
     cympel_analytics.creatables.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
