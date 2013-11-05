@@ -1,0 +1,226 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: caldwecr
+ * Date: 11/5/13
+ * Time: 3:59 PM
+ * Copyright Cympel Inc
+ */
+namespace Cympel\Bundle\AnalyticsBundle\Entity;
+
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Class CympelNamespace
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="CympelNamespace")
+ */
+class CympelNamespace extends CympelType implements iNamespace
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(type="bigint")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\Length(min="0", max="255")
+     */
+    protected $name;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="bigint")
+     * @Assert\NotNull()
+     */
+    protected $nameCRC32;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="bigint")
+     * @Assert\NotNull()
+     */
+    protected $created;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     * @Assert\NotNull()
+     */
+    protected $description;
+
+    /**
+     * @var string
+     */
+    protected $repositoryName;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
+    /**
+     * @param iType $rightSide
+     * @return bool
+     *
+     * Note that the object type passed into this method will always match the class type where this method is implemented.
+     */
+    protected function typedEquals(iType $rightSide)
+    {
+        return self::areEqual($this, $rightSide);
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @throws DuplicateCympelNamespaceException
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        $this->setNameCRC32();
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param int $created
+     * @return void
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return string
+     * This method must return a string with a unique representation of the object type that is implementing this interface
+     */
+    public function getType()
+    {
+        return 'CympelNamespace';
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
+
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
+     * @return string
+     *
+     * This method must return the fully qualified repository name
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return true;
+    }
+
+    /**
+     * @param int $nameCRC32
+     */
+    public final function setNameCRC32($nameCRC32 = 0)
+    {
+        $this->nameCRC32 = crc32($this->name);
+    }
+
+    /**
+     * @return int
+     */
+    public final function getNameCRC32()
+    {
+        return $this->nameCRC32;
+    }
+
+}
