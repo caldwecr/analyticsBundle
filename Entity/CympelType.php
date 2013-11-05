@@ -10,9 +10,59 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class CympelType
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
+ */
 abstract class CympelType implements iType
 {
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $cympelNamespace = '';
+
+    /**
+     * @var int
+     * @ORM\Column(type="bigint")
+     */
+    protected $cympelNamespaceCRC32 = 0;
+
+    /**
+     * @param string $cympelNamespace
+     */
+    public final function setCympelNamespace($cympelNamespace)
+    {
+        $this->cympelNamespace = $cympelNamespace;
+        $this->cympelNamespaceCRC32 = crc32($this->cympelNamespace);
+    }
+
+    /**
+     * @return string
+     */
+    public final function getCympelNamespace()
+    {
+        return $this->cympelNamespace;
+    }
+
+    /**
+     * @return int
+     */
+    public final function getCympelNamespaceCRC32()
+    {
+        return $this->cympelNamespaceCRC32;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public final function setCympelNamespaceCRC32()
+    {
+        throw new \Exception("You may not set the cympel namespace crc32 property manually, it is automatically set when the cympel namespace changes");
+    }
+
     /**
      * @param iType $rightSide
      * @throws TypeMismatchException
