@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-interface iTracker extends iType
+interface iTracker extends iValidatable
 {
     /**
      * @return ArrayCollection

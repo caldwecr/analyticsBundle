@@ -140,4 +140,12 @@ class Tracker extends CympelType implements iTracker
     {
         return $this->trackingTools;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return false;
+    }
 }
