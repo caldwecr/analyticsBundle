@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidDynamicCSSDomIdException;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 
 class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
 {

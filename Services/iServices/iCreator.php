@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatableAndFindable;
 
 interface iCreator extends iType

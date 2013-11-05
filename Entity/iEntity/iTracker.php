@@ -9,7 +9,6 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 interface iTracker extends iType
 {

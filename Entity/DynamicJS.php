@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;

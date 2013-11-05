@@ -8,6 +8,9 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
+
 class DynamicCSSPropertySet extends PropertySet
 {
     /**

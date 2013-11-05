@@ -6,7 +6,7 @@
  * Time: 10:16 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 

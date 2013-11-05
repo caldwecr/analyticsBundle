@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\ServiceTypesNotComparableException;
 
 abstract class CympelService extends CympelType
