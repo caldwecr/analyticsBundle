@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRoutedTrackingToolManagerExtender;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

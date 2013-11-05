@@ -13,6 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 

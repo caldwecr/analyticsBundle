@@ -12,6 +12,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 

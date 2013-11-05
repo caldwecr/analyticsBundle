@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;

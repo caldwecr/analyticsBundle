@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iType;

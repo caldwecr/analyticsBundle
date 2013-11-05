@@ -12,7 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 
 class DynamicJSManager extends RoutedTrackingToolManager
 {

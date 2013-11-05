@@ -6,9 +6,10 @@
  * Time: 1:48 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Cympel\Bundle\AnalyticsBundle\Entity\iType;
 
 interface iTracker extends iType
 {
