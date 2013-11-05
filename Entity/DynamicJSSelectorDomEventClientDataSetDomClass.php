@@ -159,4 +159,13 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
     {
         return $this->parentClasses;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return false;
+    }
+
 }
