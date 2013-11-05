@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DynamicCSSManager extends RoutedTrackingToolManager

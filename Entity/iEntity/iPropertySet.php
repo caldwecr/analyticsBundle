@@ -8,8 +8,6 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iTrackingTool;
-
 interface iPropertySet extends iType
 {
     /**

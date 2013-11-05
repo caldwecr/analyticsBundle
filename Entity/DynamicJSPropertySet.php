@@ -13,6 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 
 class DynamicJSPropertySet extends CympelType implements iPropertySet
 {

@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 
 class DynamicCSSPropertySet extends PropertySet
 {

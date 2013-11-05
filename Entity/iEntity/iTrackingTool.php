@@ -6,11 +6,7 @@
  * Time: 1:43 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Entity;
-
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
+namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 interface iTrackingTool extends iType, iPersistable
 {
