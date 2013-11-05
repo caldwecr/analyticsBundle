@@ -11,13 +11,13 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 interface iNamespaceable extends iType
 {
     /**
-     * @param string $cympelNamespace
+     * @param iNamespace $cympelNamespace
      * @return void
      */
-    public function setCympelNamespace($cympelNamespace);
+    public function setCympelNamespace(iNamespace $cympelNamespace);
 
     /**
-     * @return string
+     * @return iNamespace
      */
     public function getCympelNamespace();
 }
