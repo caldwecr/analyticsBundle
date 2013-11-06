@@ -11,6 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\ServiceTypesNotComparableException;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ServiceTypesDoNotHaveEntityIdsException;
 
 abstract class CympelService extends CympelType
 {
@@ -34,4 +35,12 @@ abstract class CympelService extends CympelType
         throw new ServiceTypesNotComparableException('Descendants of the CympelService abstract class do not inherently have the ability to assess equality');
     }
 
+    /**
+     * @return int|void
+     * @throws Exception\ServiceTypesDoNotHaveEntityIdsException
+     */
+    public function getId()
+    {
+        throw new ServiceTypesDoNotHaveEntityIdsException('Descendants of the CympelService abstract class do not inherently have entity manager id properties');
+    }
 }
