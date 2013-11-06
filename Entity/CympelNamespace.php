@@ -11,6 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -66,6 +67,15 @@ class CympelNamespace implements iNamespace
     protected $description;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(type="array")
+     *
+     * This will eventually be its own type, but for speed to execution going to just be lazy for now
+     */
+    protected $entities;
+
+    /**
      * @var string
      */
     protected $repositoryName;
@@ -74,6 +84,11 @@ class CympelNamespace implements iNamespace
      * @var string
      */
     protected $entityManagerName;
+
+    public function __construct()
+    {
+        $this->entities = array();
+    }
 
     /**
      * @param iType $rightSide
@@ -251,9 +266,34 @@ class CympelNamespace implements iNamespace
     /**
      * @return iNamespace
      */
-    public static function getBlankCympelNamespaceName()
+    public static function getBlankCympelNamespace()
     {
-        return '_blank';
+        $t = new CympelNamespace();
+        $t->setName('_blank');
+        return $t;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEntityCount()
+    {
+        if($this->entities && is_array($this->entities)) {
+            return count($this->entities);
+        }
+        return 0;
+    }
+
+    /**
+     * @param iNamespaceable $entity
+     * @return void
+     */
+    public function append(iNamespaceable $entity)
+    {
+        if(!$this->entities) {
+            $this->entities = array();
+        }
+        $this->entities[] = $entity;
     }
 
 }
