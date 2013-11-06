@@ -34,4 +34,9 @@ interface iNamespaceEntities extends iType
      * @return ArrayCollection
      */
     public function getEntitiesArrayCollection();
+
+    /**
+     * @return int
+     */
+    public function getEntitiesCount();
 }
