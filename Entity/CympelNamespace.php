@@ -71,7 +71,7 @@ class CympelNamespace implements iNamespace
      * @var array
      *
      * @ORM\Column(type="array")
-     *
+     * @todo Implement entities properly
      * This will eventually be its own type, but for speed to execution going to just be lazy for now
      */
     protected $entities;
