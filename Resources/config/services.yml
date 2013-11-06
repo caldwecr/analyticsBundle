@@ -50,6 +50,9 @@ parameters:
     ## ** ** ** -- The 'tt' namespace contains all TrackingTool services
     ca.tracker.tt.remover.class:            Cympel\Bundle\AnalyticsBundle\Services\TrackingToolRemover
     ca.tracker.tt.validator.class:          Cympel\Bundle\AnalyticsBundle\Services\TrackingToolValidator
+    ## ** -- The 'ns_entities' namespace contains all CympelNamespaceEntities services
+    ca.ns_entities.manager.class:           Cympel\Bundle\AnalyticsBundle\Services\CympelNamespaceEntitiesManager
+    ca.ns_entities.extender.class:          Cympel\Bundle\AnalyticsBundle\Services\CympelNamespaceEntitiesManagerExtender
 
     ### Creatables
     ca.crtb.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
@@ -116,6 +119,16 @@ parameters:
     ca.crtb.cn.alias: CympelNamespace
     ca.crtb.cn.emn: %cympel_analytics.entity_manager%
     ca.crtb.cn.rn: CympelAnalyticsBundle:CympelNamespace
+
+    ca.crtb.cn.entity.class: Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespaceEntity
+    ca.crtb.cn.entity.alias: CympelNamespaceEntity
+    ca.crtb.cn.entity.emn: %cympel_analytics.entity_manager%
+    ca.crtb.cn.entity.rn: CympelAnalyticsBundle:CympelNamespaceEntity
+
+    ca.crtb.cn.entities.class: Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespaceEntities
+    ca.crtb.cn.entities.alias: CympelNamespaceEntities
+    ca.crtb.cn.entities.emn: %cympel_analytics.entity_manager%
+    ca.crtb.cn.entities.rn: CympelAnalyticsBundle:CympelNamespaceEntities
 
     ### Generics
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
@@ -184,6 +197,12 @@ services:
     cympel_analytics.cds.dom_classes.creator:
         class: %cympel_analytics.cds.dom_classes.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
+    ca.ns_entities.manager:
+        class: %ca.ns_entities.manager.class%
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@ca.ns_entities.extender"]
+    ca.ns_entities.extender:
+        class: %ca.ns_entities.extender.class%
+        arguments: []
    ### Generics
     cympel_analytics.generics.persister:
         class: %cympel_analytics.generics.persister.class%
@@ -207,6 +226,8 @@ services:
             - [register, ["%ca.crtb.djs.cds.dom_class.class%", "%ca.crtb.djs.cds.dom_class.alias%", "%ca.crtb.djs.cds.dom_class.rn%", "%ca.crtb.djs.cds.dom_class.emn%"]]
             - [register, ["%ca.crtb.djs.cds.dom_classes.class%", "%ca.crtb.djs.cds.dom_classes.alias%", "%ca.crtb.djs.cds.dom_classes.rn%", "%ca.crtb.djs.cds.dom_classes.emn%"]]
             - [register, ["%ca.crtb.cn.class%", "%ca.crtb.cn.alias%", "%ca.crtb.cn.rn%", "%ca.crtb.cn.emn%"]]
+            - [register, ["%ca.crtb.cn.entity.class%", "%ca.crtb.cn.entity.alias%", "%ca.crtb.cn.entity.rn%", "%ca.crtb.cn.entity.emn%"]]
+            - [register, ["%ca.crtb.cn.entities.class%", "%ca.crtb.cn.entities.alias%", "%ca.crtb.cn.entities.rn%", "%ca.crtb.cn.entities.emn%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
@@ -224,4 +245,4 @@ services:
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
     ca.generics.namespacer:
         class: %ca.generics.namespacer.class%
-        arguments: [ ]
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@ca.ns_entities.manager"]

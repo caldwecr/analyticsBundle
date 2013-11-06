@@ -31,6 +31,19 @@ abstract class CympelType implements iType, iNamespaceable
     protected $entityManagerName;
 
     /**
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @param string $repositoryName
      * @return void
      */
@@ -62,7 +75,7 @@ abstract class CympelType implements iType, iNamespaceable
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    protected $cympelNamespaceKey;
+    protected $cympelNamespaceKey = '';
 
     /**
      * @param iNamespace $cympelNamespace

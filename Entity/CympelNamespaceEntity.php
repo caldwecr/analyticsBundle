@@ -8,11 +8,27 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceableEntity;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Doctrine\ORM\Mapping as ORM;
 
-class CympelNamespaceableEntity extends CympelType implements iNamespaceableEntity
+/**
+ * Class CympelNamespaceEntity
+ * @package Cympel\Bundle\AnalyticsBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="CympelNamespaceEntity")
+ */
+class CympelNamespaceEntity extends CympelType implements iNamespaceEntity
 {
+    /**
+     * @var int
+     * @ORM\Id
+     * @ORM\Column(type="bigint")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
     /**
      * @var string
      */
@@ -25,16 +41,26 @@ class CympelNamespaceableEntity extends CympelType implements iNamespaceableEnti
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
      */
     protected $prototypeClassAlias;
 
     /**
      * @var int
+     * @ORM\Column(type="bigint")
      */
     protected $prototypeId;
 
     /**
-     * @return mixed
+     * @var iNamespaceEntities
+     * @ORM\ManyToOne(targetEntity="CympelNamespaceEntities", inversedBy="entitiesArrayCollection")
+     * @ORM\JoinColumn(name="entities_id", referencedColumnName="id")
+     */
+    protected $parentEntities;
+
+
+    /**
+     * @return int
      */
     public function getPrototypeId()
     {
@@ -42,7 +68,7 @@ class CympelNamespaceableEntity extends CympelType implements iNamespaceableEnti
     }
 
     /**
-     * @param mixed $prototypeId
+     * @param int $prototypeId
      * @return void
      */
     public function setPrototypeId($prototypeId)
@@ -130,6 +156,38 @@ class CympelNamespaceableEntity extends CympelType implements iNamespaceableEnti
     public function hasValidationConstraints()
     {
         return false;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities $parentEntities
+     */
+    public function setParentEntities($parentEntities)
+    {
+        $this->parentEntities = $parentEntities;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities
+     */
+    public function getParentEntities()
+    {
+        return $this->parentEntities;
     }
 
 }

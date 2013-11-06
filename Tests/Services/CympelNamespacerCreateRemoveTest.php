@@ -8,9 +8,9 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType;
 use Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespace;
 use Cympel\Bundle\AnalyticsBundle\Tests\ContainerAwareUnitTestCase;
-use Cympel\Bundle\AnalyticsBundle\Tests\Entity\ConcreteCympelType;
 
 class CympelNamespacerCreateRemoveTest extends ContainerAwareUnitTestCase
 {
@@ -18,14 +18,16 @@ class CympelNamespacerCreateRemoveTest extends ContainerAwareUnitTestCase
     {
         $ns = 'testCreateRemove';
         $cn = new CympelNamespace($ns);
-        $cct = new ConcreteCympelType();
+        $ccpt = $this->get('cympel_analytics.generics.creator')->create('ConcretePersistableTestType');
+        $ccpt->setValue('something');
+        $this->get('cympel_analytics.generics.persister')->persist($ccpt);
         $n = $this->get('ca.generics.namespacer');
-        $n->addEntityToCympelNamespace($cct, $cn);
+        $n->addEntityToCympelNamespace($ccpt, $cn);
         $this->assertEquals(1, $cn->getEntityCount());
-        $this->assertEquals($ns, $cct->getCympelNamespace()->getName());
-        $n->removeEntityFromCympelNamespace($cct, $cn);
+        $this->assertEquals($ns, $ccpt->getCympelNamespace()->getName());
+        $n->removeEntityFromCympelNamespace($ccpt, $cn);
         $this->assertEquals(0, $cn->getEntityCount());
-        $this->assertTrue(CympelNamespace::getBlankCympelNamespace()->equals($cct->getCympelNamespace()));
+        $this->assertTrue(CympelNamespace::getBlankCympelNamespace()->equals($ccpt->getCympelNamespace()));
 
 
     }

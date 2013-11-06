@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-interface iNamespaceableEntity extends iNamespaceable, iPersistable, iFindable, iRemovable, iValidatable
+interface iNamespaceEntity extends iNamespaceable, iPersistable, iFindable, iRemovable, iValidatable
 {
     /**
      * @return string
@@ -22,12 +22,12 @@ interface iNamespaceableEntity extends iNamespaceable, iPersistable, iFindable, 
     public function setPrototypeClassAlias($prototypeClassAlias);
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getPrototypeId();
 
     /**
-     * @param mixed $prototypeId
+     * @param int $prototypeId
      * @return void
      */
     public function setPrototypeId($prototypeId);

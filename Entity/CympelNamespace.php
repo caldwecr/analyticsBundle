@@ -9,12 +9,9 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\EntityNotFoundInCympelNamespaceException;
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToRemoveEntityException;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceableEntity;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -25,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="CympelNamespace")
  */
-class CympelNamespace implements iNamespace
+class CympelNamespace extends CympelType implements iNamespace
 {
     /**
      * @var int
@@ -93,7 +90,7 @@ class CympelNamespace implements iNamespace
      */
     public function __construct($cympelNamespaceName = '_blank')
     {
-        $this->entities = array();
+        $this->entities = new CympelNamespaceEntities();
         $this->setName($cympelNamespaceName);
     }
 
@@ -286,48 +283,26 @@ class CympelNamespace implements iNamespace
      */
     public function getEntityCount()
     {
-        if($this->entities && is_array($this->entities)) {
-            return count($this->entities);
+        if($this->entities) {
+            return $this->entities->getEntitiesCount();
         }
         return 0;
     }
 
     /**
-     * @param iNamespaceable $entity
+     * @return iNamespaceEntities
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
+
+    /**
+     * @param iNamespaceEntities $entities
      * @return void
      */
-    public function append(iNamespaceable $entity)
+    public function setEntities(iNamespaceEntities $entities)
     {
-        if(!$this->entities) {
-            $this->entities = array();
-        }
-        $this->entities[$entity->getCympelNamespaceKey()] = $entity;
+        $this->entities = $entities;
     }
-
-    /**
-     * @param iNamespaceable $entity
-     * @throws Exception\InvalidAttemptToRemoveEntityException
-     */
-    public function remove(iNamespaceable $entity)
-    {
-        if(!$this->entities || !is_array($this->entities) || !array_key_exists($entity->getCympelNamespaceKey(), $this->entities)) {
-            throw new InvalidAttemptToRemoveEntityException();
-        }
-        unset($this->entities[$entity->getCympelNamespaceKey()]);
-    }
-
-
-    /**
-     * @param string $key
-     * @return iNamespaceableEntity
-     * @throws Exception\EntityNotFoundInCympelNamespaceException
-     */
-    public function getNamespaceEntityByCympelNamespaceKey($key)
-    {
-        if(!$this->entities || !is_array($this->entities) || !array_key_exists($key, $this->entities)) {
-            throw new EntityNotFoundInCympelNamespaceException();
-        }
-        return $this->entities[$key];
-    }
-
 }
