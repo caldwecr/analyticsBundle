@@ -19,9 +19,13 @@ class CympelNamespaceEntityCountTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(0, $cn->getEntityCount());
         $t = new ConcreteCympelType();
         $t->setCympelNamespaceKey('foo');
-        $cn->append($t);
+        $es = $cn->getEntities();
+        $es_ac = $es->getEntitiesArrayCollection();
+        $es_ac->set($t->getCympelNamespaceKey(), $t);
+        $es->setEntitiesArrayCollection($es_ac);
         $this->assertEquals(1, $cn->getEntityCount());
-        $cn->remove($t);
+        $es_ac->remove($t->getCympelNamespaceKey());
+        $es->setEntitiesArrayCollection($es_ac);
         $this->assertEquals(0, $cn->getEntityCount());
     }
 }
