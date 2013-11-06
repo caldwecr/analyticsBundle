@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
 
 interface iNamespaceEntitiesManager extends iManager
@@ -18,8 +19,9 @@ interface iNamespaceEntitiesManager extends iManager
     public function getExtender();
 
     /**
-     * @param mixed $key
+     * @param $key
+     * @param iNamespace $cympelNamespace
      * @return iNamespaceable
      */
-    public function getNamespaceEntityByCympelNamespaceKey($key);
+    public function getNamespaceEntityByCympelNamespaceKey($key, iNamespace $cympelNamespace);
 }

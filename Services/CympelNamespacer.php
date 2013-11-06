@@ -109,7 +109,7 @@ class CympelNamespacer extends CympelService implements iNamespacer
      */
     public function getEntityByNamespaceKey($key, iNamespace $cympelNamespace)
     {
-        $cympelNamespaceEntity = $cympelNamespace->getNamespaceEntityByCympelNamespaceKey($key);
+        $cympelNamespaceEntity = $this->namespaceableEntitiesManager->getNamespaceEntityByCympelNamespaceKey($key, $cympelNamespace);
         $created = $this->finder->findOneByIdAndClassAlias($cympelNamespaceEntity->getPrototypeId(), $cympelNamespaceEntity->getPrototypeClassAlias());
         return $created;
     }

@@ -39,4 +39,10 @@ interface iNamespaceEntities extends iType, iNamespaceable, iPersistable, iFinda
      * @return int
      */
     public function getEntitiesCount();
+
+    /**
+     * @param mixed
+     * @return iNamespaceEntity
+     */
+    public function getEntityByCympelNamespaceKey($key);
 }

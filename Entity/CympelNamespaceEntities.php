@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
@@ -32,7 +33,7 @@ class CympelNamespaceEntities extends CympelType implements iNamespaceEntities
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="CympelNamespaceEntity", mappedBy="parentEntities")
+     * @ORM\OneToMany(targetEntity="CympelNamespaceEntity", mappedBy="parentEntities", cascade={"persist", "remove"})
      */
     protected $entitiesArrayCollection;
 
@@ -154,5 +155,14 @@ class CympelNamespaceEntities extends CympelType implements iNamespaceEntities
     public function hasValidationConstraints()
     {
         return false;
+    }
+
+    /**
+     * @param mixed
+     * @return iNamespaceEntity
+     */
+    public function getEntityByCympelNamespaceKey($key)
+    {
+        return $this->entitiesArrayCollection->get($key);
     }
 }

@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
@@ -44,4 +46,18 @@ class CympelNamespaceEntitiesManager extends CympelManager implements iNamespace
     {
         $this->extender = $extender;
     }
+
+    /**
+     * @param $key
+     * @param iNamespace $cympelNamespace
+     * @return iNamespaceEntity
+     */
+    public function getNamespaceEntityByCympelNamespaceKey($key, iNamespace $cympelNamespace)
+    {
+        $entities = $cympelNamespace->getEntities();
+        $cympelNamespaceEntity = $entities->getEntityByCympelNamespaceKey($key);
+        return $cympelNamespaceEntity;
+    }
+
+
 }
