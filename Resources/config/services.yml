@@ -42,8 +42,8 @@ parameters:
     ca.djs.selector.manager.class:          Cympel\Bundle\AnalyticsBundle\Services\DynamicJSSelectorManager
     ca.djs.selectors.manager.class:         Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorsManager
     ## ** ** -- The 'sde' namespace contains all of the SelectorDomEvent services
-    ca.djs.sde.finder.class:                 Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventFinder
-    ca.djs.sde.manager.class:                Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventManager
+    ca.djs.sde.finder.class:                Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventFinder
+    ca.djs.sde.manager.class:               Cympel\Bundle\AnalyticsBundle\Services\DynamicJS\DynamicJSSelectorDomEventManager
     ## Dynamic Tracker services
     ## ** ** -- The 'tracker' namespace contains all Tracker services
     ca.tracker.manager.class:               Cympel\Bundle\AnalyticsBundle\Services\TrackerManager
@@ -126,6 +126,7 @@ parameters:
     cympel_analytics.generics.validator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelValidator
     cympel_analytics.generics.router.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRouter
     cympel_analytics.generics.manager.class: Cympel\Bundle\AnalyticsBundle\Services\CympelManager
+    ca.generics.namespacer.class: Cympel\Bundle\AnalyticsBundle\Services\CympelNamespacer
     cympel_analytics.entity_manager:
 
 services:
@@ -221,3 +222,6 @@ services:
     cympel_analytics.generics.manager:
         class: %cympel_analytics.generics.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
+    ca.generics.namespacer:
+        class: %ca.generics.namespacer.class%
+        arguments: [ ]
