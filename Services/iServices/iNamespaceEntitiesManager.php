@@ -14,4 +14,10 @@ interface iNamespaceEntitiesManager extends iManager
      * @return iNamespaceableEntitiesManagerExtender
      */
     public function getExtender();
+
+    /**
+     * @param mixed $key
+     * @return void
+     */
+    public function getNamespaceEntityByCympelNamespaceKey($key);
 }
