@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
@@ -18,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CympelType
  * @package Cympel\Bundle\AnalyticsBundle\Entity
  */
-abstract class CympelType implements iType, iNamespaceable
+abstract class CympelType implements iType, iNamespaceable, iFindable
 {
     /**
      * @var string
@@ -41,6 +42,22 @@ abstract class CympelType implements iType, iNamespaceable
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEntityManagerName()
+    {
+        return $this->entityManagerName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRepositoryName()
+    {
+        return $this->repositoryName;
     }
 
     /**

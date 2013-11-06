@@ -64,7 +64,7 @@ class CreatableRegistrar extends CympelService implements iCreatableRegistrar
      * @param string $alias
      * @return string
      */
-    public function getRepositoryName($alias)
+    public function getRepositoryNameForAlias($alias)
     {
         return $this->repositoryNameMap[$alias];
     }
@@ -73,7 +73,7 @@ class CreatableRegistrar extends CympelService implements iCreatableRegistrar
      * @param string $alias
      * @return string
      */
-    public function getEntityManagerName($alias)
+    public function getEntityManagerNameForAlias($alias)
     {
         return $this->entityManagerNameMap[$alias];
     }

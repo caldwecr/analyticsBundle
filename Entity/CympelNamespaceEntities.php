@@ -41,7 +41,7 @@ class CympelNamespaceEntities extends CympelType implements iNamespaceEntities
      * @ORM\OneToOne(targetEntity="CympelNamespace", inversedBy="entities")
      * @ORM\JoinColumn(name="cympelnamespace_id", referencedColumnName="id")
      */
-    protected $parentNamespace;
+    protected $cympelNamespace;
 
     /**
      * @var array
@@ -149,18 +149,10 @@ class CympelNamespaceEntities extends CympelType implements iNamespaceEntities
     }
 
     /**
-     * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace $parentNamespace
+     * @return bool
      */
-    public function setParentNamespace($parentNamespace)
+    public function hasValidationConstraints()
     {
-        $this->parentNamespace = $parentNamespace;
-    }
-
-    /**
-     * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace
-     */
-    public function getParentNamespace()
-    {
-        return $this->parentNamespace;
+        return false;
     }
 }

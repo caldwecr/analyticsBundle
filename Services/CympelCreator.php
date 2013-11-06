@@ -34,8 +34,8 @@ class CympelCreator extends CympelService implements iCreator
     {
         $creatable = $this->registrar->getClass($classAlias);
         $created = new $creatable;
-        $created->setEntityManagerName($this->registrar->getEntityManagerName($classAlias));
-        $created->setRepositoryName($this->registrar->getRepositoryName($classAlias));
+        $created->setEntityManagerName($this->registrar->getEntityManagerNameForAlias($classAlias));
+        $created->setRepositoryName($this->registrar->getRepositoryNameForAlias($classAlias));
         $created->setCympelNamespaceKey('');
         return $created;
     }

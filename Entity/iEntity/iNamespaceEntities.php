@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-interface iNamespaceEntities extends iType
+interface iNamespaceEntities extends iType, iNamespaceable, iPersistable, iFindable, iRemovable, iValidatable
 {
     /**
      * @return void
