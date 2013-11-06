@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToRemoveEntityException;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
@@ -85,9 +86,13 @@ class CympelNamespace implements iNamespace
      */
     protected $entityManagerName;
 
-    public function __construct()
+    /**
+     * @param string $cympelNamespaceName
+     */
+    public function __construct($cympelNamespaceName = '_blank')
     {
         $this->entities = array();
+        $this->setName($cympelNamespaceName);
     }
 
     /**
@@ -260,7 +265,8 @@ class CympelNamespace implements iNamespace
      */
     private static function cympelNamespaceEquals(iNamespace $leftSide, iNamespace $rightSide)
     {
-        return $leftSide->getName() === $rightSide->getName();
+        $a = $leftSide->getName() === $rightSide->getName();
+        return $a;
     }
 
     /**
@@ -293,7 +299,19 @@ class CympelNamespace implements iNamespace
         if(!$this->entities) {
             $this->entities = array();
         }
-        $this->entities[] = $entity;
+        $this->entities[$entity->getCympelNamespaceKey()] = $entity;
+    }
+
+    /**
+     * @param iNamespaceable $entity
+     * @throws Exception\InvalidAttemptToRemoveEntityException
+     */
+    public function remove(iNamespaceable $entity)
+    {
+        if(!$this->entities || !is_array($this->entities) || !array_key_exists($entity->getCympelNamespaceKey(), $this->entities)) {
+            throw new InvalidAttemptToRemoveEntityException();
+        }
+        unset($this->entities[$entity->getCympelNamespaceKey()]);
     }
 
 }
