@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DynamicCSSController extends Controller {
 
-    public function dynamicCSSAction($key)
+    public function dynamicCSSAction($key, $cympelNamespace = '_blank')
     {
         //convert $key into useful variables to pass to template
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
@@ -27,7 +27,7 @@ class DynamicCSSController extends Controller {
         return $response;
     }
 
-    public function dynamicCSSImageFileAction($key, $domIdValue)
+    public function dynamicCSSImageFileAction($key, $domIdValue, $cympelNamespace = '_blank')
     {
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
         $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');

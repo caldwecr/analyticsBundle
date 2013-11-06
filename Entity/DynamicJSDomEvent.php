@@ -45,12 +45,12 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
     /**
      * @var string
      */
-    private $repositoryName;
+    protected  $repositoryName;
 
     /**
      * @var string
      */
-    private $entityManagerName;
+    protected $entityManagerName;
 
     public function __construct()
     {

@@ -16,4 +16,6 @@ interface iNamespacer extends iService
     public function addEntityToCympelNamespace(iNamespaceable $entity, iNamespace $cympelNamespace);
 
     public function removeEntityFromCympelNamespace(iNamespaceable $entity, iNamespace $cympelNamespace);
+
+    public function getEntityByNamespaceKey($key, iNamespace $cympelNamespace);
 }

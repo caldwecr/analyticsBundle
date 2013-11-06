@@ -1,9 +1,9 @@
 dynamicCSS:
-    pattern:  /dynamic/css/{key}
-    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSS }
+    pattern:  /dynamic/css/{key}/{cympelNamespace}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSS, cympelNamespace: _blank }
 dynamicCSSImageFile:
-    pattern: /dynamic/css/image/file/{key}/{domIdValue}
-    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile }
+    pattern: /dynamic/css/image/file/{key}/{domIdValue}/{cympelNamespace}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile, cympelNamespace: _blank }
 dynamicCSSTest:
     pattern: /dynamic/test
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicCSSTest }

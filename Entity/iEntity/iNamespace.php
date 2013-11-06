@@ -67,4 +67,10 @@ interface iNamespace extends iType, iValidatable, iPersistable, iCreatable, iRem
      * @return iNamespace
      */
     public static function getBlankCympelNamespace();
+
+    /**
+     * @param string $key
+     * @return iNamespaceableEntity
+     */
+    public function getNamespaceEntityByCympelNamespaceKey($key);
 }

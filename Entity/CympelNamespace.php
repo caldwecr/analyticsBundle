@@ -9,10 +9,12 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\EntityNotFoundInCympelNamespaceException;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToRemoveEntityException;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceableEntity;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -312,6 +314,20 @@ class CympelNamespace implements iNamespace
             throw new InvalidAttemptToRemoveEntityException();
         }
         unset($this->entities[$entity->getCympelNamespaceKey()]);
+    }
+
+
+    /**
+     * @param string $key
+     * @return iNamespaceableEntity
+     * @throws Exception\EntityNotFoundInCympelNamespaceException
+     */
+    public function getNamespaceEntityByCympelNamespaceKey($key)
+    {
+        if(!$this->entities || !is_array($this->entities) || !array_key_exists($key, $this->entities)) {
+            throw new EntityNotFoundInCympelNamespaceException();
+        }
+        return $this->entities[$key];
     }
 
 }

@@ -14,9 +14,15 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToSetEntityCympelNamespace;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 
 class CympelNamespacer extends CympelService implements iNamespacer
 {
+    /**
+     * @var iFinder
+     */
+    protected $finder;
+
     /**
      * @param iNamespaceable $entity
      * @param iNamespace $cympelNamespace
@@ -51,6 +57,12 @@ class CympelNamespacer extends CympelService implements iNamespacer
             throw new InvalidAttemptToRemoveCympelNamespaceException();
         }
         return $cympelNamespace->getEntityCount();
+    }
+
+    public function getEntityByNamespaceKey($key, iNamespace $cympelNamespace)
+    {
+        $cympelNamespaceEntity = $cympelNamespace->getNamespaceEntityByCympelNamespaceKey($key);
+        $created = $this->finder->findOneByIdAndClassAlias($cympelNamespaceEntity->get)
     }
 
     /**

@@ -21,6 +21,34 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class CympelType implements iType, iNamespaceable
 {
     /**
+     * @var string
+     */
+    protected $repositoryName;
+
+    /**
+     * @var string
+     */
+    protected $entityManagerName;
+
+    /**
+     * @param string $repositoryName
+     * @return void
+     */
+    public function setRepositoryName($repositoryName)
+    {
+        $this->repositoryName = $repositoryName;
+    }
+
+    /**
+     * @param string $entityManagerName
+     * @return void
+     */
+    public function setEntityManagerName($entityManagerName)
+    {
+        $this->entityManagerName = $entityManagerName;
+    }
+
+    /**
      * @var iNamespace
      * @ORM\ManyToOne(targetEntity="CympelNamespace")
      * @ORM\JoinTable(name="cympelNamespace_cympeltype",
@@ -32,6 +60,7 @@ abstract class CympelType implements iType, iNamespaceable
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
      */
     protected $cympelNamespaceKey;
 
