@@ -147,7 +147,7 @@ class CympelNamespaceEntity extends CympelType implements iNamespaceEntity
      */
     public function getType()
     {
-        return 'CympelNamespaceableEntity';
+        return 'CympelNamespaceEntity';
     }
 
     /**
