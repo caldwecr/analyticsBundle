@@ -20,4 +20,15 @@ interface iNamespaceable extends iType
      * @return iNamespace
      */
     public function getCympelNamespace();
+
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function setCympelNamespaceKey($key);
+
+    /**
+     * @return string
+     */
+    public function getCympelNamespaceKey();
 }
