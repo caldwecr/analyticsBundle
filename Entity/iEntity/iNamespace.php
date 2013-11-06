@@ -45,4 +45,9 @@ interface iNamespace extends iType, iValidatable, iPersistable, iCreatable, iRem
      * @return void
      */
     public function setCreated($created);
+
+    /**
+     * @return string
+     */
+    public static function getBlankCympelNamespaceName();
 }

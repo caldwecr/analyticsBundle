@@ -248,4 +248,12 @@ class CympelNamespace implements iNamespace
         return $leftSide->getName() === $rightSide->getName();
     }
 
+    /**
+     * @return iNamespace
+     */
+    public static function getBlankCympelNamespaceName()
+    {
+        return '_blank';
+    }
+
 }
