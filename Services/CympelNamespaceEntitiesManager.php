@@ -27,6 +27,11 @@ class CympelNamespaceEntitiesManager extends CympelManager implements iNamespace
     protected static $classAlias = 'CympelNamespaceEntitiesManager';
 
     /**
+     * @var iNamespaceEntitiesManagerExtender
+     */
+    protected $extender;
+
+    /**
      * @param iCreator $creator
      * @param iFinder $finder
      * @param iPersister $persister
@@ -59,9 +64,7 @@ class CympelNamespaceEntitiesManager extends CympelManager implements iNamespace
      */
     public function getNamespaceEntityByCympelNamespaceKey($key, iNamespace $cympelNamespace)
     {
-        $entities = $cympelNamespace->getEntities();
-        $cympelNamespaceEntity = $entities->getEntityByCympelNamespaceKey($key);
-        return $cympelNamespaceEntity;
+        $this->extender->getNamespaceEntityByCympelNamespaceKey($key, $cympelNamespace);
     }
 
 

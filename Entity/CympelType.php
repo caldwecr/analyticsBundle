@@ -82,7 +82,7 @@ abstract class CympelType extends AliasableType implements iType, iNamespaceable
 
     /**
      * @var iNamespace
-     * @ORM\ManyToOne(targetEntity="CympelNamespace")
+     * @ORM\ManyToOne(targetEntity="CympelNamespace", cascade={"persist"})
      * @ORM\JoinTable(name="cympelNamespace_cympeltype",
      *      joinColumns={@ORM\JoinColumn(name="cympeltype_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="cympelnamespace_id", referencedColumnName="id", unique=true)}

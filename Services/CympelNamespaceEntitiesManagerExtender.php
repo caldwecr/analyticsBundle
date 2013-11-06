@@ -11,6 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManagerExtender;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 
 class CympelNamespaceEntitiesManagerExtender extends CympelService implements iNamespaceEntitiesManagerExtender
 {
@@ -29,5 +30,17 @@ class CympelNamespaceEntitiesManagerExtender extends CympelService implements iN
     {
         $ac = $entities->getEntitiesArrayCollection();
         $ac->remove($entity->getCympelNamespaceKey());
+    }
+
+    /**
+     * @param $key
+     * @param iNamespace $cympelNamespace
+     * @return iNamespaceEntity
+     */
+    public function getNamespaceEntityByCympelNamespaceKey($key, iNamespace $cympelNamespace)
+    {
+        $entities = $cympelNamespace->getEntities();
+        $cympelNamespaceEntity = $entities->getEntityByCympelNamespaceKey($key);
+        return $cympelNamespaceEntity;
     }
 }

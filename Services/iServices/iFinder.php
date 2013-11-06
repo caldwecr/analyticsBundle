@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidFindablePropertyException;
 
 interface iFinder extends iType
 {
@@ -19,4 +20,12 @@ interface iFinder extends iType
      * @return iFindable
      */
     public function findOneByIdAndClassAlias($id, $classAlias);
+
+    /**
+     * @param array $property
+     * @param $classAlias
+     * @return iFindable
+     * @throws InvalidFindablePropertyException
+     */
+    public function findOneByPropertyAndClassAlias($property = array(), $classAlias);
 }

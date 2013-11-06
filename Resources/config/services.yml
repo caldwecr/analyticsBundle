@@ -206,7 +206,7 @@ services:
    ### Generics
     cympel_analytics.generics.persister:
         class: %cympel_analytics.generics.persister.class%
-        arguments: ["@doctrine", "@cympel_analytics.generics.validator"]
+        arguments: ["@doctrine", "@cympel_analytics.generics.validator", "@ca.generics.namespacer", "firstNamespaceCrazy"]
     cympel_analytics.generics.remover:
         class: %cympel_analytics.generics.remover.class%
         arguments: ["@doctrine"]
@@ -245,4 +245,4 @@ services:
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
     ca.generics.namespacer:
         class: %ca.generics.namespacer.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@ca.ns_entities.manager"]
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@ca.ns_entities.extender"]

@@ -9,9 +9,11 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespace;
+use Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespaceEntities;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToRemoveCympelNamespaceException;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManagerExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToSetEntityCympelNamespace;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
@@ -33,20 +35,26 @@ class CympelNamespacer extends CympelService implements iNamespacer
     protected $creator;
 
     /**
-     * @var iNamespaceEntitiesManager
+     * @var iNamespaceEntitiesManagerExtender
      */
-    protected $namespaceableEntitiesManager;
+    protected $namespaceableEntitiesManagerExtender;
 
     /**
      * @var string
      */
     protected static $classAlias = 'CympelNamespacer';
 
-    public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManager $namespaceableEntitesManager)
+    /*public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManager $namespaceableEntitesManager)
     {
         $this->creator = $creator;
         $this->finder = $finder;
         $this->namespaceableEntitiesManager = $namespaceableEntitesManager;
+    }*/
+    public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManagerExtender $entitiesManagerExtender)
+    {
+        $this->creator = $creator;
+        $this->finder = $finder;
+        $this->namespaceableEntitiesManagerExtender = $entitiesManagerExtender;
     }
 
     /**
@@ -63,9 +71,18 @@ class CympelNamespacer extends CympelService implements iNamespacer
             $cne = $this->createCympelNamespaceEntityFromNamespaceableEntity($entity);
 
             // append entity needs to take care of setting the parentEntities
-            $this->namespaceableEntitiesManager->getExtender()->appendEntity($cympelNamespace->getEntities(), $cne);
+            $entities = $cympelNamespace->getEntities();
+            if(!$entities) {
+                $entities = $this->creator->create('CympelNamespaceEntities');
+                $cympelNamespace->setEntities($entities);
+            }
+            $this->namespaceableEntitiesManagerExtender->appendEntity($cympelNamespace->getEntities(), $cne);
         } else {
-            throw new InvalidAttemptToSetEntityCympelNamespace();
+            if(!$ens) {
+                throw new InvalidAttemptToSetEntityCympelNamespace("Namespace was null");
+            } else {
+                throw new InvalidAttemptToSetEntityCympelNamespace('This entity already has a namespace associated with it, to change the namespace first remove the existing one.');
+            }
         }
         return $cympelNamespace->getEntityCount();
 
@@ -100,7 +117,7 @@ class CympelNamespacer extends CympelService implements iNamespacer
         if($e_cns && $e_cns->equals($cympelNamespace)) {
             $entity->setCympelNamespace(CympelNamespace::getBlankCympelNamespace());
             $cne = $this->createCympelNamespaceEntityFromNamespaceableEntity($entity);
-            $this->namespaceableEntitiesManager->getExtender()->removeEntity($cympelNamespace->getEntities(), $cne);
+            $this->namespaceableEntitiesManagerExtender->removeEntity($cympelNamespace->getEntities(), $cne);
         } else {
             throw new InvalidAttemptToRemoveCympelNamespaceException();
         }
@@ -114,8 +131,20 @@ class CympelNamespacer extends CympelService implements iNamespacer
      */
     public function getEntityByNamespaceKey($key, iNamespace $cympelNamespace)
     {
-        $cympelNamespaceEntity = $this->namespaceableEntitiesManager->getNamespaceEntityByCympelNamespaceKey($key, $cympelNamespace);
+        $cympelNamespaceEntity = $this->namespaceableEntitiesManagerExtender->getNamespaceEntityByCympelNamespaceKey($key, $cympelNamespace);
         $created = $this->finder->findOneByIdAndClassAlias($cympelNamespaceEntity->getPrototypeId(), $cympelNamespaceEntity->getPrototypeClassAlias());
         return $created;
+    }
+
+    public function findOrCreateNamespaceByName($namespaceName)
+    {
+        $n = $this->finder->findOneByPropertyAndClassAlias(array('name' => $namespaceName), CympelNamespace::getClassAlias());
+        if(!$n){
+            $n = $this->creator->create(CympelNamespace::getClassAlias());
+            $n->setName($namespaceName);
+            $n->setCreated(time());
+            $n->setDescription('Description: ' . $namespaceName);
+        }
+        return $n;
     }
 }

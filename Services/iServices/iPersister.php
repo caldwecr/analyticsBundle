@@ -20,4 +20,12 @@ interface iPersister extends iType
      * @return void
      */
     public function persist(iPersistable $persistable);
+
+    /**
+     * @param $doctrine
+     * @param iValidator $validator
+     * @param iNamespacer $namespacer
+     * @param string $namespaceName
+     */
+    public function __construct($doctrine, iValidator $validator, iNamespacer $namespacer, $namespaceName = '_blank');
 }

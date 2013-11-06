@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidFindablePropertyException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreatableRegistrar;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
@@ -62,6 +63,30 @@ class CympelFinder extends CympelService implements iFinder
         if($found) {
             $found->setRepositoryName($repositoryName);
             $found->setEntityManagerName($entityManagerName);
+        }
+        return $found;
+    }
+
+    /**
+     * @param array $property
+     * @param $classAlias
+     * @return iFindable
+     * @throws InvalidFindablePropertyException
+     */
+    public function findOneByPropertyAndClassAlias($property = array(), $classAlias)
+    {
+        if($property && is_array($property) && count($property) === 1) {
+            $findable = $this->creator->create($classAlias);
+            $repositoryName = $findable->getRepositoryName();
+            $entityManagerName = $findable->getEntityManagerName();
+            $repository = $this->doctrine->getRepository($repositoryName, $entityManagerName);
+            $found = $repository->findOneBy($property);
+            if($found) {
+                $found->setRepositoryName($repositoryName);
+                $found->setEntityManagerName($entityManagerName);
+            }
+        } else {
+            throw new InvalidFindablePropertyException();
         }
         return $found;
     }

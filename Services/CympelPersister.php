@@ -9,9 +9,11 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidPersistableException;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 
 class CympelPersister extends CympelService implements iPersister
 {
@@ -26,14 +28,32 @@ class CympelPersister extends CympelService implements iPersister
     protected $validator;
 
     /**
+     * @var iNamespacer
+     */
+    protected $namespacer;
+
+    /**
      * @var string
      */
     protected static $classAlias = 'CympelPersister';
 
-    public function __construct($doctrine, iValidator $validator)
+    /**
+     * @var iNamespace
+     */
+    private $myNamespace;
+
+    /**
+     * @param Object $doctrine
+     * @param iValidator $validator
+     * @param iNamespacer $namespacer
+     * @param string $namespaceName
+     */
+    public function __construct($doctrine, iValidator $validator, iNamespacer $namespacer, $namespaceName = '_blank')
     {
         $this->doctrine = $doctrine;
         $this->validator = $validator;
+        $this->namespacer = $namespacer;
+        $this->myNamespace = $this->namespacer->findOrCreateNamespaceByName($namespaceName);
     }
 
     /**
@@ -43,13 +63,21 @@ class CympelPersister extends CympelService implements iPersister
      */
     public function persist(iPersistable $persistable)
     {
+
         if(!$this->validator->isValid($persistable)) {
             $errors = $this->validator->validate($persistable);
             throw new InvalidPersistableException($errors[0]);
         }
         $emName = $persistable->getEntityManagerName();
         $em = $this->doctrine->getManager($emName);
+        if(!$persistable->getId()) {
+            $em->persist($persistable);
+            $em->flush();
+        }
+        // An entity must have a valid id before adding to a namespace
+        $this->namespacer->addEntityToCympelNamespace($persistable, $this->myNamespace);
         $em->persist($persistable);
         $em->flush();
+
     }
 }
