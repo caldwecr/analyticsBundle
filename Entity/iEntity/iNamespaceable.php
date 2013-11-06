@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-interface iNamespaceable extends iType, iCreatable
+interface iNamespaceable extends iType
 {
     /**
      * @param iNamespace $cympelNamespace
@@ -31,4 +31,9 @@ interface iNamespaceable extends iType, iCreatable
      * @return string
      */
     public function getCympelNamespaceKey();
+
+    /**
+     * @return int
+     */
+    public function getId();
 }
