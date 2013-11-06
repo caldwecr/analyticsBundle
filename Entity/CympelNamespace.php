@@ -69,7 +69,7 @@ class CympelNamespace extends CympelType implements iNamespace
     /**
      * @var array
      *
-     * @ORM\OneToOne(targetEntity="CympelNamespaceEntities", mappedBy="cympelNamespace")
+     * @ORM\OneToOne(targetEntity="CympelNamespaceEntities", mappedBy="cympelNamespace", cascade={"persist", "remove"})
      */
     protected $entities;
 
