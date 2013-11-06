@@ -58,6 +58,10 @@ class CympelNamespaceEntity extends CympelType implements iNamespaceEntity
      */
     protected $parentEntities;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelNamespaceEntity';
 
     /**
      * @return int
@@ -139,15 +143,6 @@ class CympelNamespaceEntity extends CympelType implements iNamespaceEntity
     public function getEntityManagerName()
     {
         return $this->entityManagerName;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelNamespaceEntity';
     }
 
     /**

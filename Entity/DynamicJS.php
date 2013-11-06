@@ -70,6 +70,11 @@ class DynamicJS extends RoutedTrackingTool implements iDynamicJS
      */
     protected $repositoryName;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJS';
+
     public function __construct()
     {
         $this->rendered = 0;
@@ -90,15 +95,6 @@ class DynamicJS extends RoutedTrackingTool implements iDynamicJS
     public function getTracker()
     {
         return $this->tracker;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJS';
     }
 
     /**

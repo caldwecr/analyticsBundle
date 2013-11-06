@@ -18,18 +18,14 @@ class CympelValidator extends CympelService implements iValidator
      */
     protected $validator;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelValidator';
+
     public function __construct($validator)
     {
         $this->validator = $validator;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelValidator';
     }
 
     /**

@@ -17,20 +17,16 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 class DynamicJSManager extends RoutedTrackingToolManager
 {
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSManager';
+
+    /**
      * @return iPropertySet
      */
     protected function createPropertySet()
     {
         return new DynamicJSPropertySet();
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSManager';
     }
 
     /**

@@ -23,6 +23,11 @@ class TrackerManager extends CympelService implements iTrackerManager
 
     protected $trackingToolRemover;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'TrackerManager';
+
     public function __construct($doctrine, $trackingToolRemover, $entityManagerName)
     {
         $this->doctrine = $doctrine;
@@ -51,14 +56,6 @@ class TrackerManager extends CympelService implements iTrackerManager
         $tools->add($tool);
         $tracker->setTrackingTools($tools);
         return true;
-    }
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'TrackerManager';
     }
 
     /**

@@ -75,6 +75,12 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
      */
     protected $domEvent;
 
+
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSSelectorDomEvent';
+
     /**
      * @param iType $rightSide
      * @return bool
@@ -120,15 +126,6 @@ class DynamicJSSelectorDomEvent extends CympelType implements iDynamicJSSelector
     public function getEntityManagerName()
     {
         return $this->entityManagerName;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSSelectorDomEvent';
     }
 
     /**

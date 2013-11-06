@@ -85,6 +85,11 @@ class DynamicCSS extends RoutedTrackingTool implements iCreatable, iPersistable,
     protected $repositoryName;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSS';
+
+    /**
      * A default constructor
      */
     public function __construct()
@@ -172,15 +177,6 @@ class DynamicCSS extends RoutedTrackingTool implements iCreatable, iPersistable,
     public function getRendered()
     {
         return $this->rendered;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSS';
     }
 
     /**

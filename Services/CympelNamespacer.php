@@ -37,6 +37,11 @@ class CympelNamespacer extends CympelService implements iNamespacer
      */
     protected $namespaceableEntitiesManager;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelNamespacer';
+
     public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManager $namespaceableEntitesManager)
     {
         $this->creator = $creator;
@@ -113,14 +118,4 @@ class CympelNamespacer extends CympelService implements iNamespacer
         $created = $this->finder->findOneByIdAndClassAlias($cympelNamespaceEntity->getPrototypeId(), $cympelNamespaceEntity->getPrototypeClassAlias());
         return $created;
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelNamespacer';
-    }
-
 }

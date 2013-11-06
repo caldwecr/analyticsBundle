@@ -47,6 +47,11 @@ class Tracker extends CympelType implements iTracker
     protected $trackingTools;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'Tracker';
+
+    /**
      * This method initializes properties
      */
     public function __construct()
@@ -65,16 +70,6 @@ class Tracker extends CympelType implements iTracker
     protected function typedEquals(iType $rightSide)
     {
         return self::areEqual($this,$rightSide);
-    }
-
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'Tracker';
     }
 
     /**

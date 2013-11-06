@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
-interface iCreatable extends iNamespaceable
+interface iCreatable extends iNamespaceable, iAliasable
 {
     /**
      * @param string $repositoryName

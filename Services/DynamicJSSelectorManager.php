@@ -40,6 +40,10 @@ class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelect
      */
     protected $remover;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSSelectorManager';
 
     public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover)
     {
@@ -47,15 +51,6 @@ class DynamicJSSelectorManager extends CympelService implements iDynamicJSSelect
         $this->finder = $finder;
         $this->persister = $persister;
         $this->remover = $remover;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSSelectorManager';
     }
 
     /**

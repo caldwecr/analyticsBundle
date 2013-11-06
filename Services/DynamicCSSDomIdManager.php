@@ -21,6 +21,11 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
 
     protected $emName;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSSDomIdManager';
+
     public function __construct($doctrine, $validator, $entityManagerName)
     {
         $this->doctrine = $doctrine;
@@ -216,15 +221,4 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
     {
         return $this->validateDynamicCSSDomId($dynamicCSSDomId);
     }
-
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSSDomIdManager';
-    }
-
 }

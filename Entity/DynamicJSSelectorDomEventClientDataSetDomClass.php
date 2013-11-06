@@ -52,6 +52,11 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
      */
     protected $className;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSSelectorDomEventClientDataSetDomClass';
+
     public function __construct()
     {
         $this->className = '';
@@ -102,15 +107,6 @@ class DynamicJSSelectorDomEventClientDataSetDomClass extends CympelType implemen
     public function getEntityManagerName()
     {
         return $this->entityManagerName;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSSelectorDomEventClientDataSetDomClass';
     }
 
     /**

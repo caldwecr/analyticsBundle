@@ -38,6 +38,11 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
     protected $events;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSPropertySet';
+
+    /**
      * @param iTrackingTool $tool
      * @return iTrackingTool
      */
@@ -81,15 +86,6 @@ class DynamicJSPropertySet extends CympelType implements iPropertySet
         $this->dynamicJSelectors = $tool->getDynamicJSelectors();
         $this->events = $tool->getEvents();
         return $this;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSPropertySet';
     }
 
     /**

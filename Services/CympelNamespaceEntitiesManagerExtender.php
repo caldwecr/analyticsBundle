@@ -14,6 +14,11 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManagerEx
 
 class CympelNamespaceEntitiesManagerExtender extends CympelService implements iNamespaceEntitiesManagerExtender
 {
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelNamespaceEntitiesManagerExtender';
+
     public function appendEntity(iNamespaceEntities $entities, iNamespaceEntity $entity)
     {
         $ac = $entities->getEntitiesArrayCollection();
@@ -25,14 +30,4 @@ class CympelNamespaceEntitiesManagerExtender extends CympelService implements iN
         $ac = $entities->getEntitiesArrayCollection();
         $ac->remove($entity->getCympelNamespaceKey());
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelNamespaceEntitiesManagerExtender';
-    }
-
 }

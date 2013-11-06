@@ -24,6 +24,11 @@ use Doctrine\ORM\Mapping as ORM;
 class CympelNamespaceEntities extends CympelType implements iNamespaceEntities
 {
     /**
+     * @var string
+     */
+    protected static $classAlias;
+
+    /**
      * @var int
      * @ORM\Id
      * @ORM\Column(type="bigint")
@@ -98,15 +103,6 @@ class CympelNamespaceEntities extends CympelType implements iNamespaceEntities
     public function makeIndexStale()
     {
         $this->indexIsStale = true;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelNamespaceEntities';
     }
 
     /**

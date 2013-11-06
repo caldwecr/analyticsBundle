@@ -51,6 +51,11 @@ class CympelManager extends CympelService implements iManager
     protected $validator;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelManager';
+
+    /**
      * @param iCreator $creator
      * @param iFinder $finder
      * @param iPersister $persister
@@ -115,15 +120,6 @@ class CympelManager extends CympelService implements iManager
     public function getValidator()
     {
         return $this->validator;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelManager';
     }
 
     /**

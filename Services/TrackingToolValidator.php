@@ -16,6 +16,11 @@ class TrackingToolValidator extends CympelService implements iTrackingToolValida
     protected $validator;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'TrackingToolValidator';
+
+    /**
      * @param $validator
      */
     public function __construct($validator)
@@ -38,14 +43,4 @@ class TrackingToolValidator extends CympelService implements iTrackingToolValida
         }
         return true;
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'TrackingToolValidator';
-    }
-
 }

@@ -55,6 +55,11 @@ class DynamicCSSServiceExtension extends TrackingToolManagerExtensionService imp
      */
     protected $entityManagerName;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSSServiceExtension';
+
     public function __construct(DynamicCSSDomIdManager $dynamicCSSDomIdManager, DynamicCSSDomIdArrayCollectionManager $dynamicCSSDomIdArrayCollectionManager, $doctrine, iTrackingToolRemover $trackingToolRemover, iTrackingToolValidator $trackingToolValidator, $router, iTrackerManager $trackerManager, $entityManagerName)
     {
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
@@ -86,15 +91,6 @@ class DynamicCSSServiceExtension extends TrackingToolManagerExtensionService imp
     public function getDoctrine()
     {
         return $this->doctrine;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSSServiceExtension';
     }
 
     /**

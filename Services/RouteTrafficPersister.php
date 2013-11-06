@@ -18,13 +18,9 @@ class RouteTrafficPersister extends CympelService implements iType
     protected $emName;
 
     /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
+     * @var string
      */
-    public function getType()
-    {
-        return 'RouteTrafficPersister';
-    }
+    protected static $classAlias = 'RouteTrafficPersister';
 
     public function __construct($doctrine, $entityManagerName)
     {

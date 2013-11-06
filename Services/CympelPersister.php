@@ -25,6 +25,11 @@ class CympelPersister extends CympelService implements iPersister
      */
     protected $validator;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelPersister';
+
     public function __construct($doctrine, iValidator $validator)
     {
         $this->doctrine = $doctrine;
@@ -47,14 +52,4 @@ class CympelPersister extends CympelService implements iPersister
         $em->persist($persistable);
         $em->flush();
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelPersister';
-    }
-
 }

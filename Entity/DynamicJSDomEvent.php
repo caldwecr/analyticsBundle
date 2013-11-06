@@ -52,18 +52,14 @@ class DynamicJSDomEvent extends CympelType implements iDynamicJSDomEvent
      */
     protected $entityManagerName;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSDomEvent';
+
     public function __construct()
     {
         $this->eventName = '';
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSDomEvent';
     }
 
     /**

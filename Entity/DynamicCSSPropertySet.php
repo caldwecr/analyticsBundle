@@ -30,6 +30,11 @@ class DynamicCSSPropertySet extends PropertySet
     protected $pseudo;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSSPropertySet';
+
+    /**
      * @param iTrackingTool $tool
      * @return iTrackingTool
      */
@@ -67,15 +72,6 @@ class DynamicCSSPropertySet extends PropertySet
         $this->ids = $tool->getDynamicCSSDomIds();
         $this->pseudo = $tool->getPseudo();
         return $this;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSSPropertySet';
     }
 
     /**

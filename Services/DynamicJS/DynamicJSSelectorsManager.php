@@ -18,6 +18,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 class DynamicJSSelectorsManager extends CympelManager implements iDynamicJSSelectorsManager
 {
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSSelectorsManager';
+
+    /**
      * @param $selectorArray
      * @return DynamicJSSelectors
      */
@@ -48,14 +53,5 @@ class DynamicJSSelectorsManager extends CympelManager implements iDynamicJSSelec
         $selector->setParentSelectors($parentSelectors);
         $selector->setCreated($created);
         $selector->setCalled($called);
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSSelectorsManager';
     }
 }

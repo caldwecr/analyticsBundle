@@ -16,7 +16,10 @@ class DifferentConcreteCympelType extends CympelType
     protected $p1;
 
     protected $p2;
-
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DifferentConcreteCympelType';
     /**
      * @param iType $rightSide
      * @return bool
@@ -26,15 +29,6 @@ class DifferentConcreteCympelType extends CympelType
     protected function typedEquals(iType $rightSide)
     {
         return self::areEqual($this, $rightSide);
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DifferentConcreteCympelType';
     }
 
     /**

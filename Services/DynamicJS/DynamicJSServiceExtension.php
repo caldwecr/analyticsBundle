@@ -37,6 +37,10 @@ class DynamicJSServiceExtension extends TrackingToolManagerExtensionService impl
      */
     protected $trackerManager;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSServiceExtension';
 
     /**
      * @param iDynamicJSSelectorsManager $dynamicJSelectorsManager
@@ -50,15 +54,6 @@ class DynamicJSServiceExtension extends TrackingToolManagerExtensionService impl
         $this->dynamicJDomEventsManager = $dynamicJDomEventsManager;
         $this->router = $router;
         $this->trackerManager = $trackerManager;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSServiceExtension';
     }
 
     /**

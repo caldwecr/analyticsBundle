@@ -56,6 +56,11 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
     protected $dataSets;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSSelectorDomEventClientDataSets';
+
+    /**
      * @param iType $rightSide
      * @return bool
      *
@@ -100,15 +105,6 @@ class DynamicJSSelectorDomEventClientDataSets extends CympelType implements iDyn
     public function getEntityManagerName()
     {
         return $this->entityManagerName;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSSelectorDomEventClientDataSets';
     }
 
     /**

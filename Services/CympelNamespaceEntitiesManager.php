@@ -22,6 +22,11 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
 class CympelNamespaceEntitiesManager extends CympelManager implements iNamespaceEntitiesManager
 {
     /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelNamespaceEntitiesManager';
+
+    /**
      * @param iCreator $creator
      * @param iFinder $finder
      * @param iPersister $persister

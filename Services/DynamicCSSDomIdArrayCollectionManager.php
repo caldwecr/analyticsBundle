@@ -19,6 +19,11 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
      */
     protected $dynamicCSSDomIdManager;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSSDomIdArrayCollectionManager';
+
     public function __construct(DynamicCSSDomIdManager $dynamicCSSDomIdManager)
     {
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
@@ -51,14 +56,4 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
         }
         return $collection;
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSSDomIdArrayCollectionManager';
-    }
-
 }

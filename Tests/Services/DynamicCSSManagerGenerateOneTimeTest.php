@@ -20,7 +20,7 @@ class DynamicCSSManagerGenerateOneTimeTest extends ContainerAwareUnitTestCase
             'bar'
         );
         $pseudo = 'hover';
-        $uri = $dcm->generateOneTimeStylesheet('DynamicCSS', $ids, $pseudo);
+        $uri = $dcm->generateOneTimeStylesheet($ids, $pseudo);
 
         $this->assertTrue(strpos($uri, '/analytics/dynamic/css/') !== false);
     }

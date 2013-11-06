@@ -18,13 +18,9 @@ class DynamicJSDomEventsManager extends CympelManager implements iDynamicJSDomEv
 {
 
     /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
+     * @var string
      */
-    public function getType()
-    {
-        return 'DynamicJSDomEventsManager';
-    }
+    protected static $classAlias = 'DynamicJSDomEventsManager';
 
     /**
      * @param array $eventsArray

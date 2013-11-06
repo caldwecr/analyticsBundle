@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iAliasable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
@@ -19,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CympelType
  * @package Cympel\Bundle\AnalyticsBundle\Entity
  */
-abstract class CympelType implements iType, iNamespaceable, iFindable
+abstract class CympelType extends AliasableType implements iType, iNamespaceable, iFindable, iAliasable
 {
     /**
      * @var string
@@ -35,6 +36,7 @@ abstract class CympelType implements iType, iNamespaceable, iFindable
      * @var int
      */
     protected $id;
+
 
     /**
      * @return int

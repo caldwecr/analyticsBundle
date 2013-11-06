@@ -30,6 +30,11 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
     protected $repositoryName;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'ConcretePersistableTestType';
+
+    /**
      * @var int
      * @ORM\Id
      * @ORM\Column(type="bigint")
@@ -80,15 +85,6 @@ class ConcretePersistableTestType extends CympelType implements iPersistable, iR
     public function setEntityManagerName($entityManagerName)
     {
         $this->entityManagerName = $entityManagerName;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'ConcretePersistableTestType';
     }
 
     /**

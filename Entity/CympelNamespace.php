@@ -25,6 +25,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CympelNamespace extends CympelType implements iNamespace
 {
     /**
+     * @var string
+     */
+    protected static $classAlias;
+
+    /**
      * @var int
      *
      * @ORM\Id
@@ -154,15 +159,6 @@ class CympelNamespace extends CympelType implements iNamespace
     public function setCreated($created)
     {
         $this->created = $created;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelNamespace';
     }
 
     /**

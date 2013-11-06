@@ -73,6 +73,11 @@ class DynamicCSSDomId extends CympelType
     protected $url;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSSDomId';
+
+    /**
      * A basic constructor that initializes a few scalar properties
      */
     public function __construct()
@@ -176,15 +181,6 @@ class DynamicCSSDomId extends CympelType
     public function getRendered()
     {
         return $this->rendered;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSSDomId';
     }
 
     /**

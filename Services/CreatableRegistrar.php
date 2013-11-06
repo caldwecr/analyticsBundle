@@ -47,6 +47,9 @@ class CreatableRegistrar extends CympelService implements iCreatableRegistrar
         $this->classMap[$alias] = $class;
         $this->repositoryNameMap[$alias] = $repositoryName;
         $this->entityManagerNameMap[$alias] = $entityManagerName;
+
+        // Setup the class alias property
+        $class::setClassAlias($alias);
     }
 
     /**
@@ -79,12 +82,8 @@ class CreatableRegistrar extends CympelService implements iCreatableRegistrar
     }
 
     /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
+     * @var string
      */
-    public function getType()
-    {
-        return 'CreatableRegistrar';
-    }
+    protected static $classAlias = 'CreatableRegistrar';
 
 }

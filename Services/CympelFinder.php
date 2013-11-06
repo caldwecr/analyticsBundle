@@ -31,6 +31,11 @@ class CympelFinder extends CympelService implements iFinder
     protected $creator;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelFinder';
+
+    /**
      * @param $doctrine
      * @param iCreatableRegistrar $registrar
      * @param iCreator $creator
@@ -60,14 +65,4 @@ class CympelFinder extends CympelService implements iFinder
         }
         return $found;
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelFinder';
-    }
-
 }

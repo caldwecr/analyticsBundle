@@ -16,6 +16,11 @@ use Cympel\Bundle\AnalyticsBundle\Services\CympelFinder;
 class DynamicJSDomEventFinder extends CympelFinder implements iDynamicJSDomEventFinder
 {
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSDomEventFinder';
+
+    /**
      * @param iDynamicJSDomEvents $domEvents
      * @param $eventName
      * @param $classAlias
@@ -30,14 +35,5 @@ class DynamicJSDomEventFinder extends CympelFinder implements iDynamicJSDomEvent
             'eventName' => $eventName,
         ));
         return $found;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSDomEventFinder';
     }
 }

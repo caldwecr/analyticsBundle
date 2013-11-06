@@ -20,7 +20,7 @@ class DynamicCSSManagerRenderDCSSByIdTest extends ContainerAwareUnitTestCase
             'hoo'
         );
         $pseudo = 'visited';
-        $uri = $dcm->generateOneTimeStylesheet('DynamicCSS', $ids, $pseudo);
+        $uri = $dcm->generateOneTimeStylesheet($ids, $pseudo);
 
         $uri_prefix = '/analytics/dynamic/css/';
         $this->assertTrue(strpos($uri, $uri_prefix) !== false);

@@ -42,6 +42,11 @@ class RouteTraffic extends CympelType
     protected $timestamp;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'RouteTraffic';
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -87,15 +92,6 @@ class RouteTraffic extends CympelType
     public function getTimestamp()
     {
         return $this->timestamp;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelRouteTraffic';
     }
 
     /**

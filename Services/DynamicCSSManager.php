@@ -12,20 +12,25 @@ use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicCSSManager;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class DynamicCSSManager extends RoutedTrackingToolManager
+class DynamicCSSManager extends RoutedTrackingToolManager implements iDynamicCSSManager
 {
     /**
-     * @param string $classAlias
-     * @param array $ids - an array of DOM id's that the stylesheet should include trackers for
-     * @param string $pseudo - which pseudo class the stylesheet should bind its tracking to
-     * @return string
-     *
-     * The method returns a URI to the created stylesheet
+     * @var string
      */
-    public function generateOneTimeStylesheet($classAlias, $ids, $pseudo)
+    protected static $classAlias = 'DynamicCSSManager';
+
+    /**
+     * @param array $ids
+     * @param string $pseudo
+     * @param string $namespaceName
+     * @return string
+     */
+    public function generateOneTimeStylesheet($ids = array(), $pseudo, $namespaceName = '_blank')
     {
+        $classAlias = DynamicCSS::getClassAlias();
         $properties = new DynamicCSSPropertySet();
         $properties->setIds($this->getExtender()->getDynamicCSSDomIdArrayCollectionManager()->create($ids));
         $properties->setPseudo($pseudo);
@@ -55,16 +60,6 @@ class DynamicCSSManager extends RoutedTrackingToolManager
         }
         return $ids;
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicCSSManager';
-    }
-
 
     /**
      * @param string $classAlias

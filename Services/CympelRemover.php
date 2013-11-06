@@ -14,6 +14,11 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 class CympelRemover extends CympelService implements iRemover
 {
     /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelRemover';
+
+    /**
      * @var Object - the doctrine service
      */
     protected $doctrine;
@@ -33,14 +38,4 @@ class CympelRemover extends CympelService implements iRemover
         $em->remove($removable);
         $em->flush();
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelRemover';
-    }
-
 }

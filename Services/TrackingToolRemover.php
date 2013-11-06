@@ -23,21 +23,16 @@ class TrackingToolRemover extends CympelService implements iTrackingToolRemover
 
     protected $emName;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'TrackingToolRemover';
 
     public function __construct($doctrine, iTrackingToolValidator $trackingToolValidator, $entityManagerName)
     {
         $this->doctrine = $doctrine;
         $this->trackingToolValidator= $trackingToolValidator;
         $this->emName = $entityManagerName;
-    }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'TrackingToolRemover';
     }
 
     /**

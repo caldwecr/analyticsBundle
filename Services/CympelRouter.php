@@ -18,6 +18,11 @@ class CympelRouter extends CympelService implements iRouter
      */
     protected $router;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'CympelRouter';
+
     public function __construct(Router $router)
     {
         $this->router = $router;
@@ -33,14 +38,4 @@ class CympelRouter extends CympelService implements iRouter
     {
         return $this->router->generate($name, $parameters, $referenceType);
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'CympelRouter';
-    }
-
 }

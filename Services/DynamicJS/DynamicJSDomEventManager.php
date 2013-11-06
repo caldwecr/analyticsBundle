@@ -29,6 +29,11 @@ class DynamicJSDomEventManager extends CympelManager implements iDynamicJSDomEve
     protected $finder;
 
     /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSDomEventManager';
+
+    /**
      * @param iCreator $creator
      * @param iFinder $finder
      * @param iPersister $persister
@@ -71,14 +76,4 @@ class DynamicJSDomEventManager extends CympelManager implements iDynamicJSDomEve
         $domEvent = $this->finder->findOneEventByEventsAndEventName($domEvents, $eventKey, $classAlias);
         return $domEvent;
     }
-
-    /**
-     * @return string
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSDomEventManager';
-    }
-
 }

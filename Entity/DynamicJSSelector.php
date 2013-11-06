@@ -71,20 +71,15 @@ class DynamicJSSelector extends CympelType implements iDynamicJSSelector
      */
     protected $repositoryName;
 
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicJSSelector';
+
     public function __construct()
     {
         $this->created = time();
         $this->called = 0;
-    }
-
-    /**
-     * @return string
-     *
-     * This method must return a string with a unique representation of the object type that is implementing this interface
-     */
-    public function getType()
-    {
-        return 'DynamicJSSelector';
     }
 
     /**
