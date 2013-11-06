@@ -31,6 +31,11 @@ abstract class CympelType implements iType, iNamespaceable
     protected $cympelNamespace;
 
     /**
+     * @var string
+     */
+    protected $cympelNamespaceKey;
+
+    /**
      * @param iNamespace $cympelNamespace
      * @return void
      */
@@ -45,6 +50,23 @@ abstract class CympelType implements iType, iNamespaceable
     public final function getCympelNamespace()
     {
         return $this->cympelNamespace;
+    }
+
+    /**
+     * @param string $key
+     * @return void
+     */
+    public final function setCympelNamespaceKey($key)
+    {
+        $this->cympelNamespaceKey = $key;
+    }
+
+    /**
+     * @return string
+     */
+    public final function getCympelNamespaceKey()
+    {
+        return $this->cympelNamespaceKey;
     }
 
 
