@@ -9,7 +9,9 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 
 class CympelRemover extends CympelService implements iRemover
 {
@@ -19,13 +21,30 @@ class CympelRemover extends CympelService implements iRemover
     protected static $classAlias = 'CympelRemover';
 
     /**
+     * @var iNamespacer
+     */
+    protected $namespacer;
+
+    /**
+     * @var iNamespace
+     */
+    protected $myNamespace;
+
+    /**
      * @var Object - the doctrine service
      */
     protected $doctrine;
 
-    public function __construct($doctrine)
+    /**
+     * @param Object $doctrine
+     * @param iNamespacer $namespacer
+     * @param string $namespaceName
+     */
+    public function __construct($doctrine, iNamespacer $namespacer, $namespaceName = '_blank')
     {
         $this->doctrine = $doctrine;
+        $this->namespacer = $namespacer;
+        $this->myNamespace = $this->namespacer->findOrCreateNamespaceByName($namespaceName);
     }
 
     /**
@@ -35,6 +54,7 @@ class CympelRemover extends CympelService implements iRemover
     public function remove(iRemovable $removable)
     {
         $em = $this->doctrine->getManager($removable->getEntityManagerName());
+        $this->namespacer->removeEntityFromCympelNamespace($removable, $this->myNamespace);
         $em->remove($removable);
         $em->flush();
     }

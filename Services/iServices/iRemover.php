@@ -18,4 +18,11 @@ interface iRemover extends iType
      * @return void
      */
     public function remove(iRemovable $removable);
+
+    /**
+     * @param Object $doctrine - the doctrine service
+     * @param iNamespacer $namespacer
+     * @param string $namespaceName
+     */
+    public function __construct($doctrine, iNamespacer $namespacer, $namespaceName = '_blank');
 }

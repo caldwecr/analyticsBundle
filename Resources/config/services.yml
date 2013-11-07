@@ -166,7 +166,7 @@ services:
         arguments: ["@cympel_analytics.dynamic_css_dom_id_manager"]
     cympel_analytics.tracking_tool_remover:
         class: %cympel_analytics.tracking_tool_remover.class%
-        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "%cympel_analytics.entity_manager%"]
+        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "%cympel_analytics.entity_manager%", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
     cympel_analytics.tracking_tool_validator:
         class: %cympel_analytics.tracking_tool_validator.class%
         arguments: ["@validator"]
@@ -206,10 +206,10 @@ services:
    ### Generics
     cympel_analytics.generics.persister:
         class: %cympel_analytics.generics.persister.class%
-        arguments: ["@doctrine", "@cympel_analytics.generics.validator", "@ca.generics.namespacer", "firstNamespaceCrazy"]
+        arguments: ["@doctrine", "@cympel_analytics.generics.validator", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
     cympel_analytics.generics.remover:
         class: %cympel_analytics.generics.remover.class%
-        arguments: ["@doctrine"]
+        arguments: ["@doctrine", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
     cympel_analytics.generics.creatable_registrar:
         class: %cympel_analytics.generics.creatable_registrar.class%
         calls:
