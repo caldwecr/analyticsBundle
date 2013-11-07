@@ -66,7 +66,7 @@ class CympelNamespacer extends CympelService implements iNamespacer
     public function addEntityToCympelNamespace(iNamespaceable $entity, iNamespace $cympelNamespace)
     {
         $ens = $entity->getCympelNamespace();
-        if(!$ens || $ens->equals(CympelNamespace::getBlankCympelNamespace())) {
+        if(!$ens || $cympelNamespace->equals($ens) || $ens->equals(CympelNamespace::getBlankCympelNamespace())) {
             $entity->setCympelNamespace($cympelNamespace);
             $cne = $this->createCympelNamespaceEntityFromNamespaceableEntity($entity);
 
