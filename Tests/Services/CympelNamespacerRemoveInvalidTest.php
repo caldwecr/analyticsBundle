@@ -16,7 +16,9 @@ class CympelNamespacerRemoveInvalidTest extends ContainerAwareUnitTestCase
 {
     public function testRemoveInvalid()
     {
-        $ns_name = 'testRemoveInvalid';
+        $container = $this->get('service_container');;
+        $nsName = $container->getParameter('cympel_analytics.namespace');
+        $ns_name = $nsName;
         $ns2_name = 'anotherTestRemoveInvalid';
         $namespacer = $this->get('ca.generics.namespacer');
         $ns = $this->get('cympel_analytics.generics.creator')->create('CympelNamespace');
