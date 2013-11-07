@@ -20,6 +20,7 @@ class CympelNamespacerGetEntityByNamespaceKeyTest extends ContainerAwareUnitTest
         $finder = $this->get('cympel_analytics.generics.finder');
         $namespacer = $this->get('ca.generics.namespacer');
         $persister = $this->get('cympel_analytics.generics.persister');
+        $container = $this->get('service_container');
 
         // Create the test entity and initialize required properties
         $c = $creator->create('ConcretePersistableTestType');
@@ -33,7 +34,8 @@ class CympelNamespacerGetEntityByNamespaceKeyTest extends ContainerAwareUnitTest
 
         // Create the test namespace and initialize required properties
         $ns = $creator->create('CympelNamespace');
-        $nsName = 'testGetEntity';
+
+        $nsName = $container->getParameter('cympel_analytics.namespace');
         $nsCreated = time();
         $nsDescription = 'a fake namespace used for testing entity retrieval from a namespace';
         $ns->setName($nsName);
