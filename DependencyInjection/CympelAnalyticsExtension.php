@@ -28,5 +28,9 @@ class CympelAnalyticsExtension extends Extension
             'cympel_analytics.entity_manager',
             $config['entity_manager']
         );
+        $container->setParameter(
+            'cympel_analytics.namespace',
+            $config['namespace']
+        );
     }
 }

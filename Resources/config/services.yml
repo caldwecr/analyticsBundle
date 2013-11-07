@@ -141,6 +141,7 @@ parameters:
     cympel_analytics.generics.manager.class: Cympel\Bundle\AnalyticsBundle\Services\CympelManager
     ca.generics.namespacer.class: Cympel\Bundle\AnalyticsBundle\Services\CympelNamespacer
     cympel_analytics.entity_manager:
+    cympel_analytics.namespace:
 
 services:
     cympelAnalytics.routeTrafficPersister:
