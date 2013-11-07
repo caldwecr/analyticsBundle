@@ -16,15 +16,17 @@ class CympelNamespacerCreateRemoveTest extends ContainerAwareUnitTestCase
 {
     public function testCreateRemove()
     {
-        $ns = 'testCreateRemove';
-        $cn = new CympelNamespace($ns);
+        $container = $this->get('service_container');
+        $nsName = $container->getParameter('cympel_analytics.namespace');
+
+        $cn = new CympelNamespace($nsName);
         $ccpt = $this->get('cympel_analytics.generics.creator')->create('ConcretePersistableTestType');
         $ccpt->setValue('something');
         $this->get('cympel_analytics.generics.persister')->persist($ccpt);
         $n = $this->get('ca.generics.namespacer');
         $n->addEntityToCympelNamespace($ccpt, $cn);
         $this->assertEquals(1, $cn->getEntityCount());
-        $this->assertEquals($ns, $ccpt->getCympelNamespace()->getName());
+        $this->assertEquals($nsName, $ccpt->getCympelNamespace()->getName());
         $n->removeEntityFromCympelNamespace($ccpt, $cn);
         $this->assertEquals(0, $cn->getEntityCount());
         $this->assertTrue(CympelNamespace::getBlankCympelNamespace()->equals($ccpt->getCympelNamespace()));
