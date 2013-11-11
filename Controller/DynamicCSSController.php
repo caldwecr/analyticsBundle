@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DynamicCSSController extends Controller {
@@ -33,6 +34,7 @@ class DynamicCSSController extends Controller {
         $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
         $dynamicCSS = $dcm->findOneTimeStylesheetById('DynamicCSS', $key);
         $dcdim->renderByDynamicCSSAndDomIdValue($dynamicCSS, $domIdValue);
-        return new BinaryFileResponse('bundles/cympelanalytics/assets/images/pixel.jpg');
+        return new Response('.', 200);
+        //return new BinaryFileResponse('bundles/cympelanalytics/assets/images/pixel.jpg');
     }
 }
