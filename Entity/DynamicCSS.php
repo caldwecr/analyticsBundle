@@ -76,12 +76,6 @@ class DynamicCSS extends RoutedTrackingTool implements iCreatable, iPersistable,
     protected $tracker;
 
     /**
-     * @var iDynamicCSSImage
-     * @ORM\OneToOne(targetEntity="DynamicCSSImage", mappedBy="dynamicCSS", cascade={"persist", "remove"})
-     */
-    protected $image;
-
-    /**
      * @var string
      */
     protected $entityManagerName;

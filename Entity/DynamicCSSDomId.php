@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicCSSImage;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -71,6 +72,12 @@ class DynamicCSSDomId extends CympelType
      * Note that this property is NOT persisted to the database and is included only for accessor support in twig templates
      */
     protected $url;
+
+    /**
+     * @var iDynamicCSSImage
+     * @ORM\OneToOne(targetEntity="DynamicCSSImage", mappedBy="dynamicCSSDomId", cascade={"persist", "remove"})
+     */
+    protected $image;
 
     /**
      * @var string
