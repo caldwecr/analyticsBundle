@@ -58,6 +58,7 @@ parameters:
     ca.crtb.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
     ca.crtb.concrete_persistable_test_type.alias: ConcretePersistableTestType
     ca.crtb.concrete_persistable_test_type.emn: %cympel_analytics.entity_manager%
+    ## emn = entity manager name, rn = repository name
     ca.crtb.concrete_persistable_test_type.rn: CympelAnalyticsBundle:ConcretePersistableTestType
 
     ca.crtb.djs.selectors.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors
@@ -79,6 +80,11 @@ parameters:
     ca.crtb.dcss.alias: DynamicCSS
     ca.crtb.dcss.emn: %cympel_analytics.entity_manager%
     ca.crtb.dcss.rn: CympelAnalyticsBundle:DynamicCSS
+
+    ca.crtb.dcss.image.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSImage
+    ca.crtb.dcss.image.alias: DynamicCSSImage
+    ca.crtb.dcss.image.emn: %cympel_analytics.entity_manager%
+    ca.crtb.dcss.image.rn: CympelAnalyticsBundle:DynamicCSSImage
 
     ca.crtb.djs.dom_event.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvent
     ca.crtb.djs.dom_event.alias: DynamicJSDomEvent
