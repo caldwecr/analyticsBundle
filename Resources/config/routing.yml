@@ -2,8 +2,8 @@ dynamicCSS:
     pattern:  /dynamic/css/{key}/{cympelNamespace}
     defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSS, cympelNamespace: _blank }
 dynamicCSSImageFile:
-    pattern: /dynamic/css/image/file/{key}/{domIdValue}/{cympelNamespace}
-    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile, cympelNamespace: _blank }
+    pattern: /dynamic/css/image/file/{key}/{domIdValue}/{imageId}/{cympelNamespace}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile, imageId: 0, cympelNamespace: _blank }
 dynamicCSSTest:
     pattern: /dynamic/test
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicCSSTest }
@@ -19,3 +19,6 @@ dynamicJSCallback:
 dynamicJSTest:
     pattern: /dynamic/jsTest
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }
+cympel_resource_server_image:
+    pattern: /resource/{imageId}
+    defaults: { _controller: CympelAnalyticsBundle:CympelResourceServer:image, imageId = _blank }

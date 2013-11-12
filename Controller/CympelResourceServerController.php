@@ -9,13 +9,15 @@
 
 namespace Cympel\Bundle\AnalyticsBundle\Controller;
 
+use Cympel\Bundle\AnalyticsBundle\Controller\iController\iResourceServerController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class CympelResourceServerController extends Controller
+class CympelResourceServerController extends Controller implements iResourceServerController
 {
-    public function imageAction($fullFileName = null)
+    public function imageAction($imageId = null)
     {
+        $fullFileName = $this->get('ca.generics.resource_server')->getResourceFileName($imageId);
         if(!$fullFileName || $fullFileName == '_blank') $fullFileName = '/favicon.ico';
         return new BinaryFileResponse($fullFileName);
     }

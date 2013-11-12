@@ -20,4 +20,15 @@ interface iDynamicCSSImage extends iCreatable, iPersistable, iFindable, iRemovab
      * @return string
      */
     public function getImageUri();
+
+    /**
+     * @return string
+     */
+    public function getUncacheableImageUri();
+
+    /**
+     * @param string $uncacheableImageUri
+     * @return void
+     */
+    public function setUncacheableImageUri($uncacheableImageUri);
 }

@@ -33,12 +33,11 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=10, unique=true)
+     * @ORM\Column(type="string", length=10)
      *
      * @Assert\Length(min="3", max="10")
      * @Assert\NotNull()
      *
-     * Must be unique
      */
     protected $name;
 
@@ -48,6 +47,8 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
      * @ORM\Column(type="text")
      */
     protected $imageUri;
+
+    protected $uncacheableImageUri;
 
     /**
      * @var int
@@ -60,7 +61,7 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
     /**
      * @var DynamicCSSDomId
      * @ORM\OneToOne(targetEntity="DynamicCSSDomId", mappedBy="image", cascade={"persist"})
-     
+
      */
     protected $dynamicCSSDomId;
 
@@ -68,6 +69,22 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
      * @var string
      */
     protected static $classAlias = 'DynamicCSSImage';
+
+    /**
+     * @param mixed $uncacheableImageUri
+     */
+    public function setUncacheableImageUri($uncacheableImageUri)
+    {
+        $this->uncacheableImageUri = $uncacheableImageUri;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUncacheableImageUri()
+    {
+        return $this->uncacheableImageUri;
+    }
 
     /**
      * @param iType $rightSide

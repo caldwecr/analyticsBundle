@@ -80,10 +80,30 @@ class DynamicCSSDomId extends CympelType
      */
     protected $image;
 
+    protected static $defaultImageUri = 'bundles/cympelanalytics/assets/images/pixel.jpg';
+
     /**
      * @var string
      */
     protected static $classAlias = 'DynamicCSSDomId';
+
+    public function getImageUri()
+    {
+        if($this->image) {
+            return $this->image->getImageUri();
+        } else {
+            return static::$defaultImageUri;
+        }
+    }
+
+    public function getUncacheableImageUri()
+    {
+        if($this->image) {
+            return $this->image->getUncacheableImageUri();
+        } else {
+            return static::$defaultImageUri;
+        }
+    }
 
     /**
      * A basic constructor that initializes a few scalar properties

@@ -146,6 +146,8 @@ parameters:
     cympel_analytics.generics.router.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRouter
     cympel_analytics.generics.manager.class: Cympel\Bundle\AnalyticsBundle\Services\CympelManager
     ca.generics.namespacer.class: Cympel\Bundle\AnalyticsBundle\Services\CympelNamespacer
+    ca.generics.resource_server.class: Cympel\Bundle\AnalyticsBundle\Services\CympelResourceServer
+
     cympel_analytics.entity_manager:
     cympel_analytics.namespace:
 
@@ -254,3 +256,6 @@ services:
     ca.generics.namespacer:
         class: %ca.generics.namespacer.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@ca.ns_entities.extender"]
+    ca.generics.resource_server:
+        class: %ca.generics.resource_server.class%
+        arguments: ["@router"]

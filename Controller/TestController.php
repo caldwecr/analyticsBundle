@@ -19,7 +19,7 @@ class TestController extends Controller
         $ids = array(
             array(
                 'id' => 'number_one',
-                'imageUri' => 'images/testImage.png',
+                'imageUri' => $this->get('ca.generics.resource_server')->getUri('testImage.png'),
             ),
             'number_two',
             'number_three',
