@@ -170,7 +170,7 @@ services:
         arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager", "@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_css_dom_id_array_collection_manager:
         class: %cympel_analytics.dynamic_css_dom_id_array_collection_manager.class%
-        arguments: ["@cympel_analytics.dynamic_css_dom_id_manager"]
+        arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.generics.creator"]
     cympel_analytics.tracking_tool_remover:
         class: %cympel_analytics.tracking_tool_remover.class%
         arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "%cympel_analytics.entity_manager%", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
