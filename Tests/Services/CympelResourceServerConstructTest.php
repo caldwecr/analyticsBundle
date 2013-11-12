@@ -10,12 +10,14 @@
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
 
 
+use Cympel\Bundle\AnalyticsBundle\Controller\CympelResourceServerController;
 use Cympel\Bundle\AnalyticsBundle\Services\CympelResourceServer;
 
 class CympelResourceServerConstructTest extends \PHPUnit_Framework_TestCase {
     public function testConstruct()
     {
-        $c = new CympelResourceServer();
+        $con = new CympelResourceServerController();
+        $c = new CympelResourceServer($con);
         $resources = $c->getResources();
         $this->assertNotNull($resources);
         $this->assertTrue(is_array($resources));
