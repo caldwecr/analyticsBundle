@@ -15,6 +15,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicCSSImage;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -73,6 +74,12 @@ class DynamicCSS extends RoutedTrackingTool implements iCreatable, iPersistable,
      * @ORM\JoinColumn(name="tracker_id", referencedColumnName="id")
      */
     protected $tracker;
+
+    /**
+     * @var iDynamicCSSImage
+     * @ORM\OneToOne(targetEntity="DynamicCSSImage", mappedBy="dynamicCSS", cascade={"persist", "remove"})
+     */
+    protected $image;
 
     /**
      * @var string

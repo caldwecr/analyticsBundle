@@ -50,6 +50,13 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
     protected $uriCRC32;
 
     /**
+     * @var DynamicCSS
+     * @ORM\OneToOne(targetEntity="DynamicCSS", inversedBy="image", cascade={"persist"})
+     * @ORM\JoinColumn(name="dynamicCSS_id", referencedColumnName="id", nullable=false)
+     */
+    protected $dynamicCSS;
+
+    /**
      * @param iType $rightSide
      * @return bool
      *
