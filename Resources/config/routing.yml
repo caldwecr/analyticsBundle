@@ -3,7 +3,10 @@ dynamicCSS:
     defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSS, cympelNamespace: _blank }
 dynamicCSSImageFile:
     pattern: /dynamic/css/image/file/{key}/{domIdValue}/{imageId}/{cympelNamespace}
-    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile, imageId: 0, cympelNamespace: _blank }
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFile, imageId: _blank, cympelNamespace: _blank }
+dynamicCSSImageFileRedirect:
+    pattern: /dynamic/css/image/redirect/{imageId}
+    defaults: { _controller: CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFileRedirect, imageId: _blank }
 dynamicCSSTest:
     pattern: /dynamic/test
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicCSSTest }

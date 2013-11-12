@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Controller;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSImage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -46,21 +46,37 @@ class DynamicCSSController extends Controller {
         return $response;
     }
 
+    /**
+     * @param $imageId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * This method redirects the client to the cacheable Image URI
+     */
     public function dynamicCSSImageFileRedirectAction($imageId)
     {
         $finder = $this->get('cympel_analytics.generics.finder');
-        $dynamicCSSImage = $finder->findOneByIdAndClassAlias($imageId, DynamicCSS::getClassAlias());
+        $dynamicCSSImage = $finder->findOneByIdAndClassAlias($imageId, DynamicCSSImage::getClassAlias());
         $uri = $dynamicCSSImage->getImageUri();
-        return $this->render('CympelAnalytics:Default:index.html.twig');
-        //return $this->redirect($uri);
+        return $this->redirect($uri);
     }
 
+    /**
+     * @param $key
+     * @param $domIdValue
+     * @param int $imageId
+     * @param string $cympelNamespace
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     *
+     * This method forwards the imageId to dynamicCSSImageFileRedirectAction
+     * This method is where a client is pointed when requesting an uncacheable image
+     */
     public function dynamicCSSImageFileAction($key, $domIdValue, $imageId = 0, $cympelNamespace = '_blank')
     {
+
         if($imageId && is_numeric($imageId)) {
             $imageId = (int) $imageId;
         }
-// ??? What's wrong that is causing it to be uncallable?!
         if(!is_int($imageId)) {
             throw new \Exception("The imageId argument (#3) to the method dynamicCSSImageFileAction must be of type int");
         }
@@ -68,7 +84,7 @@ class DynamicCSSController extends Controller {
         $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
         $dynamicCSS = $dcm->findOneTimeStylesheetById('DynamicCSS', $key);
         $dcdim->renderByDynamicCSSAndDomIdValue($dynamicCSS, $domIdValue);
-        return $this->forward('CympelAnalyticsBundle:Default:dynamicCSSImageFileRedirect', array(
+        return $this->forward('CympelAnalyticsBundle:DynamicCSS:dynamicCSSImageFileRedirect', array(
             'imageId' => $imageId,
         ));
     }
