@@ -235,6 +235,7 @@ services:
             - [register, ["%ca.crtb.cn.class%", "%ca.crtb.cn.alias%", "%ca.crtb.cn.rn%", "%ca.crtb.cn.emn%"]]
             - [register, ["%ca.crtb.cn.entity.class%", "%ca.crtb.cn.entity.alias%", "%ca.crtb.cn.entity.rn%", "%ca.crtb.cn.entity.emn%"]]
             - [register, ["%ca.crtb.cn.entities.class%", "%ca.crtb.cn.entities.alias%", "%ca.crtb.cn.entities.rn%", "%ca.crtb.cn.entities.emn%"]]
+            - [register, ["%ca.crtb.dcss.image.class%", "%ca.crtb.dcss.image.alias%", "%ca.crtb.dcss.image.rn%", "%ca.crtb.dcss.image.emn%"]]
     cympel_analytics.generics.creator:
         class: %cympel_analytics.generics.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
