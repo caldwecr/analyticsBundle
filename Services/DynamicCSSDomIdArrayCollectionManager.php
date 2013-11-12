@@ -10,6 +10,8 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomIdArrayCollection;
+use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSImage;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtensionService
 {
@@ -20,13 +22,19 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
     protected $dynamicCSSDomIdManager;
 
     /**
+     * @var iCreator
+     */
+    protected $creator;
+
+    /**
      * @var string
      */
     protected static $classAlias = 'DynamicCSSDomIdArrayCollectionManager';
 
-    public function __construct(DynamicCSSDomIdManager $dynamicCSSDomIdManager)
+    public function __construct(DynamicCSSDomIdManager $dynamicCSSDomIdManager, iCreator $creator)
     {
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
+        $this->creator = $creator;
     }
 
 
@@ -52,7 +60,15 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
         foreach($ids as $key => $value) {
             $collection[$key] = $this->dynamicCSSDomIdManager->create();
             $collection[$key]->setDynamicCSS($tool);
-            $collection[$key]->setDomIdValue($value);
+            if(is_array($value)) {
+                $collection[$key]->setDomIdValue($value['id']);
+                $image = $this->creator->create('DynamicCSSImage');
+                $image->setName($value['id']);
+                $image->setImageUri($value['imageUri']);
+                $collection[$key]->setImage($image);
+            } else {
+                $collection[$key]->setDomIdValue($value);
+            }
         }
         return $collection;
     }

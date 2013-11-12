@@ -75,7 +75,8 @@ class DynamicCSSDomId extends CympelType
 
     /**
      * @var iDynamicCSSImage
-     * @ORM\OneToOne(targetEntity="DynamicCSSImage", mappedBy="dynamicCSSDomId", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="DynamicCSSImage", inversedBy="dynamicCSSDomId", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="dynamicCSSImage_id", referencedColumnName="id")
      */
     protected $image;
 
@@ -199,6 +200,22 @@ class DynamicCSSDomId extends CympelType
     protected function typedEquals(iType $rightSide)
     {
         return self::areEqual($this, $rightSide);
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicCSSImage $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicCSSImage
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
 

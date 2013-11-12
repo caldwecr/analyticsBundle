@@ -22,10 +22,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class DynamicCSSImage extends CympelType implements iDynamicCSSImage
 {
     /**
-     * @var string
+     * @var int
      *
      * @ORM\Id
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="bigint")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=10, unique=true)
      *
      * @Assert\Length(min="3", max="10")
      * @Assert\NotNull()
@@ -50,11 +58,16 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
     protected $uriCRC32;
 
     /**
-     * @var DynamicCSS
-     * @ORM\OneToOne(targetEntity="DynamicCSSDomId", inversedBy="image", cascade={"persist"})
-     * @ORM\JoinColumn(name="dynamicCSSDom_id", referencedColumnName="id", nullable=false)
+     * @var DynamicCSSDomId
+     * @ORM\OneToOne(targetEntity="DynamicCSSDomId", mappedBy="image", cascade={"persist"})
+     
      */
     protected $dynamicCSSDomId;
+
+    /**
+     * @var string
+     */
+    protected static $classAlias = 'DynamicCSSImage';
 
     /**
      * @param iType $rightSide
@@ -115,5 +128,37 @@ class DynamicCSSImage extends CympelType implements iDynamicCSSImage
     public function getUriCRC32()
     {
         return $this->uriCRC32;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param \Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS $dynamicCSSDomId
+     */
+    public function setDynamicCSSDomId($dynamicCSSDomId)
+    {
+        $this->dynamicCSSDomId = $dynamicCSSDomId;
+    }
+
+    /**
+     * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS
+     */
+    public function getDynamicCSSDomId()
+    {
+        return $this->dynamicCSSDomId;
     }
 }

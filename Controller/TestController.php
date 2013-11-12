@@ -17,13 +17,16 @@ class TestController extends Controller
     public function dynamicCSSTestAction()
     {
         $ids = array(
-            'number_one',
+            array(
+                'id' => 'number_one',
+                'imageUri' => 'images/testImage.png',
+            ),
             'number_two',
             'number_three',
         );
         $pseudo = 'hover';
         $dcm = $this->get('cympel_analytics.dynamic_css_manager');
-        $cssUrl = $dcm->generateOneTimeStylesheet('DynamicCSS', $ids, $pseudo);
+        $cssUrl = $dcm->generateOneTimeStylesheet($ids, $pseudo);
         return $this->render('CympelAnalyticsBundle:Test:test.html.twig', array(
             'cssUrl' => $cssUrl,
         ));
