@@ -9,18 +9,16 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespace;
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespaceEntities;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToRemoveCympelNamespaceException;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManagerExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToSetEntityCympelNamespace;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\CannotCreateCympelNamespaceEntityFromEntityWithoutIdException;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManager;
 
 class CympelNamespacer extends CympelService implements iNamespacer
 {

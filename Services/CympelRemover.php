@@ -8,10 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iRemovable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
 
 class CympelRemover extends CympelService implements iRemover
 {

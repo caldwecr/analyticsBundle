@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEvent;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectorDomEventClientDataSets;
 use Doctrine\Common\Collections\ArrayCollection;

@@ -8,8 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceable;
 
 interface iNamespacer extends iService
 {

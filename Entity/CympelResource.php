@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iServableResource;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 
 class CympelResource extends CympelType implements iServableResource
 {

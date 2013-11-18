@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iRemovable;
 
 interface iRemover extends iType
 {

@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\ServiceTypesNotComparableException;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\ServiceTypesDoNotHaveEntityIdsException;

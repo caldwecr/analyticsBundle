@@ -8,8 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceEntity;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;

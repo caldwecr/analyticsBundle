@@ -8,12 +8,12 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidPersistableException;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
 
 class CympelPersister extends CympelService implements iPersister
 {

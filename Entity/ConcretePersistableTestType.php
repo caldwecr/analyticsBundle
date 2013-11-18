@@ -9,11 +9,12 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iRemovable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iValidatable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iRemovable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iValidatable;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 

@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelectors;
 use Doctrine\ORM\Mapping as ORM;

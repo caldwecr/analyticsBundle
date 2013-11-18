@@ -8,10 +8,10 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceEntities;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceEntity;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespaceEntitiesManagerExtender;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
 
 class CympelNamespaceEntitiesManagerExtender extends CympelService implements iNamespaceEntitiesManagerExtender
 {

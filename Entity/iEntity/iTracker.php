@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iValidatable;
 
 interface iTracker extends iValidatable
 {

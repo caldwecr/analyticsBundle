@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity\Exception;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\Exception\TypeMismatchException;
 
 class InvalidTrackingToolException extends \Exception implements iType
 {

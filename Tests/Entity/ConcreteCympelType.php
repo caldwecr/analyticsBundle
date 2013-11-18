@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\CympelType;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 
 class ConcreteCympelType extends CympelType

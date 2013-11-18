@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidFindablePropertyException;
 
 interface iFinder extends iType

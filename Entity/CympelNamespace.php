@@ -8,11 +8,12 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
+use Cympel\Bundle\ToolsBundle\Entity\Exception\DuplicateCympelNamespaceException;
 use Cympel\Bundle\ToolsBundle\Entity\Exception\TypeMismatchException;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceEntities;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 

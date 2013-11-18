@@ -7,6 +7,8 @@
  * Copyright Cympel Inc
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iCreatable;
 
 interface iCreatableAndFindable extends iFindable, iCreatable
 {

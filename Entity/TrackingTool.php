@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
+use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 
 abstract class TrackingTool extends CympelType implements iTrackingTool
 {

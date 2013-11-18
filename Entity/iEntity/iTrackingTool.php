@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iPersistable;
 
 interface iTrackingTool extends iType, iPersistable
 {
