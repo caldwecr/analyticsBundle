@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+
 /**
  * Interface iSelector
  * @package Cympel\Bundle\AnalyticsBundle\Entity

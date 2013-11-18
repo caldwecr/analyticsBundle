@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 
 interface iTrackingToolManager extends iType, iValidate, iPersist, iFind, iRemove, iCreate
 {

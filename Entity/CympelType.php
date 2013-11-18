@@ -12,8 +12,8 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iAliasable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\Exception\TypeMismatchException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

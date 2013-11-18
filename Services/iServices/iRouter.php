@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Symfony\Component\Routing\Router;
 
 interface iRouter extends iType

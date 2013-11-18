@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
 
 interface iDynamicJSDomEvents extends iType, iPersistable, iFindable, iCreatable, iRemovable, iValidatable

@@ -10,7 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntity;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespaceEntities;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+
 interface iServableResource extends iType
 {
 

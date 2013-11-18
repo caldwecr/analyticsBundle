@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\TypeMismatchException;
+use Cympel\Bundle\ToolsBundle\Entity\Exception\TypeMismatchException;
 
 class ConcreteCympelTypeEqualsTest extends \PHPUnit_Framework_TestCase
 {

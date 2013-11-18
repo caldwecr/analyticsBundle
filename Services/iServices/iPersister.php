@@ -9,7 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPersistable;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidPersistableException;
 
 interface iPersister extends iType

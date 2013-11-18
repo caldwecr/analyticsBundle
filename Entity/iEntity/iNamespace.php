@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity\iEntity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\DuplicateCympelNamespaceException;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 
 interface iNamespace extends iType, iValidatable, iPersistable, iCreatable, iRemovable, iFindable
 {

@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJS;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSDomEvents;
 use Doctrine\Common\Collections\ArrayCollection;

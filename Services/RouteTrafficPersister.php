@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\RouteTraffic;
 
 class RouteTrafficPersister extends CympelService implements iType
