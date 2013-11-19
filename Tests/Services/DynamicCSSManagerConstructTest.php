@@ -14,7 +14,7 @@ class DynamicCSSManagerConstructTest extends ContainerAwareUnitTestCase
 {
     public function testDynamicCSSManagerConstruct()
     {
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $this->assertEquals('DynamicCSSManager', $dcm->getType());
     }
 }

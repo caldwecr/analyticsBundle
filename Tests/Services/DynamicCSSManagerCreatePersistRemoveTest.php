@@ -17,7 +17,7 @@ class DynamicCSSManagerCreatePersistRemoveTest extends ContainerAwareUnitTestCas
     {
         $t = new Tracker();
 
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $dcss = $dcm->createTrackingTool('DynamicCSS', $t);
 
         // Verify that the id is initially blank and is then set by the persist operation

@@ -14,7 +14,7 @@ class DynamicCSSManagerGenerateOneTimeTest extends ContainerAwareUnitTestCase
 {
     public function testDynamicCSSManagerGenerateOneTime()
     {
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $ids = array(
             'foo',
             'bar'

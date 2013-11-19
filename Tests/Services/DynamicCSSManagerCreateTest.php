@@ -19,7 +19,7 @@ class DynamicCSSManagerCreateTest extends ContainerAwareUnitTestCase
         // Validate that there aren't any tools associated with the tracker
         $this->assertEquals(0, count($t->getTrackingTools()));
 
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $dcss = $dcm->createTrackingTool('DynamicCSS', $t);
         $this->assertTrue($dcss->getTracker()->equals($t));
 

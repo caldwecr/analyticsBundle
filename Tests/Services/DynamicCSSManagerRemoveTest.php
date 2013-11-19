@@ -14,7 +14,7 @@ class DynamicCSSManagerRemoveTest extends ContainerAwareUnitTestCase
 {
     public function testRemove()
     {
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $ids = array(
             'baz',
             'buz'

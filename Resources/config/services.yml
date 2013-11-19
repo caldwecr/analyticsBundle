@@ -1,7 +1,7 @@
 parameters:
     #Deprecated
     cympelAnalytics.routeTrafficPersister.class:                                %ca.rtp.class%
-    cympel_analytics.dynamic_css_manager.class:                                 %ca.dcss.manager.class%
+    #cympel_analytics.dynamic_css_manager.class:                                 %ca.dcss.manager.class%
     cympel_analytics.dynamic_css_dom_id_manager.class:                          %ca.dcss.dom_id.manager.class%
     cympel_analytics.tracker_manager.class:                                     %ca.tracker.manager.class%
     cympel_analytics.dynamic_js_manager.class:                                  %ca.djs.manager.class%
@@ -154,8 +154,8 @@ services:
     cympelAnalytics.routeTrafficPersister:
         class: %cympelAnalytics.routeTrafficPersister.class%
         arguments: [@doctrine, "%cympel_analytics.entity_manager%"]
-    cympel_analytics.dynamic_css_manager:
-        class: %cympel_analytics.dynamic_css_manager.class%
+    ca.dcss.manager:
+        class: %ca.dcss.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@cympel_analytics.dynamic_css_service_extension"]
     cympel_analytics.dynamic_css_dom_id_manager:
         class: %cympel_analytics.dynamic_css_dom_id_manager.class%

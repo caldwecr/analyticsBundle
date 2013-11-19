@@ -16,7 +16,7 @@ class DynamicCSSManagerValidateTest extends ContainerAwareUnitTestCase
     public function testValidate()
     {
         $t = new Tracker();
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $dcss = $dcm->createTrackingTool('DynamicCSS', $t);
         $dcss->setCreated(-10);
 

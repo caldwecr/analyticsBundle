@@ -20,7 +20,7 @@ class TrackerManagerRemoveKeyConstraintViolationTest extends ContainerAwareUnitT
     public function testRemovalViolation()
     {
         $trackerManager = $this->get('cympel_analytics.tracker_manager');
-        $dynamicCSSManager = $this->get('cympel_analytics.dynamic_css_manager');
+        $dynamicCSSManager = $this->get('ca.dcss.manager');
 
         $tracker = $trackerManager->create();
         $dynamicCSS = $dynamicCSSManager->createTrackingTool('DynamicCSS', $tracker);

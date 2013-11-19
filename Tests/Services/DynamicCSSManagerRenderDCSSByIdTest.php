@@ -14,7 +14,7 @@ class DynamicCSSManagerRenderDCSSByIdTest extends ContainerAwareUnitTestCase
 {
     public function testRenderDCSS()
     {
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $ids = array(
             'boo',
             'hoo'
