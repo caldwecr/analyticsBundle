@@ -15,7 +15,7 @@ class DynamicJSSelectorDomEventClientDataSetDomClassesCreatorCreateTest extends 
 {
     public function testCreate()
     {
-        $creator = $this->get('cympel_analytics.cds.dom_classes.creator');
+        $creator = $this->get('ca.djs.cds.dom_classes.creator');
 
         $encodeMe = array(
             'clientX' => 50,

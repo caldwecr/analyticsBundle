@@ -1,24 +1,4 @@
 parameters:
-    #Deprecated
-    #cympelAnalytics.routeTrafficPersister.class:                                %ca.rtp.class%
-    #cympel_analytics.dynamic_css_manager.class:                                 %ca.dcss.manager.class%
-    #cympel_analytics.dynamic_css_dom_id_manager.class:                          %ca.dcss.dom_id.manager.class%
-    #cympel_analytics.tracker_manager.class:                                     %ca.tracker.manager.class%
-    #cympel_analytics.dynamic_js_manager.class:                                  %ca.djs.manager.class%
-    #cympel_analytics.dynamic_css_service_extension.class:                       %ca.dcss.extender.class%
-    #cympel_analytics.dynamic_css_dom_id_array_collection_manager.class:         %ca.dcss.dom_id.ac.manager.class%
-    #cympel_analytics.tracking_tool_remover.class:                               %ca.tracker.tt.remover.class%
-    #cympel_analytics.tracking_tool_validator.class:                             %ca.tracker.tt.validator.class%
-    #cympel_analytics.dynamic_js_selector_manager.class:                         %ca.djs.selector.manager.class%
-    #cympel_analytics.dynamic_js_selectors.manager.class:                        %ca.djs.selectors.manager.class%
-    #cympel_analytics.dynamic_js.extension_service.class:                        %ca.djs.extender.class%
-    #cympel_analytics.dynamic_js_dom_events.manager.class:                       %ca.djs.dom_events.manager.class%
-    #cympel_analytics.dynamic_js_dom_event.manager.class:                        %ca.djs.dom_event.manager.class%
-    #cympel_analytics.dynamic_js_dom_event.finder.class:                         %ca.djs.dom_event.finder.class%
-    #cympel_analytics.dynamic_js_selector_dom_event.manager.class:               %ca.djs.sde.manager.class%
-    #cympel_analytics.dynamic_js_selector_dom_event.finder.class:                %ca.djs.sde.finder.class%
-    #cympel_analytics.cds.dom_classes.creator.class:                             %ca.djs.cds.dom_classes.creator.class%
-
     #Current
     # ** --- The 'ca' namespace contains ALL CympelAnalyticsBundle services
     ## Route Traffic Persister services
@@ -276,8 +256,8 @@ services:
     cympel_analytics.tracking_tool_remover:
         alias: ca.tracker.tt.remover
     # @todo write tests of the ca.tracker.tt.validator service
-    #cympel_analytics.tracking_tool_validator:
-    #    alias: ca.tracker.tt.validator
+    cympel_analytics.tracking_tool_validator:
+        alias: ca.tracker.tt.validator
     cympel_analytics.dynamic_js_selector_manager:
         alias: ca.djs.selector.manager
     cympel_analytics.dynamic_js_selectors.manager:
@@ -286,7 +266,6 @@ services:
         alias: ca.djs.extender
     cympel_analytics.dynamic_js_dom_events.manager:
         alias: ca.djs.dom_events.manager
-    ##below this line still need to have the bundle refactored
     cympel_analytics.dynamic_js_dom_event.manager:
         alias: ca.djs.dom_event.manager
     cympel_analytics.dynamic_js_dom_event.finder:

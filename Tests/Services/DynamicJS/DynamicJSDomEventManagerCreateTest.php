@@ -14,7 +14,7 @@ class DynamicJSDomEventManagerCreateTest extends ContainerAwareUnitTestCase
 {
     public function testCreate()
     {
-        $djm = $this->get('cympel_analytics.dynamic_js_dom_event.manager');
+        $djm = $this->get('ca.djs.dom_event.manager');
         $djEvent = $djm->getCreator()->create('DynamicJSDomEvent');
         $this->assertEquals('DynamicJSDomEvent', $djEvent->getType());
     }

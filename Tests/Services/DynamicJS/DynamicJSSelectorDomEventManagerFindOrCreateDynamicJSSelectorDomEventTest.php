@@ -15,11 +15,11 @@ class DynamicJSSelectorDomEventManagerFindOrCreateDynamicJSSelectorDomEventTest 
 {
     public function testFindOrCreate()
     {
-        $manager = $this->get('cympel_analytics.dynamic_js_selector_dom_event.manager');
+        $manager = $this->get('ca.djs.sde.manager');
 
         $creator = $this->get('cympel_analytics.generics.creator');
         $persister = $this->get('cympel_analytics.generics.persister');
-        $finder = $this->get('cympel_analytics.dynamic_js_selector_dom_event.finder');
+        $finder = $this->get('ca.djs.sde.finder');
 
         $selector = $creator->create('DynamicJSSelector');
         $selector->setSelection('#foobared');

@@ -22,7 +22,7 @@ class DynamicJSDomEventFinderFindByEventsAndEventNameTest extends ContainerAware
         $eventName = 'click';
         $classAlias = 'DynamicJSDomEvent';
 
-        $finder = $this->get('cympel_analytics.dynamic_js_dom_event.finder');
+        $finder = $this->get('ca.djs.dom_event.finder');
         $persister = $this->get('cympel_analytics.generics.persister');
         $events = new DynamicJSDomEvents();
         $dynamicJ = new DynamicJS();
