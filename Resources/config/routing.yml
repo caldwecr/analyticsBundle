@@ -22,6 +22,3 @@ dynamicJSCallback:
 dynamicJSTest:
     pattern: /dynamic/jsTest
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }
-cympel_resource_server_image:
-    pattern: /resource/{imageId}
-    defaults: { _controller: CympelAnalyticsBundle:CympelResourceServer:image, imageId = _blank }
