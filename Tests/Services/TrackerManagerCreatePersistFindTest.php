@@ -14,7 +14,7 @@ class TrackerManagerCreatePersistFindTest extends ContainerAwareUnitTestCase
 {
     public function testCreatePersistFind()
     {
-        $trackerManager = $this->get('cympel_analytics.tracker_manager');
+        $trackerManager = $this->get('ca.tracker.manager');
         $tracker = $trackerManager->create();
         $trackerManager->persist($tracker);
         $tracker2 = $trackerManager->findOneById($tracker->getId());
