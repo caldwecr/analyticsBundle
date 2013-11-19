@@ -8,7 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iCreatable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class CympelCreator extends CympelService implements iCreator

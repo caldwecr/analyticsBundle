@@ -10,7 +10,6 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomIdArrayCollection;
-use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSImage;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtensionService

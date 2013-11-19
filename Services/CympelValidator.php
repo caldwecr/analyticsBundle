@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iValidatable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 
 class CympelValidator extends CympelService implements iValidator
 {

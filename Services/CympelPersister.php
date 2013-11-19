@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;

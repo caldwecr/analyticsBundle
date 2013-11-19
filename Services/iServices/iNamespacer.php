@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceable;
+use Cympel\Bundle\ToolsBundle\Services\iServices\iService;
 
 interface iNamespacer extends iService
 {

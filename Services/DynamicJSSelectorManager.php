@@ -13,6 +13,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 
 /**
  * Class DynamicJSSelectorManager

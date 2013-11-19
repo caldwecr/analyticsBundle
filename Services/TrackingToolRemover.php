@@ -14,7 +14,8 @@ use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidTrackingToolException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolValidator;
-use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 
 class TrackingToolRemover extends CympelService implements iTrackingToolRemover
 {

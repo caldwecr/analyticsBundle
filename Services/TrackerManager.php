@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\Tracker;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackerManager;
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 
 class TrackerManager extends CympelService implements iTrackerManager
 {

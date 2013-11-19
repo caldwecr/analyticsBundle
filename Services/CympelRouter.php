@@ -10,6 +10,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Symfony\Component\Routing\Router;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRouter;
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 
 class CympelRouter extends CympelService implements iRouter
 {

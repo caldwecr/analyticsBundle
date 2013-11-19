@@ -8,6 +8,8 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 
+use Cympel\Bundle\ToolsBundle\Services\iServices\iService;
+
 interface iRemove extends iService
 {
     /**

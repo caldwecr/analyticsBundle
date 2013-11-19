@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 use Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespace;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToRemoveCympelNamespaceException;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;

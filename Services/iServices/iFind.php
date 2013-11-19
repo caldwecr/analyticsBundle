@@ -7,6 +7,7 @@
  * Copyright Cympel Inc
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
+use Cympel\Bundle\ToolsBundle\Services\iServices\iService;
 
 interface iFind extends iService
 {

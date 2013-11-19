@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\ToolsBundle\Services\CympelService;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreatableRegistrar;
 use Doctrine\Common\Collections\ArrayCollection;
 
