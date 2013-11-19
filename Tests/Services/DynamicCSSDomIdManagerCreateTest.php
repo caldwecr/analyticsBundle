@@ -14,7 +14,7 @@ class DynamicCSSDomIdManagerCreateTest extends ContainerAwareUnitTestCase
 {
     public function testCreate()
     {
-        $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
+        $dcdim = $this->get('ca.dcss.dom_id.manager');
         $dcssdi = $dcdim->create();
         $this->assertEquals('DynamicCSSDomId', $dcssdi->getType());
     }

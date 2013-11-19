@@ -15,7 +15,7 @@ class DynamicCSSDomIdManagerFindOneByDynamicCSSAndDomIdValueTest extends Contain
 {
     public function testFindOneByDCSSAndDomIdValue()
     {
-        $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
+        $dcdim = $this->get('ca.dcss.dom_id.manager');
         $dcssdi = DynamicCSSDomIdTestInstanceFactory::createInstance();
         $dcdim->persist($dcssdi);
         $dcssdi2 = $dcdim->findOneByDynamicCSSAndDomIdValue($dcssdi->getDynamicCSS(), $dcssdi->getDomIdValue());

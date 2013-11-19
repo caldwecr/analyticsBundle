@@ -16,7 +16,7 @@ class DynamicCSSDomIdValidCreatedTest extends ContainerAwareUnitTestCase
     public function testValidCreated()
     {
         $domId = DynamicCSSDomIdTestInstanceFactory::createInstance();
-        $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
+        $dcdim = $this->get('ca.dcss.dom_id.manager');
         $domId->setCreated(123456789);
         $errors = $dcdim->validate($domId);
 

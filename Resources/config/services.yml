@@ -2,7 +2,7 @@ parameters:
     #Deprecated
     cympelAnalytics.routeTrafficPersister.class:                                %ca.rtp.class%
     #cympel_analytics.dynamic_css_manager.class:                                 %ca.dcss.manager.class%
-    cympel_analytics.dynamic_css_dom_id_manager.class:                          %ca.dcss.dom_id.manager.class%
+    #cympel_analytics.dynamic_css_dom_id_manager.class:                          %ca.dcss.dom_id.manager.class%
     cympel_analytics.tracker_manager.class:                                     %ca.tracker.manager.class%
     cympel_analytics.dynamic_js_manager.class:                                  %ca.djs.manager.class%
     cympel_analytics.dynamic_css_service_extension.class:                       %ca.dcss.extender.class%
@@ -157,8 +157,8 @@ services:
     ca.dcss.manager:
         class: %ca.dcss.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@cympel_analytics.dynamic_css_service_extension"]
-    cympel_analytics.dynamic_css_dom_id_manager:
-        class: %cympel_analytics.dynamic_css_dom_id_manager.class%
+    ca.dcss.dom_id.manager:
+        class: %ca.dcss.dom_id.manager.class%
         arguments: ["@doctrine", "@validator", "%cympel_analytics.entity_manager%"]
     cympel_analytics.tracker_manager:
         class: %cympel_analytics.tracker_manager.class%
@@ -168,10 +168,10 @@ services:
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@cympel_analytics.dynamic_js.extension_service"]
     cympel_analytics.dynamic_css_service_extension:
         class: %cympel_analytics.dynamic_css_service_extension.class%
-        arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager", "@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
+        arguments: ["@ca.dcss.dom_id.manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager", "@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@cympel_analytics.tracker_manager", "%cympel_analytics.entity_manager%"]
     cympel_analytics.dynamic_css_dom_id_array_collection_manager:
         class: %cympel_analytics.dynamic_css_dom_id_array_collection_manager.class%
-        arguments: ["@cympel_analytics.dynamic_css_dom_id_manager", "@cympel_analytics.generics.creator"]
+        arguments: ["@ca.dcss.dom_id.manager", "@cympel_analytics.generics.creator"]
     cympel_analytics.tracking_tool_remover:
         class: %cympel_analytics.tracking_tool_remover.class%
         arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "%cympel_analytics.entity_manager%", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
@@ -255,3 +255,8 @@ services:
     ca.generics.namespacer:
         class: %ca.generics.namespacer.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@ca.ns_entities.extender"]
+    #### Service aliases - provided for backwards compatibility
+    cympel_analytics.dynamic_css_manager:
+        alias: ca.dcss.manager
+    cympel_analytics.dynamic_css_dom_id_manager:
+        alias: ca.dcss.dom_id.manager

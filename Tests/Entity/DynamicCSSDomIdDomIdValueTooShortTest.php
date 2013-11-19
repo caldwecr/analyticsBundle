@@ -16,7 +16,7 @@ class DynamicCSSDomIdDomIdValueTooShortTest extends ContainerAwareUnitTestCase
     public function testTooShortDomIdValue()
     {
         $domId = DynamicCSSDomIdTestInstanceFactory::createInstance();
-        $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
+        $dcdim = $this->get('ca.dcss.dom_id.manager');
         $domId->setDomIdValue('a');
         $errors = $dcdim->validate($domId);
         $this->assertEquals(1, count($errors));

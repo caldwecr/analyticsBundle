@@ -15,7 +15,7 @@ class DynamicCSSDomIdManagerRenderByDCSSAndDomIdValueTest extends ContainerAware
 {
     public function testRenderByDCSSAndDomIdValue()
     {
-        $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
+        $dcdim = $this->get('ca.dcss.dom_id.manager');
         $dcssdi = DynamicCSSDomIdTestInstanceFactory::createInstance('DynamicCSSDomIdManagerRenderByDCSSAndDomIdValueTest');
         $dcdim->persist($dcssdi);
         $dcssdi2 = $dcdim->findOneByDynamicCSSAndDomIdValue($dcssdi->getDynamicCSS(), $dcssdi->getDomIdValue());

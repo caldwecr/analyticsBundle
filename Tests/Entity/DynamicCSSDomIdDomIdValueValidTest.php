@@ -16,7 +16,7 @@ class DynamicCSSDomIdDomIdValueValidTest extends ContainerAwareUnitTestCase
     public function testValidDomIdValue()
     {
         $domId = DynamicCSSDomIdTestInstanceFactory::createInstance();
-        $dcdim = $this->get('cympel_analytics.dynamic_css_dom_id_manager');
+        $dcdim = $this->get('ca.dcss.dom_id.manager');
         $errors = $dcdim->validate($domId);
 
         $this->assertEquals(0, count($errors));
