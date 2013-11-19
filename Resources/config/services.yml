@@ -4,20 +4,20 @@ parameters:
     #cympel_analytics.dynamic_css_manager.class:                                 %ca.dcss.manager.class%
     #cympel_analytics.dynamic_css_dom_id_manager.class:                          %ca.dcss.dom_id.manager.class%
     #cympel_analytics.tracker_manager.class:                                     %ca.tracker.manager.class%
-    cympel_analytics.dynamic_js_manager.class:                                  %ca.djs.manager.class%
-    cympel_analytics.dynamic_css_service_extension.class:                       %ca.dcss.extender.class%
-    cympel_analytics.dynamic_css_dom_id_array_collection_manager.class:         %ca.dcss.dom_id.ac.manager.class%
-    cympel_analytics.tracking_tool_remover.class:                               %ca.tracker.tt.remover.class%
-    cympel_analytics.tracking_tool_validator.class:                             %ca.tracker.tt.validator.class%
-    cympel_analytics.dynamic_js_selector_manager.class:                         %ca.djs.selector.manager.class%
-    cympel_analytics.dynamic_js_selectors.manager.class:                        %ca.djs.selectors.manager.class%
-    cympel_analytics.dynamic_js.extension_service.class:                        %ca.djs.extender.class%
-    cympel_analytics.dynamic_js_dom_events.manager.class:                       %ca.djs.dom_events.manager.class%
-    cympel_analytics.dynamic_js_dom_event.manager.class:                        %ca.djs.dom_event.manager.class%
-    cympel_analytics.dynamic_js_dom_event.finder.class:                         %ca.djs.dom_event.finder.class%
-    cympel_analytics.dynamic_js_selector_dom_event.manager.class:               %ca.djs.sde.manager.class%
-    cympel_analytics.dynamic_js_selector_dom_event.finder.class:                %ca.djs.sde.finder.class%
-    cympel_analytics.cds.dom_classes.creator.class:                             %ca.djs.cds.dom_classes.creator.class%
+    #cympel_analytics.dynamic_js_manager.class:                                  %ca.djs.manager.class%
+    #cympel_analytics.dynamic_css_service_extension.class:                       %ca.dcss.extender.class%
+    #cympel_analytics.dynamic_css_dom_id_array_collection_manager.class:         %ca.dcss.dom_id.ac.manager.class%
+    #cympel_analytics.tracking_tool_remover.class:                               %ca.tracker.tt.remover.class%
+    #cympel_analytics.tracking_tool_validator.class:                             %ca.tracker.tt.validator.class%
+    #cympel_analytics.dynamic_js_selector_manager.class:                         %ca.djs.selector.manager.class%
+    #cympel_analytics.dynamic_js_selectors.manager.class:                        %ca.djs.selectors.manager.class%
+    #cympel_analytics.dynamic_js.extension_service.class:                        %ca.djs.extender.class%
+    #cympel_analytics.dynamic_js_dom_events.manager.class:                       %ca.djs.dom_events.manager.class%
+    #cympel_analytics.dynamic_js_dom_event.manager.class:                        %ca.djs.dom_event.manager.class%
+    #cympel_analytics.dynamic_js_dom_event.finder.class:                         %ca.djs.dom_event.finder.class%
+    #cympel_analytics.dynamic_js_selector_dom_event.manager.class:               %ca.djs.sde.manager.class%
+    #cympel_analytics.dynamic_js_selector_dom_event.finder.class:                %ca.djs.sde.finder.class%
+    #cympel_analytics.cds.dom_classes.creator.class:                             %ca.djs.cds.dom_classes.creator.class%
 
     #Current
     # ** --- The 'ca' namespace contains ALL CympelAnalyticsBundle services
@@ -156,54 +156,54 @@ services:
         arguments: [@doctrine, "%cympel_analytics.entity_manager%"]
     ca.dcss.manager:
         class: %ca.dcss.manager.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@cympel_analytics.dynamic_css_service_extension"]
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@ca.dcss.extender"]
     ca.dcss.dom_id.manager:
         class: %ca.dcss.dom_id.manager.class%
         arguments: ["@doctrine", "@validator", "%cympel_analytics.entity_manager%"]
     ca.tracker.manager:
         class: %ca.tracker.manager.class%
-        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_remover", "%cympel_analytics.entity_manager%"]
-    cympel_analytics.dynamic_js_manager:
-        class: %cympel_analytics.dynamic_js_manager.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@cympel_analytics.dynamic_js.extension_service"]
-    cympel_analytics.dynamic_css_service_extension:
-        class: %cympel_analytics.dynamic_css_service_extension.class%
-        arguments: ["@ca.dcss.dom_id.manager", "@cympel_analytics.dynamic_css_dom_id_array_collection_manager", "@doctrine", "@cympel_analytics.tracking_tool_remover", "@cympel_analytics.tracking_tool_validator", "@router", "@ca.tracker.manager", "%cympel_analytics.entity_manager%"]
-    cympel_analytics.dynamic_css_dom_id_array_collection_manager:
-        class: %cympel_analytics.dynamic_css_dom_id_array_collection_manager.class%
+        arguments: ["@doctrine", "@ca.tracker.tt.remover", "%cympel_analytics.entity_manager%"]
+    ca.djs.manager:
+        class: %ca.djs.manager.class%
+        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@ca.djs.extender"]
+    ca.dcss.extender:
+        class: %ca.dcss.extender.class%
+        arguments: ["@ca.dcss.dom_id.manager", "@ca.dcss.dom_id.ac.manager", "@doctrine", "@ca.tracker.tt.remover", "@ca.tracker.tt.validator", "@router", "@ca.tracker.manager", "%cympel_analytics.entity_manager%"]
+    ca.dcss.dom_id.ac.manager:
+        class: %ca.dcss.dom_id.ac.manager.class%
         arguments: ["@ca.dcss.dom_id.manager", "@cympel_analytics.generics.creator"]
-    cympel_analytics.tracking_tool_remover:
-        class: %cympel_analytics.tracking_tool_remover.class%
-        arguments: ["@doctrine", "@cympel_analytics.tracking_tool_validator", "%cympel_analytics.entity_manager%", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
-    cympel_analytics.tracking_tool_validator:
-        class: %cympel_analytics.tracking_tool_validator.class%
+    ca.tracker.tt.remover:
+        class: %ca.tracker.tt.remover.class%
+        arguments: ["@doctrine", "@ca.tracker.tt.validator", "%cympel_analytics.entity_manager%", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
+    ca.tracker.tt.validator:
+        class: %ca.tracker.tt.validator.class%
         arguments: ["@validator"]
-    cympel_analytics.dynamic_js_selector_manager:
-        class: %cympel_analytics.dynamic_js_selector_manager.class%
+    ca.djs.selector.manager:
+        class: %ca.djs.selector.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover"]
-    cympel_analytics.dynamic_js_selectors.manager:
-        class: %cympel_analytics.dynamic_js_selectors.manager.class%
+    ca.djs.selectors.manager:
+        class: %ca.djs.selectors.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
-    cympel_analytics.dynamic_js.extension_service:
-        class: %cympel_analytics.dynamic_js.extension_service.class%
-        arguments: ["@cympel_analytics.dynamic_js_selectors.manager", "@cympel_analytics.dynamic_js_dom_events.manager", "@cympel_analytics.generics.router", "@ca.tracker.manager"]
-    cympel_analytics.dynamic_js_dom_events.manager:
-        class: %cympel_analytics.dynamic_js_dom_events.manager.class%
+    ca.djs.extender:
+        class: %ca.djs.extender.class%
+        arguments: ["@ca.djs.selectors.manager", "@ca.djs.dom_events.manager", "@cympel_analytics.generics.router", "@ca.tracker.manager"]
+    ca.djs.dom_events.manager:
+        class: %ca.djs.dom_events.manager.class%
         arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.generics.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
-    cympel_analytics.dynamic_js_dom_event.finder:
-        class: %cympel_analytics.dynamic_js_dom_event.finder.class%
+    ca.djs.dom_event.finder:
+        class: %ca.djs.dom_event.finder.class%
         arguments: ["@doctrine", "@cympel_analytics.generics.creatable_registrar", "@cympel_analytics.generics.creator"]
-    cympel_analytics.dynamic_js_dom_event.manager:
-        class: %cympel_analytics.dynamic_js_dom_event.manager.class%
-        arguments: ["@cympel_analytics.generics.creator", "@cympel_analytics.dynamic_js_dom_event.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
-    cympel_analytics.dynamic_js_selector_dom_event.manager:
-        class: %cympel_analytics.dynamic_js_selector_dom_event.manager.class%
-        arguments: ["@cympel_analytics.cds.dom_classes.creator", "@cympel_analytics.dynamic_js_selector_dom_event.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
-    cympel_analytics.dynamic_js_selector_dom_event.finder:
-        class: %cympel_analytics.dynamic_js_selector_dom_event.finder.class%
+    ca.djs.dom_event.manager:
+        class: %ca.djs.dom_event.manager.class%
+        arguments: ["@cympel_analytics.generics.creator", "@ca.djs.dom_event.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
+    ca.djs.sde.manager:
+        class: %ca.djs.sde.manager.class%
+        arguments: ["@ca.djs.cds.dom_classes.creator", "@ca.djs.sde.finder", "@cympel_analytics.generics.persister", "@cympel_analytics.generics.remover", "@cympel_analytics.generics.validator", "@?"]
+    ca.djs.sde.finder:
+        class: %ca.djs.sde.finder.class%
         arguments: ["@doctrine", "@cympel_analytics.generics.creatable_registrar", "@cympel_analytics.generics.creator"]
-    cympel_analytics.cds.dom_classes.creator:
-        class: %cympel_analytics.cds.dom_classes.creator.class%
+    ca.djs.cds.dom_classes.creator:
+        class: %ca.djs.cds.dom_classes.creator.class%
         arguments: ["@cympel_analytics.generics.creatable_registrar"]
     ca.ns_entities.manager:
         class: %ca.ns_entities.manager.class%
@@ -264,3 +264,32 @@ services:
         alias: ca.tracker.manager
     cympelAnalytics.routeTrafficPersister:
         alias: ca.rtp
+        ##below this line still need to have the bundle refactored
+    cympel_analytics.dynamic_js_manager:
+        alias: ca.djs.manager
+    cympel_analytics.dynamic_css_service_extension:
+        alias: ca.dcss.extender
+    cympel_analytics.dynamic_css_dom_id_array_collection_manager:
+        alias: ca.dcss.dom_id.ac.manager
+    cympel_analytics.tracking_tool_remover:
+        alias: ca.tracker.tt.remover
+    cympel_analytics.tracking_tool_validator:
+        alias: ca.tracker.tt.validator
+    cympel_analytics.dynamic_js_selector_manager:
+        alias: ca.djs.selector.manager
+    cympel_analytics.dynamic_js_selectors.manager:
+        alias: ca.djs.selectors.manager
+    cympel_analytics.dynamic_js.extension_service:
+        alias: ca.djs.extender
+    cympel_analytics.dynamic_js_dom_events.manager:
+        alias: ca.djs.dom_events.manager
+    cympel_analytics.dynamic_js_dom_event.manager:
+        alias: ca.djs.dom_event.manager
+    cympel_analytics.dynamic_js_dom_event.finder:
+        alias: ca.djs.dom_event.finder
+    cympel_analytics.dynamic_js_selector_dom_event.manager:
+        alias: ca.djs.sde.manager
+    cympel_analytics.dynamic_js_selector_dom_event.finder:
+        alias: ca.djs.sde.finder
+    cympel_analytics.cds.dom_classes.creator:
+        alias: ca.djs.cds.dom_classes.creator
