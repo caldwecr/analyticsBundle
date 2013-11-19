@@ -15,7 +15,7 @@ class RouteTrafficPersisterTest extends ContainerAwareUnitTestCase
     public function testRouteTrafficPersister()
     {
         // Write the route using the RouteTrafficPersister
-        $rtp = $this->get('cympelAnalytics.routeTrafficPersister');
+        $rtp = $this->get('ca.rtp');
         $mtime = microtime(true);
         $rn = 'testRouteTrafficPersister' . $mtime;
         $rtp->persist($rn);

@@ -1,6 +1,6 @@
 parameters:
     #Deprecated
-    cympelAnalytics.routeTrafficPersister.class:                                %ca.rtp.class%
+    #cympelAnalytics.routeTrafficPersister.class:                                %ca.rtp.class%
     #cympel_analytics.dynamic_css_manager.class:                                 %ca.dcss.manager.class%
     #cympel_analytics.dynamic_css_dom_id_manager.class:                          %ca.dcss.dom_id.manager.class%
     #cympel_analytics.tracker_manager.class:                                     %ca.tracker.manager.class%
@@ -151,8 +151,8 @@ parameters:
     cympel_analytics.namespace:
 
 services:
-    cympelAnalytics.routeTrafficPersister:
-        class: %cympelAnalytics.routeTrafficPersister.class%
+    ca.rtp:
+        class: %ca.rtp.class%
         arguments: [@doctrine, "%cympel_analytics.entity_manager%"]
     ca.dcss.manager:
         class: %ca.dcss.manager.class%
@@ -262,3 +262,5 @@ services:
         alias: ca.dcss.dom_id.manager
     cympel_analytics.tracker_manager:
         alias: ca.tracker.manager
+    cympelAnalytics.routeTrafficPersister:
+        alias: ca.rtp
