@@ -17,7 +17,7 @@ class DynamicJSDomEventManagerCreatePersistFindDeleteTest extends ContainerAware
 {
     public function testCreatePersistFindDelete()
     {
-        $eventsManager = $this->get('cympel_analytics.dynamic_js_dom_events.manager');
+        $eventsManager = $this->get('ca.djs.dom_events.manager');
         $events = $eventsManager->getCreator()->create('DynamicJSDomEvents');
 
         // Add two events

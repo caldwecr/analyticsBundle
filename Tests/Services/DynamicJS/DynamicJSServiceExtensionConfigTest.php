@@ -14,7 +14,7 @@ class DynamicJSServiceExtensionConfigTest extends ContainerAwareUnitTestCase
 {
     public function testConfig()
     {
-        $se = $this->get('cympel_analytics.dynamic_js.extension_service');
+        $se = $this->get('ca.djs.extender');
         $this->assertEquals('DynamicJSServiceExtension', $se->getType());
         $selectorsManager = $se->getDynamicJSelectorsManager();
         $this->assertEquals('DynamicJSSelectorsManager', $selectorsManager->getType());

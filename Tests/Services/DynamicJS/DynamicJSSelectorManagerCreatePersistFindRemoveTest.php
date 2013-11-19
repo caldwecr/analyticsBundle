@@ -15,7 +15,7 @@ class DynamicJSSelectorManagerCreatePersistFindRemoveTest extends ContainerAware
 {
     public function test()
     {
-        $manager = $this->get('cympel_analytics.dynamic_js_selector_manager');
+        $manager = $this->get('ca.djs.selector.manager');
         $creator = $manager->getCreator();
         $persister = $manager->getPersister();
         $finder = $manager->getFinder();
