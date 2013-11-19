@@ -12,7 +12,7 @@ use Cympel\Bundle\ToolsBundle\Services\CympelService;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\InvalidFindablePropertyException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
-use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreatableRegistrar;
+use Cympel\Bundle\ToolsBundle\Services\iServices\iCreatableRegistrar;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 
 class CympelFinder extends CympelService implements iFinder

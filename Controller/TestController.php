@@ -19,13 +19,13 @@ class TestController extends Controller
         $ids = array(
             array(
                 'id' => 'number_one',
-                'imageUri' => $this->get('ca.generics.resource_server')->getUri('testImage.png'),
+                'imageUri' => $this->get('cympel_tools.generics.resource_server')->getUri('testImage.png'),
             ),
             'number_two',
             'number_three',
         );
         $pseudo = 'hover';
-        $dcm = $this->get('cympel_analytics.dynamic_css_manager');
+        $dcm = $this->get('ca.dcss.manager');
         $cssUrl = $dcm->generateOneTimeStylesheet($ids, $pseudo);
         return $this->render('CympelAnalyticsBundle:Test:test.html.twig', array(
             'cssUrl' => $cssUrl,
@@ -42,7 +42,7 @@ class TestController extends Controller
         $targetEvents = array(
             'click',
         );
-        $djm = $this->get('cympel_analytics.dynamic_js_manager');
+        $djm = $this->get('ca.djs.manager');
         $jsUrl = $djm->generateOneTimeJavascript('DynamicJS', $selectors, $targetEvents);
 
         return $this->render('CympelAnalyticsBundle:Test:jsTest.html.twig', array(

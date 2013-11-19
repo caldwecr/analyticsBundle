@@ -11,18 +11,19 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\ToolsBundle\Services\CympelService;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iCreatable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\ToolsBundle\Services\iServices\iCreatableRegistrar;
 
 class CympelCreator extends CympelService implements iCreator
 {
     /**
-     * @var CreatableRegistrar
+     * @var iCreatableRegistrar
      */
     protected $registrar;
 
     /**
-     * @param CreatableRegistrar $registrar
+     * @param iCreatableRegistrar $registrar
      */
-    public function __construct(CreatableRegistrar $registrar)
+    public function __construct(iCreatableRegistrar $registrar)
     {
         $this->registrar = $registrar;
     }
