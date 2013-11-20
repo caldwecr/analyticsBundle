@@ -120,4 +120,20 @@ class Report extends CympelType implements iReport
         return false;
     }
 
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $reportRuns
+     */
+    public function setReportRuns($reportRuns)
+    {
+        $this->reportRuns = $reportRuns;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getReportRuns()
+    {
+        return $this->reportRuns;
+    }
+
 }

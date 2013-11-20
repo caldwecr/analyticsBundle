@@ -115,7 +115,7 @@ services:
     ### Report services
     ca.report.runner:
         class: %ca.report.runner.class%
-        arguments: ["@doctrine", "@ca.generics.creator"]
+        arguments: ["@doctrine", "@ca.generics.creator", "%cympel_analytics.entity_manager%"]
     ### Generics
     ca.generics.persister:
         class: %ca.generics.persister.class%

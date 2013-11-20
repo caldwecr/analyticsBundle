@@ -272,6 +272,16 @@ class ReportRun extends CympelType implements iReportRun
     /**
      * @param array $callbacks
      * @return void
+     *
+     * The callbacks will usually be of the form
+     *  $callbacks = array(
+     *      'onRun' => array(objectInstance, methodName),
+     *      'onCompletedSuccessfully' => array(objectInstance, methodName),
+     *      'onAbend' => array(objectInstance, methodName)
+     * );
+     *
+     * For more information on options reference
+     * @link http://us2.php.net/call_user_func
      */
     public function setCallbacks($callbacks = array(
         'onRun' => null,
