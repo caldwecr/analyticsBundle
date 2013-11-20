@@ -11,6 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Entity;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReport;
 use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +32,7 @@ class Report extends CympelType implements iReport
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true, nullable=false)
      */
     protected $name;
 
@@ -45,6 +46,17 @@ class Report extends CympelType implements iReport
      * @var string
      */
     protected static $classAlias = 'Report';
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="ReportRun", mappedBy="report", cascade={"persist", "remove"})
+     */
+    protected $reportRuns;
+
+    public function __construct()
+    {
+        $this->reportRuns = new ArrayCollection();
+    }
 
     /**
      * @param iType $rightSide

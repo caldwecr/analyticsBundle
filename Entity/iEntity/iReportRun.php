@@ -52,4 +52,21 @@ interface iReportRun extends iPersistable, iFindable, iRemovable, iValidatable, 
      * @return iReportRunResult
      */
     public function getResult();
+
+    /**
+     * @param iReportRunResult $result
+     * @return void
+     */
+    public function setResult(iReportRunResult $result);
+
+    /**
+     * @return iReport
+     */
+    public function getReport();
+
+    /**
+     * @param iReport $report
+     * @return void
+     */
+    public function setReport(iReport $report);
 }
