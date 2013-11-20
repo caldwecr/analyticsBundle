@@ -39,7 +39,7 @@ parameters:
     cympel_analytics.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
     #cympel_analytics.generics.creatable_registrar.class: Cympel\Bundle\AnalyticsBundle\Services\CreatableRegistrar
-    cympel_analytics.generics.creator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelCreator
+    ca.generics.creator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelCreator
     cympel_analytics.generics.finder.class: Cympel\Bundle\AnalyticsBundle\Services\CympelFinder
     cympel_analytics.generics.validator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelValidator
     cympel_analytics.generics.router.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRouter
@@ -136,8 +136,8 @@ services:
 #            - [register, ["%ca.crtb.cn.entity.class%", "%ca.crtb.cn.entity.alias%", "%ca.crtb.cn.entity.rn%", "%ca.crtb.cn.entity.emn%"]]
 #            - [register, ["%ca.crtb.cn.entities.class%", "%ca.crtb.cn.entities.alias%", "%ca.crtb.cn.entities.rn%", "%ca.crtb.cn.entities.emn%"]]
 #            - [register, ["%ca.crtb.dcss.image.class%", "%ca.crtb.dcss.image.alias%", "%ca.crtb.dcss.image.rn%", "%ca.crtb.dcss.image.emn%"]]
-    cympel_analytics.generics.creator:
-        class: %cympel_analytics.generics.creator.class%
+    ca.generics.creator:
+        class: %ca.generics.creator.class%
         arguments: ["@cympel_tools.creatable_registrar"]
     cympel_analytics.generics.finder:
         class: %cympel_analytics.generics.finder.class%
@@ -195,3 +195,5 @@ services:
         alias: ca.djs.sde.finder
     cympel_analytics.cds.dom_classes.creator:
         alias: ca.djs.cds.dom_classes.creator
+    cympel_analytics.generics.creator:
+            alias: ca.generics.creator

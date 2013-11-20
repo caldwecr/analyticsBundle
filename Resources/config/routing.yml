@@ -22,3 +22,6 @@ dynamicJSCallback:
 dynamicJSTest:
     pattern: /dynamic/jsTest
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }
+cympel_donor_path_dashboard:
+    pattern: /donor/path/dashboard/{start}/{end}
+    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:dashboard }
