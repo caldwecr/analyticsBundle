@@ -99,7 +99,7 @@ class ReportRunner extends CympelService implements iReportRunner
                 // Create a local variable that has the list of callbacks from the ReportRun
                 $callbacks = $toRun->getCallbacks();
                 // Call the callback function associated with the onRun event
-                if(array_key_exists('onRun', $callbacks)) {
+                if($callbacks && is_array($callbacks) && array_key_exists('onRun', $callbacks)) {
                     call_user_func($callbacks['onRun']);
                 }
 
@@ -115,9 +115,13 @@ class ReportRunner extends CympelService implements iReportRunner
                     $toRun->setResult($reportRunResult);
                     $reportRunResult->setReportRun($toRun);
                     $reportRunResult->setData($result);
-                    call_user_func($callbacks['onCompletedSuccessfully']);
+                    if($callbacks && is_array($callbacks) && array_key_exists('onCompletedSuccessfully', $callbacks)) {
+                        call_user_func($callbacks['onCompletedSuccessfully']);
+                    }
                 } else {
-                    call_user_func($callbacks['onAbend']);
+                    if($callbacks && is_array($callbacks) && array_key_exists('onCompletedSuccessfully', $callbacks)) {
+                        call_user_func($callbacks['onAbend']);
+                    }
                 }
 
                 // Now check to see if there are more items in the queue

@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReport;
+use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReportRun;
 use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -134,6 +135,24 @@ class Report extends CympelType implements iReport
     public function getReportRuns()
     {
         return $this->reportRuns;
+    }
+
+    /**
+     * @param iReportRun $reportRun
+     * @return void
+     */
+    public function addRun(iReportRun $reportRun)
+    {
+        $this->reportRuns->add($reportRun);
+    }
+
+    /**
+     * @param iReportRun $reportRun
+     * @return void
+     */
+    public function removeRun(iReportRun $reportRun)
+    {
+        $this->reportRuns->removeElement($reportRun);
     }
 
 }

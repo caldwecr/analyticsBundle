@@ -25,3 +25,6 @@ dynamicJSTest:
 cympel_donor_path_dashboard:
     pattern: /donor/path/dashboard/{start}/{end}
     defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:dashboard }
+cympel_donor_path_run_route_traffic_report:
+    pattern: /donor/path/run/route/traffic/report/{start}/{end}
+    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:runRouteTrafficReport }
