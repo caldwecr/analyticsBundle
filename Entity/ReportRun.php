@@ -68,6 +68,18 @@ class ReportRun extends CympelType implements iReportRun
     protected $result;
 
     /**
+     * @var int
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    protected $reportRunnerQueueNumber;
+
+    /**
+     * @var array
+     * @ORM\Column(type="array")
+     */
+    protected $callbacks;
+
+    /**
      * @var string
      */
     protected static $classAlias = 'ReportRun';
@@ -85,7 +97,15 @@ class ReportRun extends CympelType implements iReportRun
      */
     protected function typedEquals(iType $rightSide)
     {
-        return self::areEqual($this, $rightSide);
+        $a = self::areEqual($this, $rightSide);
+        $b = true;
+        foreach($this->callbacks as $key => $value) {
+            $rightSideCallbacks = $rightSide->getCallbacks();
+            if($value != $rightSideCallbacks[$key]) {
+                $b = false;
+            }
+        }
+        return $a && $b;
     }
 
     /**
@@ -223,6 +243,47 @@ class ReportRun extends CympelType implements iReportRun
     public function setReport(iReport $report)
     {
         $this->report = $report;
+    }
+
+    /**
+     * @param int $reportRunnerQueueNumber
+     */
+    public function setReportRunnerQueueNumber($reportRunnerQueueNumber)
+    {
+        $this->reportRunnerQueueNumber = $reportRunnerQueueNumber;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReportRunnerQueueNumber()
+    {
+        return $this->reportRunnerQueueNumber;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCallbacks()
+    {
+        return $this->callbacks;
+    }
+
+    /**
+     * @param array $callbacks
+     * @return void
+     */
+    public function setCallbacks($callbacks = array(
+        'onRun' => null,
+        'onCompletedSuccessfully' => null,
+        'onAbend' => null,
+    ))
+    {
+        $this->callbacks = array(
+            'onRun' => $callbacks['onRun'],
+            'onCompletedSuccessfully' => $callbacks['onCompletedSuccessfully'],
+            'onAbend' => $callbacks['onAbend'],
+        );
     }
 
 

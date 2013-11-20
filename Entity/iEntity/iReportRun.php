@@ -69,4 +69,29 @@ interface iReportRun extends iPersistable, iFindable, iRemovable, iValidatable, 
      * @return void
      */
     public function setReport(iReport $report);
+
+    /**
+     * @param int $reportRunnerQueueNumber
+     */
+    public function setReportRunnerQueueNumber($reportRunnerQueueNumber);
+
+    /**
+     * @return int
+     */
+    public function getReportRunnerQueueNumber();
+
+    /**
+     * @return array
+     */
+    public function getCallbacks();
+
+    /**
+     * @param array $callbacks
+     * @return void
+     */
+    public function setCallbacks($callbacks = array(
+        'onRun' => null,
+        'onCompletedSuccessfully' => null,
+        'onAbend' => null,
+    ));
 }
