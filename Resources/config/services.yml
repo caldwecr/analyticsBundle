@@ -40,7 +40,7 @@ parameters:
     cympel_analytics.generics.remover.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRemover
     #cympel_analytics.generics.creatable_registrar.class: Cympel\Bundle\AnalyticsBundle\Services\CreatableRegistrar
     ca.generics.creator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelCreator
-    cympel_analytics.generics.finder.class: Cympel\Bundle\AnalyticsBundle\Services\CympelFinder
+    ca.generics.finder.class: Cympel\Bundle\AnalyticsBundle\Services\CympelFinder
     cympel_analytics.generics.validator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelValidator
     cympel_analytics.generics.router.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRouter
     cympel_analytics.generics.manager.class: Cympel\Bundle\AnalyticsBundle\Services\CympelManager
@@ -139,8 +139,8 @@ services:
     ca.generics.creator:
         class: %ca.generics.creator.class%
         arguments: ["@cympel_tools.creatable_registrar"]
-    cympel_analytics.generics.finder:
-        class: %cympel_analytics.generics.finder.class%
+    ca.generics.finder:
+        class: %ca.generics.finder.class%
         arguments: ["@doctrine", "@cympel_tools.creatable_registrar", "@cympel_analytics.generics.creator"]
     cympel_analytics.generics.validator:
         class: %cympel_analytics.generics.validator.class%
@@ -199,3 +199,5 @@ services:
         alias: ca.generics.creator
     cympel_analytics.generics.persister:
         alias: ca.generics.persister
+    cympel_analytics.generics.finder:
+        alias: ca.generics.finder
