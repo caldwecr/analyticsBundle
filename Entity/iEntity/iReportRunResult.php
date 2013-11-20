@@ -51,4 +51,15 @@ interface iReportRunResult extends iPersistable, iFindable, iRemovable, iValidat
      * @return int
      */
     public function getCreated();
+
+    /**
+     * @return array
+     */
+    public function getData();
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    public function setData($data = array());
 }
