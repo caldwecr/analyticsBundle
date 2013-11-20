@@ -14,7 +14,7 @@ class DynamicJSSelectorsCreatorTest extends ContainerAwareUnitTestCase
 {
     public function testCreate()
     {
-        $creator = $this->get('cympel_analytics.generics.creator');
+        $creator = $this->get('ca.generics.creator');
         $dynamicJSSelectors = $creator->create('DynamicJSSelectors');
 
         $this->assertEquals('DynamicJSSelectors', $dynamicJSSelectors->getType());

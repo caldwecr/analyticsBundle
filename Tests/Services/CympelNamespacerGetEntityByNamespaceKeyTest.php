@@ -16,10 +16,10 @@ class CympelNamespacerGetEntityByNamespaceKeyTest extends ContainerAwareUnitTest
     {
         // Attach to services
 
-        $creator = $this->get('cympel_analytics.generics.creator');
-        $finder = $this->get('cympel_analytics.generics.finder');
+        $creator = $this->get('ca.generics.creator');
+        $finder = $this->get('ca.generics.finder');
         $namespacer = $this->get('ca.generics.namespacer');
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $persister = $this->get('ca.generics.persister');
         $container = $this->get('service_container');
 
         // Create the test entity and initialize required properties

@@ -16,8 +16,8 @@ class DynamicJSSelectorDomEventManagerCaptureClientDataSetTest extends Container
     {
         $manager = $this->get('ca.djs.sde.manager');
 
-        $creator = $this->get('cympel_analytics.generics.creator');
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $creator = $this->get('ca.generics.creator');
+        $persister = $this->get('ca.generics.persister');
         //$finder = $this->get('cympel_analytics.dynamic_js_selector_dom_event.finder');
 
         $selector = $creator->create('DynamicJSSelector');

@@ -15,12 +15,12 @@ class CympelNamespaceEntityCPFRTest extends ContainerAwareUnitTestCase
     public function testCPFR()
     {
         // Create
-        $creator = $this->get('cympel_analytics.generics.creator');
+        $creator = $this->get('ca.generics.creator');
         $cne = $creator->create('CympelNamespaceEntity');
         $this->assertEquals('CympelNamespaceEntity', $cne->getType());
 
         // Persist
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $persister = $this->get('ca.generics.persister');
 
             // We need an entity that implements iNamespaceable so we create one, set its one required property, and persist it
         $ccpt = $creator->create('ConcretePersistableTestType');
@@ -40,7 +40,7 @@ class CympelNamespaceEntityCPFRTest extends ContainerAwareUnitTestCase
         $this->assertNotNull($cneId);
 
         // Find
-        $finder = $this->get('cympel_analytics.generics.finder');
+        $finder = $this->get('ca.generics.finder');
         $cne2 = $finder->findOneByIdAndClassAlias($cneId, $cneType);
         $this->assertNotNull($cne2);
         $this->assertTrue($cne->equals($cne2));

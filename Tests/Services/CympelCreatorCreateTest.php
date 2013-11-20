@@ -14,7 +14,7 @@ class CympelCreatorCreateTest extends ContainerAwareUnitTestCase
 {
     public function testCreate()
     {
-        $creator = $this->get('cympel_analytics.generics.creator');
+        $creator = $this->get('ca.generics.creator');
         $cp = $creator->create('ConcretePersistableTestType');
         $this->assertEquals('ConcretePersistableTestType', $cp->getType());
     }

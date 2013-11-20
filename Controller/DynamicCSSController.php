@@ -54,7 +54,7 @@ class DynamicCSSController extends Controller {
      */
     public function dynamicCSSImageFileRedirectAction($imageId)
     {
-        $finder = $this->get('cympel_analytics.generics.finder');
+        $finder = $this->get('ca.generics.finder');
         $dynamicCSSImage = $finder->findOneByIdAndClassAlias($imageId, DynamicCSSImage::getClassAlias());
         $uri = $dynamicCSSImage->getImageUri();
         return $this->redirect($uri);

@@ -14,7 +14,7 @@ class ConcretePersistableTestTypeClassAliasRegistrarTest extends ContainerAwareU
 {
     public function testAliasRegistration()
     {
-        $c = $this->get('cympel_analytics.generics.creator')->create('ConcretePersistableTestType');
+        $c = $this->get('ca.generics.creator')->create('ConcretePersistableTestType');
         $this->assertEquals('ConcretePersistableTestType', $c->getType());
     }
 }

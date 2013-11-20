@@ -31,11 +31,11 @@ class DuplicateNamespaceTest extends ContainerAwareUnitTestCase
 
         // Setup required services
 
-        $this->creator = $this->get('cympel_analytics.generics.creator');
+        $this->creator = $this->get('ca.generics.creator');
         /**
          * @var iPersister
          */
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $persister = $this->get('ca.generics.persister');
         $remover = $this->get('cympel_analytics.generics.remover');
 
         // Create the first namespace

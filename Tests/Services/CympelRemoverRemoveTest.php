@@ -18,7 +18,7 @@ class CympelRemoverRemoveTest extends ContainerAwareUnitTestCase
         $cp = new ConcretePersistableTestType();
         $cp->setEntityManagerName('cympelanalytics');
         $cp->setValue('someorbaz');
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $persister = $this->get('ca.generics.persister');
         $persister->persist($cp);
 
         $id = $cp->getId();

@@ -21,11 +21,11 @@ class CympelNamespacerRemoveInvalidTest extends ContainerAwareUnitTestCase
         $ns_name = $nsName;
         $ns2_name = 'anotherTestRemoveInvalid';
         $namespacer = $this->get('ca.generics.namespacer');
-        $ns = $this->get('cympel_analytics.generics.creator')->create('CympelNamespace');
-        $ns2 = $this->get('cympel_analytics.generics.creator')->create('CympelNamespace');
+        $ns = $this->get('ca.generics.creator')->create('CympelNamespace');
+        $ns2 = $this->get('ca.generics.creator')->create('CympelNamespace');
         $ns->setName($ns_name);
         $ns2->setName($ns2_name);
-        $entity = $this->get('cympel_analytics.generics.creator')->create('ConcretePersistableTestType');
+        $entity = $this->get('ca.generics.creator')->create('ConcretePersistableTestType');
         $entity->setValue('testRemove');
 
         // You can't remove an entity from a namespace if it doesn't belong to one
@@ -38,7 +38,7 @@ class CympelNamespacerRemoveInvalidTest extends ContainerAwareUnitTestCase
         $this->assertNotNull($e);
 
         // You can't remove an entity from a namespace if it doesn't belong to that namespace (for instance it belongs to a different namespace)
-        $this->get('cympel_analytics.generics.persister')->persist($entity);
+        $this->get('ca.generics.persister')->persist($entity);
         $namespacer->addEntityToCympelNamespace($entity, $ns);
         $this->assertTrue($ns->equals($entity->getCympelNamespace()));
         $this->assertFalse($ns2->equals($entity->getCympelNamespace()));

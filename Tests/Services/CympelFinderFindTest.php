@@ -15,7 +15,7 @@ class CympelFinderFindTest extends ContainerAwareUnitTestCase
 {
     public function testFind()
     {
-        $finder = $this->get('cympel_analytics.generics.finder');
+        $finder = $this->get('ca.generics.finder');
 
         $cp = new ConcretePersistableTestType();
         $cp->setValue('alotoffooz');

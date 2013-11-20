@@ -14,7 +14,7 @@ class ClientDataSetDomClassCreateTest extends ContainerAwareUnitTestCase
 {
     public function testCreate()
     {
-        $creator = $this->get('cympel_analytics.generics.creator');
+        $creator = $this->get('ca.generics.creator');
         $clientDataSetDomClass = $creator->create('DynamicJSSelectorDomEventClientDataSetDomClass');
         $this->assertEquals('DynamicJSSelectorDomEventClientDataSetDomClass', $clientDataSetDomClass->getType());
     }

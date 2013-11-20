@@ -15,12 +15,12 @@ class CympelNamespaceCPFRTest extends ContainerAwareUnitTestCase
     public function testCPFR()
     {
         // Create
-        $creator = $this->get('cympel_analytics.generics.creator');
+        $creator = $this->get('ca.generics.creator');
         $cn = $creator->create('CympelNamespace');
         $this->assertEquals('CympelNamespace', $cn->getType());
 
         // Persist
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $persister = $this->get('ca.generics.persister');
 
             // Set required properties of the CympelNamespace
         $cn->setCreated(time());
@@ -35,7 +35,7 @@ class CympelNamespaceCPFRTest extends ContainerAwareUnitTestCase
         $this->assertNotNull($cnId);
 
         // Find
-        $finder = $this->get('cympel_analytics.generics.finder');
+        $finder = $this->get('ca.generics.finder');
         $cn2 = $finder->findOneByIdAndClassAlias($cnId, $cnType);
         $this->assertNotNull($cn2);
         $this->assertTrue($cn->equals($cn2));

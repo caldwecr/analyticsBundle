@@ -15,12 +15,12 @@ class CympelNamespaceEntitiesCPFRTest extends ContainerAwareUnitTestCase
     public function testCPFR()
     {
         // Create
-        $creator = $this->get('cympel_analytics.generics.creator');
+        $creator = $this->get('ca.generics.creator');
         $cn_entities = $creator->create('CympelNamespaceEntities');
         $this->assertEquals('CympelNamespaceEntities', $cn_entities->getType());
 
         // Persist
-        $persister = $this->get('cympel_analytics.generics.persister');
+        $persister = $this->get('ca.generics.persister');
 
             // Validate that prior to being persisted the id is null, then persist and validate that the id property is no longer null
         $cn_entitiesId = $cn_entities->getId();
@@ -32,7 +32,7 @@ class CympelNamespaceEntitiesCPFRTest extends ContainerAwareUnitTestCase
 
 
         // Find
-        $finder = $this->get('cympel_analytics.generics.finder');
+        $finder = $this->get('ca.generics.finder');
         $cn_entities2 = $finder->findOneByIdAndClassAlias($cn_entitiesId, $cn_entitiesType);
         $this->assertNotNull($cn_entities2);
         $this->assertTrue($cn_entities->equals($cn_entities2));
