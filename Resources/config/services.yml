@@ -117,25 +117,6 @@ services:
     cympel_analytics.generics.remover:
         class: %cympel_analytics.generics.remover.class%
         arguments: ["@doctrine", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
-#    cympel_analytics.generics.creatable_registrar:
-#        class: %cympel_analytics.generics.creatable_registrar.class%
-#        calls:
-#            - [register, ["%ca.crtb.concrete_persistable_test_type.class%", "%ca.crtb.concrete_persistable_test_type.alias%", "%ca.crtb.concrete_persistable_test_type.rn%", "%ca.crtb.concrete_persistable_test_type.emn%"]]
-#            - [register, ["%ca.crtb.djs.selectors.class%", "%ca.crtb.djs.selectors.alias%", "%ca.crtb.djs.selectors.rn%", "%ca.crtb.djs.selectors.emn%"]]
-#            - [register, ["%ca.crtb.djs.selector.class%", "%ca.crtb.djs.selector.alias%", "%ca.crtb.djs.selector.rn%", "%ca.crtb.djs.selector.emn%"]]
-#            - [register, ["%ca.crtb.djs.class%", "%ca.crtb.djs.alias%", "%ca.crtb.djs.rn%", "%ca.crtb.djs.emn%"]]
-#            - [register, ["%ca.crtb.dcss.class%", "%ca.crtb.dcss.alias%", "%ca.crtb.dcss.rn%", "%ca.crtb.dcss.emn%"]]
-#            - [register, ["%ca.crtb.djs.dom_event.class%", "%ca.crtb.djs.dom_event.alias%", "%ca.crtb.djs.dom_event.rn%", "%ca.crtb.djs.dom_event.emn%"]]
-#            - [register, ["%ca.crtb.djs.dom_events.class%", "%ca.crtb.djs.dom_events.alias%", "%ca.crtb.djs.dom_events.rn%", "%ca.crtb.djs.dom_events.emn%"]]
-#            - [register, ["%ca.crtb.djs.sde.class%", "%ca.crtb.djs.sde.alias%", "%ca.crtb.djs.sde.rn%", "%ca.crtb.djs.sde.emn%"]]
-#            - [register, ["%ca.crtb.djs.cds.class%", "%ca.crtb.djs.cds.alias%", "%ca.crtb.djs.cds.rn%", "%ca.crtb.djs.cds.emn%"]]
-#            - [register, ["%ca.crtb.djs.cds.sets.class%", "%ca.crtb.djs.cds.sets.alias%", "%ca.crtb.djs.cds.sets.rn%", "%ca.crtb.djs.cds.sets.emn%"]]
-#            - [register, ["%ca.crtb.djs.cds.dom_class.class%", "%ca.crtb.djs.cds.dom_class.alias%", "%ca.crtb.djs.cds.dom_class.rn%", "%ca.crtb.djs.cds.dom_class.emn%"]]
-#            - [register, ["%ca.crtb.djs.cds.dom_classes.class%", "%ca.crtb.djs.cds.dom_classes.alias%", "%ca.crtb.djs.cds.dom_classes.rn%", "%ca.crtb.djs.cds.dom_classes.emn%"]]
-#            - [register, ["%ca.crtb.cn.class%", "%ca.crtb.cn.alias%", "%ca.crtb.cn.rn%", "%ca.crtb.cn.emn%"]]
-#            - [register, ["%ca.crtb.cn.entity.class%", "%ca.crtb.cn.entity.alias%", "%ca.crtb.cn.entity.rn%", "%ca.crtb.cn.entity.emn%"]]
-#            - [register, ["%ca.crtb.cn.entities.class%", "%ca.crtb.cn.entities.alias%", "%ca.crtb.cn.entities.rn%", "%ca.crtb.cn.entities.emn%"]]
-#            - [register, ["%ca.crtb.dcss.image.class%", "%ca.crtb.dcss.image.alias%", "%ca.crtb.dcss.image.rn%", "%ca.crtb.dcss.image.emn%"]]
     ca.generics.creator:
         class: %ca.generics.creator.class%
         arguments: ["@cympel_tools.creatable_registrar"]
