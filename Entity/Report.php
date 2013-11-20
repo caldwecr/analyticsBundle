@@ -62,7 +62,7 @@ class Report extends CympelType implements iReport
      */
     public function getQuery()
     {
-        // TODO: Implement getQuery() method.
+        return $this->query;
     }
 
     /**
@@ -71,7 +71,7 @@ class Report extends CympelType implements iReport
      */
     public function setQuery($query)
     {
-        // TODO: Implement setQuery() method.
+        $this->query = $query;
     }
 
     /**
@@ -80,7 +80,7 @@ class Report extends CympelType implements iReport
      */
     public function setId($id)
     {
-        // TODO: Implement setId() method.
+        $this->id = $id;
     }
 
     /**
@@ -88,7 +88,7 @@ class Report extends CympelType implements iReport
      */
     public function getName()
     {
-        // TODO: Implement getName() method.
+        return $this->name;
     }
 
     /**
@@ -97,7 +97,7 @@ class Report extends CympelType implements iReport
      */
     public function setName($name)
     {
-        // TODO: Implement setName() method.
+        $this->name = $name;
     }
 
     /**
