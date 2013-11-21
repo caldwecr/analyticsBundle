@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportRunNullReportException;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerInvalidReportRunException;
 use Cympel\Bundle\AnalyticsBundle\Tests\ContainerAwareUnitTestCase;
 
 class ReportRunnerReportRunHasNullReportTest extends ContainerAwareUnitTestCase
@@ -25,7 +25,7 @@ class ReportRunnerReportRunHasNullReportTest extends ContainerAwareUnitTestCase
         // Queue the ReportRun and catch expected ReportRunnerReportRunNullReportException
         try {
             $rr->queueRun($reportRun);
-        } catch (ReportRunnerReportRunNullReportException $e) {
+        } catch (ReportRunnerInvalidReportRunException $e) {
 
         }
         $this->assertNotNull($e);

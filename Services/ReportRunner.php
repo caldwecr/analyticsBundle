@@ -9,13 +9,15 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReportRun;
-use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportHasNullQueryException;
-use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportRunNullReportException;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerInvalidReportException;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerInvalidReportRunException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iReportRunner;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidate;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
 use Cympel\Bundle\ToolsBundle\Services\CympelService;
 
-class ReportRunner extends CympelService implements iReportRunner
+class ReportRunner extends CympelService implements iReportRunner, iValidate
 {
     protected $doctrine;
 
@@ -23,6 +25,11 @@ class ReportRunner extends CympelService implements iReportRunner
      * @var iCreator
      */
     protected $creator;
+
+    /**
+     * @var iValidator
+     */
+    protected $validator;
 
     protected $entityManagerName;
 
@@ -36,10 +43,11 @@ class ReportRunner extends CympelService implements iReportRunner
 
     protected static $offsetIncrement = 1000;
 
-    public function __construct($doctrine, iCreator $creator, $entityManagerName)
+    public function __construct(iCreator $creator, iValidator $validator, $doctrine, $entityManagerName)
     {
-        $this->doctrine = $doctrine;
         $this->creator = $creator;
+        $this->validator = $validator;
+        $this->doctrine = $doctrine;
         $this->entityManagerName = $entityManagerName;
         $this->running = false;
         $this->queue = array();
@@ -104,15 +112,16 @@ class ReportRunner extends CympelService implements iReportRunner
                 if($callbacks && is_array($callbacks) && array_key_exists('onRun', $callbacks)) {
                     call_user_func($callbacks['onRun']);
                 }
-                $report = $toRun->getReport();
-                if($report) {
-                    $queryBody = $report->getQuery();
-                    if(!$queryBody) {
-                        throw new ReportRunnerReportHasNullQueryException();
-                    }
-                } else {
-                    throw new ReportRunnerReportRunNullReportException();
+                $validator = $this->getValidator();
+                if(!$validator->isValid($toRun)) {
+                    throw new ReportRunnerInvalidReportRunException();
                 }
+                $report = $toRun->getReport();
+
+                if(!$validator->isValid($report)) {
+                    throw new ReportRunnerInvalidReportException();
+                }
+                $queryBody = $report->getQuery();
 
 
                 $em = $this->doctrine->getManager($this->entityManagerName);
@@ -148,5 +157,13 @@ class ReportRunner extends CympelService implements iReportRunner
     protected function isResultValid($result)
     {
         return true;
+    }
+
+    /**
+     * @return iValidator
+     */
+    public function getValidator()
+    {
+        return $this->validator;
     }
 }

@@ -8,7 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
 
-use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportHasNullQueryException;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerInvalidReportException;
 use Cympel\Bundle\AnalyticsBundle\Tests\ContainerAwareUnitTestCase;
 
 class ReportRunnerReportHasNullQueryTest extends ContainerAwareUnitTestCase
@@ -25,12 +25,13 @@ class ReportRunnerReportHasNullQueryTest extends ContainerAwareUnitTestCase
         $report->setQuery(null);
         // Create ReportRun
         $reportRun = $creator->create('ReportRun');
+        $reportRun->setStatus('new');
         $report->addRun($reportRun);
         $reportRun->setReport($report);
         // Queue the ReportRun and catch expected ReportRunnerReportRunNullReportException
         try {
             $rr->queueRun($reportRun);
-        } catch (ReportRunnerReportHasNullQueryException $e) {
+        } catch (ReportRunnerInvalidReportException $e) {
 
         }
         $this->assertNotNull($e);

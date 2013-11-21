@@ -14,6 +14,7 @@ use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Report
@@ -34,12 +35,14 @@ class Report extends CympelType implements iReport
     /**
      * @var string
      * @ORM\Column(type="string", length=255, unique=true, nullable=false)
+     * @Assert\NotBlank()
      */
     protected $name;
 
     /**
      * @var string
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     protected $query;
 
@@ -118,7 +121,7 @@ class Report extends CympelType implements iReport
      */
     public function hasValidationConstraints()
     {
-        return false;
+        return true;
     }
 
     /**

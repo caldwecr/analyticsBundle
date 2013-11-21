@@ -43,7 +43,7 @@ parameters:
     #cympel_analytics.generics.creatable_registrar.class: Cympel\Bundle\AnalyticsBundle\Services\CreatableRegistrar
     ca.generics.creator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelCreator
     ca.generics.finder.class: Cympel\Bundle\AnalyticsBundle\Services\CympelFinder
-    cympel_analytics.generics.validator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelValidator
+    ca.generics.validator.class: Cympel\Bundle\AnalyticsBundle\Services\CympelValidator
     cympel_analytics.generics.router.class: Cympel\Bundle\AnalyticsBundle\Services\CympelRouter
     cympel_analytics.generics.manager.class: Cympel\Bundle\AnalyticsBundle\Services\CympelManager
     ca.generics.namespacer.class: Cympel\Bundle\AnalyticsBundle\Services\CympelNamespacer
@@ -115,7 +115,7 @@ services:
     ### Report services
     ca.report.runner:
         class: %ca.report.runner.class%
-        arguments: ["@doctrine", "@ca.generics.creator", "%cympel_analytics.entity_manager%"]
+        arguments: ["@ca.generics.creator", "@ca.generics.validator", "@doctrine", "%cympel_analytics.entity_manager%"]
     ### Generics
     ca.generics.persister:
         class: %ca.generics.persister.class%
@@ -129,8 +129,8 @@ services:
     ca.generics.finder:
         class: %ca.generics.finder.class%
         arguments: ["@doctrine", "@cympel_tools.creatable_registrar", "@ca.generics.creator"]
-    cympel_analytics.generics.validator:
-        class: %cympel_analytics.generics.validator.class%
+    ca.generics.validator:
+        class: %ca.generics.validator.class%
         arguments: ["@validator"]
     cympel_analytics.generics.router:
         class: %cympel_analytics.generics.router.class%
@@ -188,3 +188,6 @@ services:
         alias: ca.generics.persister
     cympel_analytics.generics.finder:
         alias: ca.generics.finder
+    ### @todo below this line services need to be refactored in services.yml and the AnalyticsBundle
+    cympel_analytics.generics.validator:
+        alias: ca.generics.validator

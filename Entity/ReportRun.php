@@ -16,6 +16,7 @@ use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidReportRunStatusException;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidCallbackTypeException;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ReportRun
@@ -45,6 +46,12 @@ class ReportRun extends CympelType implements iReportRun
      *
      * The getter of this property returns the string representation
      * The setter of this property accepts both the string and integer representations
+     *
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 3
+     * )
+     * @Assert\NotBlank()
      */
     protected $status;
 
@@ -58,6 +65,8 @@ class ReportRun extends CympelType implements iReportRun
      * @var iReport
      * @ORM\ManyToOne(targetEntity="Report", inversedBy="reportRuns", cascade={"persist"})
      * @ORM\JoinColumn(name="report_id", referencedColumnName="id", nullable=false)
+     *
+     * @Assert\NotNull()
      */
     protected $report;
 
@@ -235,7 +244,7 @@ class ReportRun extends CympelType implements iReportRun
      */
     public function hasValidationConstraints()
     {
-        return false;
+        return true;
     }
 
     /**

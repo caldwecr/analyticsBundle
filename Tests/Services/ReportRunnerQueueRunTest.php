@@ -18,7 +18,9 @@ class ReportRunnerQueueRunTest extends ContainerAwareUnitTestCase
         $rr = $this->get('ca.report.runner');
         $report = $this->get('ca.generics.creator')->create('Report');
         $report->setQuery('SELECT 1 FROM CympelAnalyticsBundle:ConcretePersistableTestType');
+        $report->setName(microtime(true));
         $reportRun = $this->get('ca.generics.creator')->create('ReportRun');
+        $reportRun->setStatus('new');
         $callbacks = array(
             'onRun' => array($this, 'callbackRunning'),
             'onCompletedSuccessfully' => array($this, 'callbackOnCompletedSuccessfully'),
