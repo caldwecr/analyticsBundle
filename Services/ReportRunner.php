@@ -109,7 +109,7 @@ class ReportRunner extends CympelService implements iReportRunner, iValidate
                 // Create a local variable that has the list of callbacks from the ReportRun
                 $callbacks = $toRun->getCallbacks();
                 // Call the callback function associated with the onRun event
-                if($callbacks && is_array($callbacks) && array_key_exists('onRun', $callbacks)) {
+                if($callbacks && is_array($callbacks) && array_key_exists('onRun', $callbacks) && $callbacks['onRun']) {
                     call_user_func($callbacks['onRun']);
                 }
                 $validator = $this->getValidator();
@@ -134,11 +134,11 @@ class ReportRunner extends CympelService implements iReportRunner, iValidate
                     $toRun->setResult($reportRunResult);
                     $reportRunResult->setReportRun($toRun);
                     $reportRunResult->setData($result);
-                    if($callbacks && is_array($callbacks) && array_key_exists('onCompletedSuccessfully', $callbacks)) {
+                    if($callbacks && is_array($callbacks) && array_key_exists('onCompletedSuccessfully', $callbacks) && $callbacks['onCompletedSuccessfully']) {
                         call_user_func($callbacks['onCompletedSuccessfully']);
                     }
                 } else {
-                    if($callbacks && is_array($callbacks) && array_key_exists('onCompletedSuccessfully', $callbacks)) {
+                    if($callbacks && is_array($callbacks) && array_key_exists('onAbend', $callbacks) && $callbacks['onAbend']) {
                         call_user_func($callbacks['onAbend']);
                     }
                 }
