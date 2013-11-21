@@ -15,7 +15,7 @@ class CympelValidatorValidateTest extends ContainerAwareUnitTestCase
 {
     public function testValidate()
     {
-        $validator = $this->get('cympel_analytics.generics.validator');
+        $validator = $this->get('ca.generics.validator');
         $validatable = new ConcretePersistableTestType();
         // Length of value needs to be between 2 and 10 so this should pass
         $validatable->setValue('foo');
