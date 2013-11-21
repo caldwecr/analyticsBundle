@@ -97,7 +97,7 @@ class CympelNamespacer extends CympelService implements iNamespacer
             if(!$ens) {
                 throw new InvalidAttemptToSetEntityCympelNamespace("Namespace was null");
             } else {
-                throw new InvalidAttemptToSetEntityCympelNamespace('This entity already has a namespace associated with it, to change the namespace first remove the existing one.');
+                throw new InvalidAttemptToSetEntityCympelNamespace('This entity already has a namespace associated with it, to change the namespace first remove the existing one.' . $ens->getName());
             }
         }
         return $cympelNamespace->getEntityCount();
