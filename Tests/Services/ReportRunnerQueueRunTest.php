@@ -15,13 +15,16 @@ class ReportRunnerQueueRunTest extends ContainerAwareUnitTestCase
 {
     public function testQueueRun()
     {
-        $rr = new ReportRunner();
+        $rr = $this->get('ca.report.runner');
+        $report = $this->get('ca.generics.creator')->create('Report');
+        $report->setQuery('SELECT 1 FROM CympelAnalyticsBundle:ConcretePersistableTestType');
         $reportRun = $this->get('ca.generics.creator')->create('ReportRun');
         $callbacks = array(
-            'onRun' => 'callbackRunning',
-            'onCompletedSuccessfully' => 'callbackOnCompletedSuccessfully',
-            'onAbend' => 'callbackOnAbend',
+            'onRun' => array($this, 'callbackRunning'),
+            'onCompletedSuccessfully' => array($this, 'callbackOnCompletedSuccessfully'),
+            'onAbend' => array($this, 'callbackOnAbend'),
         );
+        $reportRun->setReport($report);
         $reportRun->setCallbacks($callbacks);
 
         $number = $rr->queueRun($reportRun);
@@ -29,20 +32,6 @@ class ReportRunnerQueueRunTest extends ContainerAwareUnitTestCase
         // The queueRun method should return a non-negative integer
         $this->assertNotNull($number);
         $this->assertGreaterThanOrEqual(0, $number);
-
-        // Validate the reportRun can be retrieved
-        $reportRun2 = $rr->getReportRunFromQueue($number);
-        $this->assertNotNull($reportRun2);
-        $this->assertTrue($reportRun->equals($reportRun2));
-        // Validate the callbacks are truly being compared for equality
-        $callbacks2 = array(
-            'onRun' => 'callbackRunningz',
-            'onCompletedSuccessfully' => 'callbackOnCompletedSuccessfully',
-            'onAbend' => 'callbackOnAbend',
-        );
-        $reportRun->setCallbacks($callbacks2);
-        // This should pass as true because reportRun and reportRun2 are pointing at the same instance
-        $this->assertTrue($reportRun->equals($reportRun2));
     }
 
     public function callbackRunning()
