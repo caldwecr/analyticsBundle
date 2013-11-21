@@ -35,7 +35,7 @@ parameters:
     ca.ns_entities.extender.class:          Cympel\Bundle\AnalyticsBundle\Services\CympelNamespaceEntitiesManagerExtender
     ## ** -- The 'report' namespace contains all services associated with Reporting
     ca.report.runner.class:                 Cympel\Bundle\AnalyticsBundle\Services\ReportRunner
-
+    ca.report.manager.class:                Cympel\Bundle\AnalyticsBundle\Services\ReportManager
 
     ### Generics
     ca.generics.persister.class: Cympel\Bundle\AnalyticsBundle\Services\CympelPersister
@@ -116,6 +116,9 @@ services:
     ca.report.runner:
         class: %ca.report.runner.class%
         arguments: ["@ca.generics.creator", "@ca.generics.validator", "@doctrine", "%cympel_analytics.entity_manager%"]
+    ca.report.manager:
+        class: %ca.report.manager.class%
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.report.runner"]
     ### Generics
     ca.generics.persister:
         class: %ca.generics.persister.class%
