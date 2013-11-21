@@ -14,6 +14,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReportRunResult;
 use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidReportRunStatusException;
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidCallbackTypeException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -92,17 +93,26 @@ class ReportRun extends CympelType implements iReportRun
     /**
      * @param iType $rightSide
      * @return bool
+     * @throws Exception\InvalidCallbackTypeException
      *
-     * Note that the object type passed into this method will always match the class type where this method is implemented.
+     * Note that the type passed into this method will always match the type of the class where this
+     * method is implemented
      */
     protected function typedEquals(iType $rightSide)
     {
         $a = self::areEqual($this, $rightSide);
         $b = true;
-        foreach($this->callbacks as $key => $value) {
-            $rightSideCallbacks = $rightSide->getCallbacks();
-            if($value != $rightSideCallbacks[$key]) {
-                $b = false;
+
+        $rightSideCallbacks = $rightSide->getCallbacks();
+        if(!$this->callbacks || !$rightSideCallbacks) {
+            $b = $this->callbacks == $rightSideCallbacks;
+        } else if(!is_array($this->callbacks) || !is_array($rightSideCallbacks)) {
+            throw new InvalidCallbackTypeException();
+        } else {
+            foreach($this->callbacks as $key => $value) {
+                if($value != $rightSideCallbacks[$key]) {
+                    $b = false;
+                }
             }
         }
         return $a && $b;
