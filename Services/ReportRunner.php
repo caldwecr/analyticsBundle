@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReportRun;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportHasNullQueryException;
 use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportRunNullReportException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iReportRunner;
@@ -106,6 +107,9 @@ class ReportRunner extends CympelService implements iReportRunner
                 $report = $toRun->getReport();
                 if($report) {
                     $queryBody = $report->getQuery();
+                    if(!$queryBody) {
+                        throw new ReportRunnerReportHasNullQueryException();
+                    }
                 } else {
                     throw new ReportRunnerReportRunNullReportException();
                 }
