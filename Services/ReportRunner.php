@@ -139,5 +139,4 @@ class ReportRunner extends CympelService implements iReportRunner
     {
         return true;
     }
-
 }
