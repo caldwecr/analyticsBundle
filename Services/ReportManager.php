@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReport;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iReportRunner;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iReportManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
@@ -30,18 +31,20 @@ class ReportManager extends CympelManager implements iReportManager
     /**
      * @param iCreator $creator
      * @param iFinder $finder
+     * @param iNamespacer $namespacer
      * @param iPersister $persister
      * @param iRemover $remover
      * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
+    public function __construct(iCreator $creator, iFinder $finder, iNamespacer $namespacer, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         $this->creator = $creator;
         $this->finder = $finder;
         $this->persister = $persister;
         $this->remover = $remover;
         $this->validator = $validator;
+        $this->namespacer = $namespacer;
         $this->processExtension($extender);
     }
 

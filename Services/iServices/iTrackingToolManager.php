@@ -12,8 +12,9 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
 
-interface iTrackingToolManager extends iType, iValidate, iPersist, iFind, iRemove, iCreate
+interface iTrackingToolManager extends iType, iValidate, iPersist, iFind, iRemove, iCreate, iHaveNamespacer
 {
     /**
      * @param iTrackingTool $tool
@@ -31,11 +32,12 @@ interface iTrackingToolManager extends iType, iValidate, iPersist, iFind, iRemov
     public function getProperties(iTrackingTool $tool);
 
     /**
-     * @param string $classAlias
+     * @param $classAlias
      * @param iTracker $tracker
+     * @param string $namespaceName
      * @return iTrackingTool
      */
-    public function createTrackingTool($classAlias, iTracker $tracker);
+    public function createTrackingTool($classAlias, iTracker $tracker, $namespaceName = '_blank');
 
     /**
      * @return iTrackerManager

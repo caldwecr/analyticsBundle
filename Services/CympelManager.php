@@ -16,6 +16,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 
 class CympelManager extends CympelService implements iManager
 {
@@ -50,6 +51,11 @@ class CympelManager extends CympelService implements iManager
     protected $validator;
 
     /**
+     * @var iNamespacer
+     */
+    protected $namespacer;
+
+    /**
      * @var string
      */
     protected static $classAlias = 'CympelManager';
@@ -57,12 +63,13 @@ class CympelManager extends CympelService implements iManager
     /**
      * @param iCreator $creator
      * @param iFinder $finder
+     * @param iNamespacer $namespacer
      * @param iPersister $persister
      * @param iRemover $remover
      * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
+    public function __construct(iCreator $creator, iFinder $finder, iNamespacer $namespacer, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         $this->creator = $creator;
         $this->finder = $finder;
@@ -70,6 +77,7 @@ class CympelManager extends CympelService implements iManager
         $this->remover = $remover;
         $this->validator = $validator;
         $this->extender = $extender;
+        $this->namespacer = $namespacer;
     }
 
 
@@ -119,6 +127,14 @@ class CympelManager extends CympelService implements iManager
     public function getValidator()
     {
         return $this->validator;
+    }
+
+    /**
+     * @return iNamespacer
+     */
+    public function getNamespacer()
+    {
+        return $this->namespacer;
     }
 
     /**

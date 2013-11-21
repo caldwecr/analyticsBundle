@@ -20,6 +20,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Entity\Exception\CannotCreateCympelNamespaceEntityFromEntityWithoutIdException;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iCreatable;
 
 class CympelNamespacer extends CympelService implements iNamespacer
 {
@@ -41,6 +42,21 @@ class CympelNamespacer extends CympelService implements iNamespacer
     /**
      * @var string
      */
+    protected $injectedBundleNamespaceName;
+
+    /**
+     * @var iNamespace
+     */
+    protected static $blankNamespace;
+
+    /**
+     * @var string
+     */
+    protected $injectedBundleNamespace;
+
+    /**
+     * @var string
+     */
     protected static $classAlias = 'CympelNamespacer';
 
     /*public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManager $namespaceableEntitesManager)
@@ -49,11 +65,12 @@ class CympelNamespacer extends CympelService implements iNamespacer
         $this->finder = $finder;
         $this->namespaceableEntitiesManager = $namespaceableEntitesManager;
     }*/
-    public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManagerExtender $entitiesManagerExtender)
+    public function __construct(iCreator $creator, iFinder $finder, iNamespaceEntitiesManagerExtender $entitiesManagerExtender, $injectedBundleNamespaceName)
     {
         $this->creator = $creator;
         $this->finder = $finder;
         $this->namespaceableEntitiesManagerExtender = $entitiesManagerExtender;
+        $this->injectedBundleNamespaceName = $injectedBundleNamespaceName;
     }
 
     /**
@@ -124,6 +141,24 @@ class CympelNamespacer extends CympelService implements iNamespacer
     }
 
     /**
+     * @param iNamespaceable $entity
+     * @return void
+     */
+    public function removeEntityFromDefaultCympelNamespaces(iNamespaceable $entity)
+    {
+        // setup the blank namespaces
+        if(!self::$blankNamespace) self::$blankNamespace = $this->findOrCreateNamespaceByName('_blank');
+        if(!$this->injectedBundleNamespace) $this->injectedBundleNamespace = $this->findOrCreateNamespaceByName($this->injectedBundleNamespaceName);
+        // check to see if the entity belongs to any of them; if it does then remove it
+        $en = $entity->getCympelNamespace();
+        if($en->equals(self::$blankNamespace)) {
+            $this->removeEntityFromCympelNamespace($entity, self::$blankNamespace);
+        } else if($en->equals($this->injectedBundleNamespace)) {
+            $this->removeEntityFromCympelNamespace($entity, $this->injectedBundleNamespace);
+        }
+    }
+
+    /**
      * @param $key
      * @param iNamespace $cympelNamespace
      * @return iFindable
@@ -138,12 +173,42 @@ class CympelNamespacer extends CympelService implements iNamespacer
     public function findOrCreateNamespaceByName($namespaceName)
     {
         $n = $this->finder->findOneByPropertyAndClassAlias(array('name' => $namespaceName), CympelNamespace::getClassAlias());
-        if(!$n){
+        if($n) {
+            $n = self::castFindableToNamespace($n);
+        } else {
             $n = $this->creator->create(CympelNamespace::getClassAlias());
+            $n = self::castCreatableToNamespace($n);
             $n->setName($namespaceName);
             $n->setCreated(time());
             $n->setDescription('Description: ' . $namespaceName);
         }
         return $n;
+    }
+
+    /**
+     * @param iFindable $findable
+     * @return iNamespace
+     */
+    protected static final function castFindableToNamespace(iFindable $findable)
+    {
+        return self::typeCheck($findable);
+    }
+
+    /**
+     * @param iCreatable $creatable
+     * @return iNamespace
+     */
+    protected static final function castCreatableToNamespace(iCreatable $creatable)
+    {
+        return self::typeCheck($creatable);
+    }
+
+    /**
+     * @param iNamespace $namespace
+     * @return iNamespace
+     */
+    private static final function typeCheck(iNamespace $namespace)
+    {
+        return $namespace;
     }
 }

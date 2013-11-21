@@ -17,6 +17,7 @@ use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorDomEventM
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSSelectorDomEventFinder;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
@@ -29,12 +30,13 @@ class DynamicJSSelectorDomEventManager extends CympelManager implements iDynamic
     /**
      * @param iCreator $creator
      * @param iFinder $finder
+     * @param iNamespacer $namespacer
      * @param iPersister $persister
      * @param iRemover $remover
      * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
+    public function __construct(iCreator $creator, iFinder $finder, iNamespacer $namespacer, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         $this->creator = $creator;
         $this->forceTypedFinder($finder);
@@ -42,6 +44,7 @@ class DynamicJSSelectorDomEventManager extends CympelManager implements iDynamic
         $this->remover = $remover;
         $this->validator = $validator;
         $this->extender = $extender;
+        $this->namespacer = $namespacer;
     }
 
     /**

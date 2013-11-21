@@ -92,16 +92,23 @@ abstract class TrackingToolManager extends CympelManager implements iTrackingToo
     abstract protected function createPropertySet();
 
     /**
-     * @param string $classAlias
+     * @param $classAlias
      * @param iTracker $tracker
+     * @param string $namespaceName
      * @return iTrackingTool
      */
-    public function createTrackingTool($classAlias, iTracker $tracker)
+    public function createTrackingTool($classAlias, iTracker $tracker, $namespaceName = '_blank')
     {
         if(!$tracker) {
             $tracker = $this->getTrackerManager()->create();
         }
         $tt = $this->getCreator()->create($classAlias);
-        return $this->attachTracker($tracker, $tt);
+        $namespace = $this->getNamespacer()->findOrCreateNamespaceByName($namespaceName);
+        $this->attachTracker($tracker, $tt);
+        $this->getPersister()->persist($tt);
+        $namespacer = $this->getNamespacer();
+        $namespacer->removeEntityFromDefaultCympelNamespaces($tt);
+        $this->getNamespacer()->addEntityToCympelNamespace($tt, $namespace);
+        return $tt;
     }
 }

@@ -34,7 +34,7 @@ class DynamicCSSManager extends RoutedTrackingToolManager implements iDynamicCSS
         $properties = new DynamicCSSPropertySet();
         $properties->setIds($this->getExtender()->getDynamicCSSDomIdArrayCollectionManager()->create($ids));
         $properties->setPseudo($pseudo);
-        return $this->generate($classAlias, $properties, $this->getTrackerManager()->create());
+        return $this->generate($classAlias, $properties, $this->getTrackerManager()->create(), $namespaceName);
     }
 
     /**
@@ -83,14 +83,16 @@ class DynamicCSSManager extends RoutedTrackingToolManager implements iDynamicCSS
     /**
      * @param iPropertySet $properties
      * @param iTrackingTool $tool
+     * @param string $namespaceName
      * @return \Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomIdArrayCollection|iPropertySet
      *
      * The purpose of this method is to allow changes to the properties based on the tool's initialization
      * that would have otherwise been impossible prior to the tool's initialization
      * This is necessary for DynamicCSS tools so that the DomIds can be bound to the tool
      */
-    protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool)
+    protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool, $namespaceName = '_blank')
     {
+        // @todo propogate the namespaceName to the properties
         return $this->attachToolToProperties($properties, $tool);
     }
 

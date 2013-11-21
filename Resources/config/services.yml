@@ -57,7 +57,7 @@ services:
         arguments: [@doctrine, "%cympel_analytics.entity_manager%"]
     ca.dcss.manager:
         class: %ca.dcss.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.dcss.extender"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.dcss.extender"]
     ca.dcss.dom_id.manager:
         class: %ca.dcss.dom_id.manager.class%
         arguments: ["@doctrine", "@validator", "%cympel_analytics.entity_manager%"]
@@ -66,7 +66,7 @@ services:
         arguments: ["@doctrine", "@ca.tracker.tt.remover", "%cympel_analytics.entity_manager%"]
     ca.djs.manager:
         class: %ca.djs.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.djs.extender"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.djs.extender"]
     ca.dcss.extender:
         class: %ca.dcss.extender.class%
         arguments: ["@ca.dcss.dom_id.manager", "@ca.dcss.dom_id.ac.manager", "@doctrine", "@ca.tracker.tt.remover", "@ca.tracker.tt.validator", "@router", "@ca.tracker.manager", "%cympel_analytics.entity_manager%"]
@@ -84,22 +84,22 @@ services:
         arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover"]
     ca.djs.selectors.manager:
         class: %ca.djs.selectors.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
     ca.djs.extender:
         class: %ca.djs.extender.class%
         arguments: ["@ca.djs.selectors.manager", "@ca.djs.dom_events.manager", "@cympel_analytics.generics.router", "@ca.tracker.manager"]
     ca.djs.dom_events.manager:
         class: %ca.djs.dom_events.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
     ca.djs.dom_event.finder:
         class: %ca.djs.dom_event.finder.class%
         arguments: ["@doctrine", "@cympel_tools.creatable_registrar", "@ca.generics.creator"]
     ca.djs.dom_event.manager:
         class: %ca.djs.dom_event.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.djs.dom_event.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
+        arguments: ["@ca.generics.creator", "@ca.djs.dom_event.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
     ca.djs.sde.manager:
         class: %ca.djs.sde.manager.class%
-        arguments: ["@ca.djs.cds.dom_classes.creator", "@ca.djs.sde.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
+        arguments: ["@ca.djs.cds.dom_classes.creator", "@ca.djs.sde.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
     ca.djs.sde.finder:
         class: %ca.djs.sde.finder.class%
         arguments: ["@doctrine", "@cympel_tools.creatable_registrar", "@ca.generics.creator"]
@@ -108,7 +108,7 @@ services:
         arguments: ["@cympel_tools.creatable_registrar"]
     ca.ns_entities.manager:
         class: %ca.ns_entities.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.ns_entities.extender"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.ns_entities.extender"]
     ca.ns_entities.extender:
         class: %ca.ns_entities.extender.class%
         arguments: []
@@ -118,7 +118,7 @@ services:
         arguments: ["@ca.generics.creator", "@ca.generics.validator", "@doctrine", "%cympel_analytics.entity_manager%"]
     ca.report.manager:
         class: %ca.report.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.report.runner"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.report.runner"]
     ### Generics
     ca.generics.persister:
         class: %ca.generics.persister.class%
@@ -140,10 +140,10 @@ services:
         arguments: ["@router"]
     cympel_analytics.generics.manager:
         class: %cympel_analytics.generics.manager.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
     ca.generics.namespacer:
         class: %ca.generics.namespacer.class%
-        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.ns_entities.extender"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.ns_entities.extender", "%cympel_analytics.namespace%"]
     #### Service aliases - provided for backwards compatibility
     cympel_analytics.dynamic_css_manager:
         alias: ca.dcss.manager

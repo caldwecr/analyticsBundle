@@ -12,17 +12,18 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
  * Interface iManager
  * @package Cympel\Bundle\AnalyticsBundle\Services\iServices
  */
-interface iManager extends iCreate, iFind, iPersist, iRemove, iExtend, iValidate
+interface iManager extends iCreate, iFind, iPersist, iRemove, iExtend, iValidate, iHaveNamespacer
 {
     /**
      * @param iCreator $creator
      * @param iFinder $finder
+     * @param iNamespacer $namespacer
      * @param iPersister $persister
      * @param iRemover $remover
      * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null);
+    public function __construct(iCreator $creator, iFinder $finder, iNamespacer $namespacer, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null);
 
 
     /**

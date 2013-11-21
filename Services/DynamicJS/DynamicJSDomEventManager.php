@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicJSSelector;
 use Cympel\Bundle\AnalyticsBundle\Services\CympelManager;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicJSDomEventManager;
@@ -36,12 +37,13 @@ class DynamicJSDomEventManager extends CympelManager implements iDynamicJSDomEve
     /**
      * @param iCreator $creator
      * @param iFinder $finder
+     * @param iNamespacer $namespacer
      * @param iPersister $persister
      * @param iRemover $remover
      * @param iValidator $validator
      * @param iExtender $extender
      */
-    public function __construct(iCreator $creator, iFinder $finder, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
+    public function __construct(iCreator $creator, iFinder $finder, iNamespacer $namespacer, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
         $this->creator = $creator;
         $this->construtorHelperChecksTypedFinder($finder);
@@ -49,6 +51,7 @@ class DynamicJSDomEventManager extends CympelManager implements iDynamicJSDomEve
         $this->remover = $remover;
         $this->validator = $validator;
         $this->extender = $extender;
+        $this->namespacer = $namespacer;
     }
 
     /**

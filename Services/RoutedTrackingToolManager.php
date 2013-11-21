@@ -12,6 +12,7 @@ use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iPropertySet;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTracker;
 use Cympel\Bundle\AnalyticsBundle\Entity\RoutedTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRoutedTrackingToolManagerExtender;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespace;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iTrackingTool;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iTrackingToolManagerExtensionService;
@@ -53,13 +54,14 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param string $classAlias
      * @param iPropertySet $properties
      * @param iTracker $tracker
+     * @param string $namespaceName
      * @return string
      */
-    public function generate($classAlias, iPropertySet $properties, iTracker $tracker = null)
+    public function generate($classAlias, iPropertySet $properties, iTracker $tracker = null, $namespaceName = '_blank')
     {
         if(!$tracker) $tracker = $this->getTrackerManager()->create();
-        $tool = $this->createTrackingTool($classAlias, $tracker);
-        $fProperties = $this->finalizeProperties($properties, $tool);
+        $tool = $this->createTrackingTool($classAlias, $tracker, $namespaceName);
+        $fProperties = $this->finalizeProperties($properties, $tool, $namespaceName);
         $this->setProperties($tool, $fProperties);
         $this->getPersister()->persist($tool);
         return $this->generateUrl($tool, UrlGeneratorInterface::ABSOLUTE_PATH);
@@ -85,11 +87,21 @@ abstract class RoutedTrackingToolManager extends TrackingToolManager
      * @param iTrackingTool $tool
      * @return iPropertySet
      *
+
+     */
+    /**
+     * @param iPropertySet $properties
+     * @param iTrackingTool $tool
+     * @param string $namespaceName
+     * @return mixed
+     *
      * The purpose of this method is to allow changes to the properties based on the tool's initialization
      * that would have otherwise been impossible prior to the tool's initialization
      * This is necessary for DynamicCSS tools so that the DomIds can be bound to the tool
+     *
+     * This method can also be used to cascade the RoutedTrackingTool's namespace to any of the entities it owns
      */
-    abstract protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool);
+    abstract protected function finalizeProperties(iPropertySet $properties, iTrackingTool $tool, $namespaceName = '_blank');
 
     /**
      * @return string

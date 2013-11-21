@@ -20,8 +20,11 @@ class DynamicCSSManagerCreatePersistRemoveTest extends ContainerAwareUnitTestCas
         $dcm = $this->get('ca.dcss.manager');
         $dcss = $dcm->createTrackingTool('DynamicCSS', $t);
 
-        // Verify that the id is initially blank and is then set by the persist operation
-        $this->assertNull($dcss->getId());
+        // Original comment: Verify that the id is initially blank and is then set by the persist operation
+        // The Id should no longer be null as it will be set as part of the call to createTrackingTool, this is
+        // due to the fact that createTrackingTool is responsible for binding a namespace to the entity
+        // and that can only be done once an entity has an id
+        $this->assertNotNull($dcss->getId());
         $dcm->getPersister()->persist($dcss);
         $id = $dcss->getId();
         $this->assertNotNull($id);
