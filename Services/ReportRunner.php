@@ -9,6 +9,7 @@
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReportRun;
+use Cympel\Bundle\AnalyticsBundle\Services\Exception\ReportRunnerReportRunNullReportException;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iReportRunner;
 use Cympel\Bundle\ToolsBundle\Services\CympelService;
@@ -102,8 +103,13 @@ class ReportRunner extends CympelService implements iReportRunner
                 if($callbacks && is_array($callbacks) && array_key_exists('onRun', $callbacks)) {
                     call_user_func($callbacks['onRun']);
                 }
+                $report = $toRun->getReport();
+                if($report) {
+                    $queryBody = $report->getQuery();
+                } else {
+                    throw new ReportRunnerReportRunNullReportException();
+                }
 
-                $queryBody = $toRun->getReport()->getQuery();
 
                 $em = $this->doctrine->getManager($this->entityManagerName);
                 $query = $em->createQuery($queryBody)
