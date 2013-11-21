@@ -33,23 +33,31 @@ class DonorPathReportingController extends Controller
         ));
     }
 
+    /**
+     * @param $start
+     * @param $end
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function runRouteTrafficReportAction($start, $end)
     {
-        $name = '%DonorPath%';
+        // Setup the variables to be passed as arguments to the queueReport method
         $report = $this->getDonorPathRouteTrafficReport();
-        $reportRun = $this->get('ca.generics.creator')->create('ReportRun');
-
-        $report->addRun($reportRun);
-        $reportRun->setStatus('new');
-        $reportRun->setParameters(array(
+        $results = array();
+        $parameters = array(
             'start' => $start,
             'end' => $end,
-            'name' => $name,
-        ));
-        $reportRun->setReport($report);
-        $reportRunNumber = $this->get('ca.report.runner')->queueRun($reportRun);
-        $resultData = $reportRun->getResult()->getData();
-        $shown = count($resultData);
+            'name' => '%DonorPath%',
+        );
+        $callbacks = array(
+            'onRun' => null,
+            'onCompletedSuccessfully' => null,
+            'onAbend' => null,
+        );
+        // Queue the report
+        $this->get('ca.report.manager')->queueReport($report, $results, $parameters, $callbacks);
+        // Count the number of records in the results
+        $shown = count($results);
+        // Render the report
         return $this->render('CympelAnalyticsBundle:DonorPathReporting:routeTrafficReport.html.twig', array(
             'start' => $start,
             'end' => $end,
@@ -57,27 +65,42 @@ class DonorPathReportingController extends Controller
         ));
     }
 
+    /**
+     * @param $start
+     * @param $end
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function runRedirectReportAction($start, $end)
     {
-        $name = '%DonorPath%redirect%';
+        // Setup the variables to be passed as arguments to the queueReport method
         $report = $this->getDonorPathRedirectReport();
-        $reportRun = $this->get('ca.generics.creator')->create('ReportRun');
-
-        $report->addRun($reportRun);
-        $reportRun->setStatus('new');
-        $reportRun->setParameters(array(
-            'start' => $start,
-            'end' => $end,
-            'name' => $name,
-        ));
-        $reportRun->setReport($report);
-        $reportRunNumber = $this->get('ca.report.runner')->queueRun($reportRun);
-        $resultData = $reportRun->getResult()->getData();
-        $numberOfRedirects = count($resultData);
+        $results = array();
+        $parameters = array('start' => $start, 'end' => $end, 'name' => '%DonorPath%redirect%');
+        $callbacks = null;
+        // Queue the report
+        $this->get('ca.report.manager')->queueReport($report, $results, $parameters, $callbacks);
+        // Count the number of records in the results
+        $numberOfRedirects = count($results);
         return $this->render('CympelAnalyticsBundle:DonorPathReporting:redirectReport.html.twig', array(
             'start' => $start,
             'end' => $end,
             'numberOfRedirects' => $numberOfRedirects,
+        ));
+    }
+
+    public function runHoverReportAction($start, $end)
+    {
+        // Setup the variables to be passed as arguments to the queueReport method
+        $report = $this->getDonorPathHoverReport();
+        $results = array();
+        $parameters = array('start' => $start, 'end' => $end, 'namespaceName' => 'DonorPath');
+        // Queue the report
+        $this->get('ca.report.manager')->queueReport($report, $results, $parameters);
+        $numberOfHovers = count($results);
+        return $this->render('CympelAnalyticsBundle:DonorPathReporting:hoverReport.html.twig', array(
+            'start' => $start,
+            'end' => $end,
+            'numberOfHovers' => $numberOfHovers,
         ));
     }
 
@@ -88,7 +111,7 @@ class DonorPathReportingController extends Controller
                     FROM CympelAnalyticsBundle:RouteTraffic rt
                     WHERE rt.name LIKE :name
                     AND rt.timestamp BETWEEN :start AND :end";
-        return $this->getReport($reportName, $query);
+        return $this->get('ca.report.manager')->findOrCreateReport($reportName, $query);
     }
 
     public function getDonorPathRedirectReport()
@@ -98,38 +121,20 @@ class DonorPathReportingController extends Controller
                     FROM CympelAnalyticsBundle:RouteTraffic rt
                     WHERE rt.name LIKE :name
                     AND rt.timestamp BETWEEN :start AND :end";
-        return $this->getReport($reportName, $query);
+        return $this->get('ca.report.manager')->findOrCreateReport($reportName, $query);
     }
 
-    /**
-     * @param $reportName
-     * @param null $reportQuery
-     * @return iReport
-     * @throws Exception\UnableToGetReportException
-     * @throws Exception\UnknownReportAndBlankQueryException
-     */
-    protected function getReport($reportName, $reportQuery = null)
+    public function getDonorPathHoverReport()
     {
-        $report = $this->get('ca.generics.finder')->findOneByPropertyAndClassAlias(
-            array(
-                'name' => $reportName,
-            ),
-            'Report'
-        );
-        if(!$report) {
-            if(!$reportQuery) {
-                throw new UnknownReportAndBlankQueryException();
-            }
-            // The report doesn't exist in the database so create it and persist it
-            $creator = $this->get('ca.generics.creator');
-            $report = $creator->create('Report');
-            $report->setName($reportName);
-            $report->setQuery($reportQuery);
-            $this->get('ca.generics.persister')->persist($report);
-        }
-        if(!$report) {
-            throw new UnableToGetReportException();
-        }
-        return $report;
+        $reportName = 'DonorPathHoverReport';
+        $query =    "SELECT DISTINCT dynamicCSS
+                    FROM CympelAnalyticsBundle:DynamicCSSDomId di
+                    INNER JOIN CympelAnalyticsBundle:DynamicCSS dynamicCSS
+                    WITH (di.dynamicCSS = dynamicCSS)
+                    INNER JOIN CympelAnalyticsBundle:CympelNamespace cn
+                    WITH (di.cympelNamespace = cn)
+                    AND cn.name = :namespaceName
+                    AND di.rendered BETWEEN :start AND :end";
+        return $this->get('ca.report.manager')->findOrCreateReport($reportName, $query);
     }
 }

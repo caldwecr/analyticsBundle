@@ -31,3 +31,6 @@ cympel_donor_path_run_route_traffic_report:
 cympel_donor_path_run_redirect_report:
     pattern: /donor/path/run/redirect/report/{start}/{end}
     defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:runRedirectReport }
+cympel_donor_path_run_hover_report:
+    pattern: /donor/path/run/hover/report/{start}/{end}
+    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:runHoverReport }

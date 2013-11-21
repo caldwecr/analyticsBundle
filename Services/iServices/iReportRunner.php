@@ -11,7 +11,7 @@ namespace Cympel\Bundle\AnalyticsBundle\Services\iServices;
 use Cympel\Bundle\ToolsBundle\Services\iServices\iService;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iReportRun;
 
-interface iReportRunner extends iService
+interface iReportRunner extends iService, iExtender
 {
 
     /**
