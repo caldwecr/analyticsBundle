@@ -10,34 +10,84 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId;
-use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidDynamicCSSDomIdException;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iDynamicCSSDomIdManager;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iExtender;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iFinder;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iRemover;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iValidator;
 
-class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
+class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService implements iDynamicCSSDomIdManager
 {
-    protected $doctrine;
+    /**
+     * @var iCreator
+     */
+    protected $creator;
 
+    /**
+     * @var iFinder
+     */
+    protected $finder;
+
+    /**
+     * @var iNamespacer
+     */
+    protected $namespacer;
+
+    /**
+     * @var iPersister
+     */
+    protected $persister;
+
+    /**
+     * @var iRemover
+     */
+    protected $remover;
+
+    /**
+     * @var iValidator
+     */
     protected $validator;
 
-    protected $emName;
+    /**
+     * @var iExtender
+     */
+    protected $extender;
 
     /**
      * @var string
      */
     protected static $classAlias = 'DynamicCSSDomIdManager';
 
-    public function __construct($doctrine, $validator, $entityManagerName)
+    /**
+     * @param iCreator $creator
+     * @param iFinder $finder
+     * @param iNamespacer $namespacer
+     * @param iPersister $persister
+     * @param iRemover $remover
+     * @param iValidator $validator
+     * @param iExtender $extender
+     */
+    public function __construct(iCreator $creator, iFinder $finder, iNamespacer $namespacer, iPersister $persister, iRemover $remover, iValidator $validator, iExtender $extender = null)
     {
-        $this->doctrine = $doctrine;
+        $this->creator = $creator;
+        $this->finder = $finder;
+        $this->namespacer = $namespacer;
+        $this->persister = $persister;
+        $this->remover = $remover;
         $this->validator = $validator;
-        $this->emName = $entityManagerName;
+        $this->extender = $extender;
     }
+
 
     /**
      * @return DynamicCSSDomId
      */
     public function createDynamicCSSDomId()
     {
-        return new DynamicCSSDomId();
+        return $this->getCreator()->create('DynamicCSSDomId');
     }
 
     /**
@@ -57,9 +107,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
     public function renderDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
         $dynamicCSSDomId->setRendered(time());
-        $em = $this->doctrine->getManager($this->emName);
-        $em->persist($dynamicCSSDomId);
-        $em->flush();
+        $this->getPersister()->persist($dynamicCSSDomId);
         return $dynamicCSSDomId;
     }
 
@@ -104,12 +152,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
      */
     public function persistDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
-        if(!$this->validate($dynamicCSSDomId)) {
-            throw new InvalidDynamicCSSDomIdException();
-        }
-        $em = $this->doctrine->getManager($this->emName);
-        $em->persist($dynamicCSSDomId);
-        $em->flush();
+        $this->getPersister()->persist($dynamicCSSDomId);
         return true;
     }
 
@@ -131,12 +174,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
      */
     public function removeDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
-        if(!$this->validate($dynamicCSSDomId)) {
-            throw new InvalidDynamicCSSDomIdException();
-        }
-        $em = $this->doctrine->getManager($this->emName);
-        $em->remove($dynamicCSSDomId);
-        $em->flush();
+        $this->getRemover()->remove($dynamicCSSDomId);
         return true;
     }
 
@@ -157,8 +195,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
      */
     public function findOneDynamicCSSDomIdById($id)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId', $this->emName);
-        $dynamicCSSDomId = $repository->findOneById($id);
+        $dynamicCSSDomId = $this->getFinder()->findOneByIdAndClassAlias($id, 'DynamicCSSDomId');
         return $dynamicCSSDomId;
     }
 
@@ -180,11 +217,13 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
      */
     public function findOneDynamicCSSDomIdByDynamicCSSAndDomIdValue(DynamicCSS $dynamicCSS, $domIdValue)
     {
-        $repository = $this->doctrine->getRepository('CympelAnalyticsBundle:DynamicCSSDomId', $this->emName);
-        $dynamicCSSDomId = $repository->findOneBy(array(
-            'dynamicCSS' => $dynamicCSS,
-            'domIdValue' => $domIdValue,
-        ));
+        $dynamicCSSDomId = $this->getFinder()->findOneByPropertyAndClassAlias(
+            array(
+                'dynamicCSS' => $dynamicCSS,
+                'domIdValue' => $domIdValue,
+            ),
+            'DynamicCSSDomId'
+        );
         return $dynamicCSSDomId;
     }
 
@@ -206,7 +245,7 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
      */
     public function validateDynamicCSSDomId(DynamicCSSDomId $dynamicCSSDomId)
     {
-        $errors = $this->validator->validate($dynamicCSSDomId);
+        $errors = $this->getValidator()->validate($dynamicCSSDomId);
         return $errors;
     }
 
@@ -220,4 +259,71 @@ class DynamicCSSDomIdManager extends TrackingToolManagerExtensionService
     {
         return $this->validateDynamicCSSDomId($dynamicCSSDomId);
     }
+
+    /**
+     * @return iCreator
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * @return iFinder
+     */
+    public function getFinder()
+    {
+        return $this->finder;
+    }
+
+    /**
+     * @return iNamespacer
+     */
+    public function getNamespacer()
+    {
+        return $this->namespacer;
+    }
+
+    /**
+     * @return iPersister
+     */
+    public function getPersister()
+    {
+        return $this->persister;
+    }
+
+    /**
+     * @return iRemover
+     */
+    public function getRemover()
+    {
+        return $this->remover;
+    }
+
+    /**
+     * @return iValidator
+     */
+    public function getValidator()
+    {
+        return $this->validator;
+    }
+
+    /**
+     * @return iExtender
+     */
+    public function getExtender()
+    {
+        return $this->extender;
+    }
+
+    /**
+     * @param iExtender $extension
+     * @return void
+     */
+    public function processExtension(iExtender $extension)
+    {
+        // This method is not used as the manager does not currently have an extension
+    }
+
+
 }
