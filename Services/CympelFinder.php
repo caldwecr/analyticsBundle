@@ -76,7 +76,7 @@ class CympelFinder extends CympelService implements iFinder
      */
     public function findOneByPropertyAndClassAlias($property = array(), $classAlias)
     {
-        if($property && is_array($property) && count($property) === 1) {
+        if($property && is_array($property)) {
             $findable = $this->creator->create($classAlias);
             $repositoryName = $findable->getRepositoryName();
             $entityManagerName = $findable->getEntityManagerName();
