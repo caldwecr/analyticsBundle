@@ -8,6 +8,7 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Services;
 
+use Cympel\Bundle\AnalyticsBundle\Entity\Exception\InvalidAttemptToSetEntityCympelNamespace;
 use Cympel\Bundle\ToolsBundle\Services\CympelService;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iPersistable;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
@@ -75,10 +76,20 @@ class CympelPersister extends CympelService implements iPersister
             $em->persist($persistable);
             $em->flush();
         }
+
         // An entity must have a valid id before adding to a namespace
-        $this->namespacer->addEntityToCympelNamespace($persistable, $this->myNamespace);
+        // Continue from here .. the problem is that now the persister is trying to overwrite the
+        // namespace set by the generateonetimestylesheet method
+        // I think best approach is to just check to see if the entity already has a namespace,
+        // to do that I have to make iPersistable extend iNamespaceable, which means an update to the tools bundle
+        $cn = $persistable->getCympelNamespace();
+        if(!$cn || !$cn->getName()) {
+            $this->namespacer->addEntityToCympelNamespace($persistable, $this->myNamespace);
+        }
+
         $em->persist($persistable);
         $em->flush();
 
     }
+
 }

@@ -55,7 +55,10 @@ class CympelRemover extends CympelService implements iRemover
     public function remove(iRemovable $removable)
     {
         $em = $this->doctrine->getManager($removable->getEntityManagerName());
-        $this->namespacer->removeEntityFromCympelNamespace($removable, $this->myNamespace);
+        $cn = $removable->getCympelNamespace();
+        if($cn) {
+            $this->namespacer->removeEntityFromCympelNamespace($removable, $cn);
+        }
         $em->remove($removable);
         $em->flush();
     }
