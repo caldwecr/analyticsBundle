@@ -60,7 +60,7 @@ services:
         arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@ca.dcss.extender"]
     ca.dcss.dom_id.manager:
         class: %ca.dcss.dom_id.manager.class%
-        arguments: ["@doctrine", "@validator", "%cympel_analytics.entity_manager%"]
+        arguments: ["@ca.generics.creator", "@ca.generics.finder", "@ca.generics.namespacer", "@ca.generics.persister", "@cympel_analytics.generics.remover", "@ca.generics.validator", "@?"]
     ca.tracker.manager:
         class: %ca.tracker.manager.class%
         arguments: ["@doctrine", "@ca.tracker.tt.remover", "%cympel_analytics.entity_manager%"]
@@ -72,7 +72,7 @@ services:
         arguments: ["@ca.dcss.dom_id.manager", "@ca.dcss.dom_id.ac.manager", "@doctrine", "@ca.tracker.tt.remover", "@ca.tracker.tt.validator", "@router", "@ca.tracker.manager", "%cympel_analytics.entity_manager%"]
     ca.dcss.dom_id.ac.manager:
         class: %ca.dcss.dom_id.ac.manager.class%
-        arguments: ["@ca.dcss.dom_id.manager", "@ca.generics.creator"]
+        arguments: ["@ca.dcss.dom_id.manager", "@ca.generics.creator", "@ca.generics.persister", "@ca.generics.namespacer"]
     ca.tracker.tt.remover:
         class: %ca.tracker.tt.remover.class%
         arguments: ["@doctrine", "@ca.tracker.tt.validator", "%cympel_analytics.entity_manager%", "@ca.generics.namespacer", "%cympel_analytics.namespace%"]
