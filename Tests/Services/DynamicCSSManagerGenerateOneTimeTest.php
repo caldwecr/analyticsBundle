@@ -20,7 +20,7 @@ class DynamicCSSManagerGenerateOneTimeTest extends ContainerAwareUnitTestCase
             'bar'
         );
         $pseudo = 'hover';
-        $uri = $dcm->generateOneTimeStylesheet($ids, $pseudo);
+        $uri = $dcm->generateOneTimeStylesheet($ids, $pseudo, $this->get('service_container')->getParameter('cympel_analytics.namespace'));
 
         $this->assertTrue(strpos($uri, '/analytics/dynamic/css/') !== false);
     }
