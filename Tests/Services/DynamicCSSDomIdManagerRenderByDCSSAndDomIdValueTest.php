@@ -16,7 +16,7 @@ class DynamicCSSDomIdManagerRenderByDCSSAndDomIdValueTest extends ContainerAware
     public function testRenderByDCSSAndDomIdValue()
     {
         $dcdim = $this->get('ca.dcss.dom_id.manager');
-        $dcssdi = DynamicCSSDomIdTestInstanceFactory::createInstance('DynamicCSSDomIdManagerRenderByDCSSAndDomIdValueTest');
+        $dcssdi = DynamicCSSDomIdTestInstanceFactory::createInstance('DynamicCSSDomIdManagerRenderByDCSSAndDomIdValueTest', $this->get('ca.generics.creator'));
         $dcdim->persist($dcssdi);
         $dcssdi2 = $dcdim->findOneByDynamicCSSAndDomIdValue($dcssdi->getDynamicCSS(), $dcssdi->getDomIdValue());
         $this->assertTrue($dcssdi->equals($dcssdi2));

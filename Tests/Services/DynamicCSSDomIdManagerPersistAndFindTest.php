@@ -15,7 +15,7 @@ class DynamicCSSDomIdManagerPersistAndFindTest extends ContainerAwareUnitTestCas
 {
     public function testPersistAndFind()
     {
-        $dynamicCSSDomId = DynamicCSSDomIdTestInstanceFactory::createInstance();
+        $dynamicCSSDomId = DynamicCSSDomIdTestInstanceFactory::createInstance('validIdForTesting', $this->get('ca.generics.creator'));
         $dcdim = $this->get('ca.dcss.dom_id.manager');
         $dcdim->persist($dynamicCSSDomId);
 

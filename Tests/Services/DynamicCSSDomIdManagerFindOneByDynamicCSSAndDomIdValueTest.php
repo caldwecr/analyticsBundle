@@ -16,7 +16,8 @@ class DynamicCSSDomIdManagerFindOneByDynamicCSSAndDomIdValueTest extends Contain
     public function testFindOneByDCSSAndDomIdValue()
     {
         $dcdim = $this->get('ca.dcss.dom_id.manager');
-        $dcssdi = DynamicCSSDomIdTestInstanceFactory::createInstance();
+        $dcssdi = DynamicCSSDomIdTestInstanceFactory::createInstance('textIdValue', $this->get('ca.generics.creator'));
+        //$dcssdi = $this->get('ca.generics.creator')->create('DynamicCSSDomId');
         $dcdim->persist($dcssdi);
         $dcssdi2 = $dcdim->findOneByDynamicCSSAndDomIdValue($dcssdi->getDynamicCSS(), $dcssdi->getDomIdValue());
         $this->assertTrue($dcssdi->equals($dcssdi2));
