@@ -11,8 +11,12 @@ namespace Cympel\Bundle\AnalyticsBundle\Services;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS;
 use Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomIdArrayCollection;
 use Cympel\Bundle\AnalyticsBundle\Services\iServices\iCreator;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iHaveNamespacer;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iNamespacer;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersist;
+use Cympel\Bundle\AnalyticsBundle\Services\iServices\iPersister;
 
-class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtensionService
+class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtensionService implements iPersist, iHaveNamespacer
 {
 
     /**
@@ -21,19 +25,31 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
     protected $dynamicCSSDomIdManager;
 
     /**
+     * @var iNamespacer
+     */
+    protected $namespacer;
+
+    /**
      * @var iCreator
      */
     protected $creator;
+
+    /**
+     * @var iPersister
+     */
+    protected $persister;
 
     /**
      * @var string
      */
     protected static $classAlias = 'DynamicCSSDomIdArrayCollectionManager';
 
-    public function __construct(DynamicCSSDomIdManager $dynamicCSSDomIdManager, iCreator $creator)
+    public function __construct(DynamicCSSDomIdManager $dynamicCSSDomIdManager, iCreator $creator, iPersister $persister, iNamespacer $namespacer)
     {
         $this->dynamicCSSDomIdManager = $dynamicCSSDomIdManager;
         $this->creator = $creator;
+        $this->persister = $persister;
+        $this->namespacer = $namespacer;
     }
 
 
@@ -59,6 +75,8 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
         foreach($ids as $key => $value) {
             $collection[$key] = $this->dynamicCSSDomIdManager->create();
             $collection[$key]->setDynamicCSS($tool);
+            $toolNamespace = $tool->getCympelNamespace();
+            $dynamicCSSDomIdNamespace = $collection[$key]->getCympelNamespace();
             if(is_array($value)) {
                 $collection[$key]->setDomIdValue($value['id']);
                 $image = $this->creator->create('DynamicCSSImage');
@@ -68,7 +86,28 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
             } else {
                 $collection[$key]->setDomIdValue($value);
             }
+            if($toolNamespace && !$dynamicCSSDomIdNamespace) {
+                // This isn't going to work because the dynamicCSSDomId hasn't been persisted yet
+                $this->getPersister()->persist($collection[$key]);
+                $this->namespacer->addEntityToCympelNamespace($collection[$key], $tool->getCympelNamespace());
+            }
         }
         return $collection;
+    }
+
+    /**
+     * @return iNamespacer
+     */
+    public function getNamespacer()
+    {
+        return $this->namespacer;
+    }
+
+    /**
+     * @return iPersister
+     */
+    public function getPersister()
+    {
+        return $this->persister;
     }
 }
