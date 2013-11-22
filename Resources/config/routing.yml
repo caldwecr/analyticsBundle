@@ -22,15 +22,3 @@ dynamicJSCallback:
 dynamicJSTest:
     pattern: /dynamic/jsTest
     defaults: { _controller: CympelAnalyticsBundle:Test:dynamicJSTest }
-cympel_donor_path_dashboard:
-    pattern: /donor/path/dashboard/{start}/{end}
-    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:dashboard }
-cympel_donor_path_run_route_traffic_report:
-    pattern: /donor/path/run/route/traffic/report/{start}/{end}
-    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:runRouteTrafficReport }
-cympel_donor_path_run_redirect_report:
-    pattern: /donor/path/run/redirect/report/{start}/{end}
-    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:runRedirectReport }
-cympel_donor_path_run_hover_report:
-    pattern: /donor/path/run/hover/report/{start}/{end}
-    defaults: { _controller: CympelAnalyticsBundle:DonorPathReporting:runHoverReport }
