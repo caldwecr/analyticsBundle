@@ -8,9 +8,15 @@
  */
 namespace Cympel\Bundle\AnalyticsBundle\Entity;
 
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iCreatable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iFindable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iNamespaceable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iPersistable;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iRemovable;
 use Cympel\Bundle\ToolsBundle\Entity\iEntity\iType;
 use Cympel\Bundle\ToolsBundle\Entity\CympelType;
 use Cympel\Bundle\AnalyticsBundle\Entity\iEntity\iDynamicCSSImage;
+use Cympel\Bundle\ToolsBundle\Entity\iEntity\iValidatable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -20,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="DynamicCSSDomId")
  */
-class DynamicCSSDomId extends CympelType
+class DynamicCSSDomId extends CympelType implements iPersistable, iRemovable, iFindable, iNamespaceable, iValidatable, iCreatable
 {
     /**
      * @var int
@@ -237,6 +243,14 @@ class DynamicCSSDomId extends CympelType
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasValidationConstraints()
+    {
+        return true;
     }
 
 
