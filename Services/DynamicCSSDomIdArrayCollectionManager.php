@@ -89,6 +89,9 @@ class DynamicCSSDomIdArrayCollectionManager extends TrackingToolManagerExtension
             if($toolNamespace && !$dynamicCSSDomIdNamespace) {
                 // This isn't going to work because the dynamicCSSDomId hasn't been persisted yet
                 $this->getPersister()->persist($collection[$key]);
+                // Remove the default namespace
+                $this->getNamespacer()->removeEntityFromDefaultCympelNamespaces($collection[$key]);
+                // Add the entity to the tool's namespace
                 $this->namespacer->addEntityToCympelNamespace($collection[$key], $tool->getCympelNamespace());
             }
         }
