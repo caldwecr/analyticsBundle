@@ -6,7 +6,7 @@
  * Time: 2:22 PM
  * Copyright Cympel Inc
  */
-namespace Cympel\Bundle\AnalyticsBundle\Tests\Services;
+namespace Cympel\Bundle\AnalyticsBundle\Tests\Entity;
 
 use Cympel\Bundle\AnalyticsBundle\Tests\ContainerAwareUnitTestCase;
 

@@ -1,0 +1,226 @@
+### This file is used to load creatables that are required by the ToolsBundle,
+### other bundles can follow this pattern and simply add their own creatables,
+### by creating a loader service the creatables defined herein are loaded into
+### the creatables registrar
+### If you are writing a bundle that defines any iCreatables then you should
+### register them in this fashion - only top level applications should consider
+### using the configuration extension option via the config.yml file
+parameters:
+    ca.internals.creatable.0.class:     Cympel\Bundle\ToolsBundle\Entity\CympelImageResource
+    ca.internals.creatable.0.alias:     CympelImageResource
+    ca.internals.creatable.0.emn:       none
+    ca.internals.creatable.0.rn:        none
+    ca.internals.creatable.0.final:     true
+
+    ca.crtb.concrete_persistable_test_type.class: Cympel\Bundle\AnalyticsBundle\Entity\ConcretePersistableTestType
+    ca.crtb.concrete_persistable_test_type.alias: ConcretePersistableTestType
+    ca.crtb.concrete_persistable_test_type.emn: %cympel_analytics.entity_manager%
+    ## emn = entity manager name, rn = repository name
+    ca.crtb.concrete_persistable_test_type.rn: CympelAnalyticsBundle:ConcretePersistableTestType
+
+    ca.crtb.djs.selectors.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectors
+    ca.crtb.djs.selectors.alias: DynamicJSSelectors
+    ca.crtb.djs.selectors.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.selectors.rn: CympelAnalyticsBundle:DynamicJSSelectors
+
+    ca.crtb.djs.selector.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelector
+    ca.crtb.djs.selector.alias: DynamicJSSelector
+    ca.crtb.djs.selector.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.selector.rn: CympelAnalyticsBundle:DynamicJSSelector
+
+    ca.crtb.djs.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJS
+    ca.crtb.djs.alias: DynamicJS
+    ca.crtb.djs.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.rn: CympelAnalyticsBundle:DynamicJS
+
+    ca.crtb.dcss.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSS
+    ca.crtb.dcss.alias: DynamicCSS
+    ca.crtb.dcss.emn: %cympel_analytics.entity_manager%
+    ca.crtb.dcss.rn: CympelAnalyticsBundle:DynamicCSS
+
+    ca.crtb.dcss.dom_id.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSDomId
+    ca.crtb.dcss.dom_id.alias: DynamicCSSDomId
+    ca.crtb.dcss.dom_id.emn: %cympel_analytics.entity_manager%
+    ca.crtb.dcss.dom_id.rn: CympelAnalyticsBundle:DynamicCSSDomId
+
+    ca.crtb.dcss.image.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicCSSImage
+    ca.crtb.dcss.image.alias: DynamicCSSImage
+    ca.crtb.dcss.image.emn: %cympel_analytics.entity_manager%
+    ca.crtb.dcss.image.rn: CympelAnalyticsBundle:DynamicCSSImage
+
+    ca.crtb.djs.dom_event.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvent
+    ca.crtb.djs.dom_event.alias: DynamicJSDomEvent
+    ca.crtb.djs.dom_event.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.dom_event.rn: CympelAnalyticsBundle:DynamicJSDomEvent
+
+    ca.crtb.djs.dom_events.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSDomEvents
+    ca.crtb.djs.dom_events.alias: DynamicJSDomEvents
+    ca.crtb.djs.dom_events.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.dom_events.rn: CympelAnalyticsBundle:DynamicJSDomEvents
+
+    ca.crtb.djs.sde.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEvent
+    ca.crtb.djs.sde.alias: DynamicJSSelectorDomEvent
+    ca.crtb.djs.sde.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.sde.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEvent
+
+    ca.crtb.djs.cds.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSet
+    ca.crtb.djs.cds.alias: DynamicJSSelectorDomEventClientDataSet
+    ca.crtb.djs.cds.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSet
+
+    ca.crtb.djs.cds.sets.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSets
+    ca.crtb.djs.cds.sets.alias: DynamicJSSelectorDomEventClientDataSets
+    ca.crtb.djs.cds.sets.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.sets.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSets
+
+    ca.crtb.djs.cds.dom_class.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClass
+    ca.crtb.djs.cds.dom_class.alias: DynamicJSSelectorDomEventClientDataSetDomClass
+    ca.crtb.djs.cds.dom_class.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.dom_class.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClass
+
+    ca.crtb.djs.cds.dom_classes.class: Cympel\Bundle\AnalyticsBundle\Entity\DynamicJSSelectorDomEventClientDataSetDomClasses
+    ca.crtb.djs.cds.dom_classes.alias: DynamicJSSelectorDomEventClientDataSetDomClasses
+    ca.crtb.djs.cds.dom_classes.emn: %cympel_analytics.entity_manager%
+    ca.crtb.djs.cds.dom_classes.rn: CympelAnalyticsBundle:DynamicJSSelectorDomEventClientDataSetDomClasses
+
+    ca.crtb.cn.class: Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespace
+    ca.crtb.cn.alias: CympelNamespace
+    ca.crtb.cn.emn: %cympel_analytics.entity_manager%
+    ca.crtb.cn.rn: CympelAnalyticsBundle:CympelNamespace
+
+    ca.crtb.cn.entity.class: Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespaceEntity
+    ca.crtb.cn.entity.alias: CympelNamespaceEntity
+    ca.crtb.cn.entity.emn: %cympel_analytics.entity_manager%
+    ca.crtb.cn.entity.rn: CympelAnalyticsBundle:CympelNamespaceEntity
+
+    ca.crtb.cn.entities.class: Cympel\Bundle\AnalyticsBundle\Entity\CympelNamespaceEntities
+    ca.crtb.cn.entities.alias: CympelNamespaceEntities
+    ca.crtb.cn.entities.emn: %cympel_analytics.entity_manager%
+    ca.crtb.cn.entities.rn: CympelAnalyticsBundle:CympelNamespaceEntities
+
+    ca.crtb.report.class: Cympel\Bundle\AnalyticsBundle\Entity\Report
+    ca.crtb.report.alias: Report
+    ca.crtb.report.emn: %cympel_analytics.entity_manager%
+    ca.crtb.report.rn: CympelAnalyticsBundle:Report
+
+    ca.crtb.report_run.class: Cympel\Bundle\AnalyticsBundle\Entity\ReportRun
+    ca.crtb.report_run.alias: ReportRun
+    ca.crtb.report_run.emn: %cympel_analytics.entity_manager%
+    ca.crtb.report_run.rn: CympelAnalyticsBundle:ReportRun
+
+    ca.crtb.report_run_result.class: Cympel\Bundle\AnalyticsBundle\Entity\ReportRunResult
+    ca.crtb.report_run_result.alias: ReportRunResult
+    ca.crtb.report_run_result.emn: %cympel_analytics.entity_manager%
+    ca.crtb.report_run_result.rn: CympelAnalyticsBundle:ReportRunResult
+
+    ca.internals.creatables:
+        "%ca.crtb.concrete_persistable_test_type.alias%":
+            class:                "%ca.crtb.concrete_persistable_test_type.class%"
+            alias:                "%ca.crtb.concrete_persistable_test_type.alias%"
+            entity_manager_name:  "%ca.crtb.concrete_persistable_test_type.emn%"
+            repository_name:      "%ca.crtb.concrete_persistable_test_type.rn%"
+        "%ca.crtb.djs.selectors.alias%":
+            class:                "%ca.crtb.djs.selectors.class%"
+            alias:                "%ca.crtb.djs.selectors.alias%"
+            entity_manager_name:  "%ca.crtb.djs.selectors.emn%"
+            repository_name:      "%ca.crtb.djs.selectors.rn%"
+        "%ca.crtb.djs.selector.alias%":
+            class:                "%ca.crtb.djs.selector.class%"
+            alias:                "%ca.crtb.djs.selector.alias%"
+            entity_manager_name:  "%ca.crtb.djs.selector.emn%"
+            repository_name:      "%ca.crtb.djs.selector.rn%"
+        "%ca.crtb.djs.alias%":
+            class:                "%ca.crtb.djs.class%"
+            alias:                "%ca.crtb.djs.alias%"
+            entity_manager_name:  "%ca.crtb.djs.emn%"
+            repository_name:      "%ca.crtb.djs.rn%"
+        "%ca.crtb.dcss.alias%":
+            class:                "%ca.crtb.dcss.class%"
+            alias:                "%ca.crtb.dcss.alias%"
+            entity_manager_name:  "%ca.crtb.dcss.emn%"
+            repository_name:      "%ca.crtb.dcss.rn%"
+        "%ca.crtb.dcss.dom_id.alias%":
+            class:                "%ca.crtb.dcss.dom_id.class%"
+            alias:                "%ca.crtb.dcss.dom_id.alias%"
+            entity_manager_name:  "%ca.crtb.dcss.dom_id.emn%"
+            repository_name:      "%ca.crtb.dcss.dom_id.rn%"
+        "%ca.crtb.djs.dom_event.alias%":
+            class:                "%ca.crtb.djs.dom_event.class%"
+            alias:                "%ca.crtb.djs.dom_event.alias%"
+            entity_manager_name:  "%ca.crtb.djs.dom_event.emn%"
+            repository_name:      "%ca.crtb.djs.dom_event.rn%"
+        "%ca.crtb.djs.dom_events.alias%":
+            class:                "%ca.crtb.djs.dom_events.class%"
+            alias:                "%ca.crtb.djs.dom_events.alias%"
+            entity_manager_name:  "%ca.crtb.djs.dom_events.emn%"
+            repository_name:      "%ca.crtb.djs.dom_events.rn%"
+        "%ca.crtb.djs.sde.alias%":
+            class:                "%ca.crtb.djs.sde.class%"
+            alias:                "%ca.crtb.djs.sde.alias%"
+            entity_manager_name:  "%ca.crtb.djs.sde.emn%"
+            repository_name:      "%ca.crtb.djs.sde.rn%"
+        "%ca.crtb.djs.cds.alias%":
+            class:                "%ca.crtb.djs.cds.class%"
+            alias:                "%ca.crtb.djs.cds.alias%"
+            entity_manager_name:  "%ca.crtb.djs.cds.emn%"
+            repository_name:      "%ca.crtb.djs.cds.rn%"
+        "%ca.crtb.djs.cds.sets.alias%":
+            class:                "%ca.crtb.djs.cds.sets.class%"
+            alias:                "%ca.crtb.djs.cds.sets.alias%"
+            entity_manager_name:  "%ca.crtb.djs.cds.sets.emn%"
+            repository_name:      "%ca.crtb.djs.cds.sets.rn%"
+        "%ca.crtb.djs.cds.dom_class.alias%":
+            class:                "%ca.crtb.djs.cds.dom_class.class%"
+            alias:                "%ca.crtb.djs.cds.dom_class.alias%"
+            entity_manager_name:  "%ca.crtb.djs.cds.dom_class.emn%"
+            repository_name:      "%ca.crtb.djs.cds.dom_class.rn%"
+        "%ca.crtb.djs.cds.dom_classes.alias%":
+            class:                "%ca.crtb.djs.cds.dom_classes.class%"
+            alias:                "%ca.crtb.djs.cds.dom_classes.alias%"
+            entity_manager_name:  "%ca.crtb.djs.cds.dom_classes.emn%"
+            repository_name:      "%ca.crtb.djs.cds.dom_classes.rn%"
+        "%ca.crtb.cn.alias%":
+            class:                "%ca.crtb.cn.class%"
+            alias:                "%ca.crtb.cn.alias%"
+            entity_manager_name:  "%ca.crtb.cn.emn%"
+            repository_name:      "%ca.crtb.cn.rn%"
+        "%ca.crtb.cn.entity.alias%":
+            class:                "%ca.crtb.cn.entity.class%"
+            alias:                "%ca.crtb.cn.entity.alias%"
+            entity_manager_name:  "%ca.crtb.cn.entity.emn%"
+            repository_name:      "%ca.crtb.cn.entity.rn%"
+        "%ca.crtb.cn.entities.alias%":
+            class:                "%ca.crtb.cn.entities.class%"
+            alias:                "%ca.crtb.cn.entities.alias%"
+            entity_manager_name:  "%ca.crtb.cn.entities.emn%"
+            repository_name:      "%ca.crtb.cn.entities.rn%"
+        "%ca.crtb.dcss.image.alias%":
+            class:                "%ca.crtb.dcss.image.class%"
+            alias:                "%ca.crtb.dcss.image.alias%"
+            entity_manager_name:  "%ca.crtb.dcss.image.emn%"
+            repository_name:      "%ca.crtb.dcss.image.rn%"
+        "%ca.crtb.report.alias%":
+            class:                "%ca.crtb.report.class%"
+            alias:                "%ca.crtb.report.alias%"
+            entity_manager_name:  "%ca.crtb.report.emn%"
+            repository_name:      "%ca.crtb.report.rn%"
+        "%ca.crtb.report_run.alias%":
+            class:                "%ca.crtb.report_run.class%"
+            alias:                "%ca.crtb.report_run.alias%"
+            entity_manager_name:  "%ca.crtb.report_run.emn%"
+            repository_name:      "%ca.crtb.report_run.rn%"
+        "%ca.crtb.report_run_result.alias%":
+            class:                "%ca.crtb.report_run_result.class%"
+            alias:                "%ca.crtb.report_run_result.alias%"
+            entity_manager_name:  "%ca.crtb.report_run_result.emn%"
+            repository_name:      "%ca.crtb.report_run_result.rn%"
+
+### To attach to the top of the loader chain you need to define the service ca.creatables.top_loader in your bundle
+
+services:
+    cympel_tools.creatables.top_loader:
+        class: %cympel_tools.creatable_loader.class%
+        alias: ca.internals.creatable_loader
+    ca.internals.creatable_loader:
+        class: %cympel_tools.creatable_loader.class%
+        arguments: ["%ca.internals.creatables%", "@?ca.creatables.top_loader"]
